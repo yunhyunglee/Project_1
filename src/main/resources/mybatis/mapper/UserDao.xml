@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.himedia.project_1.dao.IUserDao">
+    <insert id="InsertUser" parameterType="com.himedia.project_1.dto.UserVo">
+        insert into user(id,pwd,name,phone, email) values (#{id},#{pwd},#{name},#{phone},#{email})
+    </insert>
+    <select id="getUser" resultType="com.himedia.project_1.dto.UserVo">
+        select *from user where id=#{param1}
+    </select>
+    <update id="updateUser" parameterType="com.himedia.project_1.dto.UserVo">
+        update user set pwd=#{pwd},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+    </update>
+    <insert id="InsertBusinessman" parameterType="com.himedia.project_1.dto.BusinessmanVo">
+        insert into businessman(id,pwd,name,phone,email) values (#{id},#{pwd},#{name},#{phone},#{email})
+    </insert>
+    <select id="getBusinessman" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        select *from businessman where id=#{param1}
+    </select>
+    <update id="updateBusiness" parameterType="com.himedia.project_1.dto.BusinessmanVo">
+        update businessman set pwd=#{pwd},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+    </update>
+    <delete id="deleteuser">
+        delete from user where id=#{param1}
+    </delete>
+    <delete id="deleteBusiness">
+        delete from businessman where id=#{param1}
+    </delete>
+    <select id="getZZim" resultType="com.himedia.project_1.dto.ZzimVo">
+        select*from zzim_view where uid=#{param1}
+    </select>
+
+</mapper>
