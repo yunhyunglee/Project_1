@@ -51,4 +51,6 @@ public class UserService {
     public List<ZzimVo> getZZim(String id) {
         return udao.getZZim(id);
     }
+
+    public List<ReviewVo> getMyReview(String id){ return  udao.getMyReview(id);}
 }

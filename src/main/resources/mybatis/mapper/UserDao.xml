@@ -31,5 +31,8 @@
     <select id="getZZim" resultType="com.himedia.project_1.dto.ZzimVo">
         select*from zzim_view where uid=#{param1}
     </select>
+    <select id="getMyReview" resultType="com.himedia.project_1.dto.ReviewVo">
+        select *from review_view where id=#{param1}
+    </select>
 
 </mapper>

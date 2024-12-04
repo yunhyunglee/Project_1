@@ -28,4 +28,6 @@ public interface IUserDao {
     void deleteBusiness(String id);
 
     List<ZzimVo> getZZim(String id);
+
+    List<ReviewVo> getMyReview(String id);
 }

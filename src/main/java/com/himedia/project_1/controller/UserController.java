@@ -246,4 +246,13 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("MyReview")
+    public ModelAndView myReview(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        UserVo loginuser= session.getAttribute("loginUser");
+        mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
+        mav.setViewName("mypage/MyReview");
+        return mav;
+    }
+
 }
