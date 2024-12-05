@@ -26,4 +26,12 @@ public interface IUserDao {
     void deleteBusiness(String id);
 
     List<ZzimVo> getZZim(String id);
+
+    List<ReviewVo> getMyReview(String id);
+
+    List<ReservationVo> getMyReservation(String id);
+
+    List<QnaVo> getMyQna(String id);
+
+    List<UserVo> getUserList();
 }

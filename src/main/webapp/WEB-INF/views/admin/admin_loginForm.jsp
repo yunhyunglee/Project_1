@@ -20,7 +20,7 @@
         <form method="post" action="adminlogin" name="loginForm" >
             <h2>LogIn</h2>
             <div class="field">
-                <label>User ID</label><input name="id" type="text"/>
+                <label>User ID</label><input name="aid" type="text"/>
             </div>
             <div class="field">
                 <label>Password</label><input name="pwd" type="password" >
