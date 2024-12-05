@@ -40,4 +40,16 @@
     <select id="getMyQna" resultType="com.himedia.project_1.dto.QnaVo">
         select*from qna where writer1=#{id} or writer2=#{id}
     </select>
+
+    <!--    카카오 로그인할 때 비번 -->
+    <update id="updateUserWithPassword">
+        UPDATE user
+        SET pwd = #{pwd}
+        WHERE id = #{id};
+    </update>
+
+    <!--  관리자페이지에서 회원리스트 로드할때!!!!!!!  -->
+    <select id="getUserList" resultType="com.himedia.project_1.dto.UserVo">
+        SELECT * FROM user
+    </select>
 </mapper>

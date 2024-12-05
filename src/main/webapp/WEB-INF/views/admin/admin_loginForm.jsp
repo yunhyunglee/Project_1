@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fbdls
-  Date: 24. 12. 4.
-  Time: 오전 11:00
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,26 +8,26 @@
 </head>
 <body>
 
-<section>
 
+
+<section>
     <article>
-        <form method="post" action="adminlogin" name="loginForm" >
-            <h2>LogIn</h2>
+        <form method="post" action="adminLogin" name="loginForm">
+            <h2>로그인</h2>
             <div class="field">
-                <label>User ID</label><input name="aid" type="text"/>
+                <label>Admin ID</label><input name="aid" type="text"/>
             </div>
             <div class="field">
-                <label>Password</label><input name="pwd" type="password" >
+                <label>Password</label><input name="pwd" type="password"/>
             </div>
             <div class="btn">
-                <input type="submit" value="LOGIN">
+                <input type="submit" value="LOGIN"/>
             </div>
-            <div style="font-size:80%; font-weight:bold">${message} </div>
-
+            <div style="font-size:80%; font-weight:bold">${message}</div>
         </form>
     </article>
-
 </section>
+
 
 </body>
 </html>
