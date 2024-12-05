@@ -6,12 +6,14 @@
 
     <article>
         <div class="item" style="display: flex ;">
-        <c:forEach items="${MyReview}" var="review">
+        <c:forEach items="${MyReservation}" var="plan">
             <div>
 
                 <div>
-                     <h2>${review.title}</h2> <br>
-                    <h3>${review.content}</h3> <br>
+                     <h2>${plan.title}</h2>
+                    <h3>신청인원 : ${plan.people}</h3>
+                    <h3>금액 :  ${plan.totalprice} </h3>
+                    <h3>예약시간 : <fmt:formatDate value="${plan.classday}"/>  ${plan.classtime}</h3>
                 </div>
 		    </div>
 

@@ -1,8 +1,6 @@
 package com.himedia.project_1.dao;
 
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.UserVo;
-import com.himedia.project_1.dto.ZzimVo;
+import com.himedia.project_1.dto.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.apache.ibatis.annotations.Mapper;
@@ -28,6 +26,4 @@ public interface IUserDao {
     void deleteBusiness(String id);
 
     List<ZzimVo> getZZim(String id);
-
-    List<ReviewVo> getMyReview(String id);
 }

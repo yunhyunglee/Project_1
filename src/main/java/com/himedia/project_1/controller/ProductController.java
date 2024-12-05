@@ -17,6 +17,11 @@ public class ProductController {
     @Autowired
     ProductService ps;
 
+    @GetMapping("/productDetail")
+    public String productDetail() {
+        return "product/productDetail";
+    }
+
     @GetMapping("/category")
     public ModelAndView category(@RequestParam("category") int category) {
         ModelAndView mav = new ModelAndView();

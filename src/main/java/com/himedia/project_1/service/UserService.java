@@ -1,9 +1,7 @@
 package com.himedia.project_1.service;
 
 import com.himedia.project_1.dao.IUserDao;
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.UserVo;
-import com.himedia.project_1.dto.ZzimVo;
+import com.himedia.project_1.dto.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +51,12 @@ public class UserService {
     }
 
     public List<ReviewVo> getMyReview(String id){ return  udao.getMyReview(id);}
+
+    public List<ReservationVo> getMyReservation(String id) {
+        return udao.getMyReservation(id);
+    }
+
+    public List<QnaVo> getMyQna( String id) {
+        return udao.getMyQna(id);
+    }
 }

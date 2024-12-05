@@ -2,6 +2,7 @@ package com.himedia.project_1.controller;
 
 
 import com.himedia.project_1.dto.AdminVo;
+import com.himedia.project_1.dto.QnaVo;
 import com.himedia.project_1.dto.UserVo;
 import com.himedia.project_1.service.AdminService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -26,6 +30,12 @@ public class AdminController {
     public String admin() {
         return "admin/admin_loginForm";
     }
+
+    @GetMapping("/admin/adminMain")
+    public String adminMain() {
+        return "admin/adminMain"; // JSP 파일 이름
+    }
+
 
     @PostMapping("/adminLogin")
     public String login(@ModelAttribute("dto") @Valid AdminVo adminvo, BindingResult result,
@@ -55,7 +65,13 @@ public class AdminController {
         return url;
     }
 
+    @GetMapping("/admin/getQnaList")
+    @ResponseBody
+    public List<QnaVo> getQnaList() {
+        return as.getQnaList();
 
+
+    }
 
 
 

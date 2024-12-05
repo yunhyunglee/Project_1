@@ -17,12 +17,12 @@
                 <input type="radio" name="usertype" value="1" checked/>개인 &nbsp;&nbsp;
                 <input type="radio" name="usertype" value="2">사업자
             </div>
-            <div class="btn">
+            <div class="login-btn">
                 <input type="submit" value="LOGIN">
                 <input type="button" value="JOIN"  onclick="location.href='joinform'" >
                 <input type="button" value="FIND ID"  onclick="" >
             </div>
-            <div class="btn">
+            <div class="login-btn">
                 <input type="button" value="KaKao" style="background: yellow; color:black"
                        onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=ee591d70889057034963a4ca3516fa78&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
                 <input type="button" value="Naver" style="background: green" onclick="" >

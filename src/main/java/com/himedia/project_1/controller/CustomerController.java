@@ -31,5 +31,26 @@ public class CustomerController {
         modelAndView.setViewName("mypage/ZZim");
         return modelAndView;
     }
+//@GetMapping("ZZim")
+//public ModelAndView ZZim(HttpServletRequest request) {
+//    ModelAndView modelAndView = new ModelAndView();
+//    UserVo loginUser = (UserVo) request.getSession().getAttribute("loginUser");
+//
+//    if (loginUser == null) {
+//        modelAndView.setViewName("redirect:/login");
+//        return modelAndView;
+//    }
+//
+//    try {
+//        List<ZzimVo> list = us.getZZim(loginUser.getId());
+//        modelAndView.addObject("ZZim", list);
+//        modelAndView.setViewName("mypage/ZZim");
+//    } catch (Exception e) {
+//        modelAndView.setViewName("error/500");
+//        e.printStackTrace();
+//    }
+//    return modelAndView;
+//}
+
 
 }

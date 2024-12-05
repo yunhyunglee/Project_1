@@ -5,13 +5,14 @@
 <section>
 
     <article>
-        <div class="item" style="display: flex ;">
-        <c:forEach items="${MyReview}" var="review">
+        <div class="item" style="display: flex ;flex-direction: column">
+        <c:forEach items="${MyQna}" var="qna">
             <div>
 
                 <div>
-                     <h2>${review.title}</h2> <br>
-                    <h3>${review.content}</h3> <br>
+                     <p>${qna.title}</p>
+                    <p>${qna.content}</p>
+                    <p>${qna.reply}</p>
                 </div>
 		    </div>
 

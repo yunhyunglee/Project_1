@@ -34,5 +34,10 @@
     <select id="getMyReview" resultType="com.himedia.project_1.dto.ReviewVo">
         select *from review_view where id=#{param1}
     </select>
-
+    <select id="getMyReservation" resultType="com.himedia.project_1.dto.ReservationVo">
+        select*from  reservation_view where userid=#{param1}
+    </select>
+    <select id="getMyQna" resultType="com.himedia.project_1.dto.QnaVo">
+        select*from qna where writer1=#{id} or writer2=#{id}
+    </select>
 </mapper>

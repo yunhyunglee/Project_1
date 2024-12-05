@@ -22,24 +22,25 @@
 	<h2>Best</h2>
 	<div class="products">
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
-		<%--		<c:forEach items="${bestList}" var="pvo" >--%>
-		<%--			<div class="item" onClick="location.href='productDetail?pseq=${pvo.pseq}'" >--%>
-		<%--					<div><img src="http://placehold.co/200x200" /></div>--%>
-		<%--					<div>${pvo.name}--%>
-		<%--						- <fmt:formatNumber value="${pvo.price2}" type="currency" /></div>--%>
-		<%--			</div>--%>
-		<%--		</c:forEach>--%>
 	</div>
 </div>
 
@@ -48,24 +49,25 @@
 	<h2>New</h2>
 	<div class="products">
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
 		<div class="item">
-			<div><img src="http://placehold.co/200x200" /></div>
+			<a href="/productDetail">
+				<img src="http://placehold.co/200x200" />
+			</a>
 		</div>
-		<%--		<c:forEach items="${newList}" var="pvo" >--%>
-		<%--			<div class="item"  onClick="location.href='productDetail?pseq=${pvo.pseq}'" >--%>
-		<%--					<div><img src="http://placehold.co/200x200" /></div>--%>
-		<%--					<div>${pvo.name}--%>
-		<%--						- <fmt:formatNumber value="${pvo.price2}" type="currency" /></div>--%>
-		<%--			</div>--%>
-		<%--		</c:forEach>--%>
 	</div>
 </div>
 

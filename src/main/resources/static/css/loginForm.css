@@ -1,13 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+@charset "UTF-8";
 
 section {
     width: 100%;
@@ -52,13 +43,13 @@ h2 {
     outline: none;
 }
 
-.btn {
+.login-btn {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
 }
 
-.btn input {
+.login-btn input {
     width: 32%;
     padding: 10px;
     font-size: 14px;
@@ -69,22 +60,22 @@ h2 {
     transition: background-color 0.3s ease-in-out;
 }
 
-.btn input[type="submit"] {
+.login-btn input[type="submit"] {
     background-color: #007bff;
     color: white;
 }
 
-.btn input[type="submit"]:hover {
+.login-btn input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-.btn input[type="button"] {
+.login-btn input[type="button"] {
     background-color: #f4f4f4;
     color: #555;
     border: 1px solid #ddd;
 }
 
-.btn input[type="button"]:hover {
+.login-btn input[type="button"]:hover {
     background-color: #eaeaea;
 }
 

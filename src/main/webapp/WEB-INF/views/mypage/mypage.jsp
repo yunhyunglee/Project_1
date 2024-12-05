@@ -8,7 +8,7 @@
     <a href="updateUserForm">회원정보 수정</a> <hr>
     <a href="ZZim">찜목록</a><hr>
     <a href="MyReview">내 후기목록</a><hr>
-    <a href="getMyReservation">내 예약내역</a><hr>
+    <a href="MyReservation">내 예약내역</a><hr>
     <a href="myQna">qna</a><hr>
     <a href="deleteUserForm">탈퇴</a><hr>
   </article>
