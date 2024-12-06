@@ -12,4 +12,10 @@ public interface IMyPageDao {
     List<ProductVo> getMyClassInfo(String id);
 
     List<ReservationVo> selectTotalPrice(String id);
+
+    List<ReservationVo> selectReservListDay(String cseq);
+
+    void deleteReservation(String reseq);
+
+    int selectcseqByReseq(String reseq);
 }

@@ -19,7 +19,16 @@ public class MyPageService {
 
     public List<ReservationVo> getMyClassInfo(String id) {
         List<ReservationVo> list = mdao.selectTotalPrice(id);
-        System.out.println("list.size(): " + list.size());
         return list;
+    }
+
+    public List<ReservationVo> selectReservListDay(String cseq) {
+        return mdao.selectReservListDay(cseq);
+    }
+
+    public int reservationCancel(String reseq) {
+        int cseq= mdao.selectcseqByReseq(reseq);
+        mdao.deleteReservation(reseq);
+        return cseq;
     }
 }

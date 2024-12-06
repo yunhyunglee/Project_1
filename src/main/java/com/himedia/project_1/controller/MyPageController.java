@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -77,9 +79,25 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
         List<ReservationVo> list=ms.getMyClassInfo(loginuser.getId());
-        System.out.println("list.size():"+list.size());
         mav.addObject("MyClass", list);
         mav.setViewName("mypage/MyClass");
         return mav;
     }
+    @GetMapping("Reservation_List")
+    public ModelAndView reservationDetails(HttpSession session, @RequestParam("cseq")String cseq) {
+        ModelAndView mav = new ModelAndView();
+//        BusinessmanVo loginuser=(BusinessmanVo) session.getAttribute("loginUser");
+        List<ReservationVo> list=ms.selectReservListDay(cseq);
+        mav.addObject("reservList", list);
+        mav.setViewName("mypage/Reservation_DetailList");
+        return mav;
+    }
+
+    @GetMapping("reservation_cancle")
+    public String reservationCancel(HttpSession session, @RequestParam("reseq")String reseq) {
+        int cseq=ms.reservationCancel(reseq);
+
+        return "redirect:/Reservation_List?cseq="+cseq;
+    }
+
 }
