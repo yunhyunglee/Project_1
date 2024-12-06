@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class ProductVo {
 
 
-    private Integer cesq;
+    private Integer cseq;
     private int price;
     private String id;
     private String title;
