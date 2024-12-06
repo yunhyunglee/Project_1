@@ -1,125 +1,157 @@
-/*@charset "UTF-8";*/
+@charset "UTF-8";
 
-/*section {*/
-/*    width: 100%;*/
-/*    max-width: 400px;*/
-/*    background: white;*/
-/*    padding: 20px;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*}*/
+.loginForm-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 300px); /* 헤더 높이를 제외한 로그인 폼 높이 */
+    padding-top: 0; /* 헤더와의 여백을 줄임 */
+    box-sizing: border-box;
+}
 
-/*h2 {*/
-/*    font-size: 24px;*/
-/*    font-weight: bold;*/
-/*    text-align: center;*/
-/*    color: #333;*/
-/*    margin-bottom: 20px;*/
-/*}*/
+header {
+    height: 100px; /* 헤더 높이 설정 */
+    background-color: #f8f9fa; /* 배경색 */
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*.field {*/
-/*    margin-bottom: 15px;*/
-/*}*/
+.field.radio-group {
+    display: flex;
+    justify-content: center; /* 라디오 버튼과 텍스트를 수평 중앙 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트를 세로 중앙 정렬 */
+    /*gap: 10px; !* 버튼 간 간격 *!*/
+}
 
-/*.field label {*/
-/*    display: block;*/
-/*    margin-bottom: 5px;*/
-/*    font-weight: bold;*/
-/*    color: #555;*/
-/*}*/
+.field.radio-group label {
+    display: inline-flex; /* 라벨을 inline-flex로 설정하여 수평 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 가운데 정렬 */
+    justify-content: center; /* 텍스트와 라디오 버튼을 수평 중앙 정렬 */
+    gap: 5px; /* 라디오 버튼과 텍스트 사이 간격 */
+    text-align: left; /* 텍스트 정렬을 왼쪽으로 설정 */
+}
 
-/*.field input {*/
-/*    width: 100%;*/
-/*    padding: 10px;*/
-/*    font-size: 14px;*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 5px;*/
-/*    box-sizing: border-box;*/
-/*    transition: border-color 0.3s ease-in-out;*/
-/*}*/
+.field.radio-group input[type="radio"] {
+    margin: 0; /* 기본 여백 제거 */
+}
 
-/*.field input:focus {*/
-/*    border-color: #007bff;*/
-/*    outline: none;*/
-/*}*/
+.login-section {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-/*.login-btn {*/
-/*    margin-top: 15px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*}*/
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
 
-/*.login-btn input {*/
-/*    width: 32%;*/
-/*    padding: 10px;*/
-/*    font-size: 14px;*/
-/*    font-weight: bold;*/
-/*    border-radius: 5px;*/
-/*    cursor: pointer;*/
-/*    border: none;*/
-/*    transition: background-color 0.3s ease-in-out;*/
-/*}*/
+.field {
+    margin-bottom: 20px;
+}
 
-/*.login-btn input[type="submit"] {*/
-/*    background-color: #007bff;*/
-/*    color: white;*/
-/*}*/
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
 
-/*.login-btn input[type="submit"]:hover {*/
-/*    background-color: #0056b3;*/
-/*}*/
+.field input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    height: 50px; /* 입력창의 높이를 명시적으로 설정 */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
 
-/*.login-btn input[type="button"] {*/
-/*    background-color: #f4f4f4;*/
-/*    color: #555;*/
-/*    border: 1px solid #ddd;*/
-/*}*/
+.field input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+/* 라디오 버튼 사이 간격 설정 */
+.field.radio-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* 라디오 버튼과 라디오 버튼 사이 간격을 넓힘 */
+}
 
-/*.login-btn input[type="button"]:hover {*/
-/*    background-color: #eaeaea;*/
-/*}*/
+/* 라디오 버튼 크기 조정 */
+.field.radio-group input[type="radio"] {
+    width: 18px;  /* 라디오 버튼의 크기를 명시적으로 설정 */
+    height: 18px; /* 라디오 버튼의 크기를 명시적으로 설정 */
+    margin-right: 5px; /* 라디오 버튼과 텍스트 간 간격을 설정 */
+    vertical-align: middle; /* 라디오 버튼과 텍스트 수직 정렬 */
+}
 
-/*.kakao-login {*/
-/*    width: 100%;*/
-/*    margin-top: 10px;*/
-/*    padding: 10px;*/
-/*    background-color: #f7e600;*/
-/*    border: none;*/
-/*    border-radius: 5px;*/
-/*    font-size: 14px;*/
-/*    font-weight: bold;*/
-/*    cursor: pointer;*/
-/*}*/
+/* 라벨과 텍스트 간 간격 설정 */
+.field.radio-group label {
+    display: inline-flex; /* 라벨을 inline-flex로 설정하여 수평 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 가운데 정렬 */
+    gap: 5px; /* 라디오 버튼과 텍스트 사이 간격 */
+    text-align: left; /* 텍스트 정렬을 왼쪽으로 설정 */
+}
 
-/*.kakao-login:hover {*/
-/*    background-color: #ecc900;*/
-/*}*/
+.kakao-login {
+    margin-top: 20px;
+    text-align: center; /* 카카오 로그인 버튼 중앙 정렬 */
+}
 
-/*input[value="Naver"] {*/
-/*    background-color: #03c75a;*/
-/*    color: white;*/
-/*    border: none;*/
-/*    width: 32%;*/
-/*}*/
+.login-btn,
+.kakao-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* 버튼 간 간격 */
+    margin-top: 20px;
+}
 
-/*input[value="Naver"]:hover {*/
-/*    background-color: #028f42;*/
-/*}*/
+.login-btn input,
+.kakao-login .kakao-btn {
+    flex: 1; /* 버튼의 동일한 크기 유지 */
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
 
-/*input[value="Google"] {*/
-/*    background-color: #db4437;*/
-/*    color: white;*/
-/*    border: none;*/
-/*    width: 32%;*/
-/*}*/
+.login-btn input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
 
-/*input[value="Google"]:hover {*/
-/*    background-color: #b33c2c;*/
-/*}*/
+.login-btn input[type="submit"]:hover {
+    background-color: #0056b3;
+}
 
-/*div[style*="font-size:80%;"] {*/
-/*    margin-top: 15px;*/
-/*    color: red;*/
-/*    text-align: center;*/
-/*    font-weight: bold;*/
-/*}*/
+.kakao-login .kakao-btn {
+    background: none; /* 배경색 제거 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 여백 제거 */
+    cursor: pointer; /* 버튼 클릭 가능 표시 */
+}
+
+.kakao-login .kakao-btn img {
+    display: block;
+    width: 100%; /* 부모 컨테이너 너비 기준 */
+    max-width: 350px; /* 이미지 최대 너비 조정 */
+    height: auto;
+    margin: 0 auto;
+    cursor: pointer;
+}
