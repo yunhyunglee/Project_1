@@ -229,10 +229,14 @@ public class UserController {
         return "redirect:/";
     }
     @GetMapping("mypage")
-    public String mypage(HttpSession session) {
+    public String mypage(HttpSession session,Model model) {
         Object loginUser = session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/loginForm";
+        }else if(loginUser instanceof UserVo) {
+            model.addAttribute("user", "1");
+        }else if(loginUser instanceof BusinessmanVo) {
+            model.addAttribute("user", "2");
         }
         return "mypage/mypage";
     }
@@ -344,54 +348,5 @@ public class UserController {
         session.removeAttribute("loginUser");
         return "redirect:/";
     }
-    @GetMapping("MyReview")
-    public ModelAndView myReview(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyReview");
-        return mav;
-    }
 
-    @GetMapping("MyReservation")
-    public ModelAndView myReservation(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0=session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyReservation");
-        return mav;
-    }
-
-    @GetMapping("myQna")
-    public ModelAndView myQna(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyQna");
-        return mav;
-    }
 }
