@@ -2,9 +2,7 @@ package com.himedia.project_1.controller;
 
 
 import com.himedia.project_1.dao.IQnaDao;
-import com.himedia.project_1.dto.AdminVo;
-import com.himedia.project_1.dto.QnaVo;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dto.*;
 import com.himedia.project_1.service.AdminService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -27,14 +25,20 @@ import java.util.Map;
 @Controller
 public class AdminController {
 
+    private boolean isAuthenticated(HttpSession session) {
+        return session.getAttribute("loginAdmin") != null;
+    }
+
     @Autowired
     AdminService as;
 
 
-
     @GetMapping("/admin/adminMain")
-    public String adminMain() {
-        return "admin/adminMain"; // JSP 파일 이름
+    public String adminMain(HttpSession session, Model model) {
+        if (!isAuthenticated(session)) {
+            return "redirect:/admin";   // 어드민로그인안하고 들어오면 보내버리기~
+        }
+        return "admin/adminMain";
     }
 
     @GetMapping("/admin")
@@ -42,7 +46,7 @@ public class AdminController {
         return "admin/admin_loginForm";
     }
 
-    @PostMapping("/adminlogin")
+    @PostMapping("/adminLogin")
     public String adminlogin(@ModelAttribute("dto") @Valid AdminVo adminvo, BindingResult result,
                         HttpServletRequest request, Model model) {
         String url = "admin/admin_loginForm";
@@ -73,18 +77,30 @@ public class AdminController {
 
 
 
+
+
+    // 어드민메인에서 메뉴들 매핑
     @GetMapping("/admin/getQnaList")
     @ResponseBody
-    public List<QnaVo> getQnaList() {
-        return as.getQnaList();
-
-
-    }
+    public List<QnaVo> getQnaList() { return as.getQnaList(); }
 
     @GetMapping("/admin/getMemberList")
     @ResponseBody
     public List<UserVo> getMemberList() {
         return as.getUserList();
     }
+
+    @GetMapping("/admin/getBusinessmanList")
+    @ResponseBody
+    public List<BusinessmanVo> getBusinessManList() {
+        return as.getBusinessmanList();
+    }
+
+    @GetMapping("/admin/getNoticeList")
+    @ResponseBody
+    public List<NoticeVo> getNoticeList() {
+        return as.getNoticeList();
+    }
+
 
 }

@@ -1,12 +1,8 @@
 package com.himedia.project_1.service;
 
 
-import com.himedia.project_1.dao.IAdminDao;
-import com.himedia.project_1.dao.IQnaDao;
-import com.himedia.project_1.dao.IUserDao;
-import com.himedia.project_1.dto.AdminVo;
-import com.himedia.project_1.dto.QnaVo;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dao.*;
+import com.himedia.project_1.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +32,22 @@ public class AdminService {
     public List<UserVo> getUserList() {
         return userDao.getUserList();
     }
+
+
+    @Autowired
+    private IBusinessmanDao businessmanDao;
+    public List<BusinessmanVo> getBusinessmanList() {
+        return businessmanDao.getBusinessmanList();
+    }
+
+    @Autowired
+    private INoticeDao noticeDao;
+
+    public List<NoticeVo> getNoticeList() {
+        return noticeDao.getNoticeList();
+    }
+
+
 }
+
+
