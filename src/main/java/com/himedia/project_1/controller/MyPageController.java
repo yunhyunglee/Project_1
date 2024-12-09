@@ -172,5 +172,11 @@ public class MyPageController {
         ms.deleteProduct(cseq);
         return "redirect:/MyClass";
     }
+    @GetMapping("clearpay")
+    public String clearpay(@RequestParam("cseq") int cseq){
+        System.out.println("cseq = "+cseq);
+        ms.clearpay(cseq);
+        return "redirect:/MyClass";
+    }
 
 }

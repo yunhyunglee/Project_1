@@ -63,4 +63,8 @@ public class MyPageService {
     public void deleteProduct(int cseq) {
         mdao.deleteProduct(cseq);
     }
+
+    public void clearpay(int cseq) {
+        mdao.clearpay(cseq);
+    }
 }
