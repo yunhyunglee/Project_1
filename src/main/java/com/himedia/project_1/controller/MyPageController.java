@@ -149,4 +149,28 @@ public class MyPageController {
         return result;
     }
 
+    @GetMapping("ClassinfoUpdate")
+    public ModelAndView classinfoUpdate(HttpSession session,@RequestParam("cseq")int cseq) {
+        ModelAndView mav = new ModelAndView();
+        BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
+        ProductVo pvo=ms.selectProductbycseq(cseq);
+        List<String>times= ms.selectedtimes(cseq);
+        mav.addObject("stimes", times);
+        mav.addObject("pvo", pvo);
+        mav.addObject("dto", loginuser);
+        mav.setViewName("mypage/UpdateProduct");
+        return mav;
+    }
+
+    @PostMapping("UpdateProduct")
+    public String UpdateProduct(@ModelAttribute("pvo")ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
+        ms.UpdateProduct(productvo,selectedtimes);
+        return "redirect:/MyClass";
+    }
+    @PostMapping("deleteProduct")
+    public String deleteButton(@RequestParam("cseq")int cseq){
+        ms.deleteProduct(cseq);
+        return "redirect:/MyClass";
+    }
+
 }
