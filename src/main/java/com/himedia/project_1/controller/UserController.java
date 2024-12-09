@@ -39,11 +39,6 @@ public class UserController {
         return "member/contract";
     }
 
-//    겹침
-//    @GetMapping("joinform")
-//    public String joinform() {
-//        return "join";
-//    }
 
     @GetMapping("userjoinform")
     public String userjoinform() { return "member/userjoin";}
@@ -238,7 +233,7 @@ public class UserController {
         }else if(loginUser instanceof BusinessmanVo) {
             model.addAttribute("user", "2");
         }
-        return "mypage/mypage";
+        return "MyPage";
     }
 
     @GetMapping("updateUserForm")

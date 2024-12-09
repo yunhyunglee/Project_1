@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* 기본적인 마이페이지 스타일 */
+.mypage {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mypage h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.mypage a {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* 호버시 배경색 변경 */
+.mypage a:hover {
+    background-color: #ddd;
+}
+
+/* 아이콘과 텍스트 정렬 */
+.mypage i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+/* 아이콘 크기 조정 */
+.mypage i.fa {
+    width: 20px;
+    height: 20px;
+}
+
+/* 각 항목 구분선 스타일 */
+.mypage hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+/* 각 섹션별 구분 */
+.mypage .my-info, .mypage .my-activities, .mypage .my-qa {
+    margin-bottom: 30px;
+}
+
+.mypage .my-info h3,
+.mypage .my-activities h3,
+.mypage .my-qa h3 {
+    font-size: 1.3rem;
+    color: #444;
+}
