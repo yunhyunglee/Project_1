@@ -34,4 +34,7 @@ public interface IUserDao {
     List<QnaVo> getMyQna(String id);
 
     List<UserVo> getUserList();
+
+    void updateUserWithPassword(UserVo uvo);
+
 }
