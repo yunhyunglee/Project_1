@@ -1,71 +1,112 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ page import="com.himedia.project_1.dto.BusinessmanVo" %>--%>
-<%--<%--%>
-<%--    BusinessmanVo business = (BusinessmanVo) request.getAttribute("business");--%>
-<%--%>--%>
 <%@ include file="../header.jsp" %>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/font@5.0.0/css/font.css">
+    <script src="script/productDetail.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
 
-<section class="class-detail">
-    <div class="image-section">
-        <img src="https://placeholder.co/400x300" alt="클래스 이미지">
+<section class="product-detail">
+    <!-- 상품 이미지 섹션 -->
+    <div class="product-image">
+<%--        <img src="/images/${product.image}" alt="${product.title}" />--%>
+        <img src="http://placehold.co/300x300">
     </div>
-    <div class="info-section">
-        <h2>title</h2>
-        <p class="price"><h3>50,000원</h3></p>
-        <p class="description">
-            content입니다.
-        </p>
+
+    <!-- 상품 정보 섹션 -->
+    <div class="product-info">
+        <h3>${product.title} title 입니다.</h3>
+        <p class="price">${product.price} 48,000원</p>
+        <p class="description">${product.description}</p>
         <div class="button-group">
             <button class="enroll-btn">신청하기</button>
-            <button class="cart-btn">찜하기</button>
-        </div>
-        <div class="businessman_info">
+            <!-- 찜하기 버튼 -->
+            <button class="wishlist-btn" onclick="toggleHeart(this)">
+                <i class="fas fa-heart"></i> <!-- 빈 하트 아이콘 -->
+            </button>
+
 
         </div>
-        <%--        <div class="business-profile">--%>
-        <%--            <div class="profile-info">--%>
-        <%--                <p><strong>사업자 ID:</strong> <%= business.getId() %></p>--%>
-        <%--                <p><strong>이름:</strong> <%= business.getName() %></p>--%>
-        <%--                <p><strong>전화:</strong> <%= business.getPhone() %></p>--%>
-        <%--                <p><strong>이메일:</strong> <%= business.getEmail() %></p>--%>
-        <%--                <p><strong>사업자 등록번호:</strong> <%= business.getBusinessnum() %></p>--%>
-        <%--                <p><strong>가입일:</strong> <%= business.getIndate() %></p>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
     </div>
 </section>
-<div class="lower-section">
-    <div class="details">
-        <h3>클래스 소개</h3>
-        <p>이 클래스는 10년 경력의 전문가인 김철수 강사가 진행합니다.</p>
-        <h3>준비물</h3>
+
+<!-- 상품 상세설명 섹션 -->
+<section class="product-description">
+    <h3>상품 상세 설명</h3>
+    <button class="toggle-description">
+        <i class="fi fi-rr-angle-down"></i>
+    </button>
+    <div class="description-content">
+        <p>${product.detailedDescription}</p>
+    </div>
+</section>
+
+<!-- 후기 섹션 -->
+<section class="reviews">
+    <h3>후기</h3>
+    <button class="toggle-reviews">
+        <i class="fi fi-rr-angle-down"></i>
+    </button>
+    <div class="review-list">
         <ul>
-            <li>편안한 복장</li>
-            <li>필기도구</li>
+            <c:forEach var="review" items="${reviews}">
+                <li>${review.author}: ${review.comment}</li>
+            </c:forEach>
         </ul>
-        <h3>위치</h3>
-        <p>서울특별시 강남구 테헤란로 123</p>
-        <div class="map">
-            <!-- * 카카오맵 - 지도퍼가기 -->
-            <!-- 1. 지도 노드 -->
-            <div id="daumRoughmapContainer1733284843945" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+    </div>
+</section>
 
-            <!--
-                2. 설치 스크립트
-                * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
-            -->
-            <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<!-- 환불 정책 섹션 -->
+<section class="return-policy">
+    <h3 class="toggle-title">
+        <span>변경 및 취소 정책</span>
+        <i class="fi fi-rr-angle-down"></i>
+    </h3>
+    <div class="policy-content">
+        <p> 1. 결제 후 14일 이내 취소 시 : 전액 환불<br>
+            (단, 결제 후 14일 이내라도 호스트와 프립 진행일 예약 확정 후 환불 불가)<br>
+            2. 결제 후 14일 이후 취소 시 : 환불 불가<br>
+            ※ 상품의 유효기간 만료 시 연장은 불가하며, 기간 내 호스트와 예약 확정 되지 않은 클래스는 환불 됩니다.<br>
+            ※ 배송상품의 경우 배송 준비 전 전액 환불 가능, 배송 준비 후 환불 불가 합니다.<br>
+            ※ 다회권의 경우, 1회라도 사용시 부분 환불이 불가하며, 기간 내 호스트와 예약 확정 되지 않은 클래스는 환불 됩니다.<br>
+            [환불 신청 방법]<br>
+            1. 해당 클래스를 결제한 계정으로 로그인<br>
+            2. 마이페이지 - 예약내역 or 결제내역</p><br>
+    </div>
+</section>
+<%--<!-- 지도 섹션 -->--%>
+<%--<section class="location">--%>
+<%--    <h3>위치</h3>--%>
+<%--    <p>${product.location}</p>--%>
+<%--    <div class="map">--%>
+<%--        <div id="map-container"></div>--%>
+<%--    </div>--%>
+<%--</section>--%>
 
-            <!-- 3. 실행 스크립트 -->
-            <script charset="UTF-8">
-                new daum.roughmap.Lander({
-                    "timestamp" : "1733284843945",
-                    "key" : "2mexn",
-                    "mapWidth" : "550",
-                    "mapHeight" : "300"
-                }).render();
-            </script>
-        </div>
+<!-- 문의하기 팝업 버튼 -->
+<section class="contact-section">
+    <button class="contact-btn" onclick="toggleContactForm()">문의하기</button>
+</section>
+
+<!-- 문의하기 팝업 폼 -->
+<div class="popup-overlay" id="contactFormPopup">
+    <div class="popup-content">
+        <h3>문의하기</h3>
+        <form id="contactForm">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">내용</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit" class="submit-btn">전송하기</button>
+        </form>
+        <button class="close-btn" onclick="closeContactForm()"><i class="fi fi-rr-cross"></i></button> <!-- X 버튼 추가 -->
     </div>
 </div>
+
+
 <%@ include file="../footer.jsp" %>

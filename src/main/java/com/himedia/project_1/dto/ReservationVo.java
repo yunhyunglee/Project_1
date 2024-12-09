@@ -15,4 +15,6 @@ public class ReservationVo {
     private Date classday;
     private int totalprice;
     private String title;
+    private String payment;
+    private String endedclass;
 }

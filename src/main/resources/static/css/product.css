@@ -1,20 +1,559 @@
 @charset "UTF-8";
 
-
-
-.title-content{
+/* 기본 레이아웃 설정 */
+.product-detail {
 	display: flex;
-	border: 1px solid red;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 40px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-top: 240px; /* 헤더와의 간격 조정 (헤더 높이에 맞춤) */
+	max-width: 1000px; /* 최대 너비 제한 */
+	margin: 0 auto; /* 화면 중앙 정렬 */
+	justify-content: center; /* 수평 중앙 정렬 */
+}
+
+/* 상품 이미지 섹션 */
+.product-image {
+	flex: 1 1 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+	max-width: 500px;
+}
+
+.product-image img {
+	width: 100%;
+	max-width: 300px; /* 이미지 최대 너비 */
+	height: auto;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+/* 상품 정보 섹션 */
+.product-info {
+	/*flex: 1 1 50%;*/
+	/*padding: 20px;*/
+	/*display: flex;*/
+	/*flex-direction: column;*/
+	/*max-width: 500px;*/
+	flex: 1 1 50%; /* 50% 너비로 설정 */
+	padding: 20px;
+	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	width: 300px;
+	max-width: 500px; /* 최대 너비 제한 */
+	justify-content: center; /* 세로 중앙 정렬 */
+	text-align: left; /* 텍스트는 왼쪽 정렬 */
 }
-#title{
+
+.product-info h3 {
+	font-size: 2em;
+	color: #333;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+.price {
+	font-size: 1.2em;
+	color: #333;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 20px;
+}
+
+.description {
+	font-size: 1.2em;
+	color: #555;
+	line-height: 1.6;
+	margin-top: 20px;
+}
+
+/* 버튼 그룹 */
+.button-group {
 	display: flex;
-	flex: 1;
-	border: 1px dotted red;
+	gap: 10px;
+	margin-top: 20px;
+	justify-content: space-between; /* 버튼 사이를 균등하게 배치 */
+	padding-left: 10px;  /* 왼쪽 여백 */
+	padding-right: 10px; /* 오른쪽 여백 */
 }
-#content{
-	border: 1px dotted blue;
-	flex: 2;
+
+.button-group button {
+	padding: 12px 24px;
+	font-size: 1.1em;
+	border-radius: 5px;
+	cursor: pointer;
+	/*width: 200px;*/
+}
+
+.enroll-btn {
+	background-color: #3498db;
+	color: white;
+}
+
+.wishlist-btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.wishlist-btn i {
+	font-size: 32px;
+	transition: color 0.3s ease; /* 색상 변화 부드럽게 */
+}
+
+/* 찜한 상태에서 빨간색 하트로 변하도록 설정 */
+.wishlist-btn i.wishlist-active {
+	color: red;
+}
+
+/* 빈 하트 -> 채워진 하트로 아이콘 변경 */
+.wishlist-btn i.wishlist-active {
+	display: none;
+}
+
+.wishlist-btn i.wishlist-active + .fi-sr-heart {
+	display: block;
+}
+
+/* 상품 상세설명 섹션 */
+.product-description {
+	padding: 30px;
+	font-size: 1.1em; /* 1.2em에서 1.1em으로 조정 */
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-top: 40px;
+	max-width: 1000px; /* 최대 너비 제한 */
+	margin: 0 auto; /* 화면 중앙 정렬 */
+}
+
+.product-description h3 {
+	font-size: 1.6em;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.product-description p {
+	font-size: 1em;
+	color: #555;
+	line-height: 1.6;
+}
+
+/* 환불 정책 섹션 */
+.return-policy {
+	font-size: 1em;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-top: 40px;
+	max-width: 1000px; /* 최대 너비 제한 */
+	margin: 0 auto; /* 화면 중앙 정렬 */
+}
+.return-policy h3 {
+	font-size: 1.6em; /* 1.8em에서 1.6em으로 조정 */
+}
+.toggle-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.8em;
+	cursor: pointer;
+}
+
+.toggle-icon {
+	font-size: 1.5em;
+	transition: transform 0.3s ease;
+}
+
+.policy-content {
+	display: block;
+	margin-top: 20px;
+	max-height: 0;             /* 초기 상태에서 숨기기 */
+	overflow: hidden;          /* 내용이 넘칠 때 숨기기 */
+	transition: max-height 0.3s ease;  /* 부드럽게 펼쳐지는 효과 */
+}
+
+.policy-content p {
+	font-size: 1.2em;
+	color: #555;
+	line-height: 1.6;
+}
+
+/* active 상태에서 max-height를 충분히 크게 설정 */
+.return-policy.active .policy-content {
+	max-height: 2000px;  /* 충분히 큰 값을 설정하여 펼쳐지게 만듬 */
+}
+
+.return-policy.active .toggle-icon {
+	transform: rotate(180deg);
+}
+
+/* 후기 섹션 */
+.reviews {
+	font-size: 1.1em;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-top: 40px;
+	max-width: 1000px; /* 최대 너비 제한 */
+	margin: 0 auto; /* 화면 중앙 정렬 */
+}
+
+.reviews h3 {
+	font-size: 1.6em;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.reviews ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.reviews li {
+	font-size: 1.2em;
+	color: #555;
+}
+
+/* 문의하기 버튼 */
+.contact-section {
+	margin-top: 40px;
+	text-align: center;
+}
+
+.contact-btn {
+	margin-top: 20px;
+	padding: 12px 24px;
+	font-size: 1.1em;
+	border-radius: 5px;
+	background-color: #f39c12;
+	color: white;
+	cursor: pointer;
+}
+
+/* 지도 섹션 */
+.location {
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-top: 40px;
+}
+
+.map {
+	margin-top: 20px;
+	width: 100%;
+	height: 300px;
+	border-radius: 8px;
+	background-color: #e0e0e0;
+}
+
+/* 문의하기 팝업 */
+.popup-overlay {
+	display: none;
+	position: fixed;
+	top: 80px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(5px); /* 페이지 흐리게 처리 */
+	z-index: 999;
+}
+
+/* 팝업 활성화 */
+.popup-overlay.active {
+	display: flex;
+}
+
+.popup-content {
+	background: white;
+	padding: 30px;
+	border-radius: 8px;
+	width: 400px;
+	max-width: 80%;
+	position: relative; /* X 버튼을 위치시킬 수 있도록 설정 */
+}
+
+.popup-content h3 {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.popup-content form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.popup-content input,
+.popup-content textarea {
+	padding: 10px;
+	font-size: 1em;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+/* 제출하기 버튼 */
+.submit-btn {
+	padding: 12px;
+	background-color: #3498db; /* 제출 버튼 색상 */
+	color: white;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: #2980b9; /* hover 시 색상 변경 */
+}
+
+/* X 버튼 */
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: transparent; /* 배경 투명 */
+	border: none;
+	font-size: 24px;
+	color: #333; /* 기본 색상 */
+	cursor: pointer;
+	transition: color 0.3s; /* Hover 시 색상 변경 */
+}
+
+.close-btn:hover {
+	color: #e74c3c; /* Hover 시 빨간색으로 변경 */
+}
+/* 버튼 스타일 */
+.toggle-description, .toggle-reviews, .toggle-title {
+	margin-top: 10px;
+	padding: 8px 16px;
+	background-color: transparent; /* 투명 배경으로 설정 */
+	color: #333; /* 기본 텍스트 색상 */
+	border: 1px solid #ddd; /* 테두리로 강조 */
+	border-radius: 5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	font-size: 1em;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 버튼 호버 */
+.toggle-description:hover, .toggle-reviews:hover, .toggle-title:hover {
+	background-color: #f0f0f0; /* hover 시 배경색 변경 */
+	border-color: #3498db; /* 테두리 색상 변경 */
+}
+
+/* 아이콘 스타일 */
+.toggle-description i, .toggle-reviews i, .toggle-title i {
+	margin-right: 10px;
+	font-size: 1.5em;
+	color: #3498db; /* 기본 아이콘 색상 (파란색) */
+	transition: color 0.3s ease;
+}
+
+/* 아이콘 호버 */
+.toggle-description:hover i, .toggle-reviews:hover i, .toggle-title:hover i {
+	color: #2980b9; /* hover 시 아이콘 색상 변경 */
+}
+
+/* 내용이 접혔을 때 */
+.description-content, .review-list, .policy-content {
+	margin-top: 10px;
+	max-height: 0; /* 접었을 때는 높이를 0으로 설정 */
+	overflow: hidden; /* 내용이 넘칠 때 숨기기 */
+	transition: max-height 0.3s ease; /* 부드럽게 펼쳐지는 효과 */
+}
+
+/* 펼쳐졌을 때 */
+.description-content.show, .review-list.show, .policy-content.show {
+	max-height: 2000px; /* 충분히 큰 값으로 설정하여 펼쳐지게 만듬 */
+}
+
+/* 아이콘 전환 (아이콘은 클릭 시 변경) */
+.toggle-description.active i, .toggle-reviews.active i, .toggle-title.active i {
+	color: #3498db; /* 펼쳐졌을 때 아이콘 색상 */
+}
+
+/* 상품 상세설명 섹션, 후기, 환불 정책 등 */
+.product-description, .review-list, .policy-content {
+	background-color: #fff; /* 각 섹션의 배경색 */
+	border-radius: 8px; /* 테두리 둥글게 처리 */
+	padding: 20px;
+	margin-top: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 섹션 그림자 */
+}
+
+.product-description h3, .reviews h3, .return-policy h3 {
+	font-size: 1.6em; /* 제목 크기 */
+	color: #333; /* 제목 색상 */
+	margin-bottom: 10px;
+}
+
+.product-description p, .reviews li, .policy-content p {
+	font-size: 1em; /* 내용 텍스트 크기 */
+	color: #555; /* 텍스트 색상 */
+	line-height: 1.6;
+}
+
+/* 헤더 흐리게 처리 */
+header,
+footer,
+.gnb {
+	transition: all 0.3s ease;
+}
+
+.popup-overlay.active {
+	display: flex;
+}
+
+/* 헤더, 본문 흐리게 처리 */
+.popup-overlay.active header,
+.popup-overlay.active footer,
+.popup-overlay.active .gnb,
+.popup-overlay.active #header-top,
+.popup-overlay.active #header {
+	filter: blur(3px); /* 모든 헤더를 흐리게 처리 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+	.product-detail {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.product-info {
+		padding: 20px;
+		width: 100%;
+	}
+
+	.product-image {
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.button-group {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.return-policy,
+	.product-description,
+	.reviews,
+	.location {
+		margin-top: 20px;
+	}
+}
+/* 상품 상세설명 폴딩 버튼 */
+.toggle-description {
+	margin-top: 10px;
+	padding: 8px 16px;
+	background-color: #3498db;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.toggle-description:hover {
+	background-color: #2980b9;
+}
+
+/* 리뷰 폴딩 버튼 */
+.toggle-reviews {
+	margin-top: 10px;
+	padding: 8px 16px;
+	background-color: #3498db;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.toggle-reviews:hover {
+	background-color: #2980b9;
+}
+
+/* 팝업 스타일 */
+.popup-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(5px);
+	z-index: 999;
+}
+
+.popup-overlay.active {
+	display: flex;
+}
+
+.popup-content {
+	background: white;
+	padding: 30px;
+	border-radius: 8px;
+	width: 400px;
+	max-width: 80%;
+	position: relative;
+}
+
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: transparent;
+	border: none;
+	font-size: 24px;
+	color: #333;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.close-btn:hover {
+	color: #e74c3c;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+	.product-detail {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.product-info {
+		padding: 20px;
+		width: 100%;
+	}
+
+	.product-image {
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.button-group {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.return-policy,
+	.product-description,
+	.reviews,
+	.location {
+		margin-top: 20px;
+	}
 }

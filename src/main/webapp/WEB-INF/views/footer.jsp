@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%--    </div>--%>
     <div  class="clear"></div>
     <footer>
         <hr>
@@ -7,7 +7,9 @@
             Contact mail : abc@abc.com  Tel : +82 02 1234 1234	Fax : +82 02 1233 1233 &nbsp;<br>
             All contents Copyright 2021  HJKang.co  Inc. all rights reserved<br>
             Contact mail : abc@abc.com  Tel : +82 02 1234 1234	Fax : +82 02 1233 1233
-            <br><a href="admin">admin</a>
+
+            <br><a href="admin">admin</a> <a href="customer">고객센터</a>
+
     </footer>
 
     </div>
