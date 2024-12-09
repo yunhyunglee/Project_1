@@ -49,5 +49,8 @@
     <delete id="deleteProduct">
         delete from product where cseq=#{cseq}
     </delete>
+    <update id="clearpay">
+        update reservation set payment='ask' where cseq=#{cseq} and payment='N' and endedclass='Y'
+    </update>
 
 </mapper>
