@@ -24,7 +24,7 @@
             </div>
             <div class="login-btn">
                 <input type="button" value="KaKao" style="background: yellow; color:black"
-                       onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=ee591d70889057034963a4ca3516fa78&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
+                       onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=e5361337566dff569bd6c1d524155311&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
                 <input type="button" value="Naver" style="background: green" onclick="" >
                 <input type="button" value="Google" style="background: red" onclick="" >
 

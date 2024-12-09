@@ -38,9 +38,7 @@ public class UserService {
         udao.updateBusiness(uservo);
     }
 
-    public void deleteuser(String id) {
-        udao.deleteuser(id);
-    }
+
 
     public void deleteBusiness(String id) {
         udao.deleteBusiness(id);
@@ -63,4 +61,20 @@ public class UserService {
     public void updateUserWithPassword(UserVo uvo) {
         udao.updateUserWithPassword(uvo);
     }
+
+
+
+
+
+    public void deleteuser(@NotEmpty @NotNull String id) {
+    }
+
+    public void AdeleteUser(String userId) {
+        udao.deleteUser(userId);
+    }
+
+    public UserVo getUserById(String userId) {
+        return udao.getUserById(userId);
+    }
+
 }

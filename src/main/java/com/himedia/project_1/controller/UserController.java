@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -150,7 +152,7 @@ public class UserController {
         String endpoint = "https://kauth.kakao.com/oauth/token";
         URL url = new URL(endpoint);
         String bodyData = "grant_type=authorization_code";
-        bodyData += "&client_id=f67ebc2de23039bbce25c7d2583abd81";
+        bodyData += "&client_id=e5361337566dff569bd6c1d524155311";
         bodyData += "&redirect_uri=http://localhost:8070/kakaoLogin";
         bodyData += "&code=" + code;
 
@@ -394,4 +396,18 @@ public class UserController {
         mav.setViewName("mypage/MyQna");
         return mav;
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+

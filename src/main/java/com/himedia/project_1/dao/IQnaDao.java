@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface IQnaDao {
 
-    List<QnaVo> getQnaList();
 
+
+    List<QnaVo> fetchQnaList();
 }

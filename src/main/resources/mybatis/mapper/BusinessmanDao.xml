@@ -7,8 +7,24 @@
 <mapper namespace="com.himedia.project_1.dao.IBusinessmanDao">
 
     <!--  관리자페이지에서 사업자리스트 로드할때!!!!!!!  -->
-    <select id="getBusinessmanList" resultType="com.himedia.project_1.dto.BusinessmanVo">
+    <select id="fetchBusinessList" resultType="com.himedia.project_1.dto.BusinessmanVo">
         SELECT * FROM businessman
     </select>
+
+    <update id="updateBusiness" parameterType="com.himedia.project_1.dto.BusinessmanVo">
+        UPDATE businessman
+        SET name = #{name}, phone = #{phone}, email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getBusinessmanById" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT * FROM businessman WHERE id = #{id}
+    </select>
+
+    <delete id="deleteBusinessman">
+        DELETE FROM businessman WHERE id = #{id}
+    </delete>
+
+
 
 </mapper>

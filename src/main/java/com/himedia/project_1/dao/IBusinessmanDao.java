@@ -9,7 +9,12 @@ import java.util.List;
 
 @Mapper
 public interface IBusinessmanDao {
-    List<BusinessmanVo> getBusinessmanList();
 
 
+    BusinessmanVo getBusinessmanById(String id);
+    void deleteBusinessman(String id);
+
+    List<BusinessmanVo> fetchBusinessList();
+
+    void updateBusiness(BusinessmanVo businessman);
 }

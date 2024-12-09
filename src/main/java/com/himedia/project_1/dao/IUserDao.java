@@ -33,8 +33,18 @@ public interface IUserDao {
 
     List<QnaVo> getMyQna(String id);
 
-    List<UserVo> getUserList();
+
 
     void updateUserWithPassword(UserVo uvo);
+
+    List<UserVo> fetchUserList();
+
+
+    // admin이 유저지우기임
+    void deleteUser(String userId);
+
+    // admin 유저수정
+    UserVo getUserById(String userId);
+
 
 }
