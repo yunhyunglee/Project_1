@@ -49,7 +49,25 @@
     </update>
 
     <!--  관리자페이지에서 회원리스트 로드할때!!!!!!!  -->
-    <select id="getUserList" resultType="com.himedia.project_1.dto.UserVo">
+    <select id="fetchUserList" resultType="com.himedia.project_1.dto.UserVo">
         SELECT * FROM user
     </select>
+
+
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM user
+        WHERE id = #{userId}
+    </delete>
+
+    <select id="getUserById" parameterType="string" resultType="com.himedia.project_1.dto.UserVo">
+        SELECT id, name, email, phone, indate
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+
+
+
 </mapper>
+
+

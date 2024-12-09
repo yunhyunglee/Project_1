@@ -8,3 +8,7 @@
         select * from admin where aid=#{aid}
     </select>
 </mapper>
+
+
+
+

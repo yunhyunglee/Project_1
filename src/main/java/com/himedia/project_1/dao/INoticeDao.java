@@ -8,5 +8,16 @@ import java.util.List;
 
 @Mapper
 public interface INoticeDao {
-    List<NoticeVo> getNoticeList();
+
+
+    List<NoticeVo> fetchNoticeList();
+
+    void updateNotice(NoticeVo notice);
+
+    void deleteNotice(int id);
+
+
+    NoticeVo getNoticeById(int id);
+
+    void addNotice(NoticeVo notice);
 }

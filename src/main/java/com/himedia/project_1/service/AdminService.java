@@ -13,41 +13,62 @@ public class AdminService {
 
     @Autowired
     IAdminDao adao;
-
-    public AdminVo getAdmin(String aid) {
-        return adao.getAdmin( aid );
-    }
-
-
     @Autowired
     private IQnaDao qnaDao;
-
-    public List<QnaVo> getQnaList() {
-        return qnaDao.getQnaList();
-    }
 
     @Autowired
     private IUserDao userDao;
 
-    public List<UserVo> getUserList() {
-        return userDao.getUserList();
-    }
-
-
     @Autowired
     private IBusinessmanDao businessmanDao;
-    public List<BusinessmanVo> getBusinessmanList() {
-        return businessmanDao.getBusinessmanList();
-    }
+
+    @Autowired
+    private IBannerDao bannerDao;
 
     @Autowired
     private INoticeDao noticeDao;
 
-    public List<NoticeVo> getNoticeList() {
-        return noticeDao.getNoticeList();
+    public AdminVo getAdmin(String aid) {
+        return adao.getAdmin(aid);
     }
 
 
+
+    // QnA 목록 가져오기
+    public List<QnaVo> getQnaList() {
+        List<QnaVo> qnaList = qnaDao.fetchQnaList();
+        System.out.println("Fetched QnA List: " + qnaList);
+        return qnaList;
+    }
+
+    // 회원 목록 가져오기
+    public List<UserVo> getMemberList() {
+        List<UserVo> userList = userDao.fetchUserList();
+        return userList;
+    }
+
+    // 사업자 목록 가져오기
+    public List<BusinessmanVo> getBusinessList() {
+        List<BusinessmanVo> businessList = businessmanDao.fetchBusinessList();
+        return businessList;
+    }
+
+
+
+    // 공지사항 목록 가져오기
+    public List<NoticeVo> getNoticeList() {
+       List<NoticeVo> noticeList = noticeDao.fetchNoticeList();
+       return noticeList;
+    }
+
+
+
+
+
 }
+
+
+
+
 
 
