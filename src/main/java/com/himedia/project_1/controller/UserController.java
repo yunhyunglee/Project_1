@@ -39,11 +39,6 @@ public class UserController {
         return "member/contract";
     }
 
-//    겹침
-//    @GetMapping("joinform")
-//    public String joinform() {
-//        return "join";
-//    }
 
     @GetMapping("userjoinform")
     public String userjoinform() { return "member/userjoin";}
@@ -234,7 +229,7 @@ public class UserController {
         if (loginUser == null) {
             return "redirect:/loginForm";
         }
-        return "mypage/mypage";
+        return "MyPage";
     }
 
     @GetMapping("updateUserForm")
