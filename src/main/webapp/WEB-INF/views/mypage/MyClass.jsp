@@ -6,7 +6,7 @@
 
     <article>
         <div class="item" >
-            <div onclick="">새 클래스 만들기</div>
+            <div onclick="location.href='NewProduct'">새 클래스 만들기</div>
         <c:forEach items="${MyClass}" var="myclass">
             <div>
                  <p>${myclass.title}</p>  <input type="button" value="정보수정하기" onclick="location.href=''">

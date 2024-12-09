@@ -1,18 +1,22 @@
 package com.himedia.project_1.controller;
 
 import com.himedia.project_1.dto.BusinessmanVo;
+import com.himedia.project_1.dto.ProductVo;
 import com.himedia.project_1.dto.ReservationVo;
 import com.himedia.project_1.dto.UserVo;
 import com.himedia.project_1.service.MyPageService;
 import com.himedia.project_1.service.UserService;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -98,6 +102,51 @@ public class MyPageController {
         int cseq=ms.reservationCancel(reseq);
 
         return "redirect:/Reservation_List?cseq="+cseq;
+    }
+    @GetMapping("NewProduct")
+    public ModelAndView newProduct(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
+        mav.addObject("dto", loginuser);
+        mav.setViewName("mypage/NewProduct");
+        return mav;
+    }
+
+    @PostMapping("insertNewProduct")
+    public String insertNewProduct(@ModelAttribute("dto")ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
+        String url="";
+        ms.insertNewProduct(productvo,selectedtimes);
+
+        url="redirect:/MyClass";
+        return url;
+    }
+
+
+    @Autowired
+    ServletContext context;
+    @PostMapping("/fileup")
+    @ResponseBody
+    public HashMap<String, Object> fileup(@RequestParam("fileimage") MultipartFile file){
+        String path = context.getRealPath("/product_images");
+
+        Calendar today = Calendar.getInstance();
+        long t = today.getTimeInMillis();
+        String filename = file.getOriginalFilename();
+        String fn1 = filename.substring(0, filename.indexOf("."));  // 파일 이름과 확장자 분리
+        String fn2 = filename.substring(filename.indexOf("."));
+        String savefilename = fn1 + t + fn2;
+        String uploadPath = path + "/" + savefilename;
+
+        HashMap<String, Object> result = new HashMap<String, Object>();
+
+        try{
+            file.transferTo(new File(uploadPath));  // 파일의 업로드 + 저장
+            result.put("image", filename);
+            result.put("savefilename", savefilename);
+        }catch (IllegalStateException e){ e.printStackTrace();
+        }catch (IOException e){ e.printStackTrace();
+        }
+        return result;
     }
 
 }

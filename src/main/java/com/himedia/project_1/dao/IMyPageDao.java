@@ -18,4 +18,10 @@ public interface IMyPageDao {
     void deleteReservation(String reseq);
 
     int selectcseqByReseq(String reseq);
+
+    void insertNewProduct(ProductVo productvo);
+
+    int getNewProductReseq(String id);
+
+    void insertNewProductTime(int cseq, String selectedtime);
 }

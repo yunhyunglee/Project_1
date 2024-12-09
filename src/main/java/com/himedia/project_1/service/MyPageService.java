@@ -31,4 +31,14 @@ public class MyPageService {
         mdao.deleteReservation(reseq);
         return cseq;
     }
+
+
+    public void insertNewProduct(ProductVo productvo, List<String> selectedtimes) {
+        mdao.insertNewProduct(productvo);
+        int cseq= mdao.getNewProductReseq(productvo.getId());
+        for(String selectedtime : selectedtimes){
+            //등록한 상품의 cseq 조회하고 cseq,selectedtime,payment=y로 인서트
+            mdao.insertNewProductTime(cseq,selectedtime);
+        }
+    }
 }
