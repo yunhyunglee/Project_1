@@ -6,7 +6,7 @@
     <select id="selectTotalPrice" resultType="com.himedia.project_1.dto.ReservationVo">
         SELECT p.title AS title,p.cseq , SUM(r.totalprice) AS totalprice
         FROM Product p LEFT JOIN Reservation r ON p.cseq = r.cseq
-        WHERE p.id = #{param1} and r.payment='N' and endedclass='Y' GROUP BY p.cseq;
+        WHERE p.id = #{param1} and (r.payment='N' or r.payment='') and endedclass='Y' GROUP BY p.cseq;
     </select>
     <select id="getMyClassInfo" resultType="com.himedia.project_1.dto.ProductVo">
         select *from product where id=#{id}
@@ -20,5 +20,16 @@
     <select id="selectcseqByReseq" resultType="_int">
         select cseq from reservation where reseq=#{reseq}
     </select>
+    <insert id="insertNewProduct" parameterType="com.himedia.project_1.dto.ProductVo">
+        insert into product(price, id, title, content, address1,address2,address3,category, image,savefilename,max_people)
+        values (#{price},#{id},#{title},#{content},#{address1},#{address2},
+                #{address3},#{category},#{image},#{savefilename},#{max_people})
+    </insert>
+    <select id="getNewProductReseq" resultType="_int">
+        select max(cseq) from product where id=#{id}
+    </select>
+    <insert id="insertNewProductTime" parameterType="com.himedia.project_1.dto.ReservationVo">
+        insert into reservation(cseq, classtime,payment,endedclass) values (#{cseq},#{param2},'','Y')
+    </insert>
 
 </mapper>

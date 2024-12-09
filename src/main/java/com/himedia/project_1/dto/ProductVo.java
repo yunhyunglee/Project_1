@@ -21,5 +21,6 @@ public class ProductVo {
     private String bestyn;
     private Timestamp indate;
     private String image;
-    private int mex_people;
+    private String savefilename;
+    private int max_people;
 }
