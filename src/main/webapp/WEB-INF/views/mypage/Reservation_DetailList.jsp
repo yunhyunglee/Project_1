@@ -46,5 +46,8 @@
     </c:forEach>
 
 </div>
+<div>
+    <input type="button" value="되돌아가기" onclick="history.back()">
+</div>
 
 <%@ include file="../footer.jsp" %>

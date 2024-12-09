@@ -21,7 +21,17 @@ public interface IMyPageDao {
 
     void insertNewProduct(ProductVo productvo);
 
-    int getNewProductReseq(String id);
+    int getNewProductCseq(String id);
 
     void insertNewProductTime(int cseq, String selectedtime);
+
+    ProductVo selectProductbycseq(int cseq);
+
+    List<String> selectedtimes(int cseq);
+
+    void UpdateProduct(ProductVo productvo);
+
+    void deleteProductTime(Integer cseq);
+
+    void deleteProduct(int cseq);
 }

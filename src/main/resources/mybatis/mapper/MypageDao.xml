@@ -21,15 +21,33 @@
         select cseq from reservation where reseq=#{reseq}
     </select>
     <insert id="insertNewProduct" parameterType="com.himedia.project_1.dto.ProductVo">
-        insert into product(price, id, title, content, address1,address2,address3,category, image,savefilename,max_people)
-        values (#{price},#{id},#{title},#{content},#{address1},#{address2},
+        insert into product(price, id, title, content,zip_num, address1,address2,address3,category, image,savefilename,max_people)
+        values (#{price},#{id},#{title},#{content},#{zip_num},#{address1},#{address2},
                 #{address3},#{category},#{image},#{savefilename},#{max_people})
     </insert>
-    <select id="getNewProductReseq" resultType="_int">
+    <select id="getNewProductCseq" resultType="_int">
         select max(cseq) from product where id=#{id}
     </select>
     <insert id="insertNewProductTime" parameterType="com.himedia.project_1.dto.ReservationVo">
         insert into reservation(cseq, classtime,payment,endedclass) values (#{cseq},#{param2},'','Y')
     </insert>
+    <select id="selectProductbycseq" resultType="com.himedia.project_1.dto.ProductVo">
+        select*from product where cseq=#{cseq}
+    </select>
+    <select id="selectedtimes" >
+        select classtime from reservation where cseq=#{cseq} and payment='' order by classtime asc
+    </select>
+    <update id="UpdateProduct" parameterType="com.himedia.project_1.dto.ProductVo">
+        update product set price=#{price},  title=#{title}, content=#{content},zip_num=#{zip_num},
+                           address1=#{address1},address2=#{address2},address3=#{address3},category=#{category},
+                           image=#{image},savefilename=#{savefilename},max_people=#{max_people}
+                       where cseq=#{cseq}
+    </update>
+    <delete id="deleteProductTime">
+        delete from reservation where cseq=#{cseq} and payment=''
+    </delete>
+    <delete id="deleteProduct">
+        delete from product where cseq=#{cseq}
+    </delete>
 
 </mapper>

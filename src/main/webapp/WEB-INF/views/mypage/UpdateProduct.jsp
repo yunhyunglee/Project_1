@@ -49,6 +49,7 @@
 
         dropdownButton.addEventListener('click', function() {
             checkboxesContainer.style.display = checkboxesContainer.style.display === 'block' ? 'none' : 'block';
+
         });
 
         window.addEventListener('click', function(event) {
@@ -56,35 +57,50 @@
                 checkboxesContainer.style.display = 'none';
             }
         });
+        const submitButton = document.getElementById('submitButton');
+        submitButton.addEventListener('click', () => {
+            if(!($('input[name="selectedTime"]:checked').length > 0)){
+                alert("시간대를 하나이상 선택해야 합니다.");
+            }else {
+                document.insertNewProduct.submit();
+            }
+        });
+
+        document.getElementById('deleteButton').addEventListener('click', () => {
+            document.insertNewProduct.action='deleteProduct';
+            document.insertNewProduct.submit();
+        });
     });
 
 </script>
 
-<form method="POST" action="/insertNewProduct" name="insertNewProduct" >
+<form method="POST" action="/UpdateProduct" name="insertNewProduct" >
+    <input type="hidden" name="cseq" value="${pvo.cseq}" />
     <input type="hidden" name="image" id="image" value="${pvo.image}" ><!-- 전송될 파일이름 -->
     <input type="hidden" name="savefilename" id="savefilename" value="${pvo.savefilename}">
+
     <div>
-        <label>클래스 제목</label>    <input type="text" name="title"  >
+        <label>클래스 제목</label>    <input type="text" name="title"  value="${pvo.title}">
     </div>
     <div>
-        <label>카테고리</label>    <input type="text" name="category"  >
+        <label>카테고리</label>    <input type="text" name="category"  value="${pvo.category}">
     </div>
     <div class="field">
         <label>클래스 장소</label>
         <div>
             <label>우편 번호</label>
-            <input type="text"  id="sample6_postcode" name="zip_num"    readonly>
+            <input type="text"  id="sample6_postcode" name="zip_num" value="${pvo.zip_num}"   readonly>
             <input type="button" value="우편번호 찾기"  onclick="sample6_execDaumPostcode()">
         </div>
     </div>
     <div class="field">
-        <label>주소</label><input type="text"   id="sample6_address"   name="address1"    readonly />
+        <label>주소</label><input type="text"   id="sample6_address"   name="address1"  value="${pvo.address1}"  readonly />
     </div>
     <div class="field">
-        <label>상세 주소</label><input type="text"    id="sample6_detailAddress"   name="address2"  />
+        <label>상세 주소</label><input type="text"    id="sample6_detailAddress"   name="address2" value="${pvo.address2}" />
     </div>
     <div class="field">
-        <label>도로명 주소</label><input type="text" id="sample6_extraAddress" name="address3"  />
+        <label>도로명 주소</label><input type="text" id="sample6_extraAddress" name="address3" value="${pvo.address3}" />
     </div>
 
 
@@ -141,36 +157,39 @@
     </script><br>
 
     <div>
-        <label>가격</label>    <input type="number" name="price">
+        <label>가격</label>    <input type="number" name="price" value="${pvo.price}">
     </div>
     <div>
         <div class="dropdown-container">
+<%
+    java.util.List<String>stimes=(java.util.List<String>)request.getAttribute("stimes");
+%>
             <input id="dropdownButton" type="button" value="Choose times"/>
             <div id="checkboxContainer" class="dropdown-checkboxes">
-                <label><input type="checkbox" name="selectedTime" value="00:00"> 00:00</label><br>
-                <label><input type="checkbox" name="selectedTime" value="01:00"> 01:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="02:00"> 02:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="03:00"> 03:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="04:00"> 04:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="05:00"> 05:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="06:00"> 06:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="07:00"> 07:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="08:00"> 08:00</label><br>
-                <label><input type="checkbox"  name="selectedTime" value="09:00"> 09:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="10:00"> 10:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="11:00"> 11:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="12:00"> 12:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="13:00"> 13:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="14:00"> 14:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="15:00"> 15:00</label><br>
-                <label><input type="checkbox"  name="selectedTime" value="16:00"> 16:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="17:00"> 17:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="18:00"> 18:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="19:00"> 19:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="20:00"> 20:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="21:00"> 21:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="22:00"> 22:00</label><br>
-                <label><input type="checkbox" name="selectedTime"  value="23:00"> 23:00</label><br>
+                <label><input type="checkbox" name="selectedTime" value="00:00" <% if(stimes.contains("00:00:00")){ %> checked <% } %>> 00:00</label><br>
+                <label><input type="checkbox" name="selectedTime" value="01:00" <% if(stimes.contains("01:00:00")){ %> checked <% } %>> 01:00</label><br>
+                <label><input type="checkbox" name="selectedTime" value="02:00" <% if(stimes.contains("02:00:00")){ %> checked <% } %>> 02:00</label><br>
+                <label><input type="checkbox" name="selectedTime" value="03:00" <% if(stimes.contains("03:00:00")){ %> checked <% } %>> 03:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="04:00" <% if(stimes.contains("04:00:00")){ %> checked <% } %>> 04:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="05:00" <% if(stimes.contains("05:00:00")){ %> checked <% } %>> 05:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="06:00" <% if(stimes.contains("06:00:00")){ %> checked <% } %>> 06:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="07:00" <% if(stimes.contains("07:00:00")){ %> checked <% } %>> 07:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="08:00" <% if(stimes.contains("08:00:00")){ %> checked <% } %>> 08:00</label><br>
+                <label><input type="checkbox" name="selectedTime" value="09:00" <% if(stimes.contains("09:00:00")){ %> checked <% } %>> 09:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="10:00" <% if(stimes.contains("10:00:00")){ %> checked <% } %>> 10:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="11:00" <% if(stimes.contains("11:00:00")){ %> checked <% } %>> 11:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="12:00" <% if(stimes.contains("12:00:00")){ %> checked <% } %>> 12:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="13:00" <% if(stimes.contains("13:00:00")){ %> checked <% } %>> 13:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="14:00" <% if(stimes.contains("14:00:00")){ %> checked <% } %>> 14:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="15:00" <% if(stimes.contains("15:00:00")){ %> checked <% } %>> 15:00</label><br>
+                <label><input type="checkbox" name="selectedTime" value="16:00" <% if(stimes.contains("16:00:00")){ %> checked <% } %>> 16:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="17:00" <% if(stimes.contains("17:00:00")){ %> checked <% } %>> 17:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="18:00" <% if(stimes.contains("18:00:00")){ %> checked <% } %>> 18:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="19:00" <% if(stimes.contains("19:00:00")){ %> checked <% } %>> 19:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="20:00" <% if(stimes.contains("20:00:00")){ %> checked <% } %>> 20:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="21:00" <% if(stimes.contains("21:00:00")){ %> checked <% } %>> 21:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="22:00" <% if(stimes.contains("22:00:00")){ %> checked <% } %>> 22:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="23:00" <% if(stimes.contains("23:00:00")){ %> checked <% } %>> 23:00</label><br>
             </div>
         </div>
     </div>
@@ -180,22 +199,23 @@
         <label>강사</label>    <input type="text" name="id" value="${dto.id}" readonly>
     </div>
     <div>
-        <label>내용</label>    <input type="text" name="content" >
+        <label>내용</label>    <input type="text" name="content" value="${pvo.content}">
     </div>
     <div>
-        <label>정원</label>   <input type="text" name="max_people" >
+        <label>정원</label>   <input type="text" name="max_people" value="${pvo.max_people}">
     </div>
     <div>${message}</div>
 
     <div>
-        <input type="submit" value="새 클래스 등록" >
-        <input type="button" onclick="history.back()" value="되돌아가기">
+        <input type="button" value="클래스 정보수정" id="submitButton">
+        <input type="button" value="클래스 폐강" id="deleteButton">
+        <input type="button" onclick="location.href='/'" value="되돌아가기">
     </div>
 
 </form>
 <div style="position:relative; border:1px solid black; width:500px; margin:0 auto;">
     <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileimage" />
+        <input type="file" name="fileimage"  />
         <input type="button" id="imageAddBtn" value="추가">
     </form>
 </div>
