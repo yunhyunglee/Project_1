@@ -2,9 +2,18 @@
 // 찜하기 버튼 토글
 function toggleHeart(button) {
     const icon = button.querySelector("i");
-    icon.classList.toggle("fa-heart-o");  // 빈 하트 -> 채워진 하트로 전환
-    icon.classList.toggle("fa-heart");    // 채워진 하트 -> 빈 하트로 전환
+
+    // 현재 아이콘이 빈 하트인지 확인하고 채워진 하트로 전환
+    if (icon.classList.contains("fi-rs-heart")) {
+        icon.classList.remove("fi-rs-heart"); // 빈 하트 제거
+        icon.classList.add("fi-ss-heart");   // 채워진 하트 추가
+    } else {
+        icon.classList.remove("fi-ss-heart"); // 채워진 하트 제거
+        icon.classList.add("fi-rs-heart");    // 빈 하트 추가
+    }
 }
+
+
 
 // 상품 상세 설명 펼치기/접기
 function toggleDescription() {
@@ -63,12 +72,12 @@ function togglePolicy() {
     }
 }
 
-// 초기화 시 각 버튼에 클릭 이벤트 연결
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".toggle-description").addEventListener("click", toggleDescription);
-    document.querySelector(".toggle-reviews").addEventListener("click", toggleReviews);
-    document.querySelector(".toggle-title").addEventListener("click", togglePolicy);
-});
+// // 초기화 시 각 버튼에 클릭 이벤트 연결
+// document.addEventListener("DOMContentLoaded", function () {
+//     document.querySelector(".toggle-description").addEventListener("click", toggleDescription);
+//     document.querySelector(".toggle-reviews").addEventListener("click", toggleReviews);
+//     document.querySelector(".toggle-title").addEventListener("click", togglePolicy);
+// });
 
 
 // 문의하기 팝업 열기

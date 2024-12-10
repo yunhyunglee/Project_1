@@ -1,8 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
+
 
 <div id="main_img">
-	<img src="http://placehold.co/1024x200">
+	<img src="http://placehold.co/1024x400">
+
+<%@ include file="header.jsp" %>
+<!-- 이미지 슬라이더 -->
+<div id="main_img_slider">
+    <div class="slider">
+        <div class="slide"><img src="/images/main_1.png" alt="Example 1"></div>
+        <div class="slide"><img src="/images/main_2.png" alt="Example 2"></div>
+        <div class="slide"><img src="/images/main_3.png" alt="Example 3"></div>
+    </div>
+    <!-- 화살표 버튼 -->
+    <button class="arrow prev" id="prevBtn">‹</button>
+    <button class="arrow next" id="nextBtn">›</button>
+
 </div>
 
 <div id="menu">
@@ -16,59 +29,74 @@
 		<img src="http://placehold.co/90">
 	</a>
 </div>
-aaaaa
-<!-- BEST -->
+
+<!-- BEST 섹션 -->
 <div id="BestItem">
-	<h2>Best</h2>
-	<div class="products">
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-	</div>
+    <h2>Best</h2>
+    <div class="products">
+        <c:if test="${not empty bestProducts}">
+            <c:forEach begin="1" end="4" var="index">
+                <c:choose>
+<%--                    <!-- 리스트의 크기와 index를 비교 -->--%>
+                    <c:when test="${index <= bestProducts.size()}">
+                        <c:set var="product" value="${bestProducts[index-1]}" />
+                        <div class="item">
+                            <a href="/productDetail?id=${product.cseq}">
+<%--                                <!-- 이미지가 없는 경우 기본 이미지 출력 -->--%>
+                                <img src="/images/${empty product.image ? 'placeholder.jpg' : product.image}"
+                                     alt="${product.title}" />
+                                <p>${product.title}</p>
+                                <p>${product.price}원</p>
+                            </a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="item">
+                            <a href="#">
+                                <img src="http://placehold.co/250x250" alt="No Product" />
+                                <p>상품 준비 중</p>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </c:if>
+    </div>
 </div>
 
-<!-- NEW -->
+<!-- NEW 섹션 -->
 <div id="NewItem">
-	<h2>New</h2>
-	<div class="products">
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-	</div>
+    <h2>New</h2>
+    <div class="products">
+        <c:if test="${not empty newProducts}">
+            <c:forEach begin="1" end="4" var="index">
+                <c:choose>
+<%--                    <!-- 리스트의 크기와 index를 비교 -->--%>
+                    <c:when test="${index <= newProducts.size()}">
+                        <c:set var="product" value="${newProducts[index-1]}" />
+                        <div class="item">
+                            <a href="/productDetail?id=${product.cseq}">
+<%--                                <!-- 이미지가 없는 경우 기본 이미지 출력 -->--%>
+                                <img src="/images/${empty product.image ? 'placeholder.jpg' : product.image}"
+                                     alt="${product.title}" />
+                                <p>${product.title}</p>
+                                <p>${product.price}원</p>
+                            </a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="item">
+                            <a href="#">
+                                <img src="http://placehold.co/250x250" alt="No Product" />
+                                <p>상품 준비 중</p>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </c:if>
+    </div>
 </div>
+
 
 <%@ include file="footer.jsp" %>

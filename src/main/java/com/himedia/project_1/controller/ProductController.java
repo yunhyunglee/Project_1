@@ -4,6 +4,7 @@ import com.himedia.project_1.dto.ProductVo;
 import com.himedia.project_1.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,9 +18,18 @@ public class ProductController {
     @Autowired
     ProductService ps;
 
+//    @GetMapping("/productDetail")
+//    public String productDetail() {
+//        return "product/productDetail";
+//    }
     @GetMapping("/productDetail")
-    public String productDetail() {
-        return "product/productDetail";
+    public String productDetail(@RequestParam("id") int productId, Model model) {
+        ProductVo productVo = ps.getProductById(productId);
+        if (productVo == null) {
+            throw new RuntimeException("Product not found for ID: " + productId);
+        }
+        model.addAttribute("productVo", productVo);
+        return "product/productDetail"; // JSP 파일 이름
     }
 
     @GetMapping("/category")
@@ -36,5 +46,7 @@ public class ProductController {
         mav.setViewName("product/categoryProduct");
         return mav;
     }
+
+
 }
 

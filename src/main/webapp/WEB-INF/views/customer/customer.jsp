@@ -3,6 +3,8 @@
 
 
 <script src="/script/customer.js"></script>
+
+
 <div id="wrap">
 <%--<header>--%>
 
