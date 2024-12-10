@@ -17,8 +17,6 @@ function submitUserEditForm() {
     submitForm('/admin/user/update', 'userEditForm', 'userEditModal');
 }
 
-
-
 // 삭제 요청
 function deleteUser(id) {
     deleteItem(`/admin/user/delete/${id}`, "정말로 이 회원을 삭제하시겠습니까?");
@@ -27,4 +25,3 @@ function deleteUser(id) {
 document.getElementById("searchQuery").addEventListener('keyup', () => {
     filterItems('searchQuery', 'card'); // 회원 관리에서 검색 필터링
 });
-

@@ -34,6 +34,5 @@ function submitAddBannerForm() {
 
 // 삭제 버튼 클릭
 function deleteBanner(bannerId) {
-    console.log("삭제 요청 bannerId: ", bannerId);
     deleteItem(`/admin/banner/delete/${bannerId}`, "정말로 이 배너를 삭제하시겠습니까?");
 }

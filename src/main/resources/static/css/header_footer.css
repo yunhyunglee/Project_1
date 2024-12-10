@@ -1,48 +1,103 @@
 @charset "UTF-8";
 
-/* 전체 스타일 */
-/*body {*/
-/*	margin: 0;*/
-/*	padding: 0;*/
-/*	background-color: #f9f9f9;*/
-/*}*/
-
-#wrap {
-	max-width: 1200px; /* 최대 너비 */
-	margin: 0 auto;    /* 가운데 정렬 */
-}
-
-/* header 스타일 */
-header {
+/* html, body 기본 설정 */
+html, body {
 	width: 100%;
-	display: block;
-	justify-content: space-between; /* 요소를 양쪽으로 정렬 */
-	align-items: center;            /* 요소를 수직 중앙 정렬 */
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	background-color: #ffffff;
+	height: 100%;
+	margin: 0; /* 기본 여백 제거 */
+	padding: 0; /* 기본 여백 제거 */
+	box-sizing: border-box; /* 여백을 포함한 너비 계산 */
 }
 
-/* 로고 */
-#logo {
-	flex: 1; /* 로고가 왼쪽으로 넓게 배치 */
+/* wrap 컨테이너가 화면 너비를 꽉 채우도록 설정 */
+#wrap {
+	width: 100%; /* 화면 너비에 맞춤 */
+	margin: 0 auto; /* 자동 중앙 정렬 */
+	padding: 0 20px; /* 원하는 여백 설정 */
+	box-sizing: border-box; /* 여백을 포함한 너비 계산 */
+	/*min-height: calc(100vh - 70px); !* 화면 전체 높이에서 헤더와 푸터 높이를 제외 *!*/
+	height: auto; /* 화면 전체 높이를 100vh로 설정 */
+	margin-top: 200px; /* 헤더와 본문 사이의 여백 설정 */
+	padding-bottom: 70px; /* 푸터 높이만큼 여백 추가 */
+}
+
+#wrap > *:last-child {
+	margin-bottom: 0; /* 불필요한 여백 제거 */
+}
+
+/* 작은 헤더 스타일 */
+#header-top {
+	position: fixed; /* 고정 위치 설정 */
+	top: 0; /* 화면 상단에 고정 */
+	left: 0;
+	width: 100%; /* 화면 전체 너비 사용 */
+	background-color: #f8f9fa;
+	z-index: 1000; /* 다른 요소보다 위에 표시 */
+	/*padding: 5px 0;*/
+	padding: 0;
+	height: 30px;
+	text-align: left;
+	font-size: 14px;
+	/*border-bottom: 1px solid #ddd; !* 구분선 추가 *!*/
+}
+
+#header-top .login-signup a {
+	color: #333;
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+#header-top .login-signup a:hover {
+	color: #007bff;
+}
+
+/* 메인 헤더 스타일 */
+header {
+	position: fixed;
+	top: 30px; /* 작은 헤더 바로 아래에 위치 */
+	left: 0;
+	width: 100%;
+	height: 200px;
+	/*background-color: #f8f9fa;*/
+	background-color: #f8f9fa;
+	z-index: 999; /* 작은 헤더보다 아래에 표시되도록 */
+	/*padding: 15px 0;*/
+	/*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+}
+
+/* 로고와 검색창 배치 */
+#logo-search-container {
+	/*height: auto; !* 고정 높이를 제거 *!*/
+	height: auto;
+	/*background-color: #f8f9fa;*/
+	background-color: #f8f9fa;
+	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: center; /* 검색창을 중앙에 배치 */
 	align-items: center;
+	position: relative; /* 자식 요소를 위한 상대적 위치 지정 */
+	margin-top: 10px;
+}
+
+#logo {
+	position: absolute; /* 로고를 헤더의 왼쪽에 고정 */
+	left: 20px; /* 로고의 왼쪽에 여백 추가 */
 }
 
 /* 검색창 */
 .search-bar {
-	flex: 3; /* 검색창이 가운데서 넓게 배치 */
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%; /* 전체 너비를 사용 */
+	max-width: 680px; /* 검색창 최대 너비 */
+	margin: 0 auto; /* 부모 요소에서 중앙 정렬 */
 }
 
 .search-bar form {
 	display: flex;
-	width: 700px;
-	max-width: 700px; /* 검색창 최대 너비 */
-	border: 1px solid #ddd;
+	width: 100%; /* form 요소가 부모 요소를 채우도록 */
+	border: 1px solid #f8f9fa;
 	border-radius: 20px;
 	overflow: hidden;
 	background-color: white;
@@ -69,23 +124,65 @@ header {
 	height: 20px;
 }
 
+/* 기본적으로 돋보기 아이콘에 회색을 적용 */
+.search-bar button i {
+	color: #555;  /* 기본 색상은 회색 */
+	font-size: 20px;
+	transition: color 0.3s ease; /* 색상 변화에 애니메이션 효과 */
+}
+
+/* 클릭 시 색이 변하도록 설정 */
+.search-bar button i:hover {
+	color: white;
+}
+
 /* gnb 메뉴 */
 .gnb {
-	flex: 2; /* gnb가 오른쪽으로 배치 */
+	position: fixed;
+	top: 130px; /* 작은 헤더(40px) + 메인 헤더(60px) 높이를 합친 값 */
+	left: 0;
+	width: 100%;
+	height: 50px;
+	/*background-color: #f8f9fa;*/
+	background-color: #f8f9fa;
+	z-index: 998; /* 헤더 아래, 본문 위에 표시 */
 	display: flex;
-	justify-content: flex-end;
-	gap: 10px; /* 각 메뉴 사이 간격 */
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 구분선 효과 */
+}
+
+.gnb .left {
+	display: flex;
+	justify-content: flex-start; /* 카테고리 왼쪽 배치 */
+	gap: 10px;
+}
+
+.gnb .right {
+	display: flex;
+	justify-content: flex-end; /* 나머지 아이콘 오른쪽 배치 */
+	gap: 10px;
 }
 
 .gnb a {
 	display: flex;
 	align-items: center;
+	justify-content: center; /* 아이콘이 중앙 정렬되도록 */
 	text-decoration: none;
 	padding: 5px 10px;
-	color: #333;
-	font-size: 14px;
+	color: black;
+	font-size: 24px; /* 아이콘 크기 조정 */
 	border-radius: 5px;
 	transition: all 0.2s ease-in-out;
+}
+
+.gnb a i {
+	color: #333; /* 아이콘 색상 명시 */
+	font-size: 24px; /* 적절한 아이콘 크기 설정 */
+	/*display: inline-block; !* 아이콘이 숨겨지지 않도록 *!*/
+	/*width: auto;*/
+	/*height: auto;*/
 }
 
 .gnb a:hover {
@@ -93,31 +190,39 @@ header {
 	color: #007bff;
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-	header {
-		flex-wrap: wrap;
-	}
-
-	#logo {
-		flex: none;
-		margin-bottom: 10px;
-	}
-
-	.search-bar {
-		flex: none;
-		width: 100%;
-	}
-
-	.gnb {
-		display: none; /* 햄버거 메뉴로 대체 */
-	}
+/* 카테고리 메뉴 */
+#categoryMenu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	background-color: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+	padding: 10px 0;
 }
 
+#categoryMenu a {
+	display: block;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: #333;
+	transition: background-color 0.3s ease;
+}
 
+#categoryMenu a:hover {
+	background-color: #f0f0f0;
+}
+
+/* 메뉴가 열리면 텍스트를 보이도록 */
+#categoryMenu.show .category-text {
+	display: inline; /* 텍스트를 보이게 설정 */
+}
 
 /* 푸터 스타일 */
 footer {
+	width: 100%;
 	background-color: #f8f9fa;
 	text-align: center;
 	padding: 20px;
@@ -125,6 +230,12 @@ footer {
 	font-size: 14px;
 	line-height: 1.6;
 	border-top: 1px solid #ddd;
+	box-sizing: border-box;
+	margin: 0; /* 불필요한 여백 제거 */
+	margin-top: 200px;
+	position: relative; /* 기본 배치로 설정 */
+	bottom: 0;
+
 }
 
 footer a {
@@ -134,4 +245,37 @@ footer a {
 
 footer a:hover {
 	text-decoration: underline;
+}
+
+/* 콘텐츠와 다른 요소들 */
+header, footer, .gnb, .search-bar, .logo {
+	width: 100%; /* 모든 요소들이 화면 가로를 꽉 채우도록 설정 */
+	box-sizing: border-box; /* 여백 포함 계산 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+	header {
+		flex-direction: column; /* 헤더 내 아이템을 세로로 배치 */
+		align-items: center; /* 헤더 내 아이템들을 중앙 정렬 */
+		padding: 20px 0; /* 여백 추가 */
+	}
+
+	#logo-search-container {
+		flex-direction: column; /* 로고와 검색창 세로 배치 */
+		justify-content: center; /* 중앙 정렬 */
+		align-items: center; /* 로고와 검색창 중앙 정렬 */
+		margin-top: 20px; /* 로고와 검색창 사이 여백 추가 */
+	}
+
+	#logo {
+		position: relative; /* 로고 위치 수정 */
+		left: 0; /* 위치를 고정하지 않고 중앙 정렬 */
+		margin-bottom: 10px; /* 로고와 검색창 사이 여백 추가 */
+	}
+
+	.search-bar {
+		width: 100%; /* 검색창 너비 100% */
+		max-width: 90%; /* 검색창의 최대 너비를 화면의 90%로 설정 */
+	}
 }
