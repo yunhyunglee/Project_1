@@ -18,8 +18,8 @@
                 <p><b>우선순위:</b> ${banner.priority}</p>
                 <p><b>활성화:</b> ${banner.active ? 'Yes' : 'No'}</p>
                 <div class="actions">
-                    <button onclick="editBanner(${banner.bannerId})">수정</button>
-                    <button onclick="deleteBanner(${banner.bannerId})">삭제</button>
+                    <button onclick="editBanner('${banner.bannerId}')">수정</button>
+                    <button onclick="deleteBanner('${banner.bannerId}')">삭제</button>
                 </div>
             </div>
         </div>
