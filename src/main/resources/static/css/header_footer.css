@@ -92,11 +92,13 @@ header {
 	width: 100%; /* 전체 너비를 사용 */
 	max-width: 680px; /* 검색창 최대 너비 */
 	margin: 0 auto; /* 부모 요소에서 중앙 정렬 */
+	transition: width 0.3s ease; /* 너비 변화 시 애니메이션 */
 }
 
 .search-bar form {
 	display: flex;
 	width: 100%; /* form 요소가 부모 요소를 채우도록 */
+	max-width: 100%; /* 반응형에서 검색창이 축소되도록 설정 */
 	border: 1px solid #f8f9fa;
 	border-radius: 20px;
 	overflow: hidden;
@@ -254,6 +256,17 @@ header, footer, .gnb, .search-bar, .logo {
 }
 
 /* 반응형 디자인 */
+@media (max-width: 1200px) {
+	.search-bar {
+		max-width: 500px; /* 화면이 줄어들면 검색창 크기 축소 */
+	}
+}
+
+@media (max-width: 768px) {
+	.search-bar {
+		max-width: 90%; /* 모바일 화면에서 검색창 너비를 화면의 90%로 설정 */
+	}
+}
 @media (max-width: 768px) {
 	header {
 		flex-direction: column; /* 헤더 내 아이템을 세로로 배치 */

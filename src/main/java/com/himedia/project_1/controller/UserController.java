@@ -1,10 +1,8 @@
 package com.himedia.project_1.controller;
 
 import com.google.gson.Gson;
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.KakaoProfile;
-import com.himedia.project_1.dto.OAuthToken;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dto.*;
+import com.himedia.project_1.service.ProductService;
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,16 +19,30 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class UserController {
     @Autowired
     UserService us;
+    @Autowired
+    ProductService ps;
 
 
     @GetMapping("/")
-    public String home() {
-        return "index";
+    public String home(Model model) {
+        List<ProductVo> bestProducts = ps.getBestProducts();
+        List<ProductVo> newProducts = ps.getNewProducts();
+
+        // 전달할 데이터가 null인지 확인
+        if (bestProducts == null || newProducts == null) {
+            throw new RuntimeException("Product lists are null!");
+        }
+
+        model.addAttribute("bestProducts", bestProducts);
+        model.addAttribute("newProducts", newProducts);
+        return  "index";
+
     }
 
 
@@ -233,7 +245,7 @@ public class UserController {
         }else if(loginUser instanceof BusinessmanVo) {
             model.addAttribute("user", "2");
         }
-        return "MyPage";
+        return "mypage/MyPage";
     }
 
     @GetMapping("updateUserForm")

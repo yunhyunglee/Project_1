@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../customer_header.jsp" %>
+
+<script src="/script/customer.js"></script>
+
 <div id="wrap">
 <%--<header>--%>
 
