@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 
@@ -279,10 +280,23 @@ public class AdminController {
     }
 
 
+    @Autowired
+    private QnaService qnaService;
 
+    @GetMapping("/admin/qna/get/{qseq}")
+    public ResponseEntity<QnaVo> getQnaDetail(@PathVariable int qseq) {
+        QnaVo qna = qnaService.getQnaById(qseq);
+        return ResponseEntity.ok(qna);
+    }
 
+    @PostMapping("/admin/qna/reply")
+    public ResponseEntity<?> saveQnaReply(@RequestBody Map<String, Object> payload) {
+        int qseq = (int) payload.get("qseq");
+        String reply = (String) payload.get("reply");
 
-
+        qnaService.updateReply(qseq, reply);
+        return ResponseEntity.ok("Reply saved successfully.");
+    }
 
 
 

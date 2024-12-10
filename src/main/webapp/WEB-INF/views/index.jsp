@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
+<div id="main_img">
+	<img src="http://placehold.co/1024x400">
+
 <%@ include file="header.jsp" %>
 <!-- 이미지 슬라이더 -->
 <div id="main_img_slider">
@@ -11,6 +15,7 @@
     <!-- 화살표 버튼 -->
     <button class="arrow prev" id="prevBtn">‹</button>
     <button class="arrow next" id="nextBtn">›</button>
+
 </div>
 
 <div id="menu">

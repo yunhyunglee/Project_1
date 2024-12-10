@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../customer_header.jsp" %>
 
+
 <script src="/script/customer.js"></script>
+
 
 <div id="wrap">
 <%--<header>--%>
@@ -11,6 +13,9 @@
 <%--        <a href="/">메인으로</a>--%>
 <%--    </div>--%>
 <%--</header>--%>
+
+
+
     <main>
         <section class="main-banner">
             <h1>고객센터<br>무엇을 도와드릴까요?</h1>
