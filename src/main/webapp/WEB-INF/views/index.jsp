@@ -2,7 +2,7 @@
 <%@ include file="header.jsp" %>
 
 <div id="main_img">
-	<img src="http://placehold.co/1024x400">
+	<img src="http://placehold.co/1024x200">
 </div>
 
 <div id="menu">
