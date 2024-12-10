@@ -1,31 +1,35 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/font@5.0.0/css/font.css">
+<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/font@5.0.0/css/font.css">--%>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <script src="script/productDetail.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">--%>
 </head>
 
 <section class="product-detail">
     <!-- 상품 이미지 섹션 -->
     <div class="product-image">
 <%--        <img src="/images/${product.image}" alt="${product.title}" />--%>
-        <img src="http://placehold.co/300x300">
+<%--        <img src="http://placehold.co/300x300">--%>
+<%--        <img src="/static/images/${productVo.image}" alt="${productVo.title}" />--%>
     </div>
 
     <!-- 상품 정보 섹션 -->
     <div class="product-info">
-        <h3>${product.title} title 입니다.</h3>
-        <p class="price">${product.price} 48,000원</p>
-        <p class="description">${product.description}</p>
+        <h3>${productVo.title}</h3>
+        <p>${productVo.address1}, ${productVo.address2}, ${productVo.address3}</p>
+        <p class="price">${productVo.price}원</p>
+<%--        <p class="description">${product.description}</p>--%>
+        <p class="description">${productVo.content}</p>
+        <p><strong>최대 수용인원 : </strong> ${productVo.max_people}</p>
         <div class="button-group">
             <button class="enroll-btn">신청하기</button>
             <!-- 찜하기 버튼 -->
             <button class="wishlist-btn" onclick="toggleHeart(this)">
-                <i class="fas fa-heart"></i> <!-- 빈 하트 아이콘 -->
+                <i class="fi fi-rs-heart"></i> <!-- 빈 하트 아이콘 -->
             </button>
-
-
         </div>
     </div>
 </section>
