@@ -268,6 +268,7 @@ public class AdminController {
     @DeleteMapping("/admin/banner/delete/{bannerId}")
     @ResponseBody
     public String deleteBanner(@PathVariable int bannerId) {
+        System.out.println("삭제요청배너아이디 : " + bannerId);
         try {
             bannerService.deleteBanner(bannerId);
             return "배너가 성공적으로 삭제되었습니다.";
