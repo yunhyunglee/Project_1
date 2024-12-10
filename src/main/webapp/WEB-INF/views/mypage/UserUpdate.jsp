@@ -24,7 +24,7 @@
     <div>${message}</div>
 
     <div>
-        <input type="submit" value="수정"> <input type="button" onclick="location.href='/'" value="되돌아가기">
+        <input type="submit" value="수정"> <input type="button" onclick="history.back()" value="되돌아가기">
     </div>
 </form>
 

@@ -59,4 +59,8 @@ public class UserService {
     public List<QnaVo> getMyQna( String id) {
         return udao.getMyQna(id);
     }
+
+    public void updateUserWithPassword(UserVo uvo) {
+        udao.updateUserWithPassword(uvo);
+    }
 }
