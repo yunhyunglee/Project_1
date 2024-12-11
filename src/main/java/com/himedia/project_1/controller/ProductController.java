@@ -1,15 +1,18 @@
 package com.himedia.project_1.controller;
 
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.UserVo;
 import com.himedia.project_1.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -62,7 +65,5 @@ public class ProductController {
         mav.setViewName("product/categoryProduct");
         return mav;
     }
-
-
 }
 

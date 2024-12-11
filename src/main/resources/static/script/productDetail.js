@@ -42,8 +42,6 @@ function toggleHeart(button,cseq,loginUser) {
     // }
 }
 
-
-
 // 상품 상세 설명 펼치기/접기
 function toggleDescription() {
     const description = document.querySelector(".description-content");

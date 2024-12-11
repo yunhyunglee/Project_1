@@ -27,8 +27,16 @@
         <div class="button-group">
             <button class="enroll-btn">신청하기</button>
             <!-- 찜하기 버튼 -->
-            <button class="wishlist-btn" onclick="toggleHeart(this)">
-                <i class="fi fi-rs-heart"></i> <!-- 빈 하트 아이콘 -->
+            <button class="wishlist-btn" onclick="toggleHeart(this,${productVo.cseq},'${loginUser.id}')">
+            <c:choose>
+                <c:when test="${zzim eq false}">
+                          <i class="fi fi-rs-heart"></i> <!-- 빈 하트 아이콘 -->
+                </c:when>
+                <c:otherwise>
+                         <i class="fi fi-ss-heart"></i> <!-- 빈 하트 아이콘 -->
+
+                </c:otherwise>
+            </c:choose>
             </button>
         </div>
     </div>

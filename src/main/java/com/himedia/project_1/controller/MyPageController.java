@@ -180,4 +180,5 @@ public class MyPageController {
         return "redirect:/MyClass";
     }
 
+
 }
