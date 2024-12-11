@@ -16,31 +16,19 @@
 		<img src="http://placehold.co/90">
 	</a>
 </div>
-aaaaa
+
 <!-- BEST -->
 <div id="BestItem">
 	<h2>Best</h2>
 	<div class="products">
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
+		<c:forEach items="${bestList}" var="pvo" >
+			<div class="item" onClick="location.href='productDetail?cseq=${pvo.cseq}'" >
+					<div><img src="/product_images/${pvo.savefilename}" /></div>
+					<div>${pvo.title}
+						- <fmt:formatNumber value="${pvo.price}" type="currency" /></div>
+			</div>
+		</c:forEach>
+
 	</div>
 </div>
 
@@ -48,26 +36,33 @@ aaaaa
 <div id="NewItem">
 	<h2>New</h2>
 	<div class="products">
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
-		<div class="item">
-			<a href="/productDetail">
-				<img src="http://placehold.co/200x200" />
-			</a>
-		</div>
+		<c:forEach items="${newList}" var="pvo" >
+			<div class="item" onClick="location.href='productDetail?cseq=${pvo.cseq}'" >
+					<div><img src="/product_images/${pvo.savefilename}" /></div>
+					<div>${pvo.title}
+						- <fmt:formatNumber value="${pvo.price}" type="currency" /></div>
+			</div>
+		</c:forEach>
+<%--		<div class="item">--%>
+<%--			<a href="/productDetail">--%>
+<%--				<img src="http://placehold.co/200x200" />--%>
+<%--			</a>--%>
+<%--		</div>--%>
+<%--		<div class="item">--%>
+<%--			<a href="/productDetail">--%>
+<%--				<img src="http://placehold.co/200x200" />--%>
+<%--			</a>--%>
+<%--		</div>--%>
+<%--		<div class="item">--%>
+<%--			<a href="/productDetail">--%>
+<%--				<img src="http://placehold.co/200x200" />--%>
+<%--			</a>--%>
+<%--		</div>--%>
+<%--		<div class="item">--%>
+<%--			<a href="/productDetail">--%>
+<%--				<img src="http://placehold.co/200x200" />--%>
+<%--			</a>--%>
+<%--		</div>--%>
 	</div>
 </div>
 

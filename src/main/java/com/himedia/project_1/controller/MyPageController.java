@@ -100,8 +100,12 @@ public class MyPageController {
     @GetMapping("reservation_cancle")
     public String reservationCancel(HttpSession session, @RequestParam("reseq")String reseq) {
         int cseq=ms.reservationCancel(reseq);
-
-        return "redirect:/Reservation_List?cseq="+cseq;
+        Object loginuser=session.getAttribute("loginUser");
+        if (loginuser instanceof UserVo) {
+            return "redirect:/MyReservation";
+        }else {
+            return "redirect:/Reservation_List?cseq="+cseq;
+        }
     }
     @GetMapping("NewProduct")
     public ModelAndView newProduct(HttpSession session) {

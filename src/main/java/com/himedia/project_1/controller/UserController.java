@@ -1,17 +1,12 @@
 package com.himedia.project_1.controller;
 
 import com.google.gson.Gson;
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.KakaoProfile;
-import com.himedia.project_1.dto.OAuthToken;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dto.*;
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +18,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -31,8 +27,13 @@ public class UserController {
 
 
     @GetMapping("/")
-    public String home() {
-        return "index";
+    public ModelAndView home() {
+        ModelAndView mav = new ModelAndView("index");
+        List<ProductVo>bestList=us.getBest();
+        List<ProductVo>newList=us.getNew();
+        mav.addObject("bestList",bestList);
+        mav.addObject("newList",newList);
+        return mav;
     }
 
 
@@ -235,13 +236,31 @@ public class UserController {
         }else if(loginUser instanceof BusinessmanVo) {
             model.addAttribute("user", "2");
         }
-        return "MyPage";
+        return "mypage/MyPage";
+    }
+    @GetMapping("updatecheck")
+    public String updatecheck() {return "mypage/UpdateCheck";}
+
+    @PostMapping("updatecheck")
+    public String updatecheck(HttpSession session,@RequestParam("id")String id,@RequestParam("pwd")String pwd) {
+        Object loginUser = session.getAttribute("loginUser");
+        String url="mypage/UpdateCheck";
+        if(loginUser instanceof UserVo) {
+            if (us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)) {
+                url="redirect:/updateUserForm";
+            }
+        }else if(loginUser instanceof BusinessmanVo) {
+            if(us.getBusinessman(((BusinessmanVo) loginUser).getId()).getPwd().equals(pwd)) {
+                url="redirect:/updateUserForm";
+            }
+        }
+        return url;
     }
 
     @GetMapping("updateUserForm")
-    public ModelAndView mypage(HttpServletRequest request) {
+    public ModelAndView mypage(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        Object loginUser = request.getSession().getAttribute("loginUser");
+        Object loginUser = session.getAttribute("loginUser");
         if (loginUser instanceof UserVo) {
             // UserVo인 경우
             UserVo user = (UserVo) loginUser;
@@ -254,7 +273,7 @@ public class UserController {
             mav.setViewName("mypage/BusinessUpdate");
         } else {
             // 그 외의 경우나 에러 처리
-            mav.setViewName("index2");
+            mav.setViewName("index");
         }
 
         return mav;

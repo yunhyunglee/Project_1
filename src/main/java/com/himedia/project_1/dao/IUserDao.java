@@ -46,5 +46,7 @@ public interface IUserDao {
     // admin 유저수정
     UserVo getUserById(String userId);
 
+    List<ProductVo> getBest();
 
+    List<ProductVo> getNew();
 }

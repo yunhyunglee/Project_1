@@ -19,9 +19,7 @@
 
 
     <script src="/script/adminMain.js"></script>
-
     <script src="/script/admin-common.js"></script>
-
 
     <script src="/script/admin-notice.js"></script>
     <script src="/script/admin-banner.js"></script>

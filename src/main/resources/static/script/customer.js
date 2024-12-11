@@ -11,3 +11,12 @@ function toggleFAQ() {
         questionList.style.display = 'none';
     }
 }
+
+function enable(){
+    if(document.formm.secret.checked==true) {
+        document.formm.pwd.disabled = false;
+    }else {
+        document.formm.pwd.disabled = true;
+        document.formm.pwd.value="";
+    }
+}

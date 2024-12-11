@@ -9,6 +9,8 @@
     <script src="/script/header.js"></script>
     <script src="/script/member.js"></script>
     <script src="/script/productDetail.js"></script>
+
+
     <link rel="stylesheet" href="/css/header_footer.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/product.css" />
