@@ -28,4 +28,13 @@
         WHERE bestyn = 'Y'
             LIMIT 4
     </select>
+    <select id="getZzim" resultType="boolean">
+        select count(*)>0 from zzim where uid=#{param1} and cnum=#{param2}
+    </select>
+    <insert id="insertZzim">
+        insert into zzim values (#{param1},#{param2})
+    </insert>
+    <delete id="deleteZzim">
+        delete from zzim where uid=#{param1} and cnum=#{param2}
+    </delete>
 </mapper>

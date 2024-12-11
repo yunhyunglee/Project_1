@@ -1,16 +1,45 @@
 // productDetail.js
 // 찜하기 버튼 토글
-function toggleHeart(button) {
-    const icon = button.querySelector("i");
-
-    // 현재 아이콘이 빈 하트인지 확인하고 채워진 하트로 전환
-    if (icon.classList.contains("fi-rs-heart")) {
-        icon.classList.remove("fi-rs-heart"); // 빈 하트 제거
-        icon.classList.add("fi-ss-heart");   // 채워진 하트 추가
-    } else {
-        icon.classList.remove("fi-ss-heart"); // 채워진 하트 제거
-        icon.classList.add("fi-rs-heart");    // 빈 하트 추가
+function toggleHeart(button,cseq,loginUser) {
+    //ajax로 로그인 확인/ 찜 목록 조회
+    // 찜에 있으면 하트 지우고 찜
+    if(loginUser=='null'||loginUser=='') {
+        var ans=confirm("로그인해야 찜할 수 있습니다. 로그인하시겠습니까?");
+        if(ans){location.href="loginForm"}
+    }else {
+        $.ajax({
+            url: "toggleHeart",
+            data: { cseq : cseq },
+            method: "get",
+            success: function (result) {
+                const icon = button.querySelector("i");
+                if (result.zzim) {
+                    // icon.classList.remove("fa-heart-o");
+                    // icon.classList.add("fa-heart");
+                    icon.classList.remove("fi-rs-heart"); // 빈 하트 제거
+                    icon.classList.add("fi-ss-heart");   // 채워진 하트 추가
+                } else {
+                    // icon.classList.remove("fa-heart");
+                    // icon.classList.add("fa-heart-o");
+                    icon.classList.remove("fi-ss-heart"); // 채워진 하트 제거
+                    icon.classList.add("fi-rs-heart");    // 빈 하트 추가
+                }
+            },
+            error: function () {
+                alert("실패");
+            }
+        });
     }
+    // const icon = button.querySelector("i");
+    //
+    // // 현재 아이콘이 빈 하트인지 확인하고 채워진 하트로 전환
+    // if (icon.classList.contains("fi-rs-heart")) {
+    //     icon.classList.remove("fi-rs-heart"); // 빈 하트 제거
+    //     icon.classList.add("fi-ss-heart");   // 채워진 하트 추가
+    // } else {
+    //     icon.classList.remove("fi-ss-heart"); // 채워진 하트 제거
+    //     icon.classList.add("fi-rs-heart");    // 빈 하트 추가
+    // }
 }
 
 
