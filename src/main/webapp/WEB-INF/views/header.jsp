@@ -12,7 +12,9 @@
     <script src="/script/main.js"></script>
     <script src="/script/member.js"></script>
     <script src="/script/productDetail.js"></script>
+
     <script src="/script/customer.js"></script>
+
 
     <link rel="stylesheet" href="/css/header_footer.css" />
     <link rel="stylesheet" href="/css/main.css" />

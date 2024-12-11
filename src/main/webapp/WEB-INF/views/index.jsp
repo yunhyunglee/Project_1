@@ -30,6 +30,8 @@
 	</a>
 </div>
 
+
+
 <!-- BEST 섹션 -->
 <div id="BestItem">
     <h2>Best</h2>
@@ -62,10 +64,12 @@
             </c:forEach>
         </c:if>
     </div>
+
 </div>
 
 <!-- NEW 섹션 -->
 <div id="NewItem">
+
     <h2>New</h2>
     <div class="products">
         <c:if test="${not empty newProducts}">
@@ -96,6 +100,7 @@
             </c:forEach>
         </c:if>
     </div>
+
 </div>
 
 

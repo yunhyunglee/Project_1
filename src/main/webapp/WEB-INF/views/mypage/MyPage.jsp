@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 
@@ -10,17 +11,22 @@
         <h2>내 마이페이지</h2>
         <c:choose>
             <c:when test="${user == 1}">
-                <!-- 개인회원 본문 내용 -->
-                <h3>개인회원님, 환영합니다!</h3>
-                <p>여기에는 개인회원 관련 정보를 표시합니다.</p>
+                <a href="updatecheck">회원정보 수정</a> <hr>
+                <a href="ZZim">찜목록</a><hr>
+                <a href="MyReview">내 후기목록</a><hr>
+                <a href="MyReservation">내 예약내역</a><hr>
+                <a href="myQna">qna</a><hr>
+                <a href="deleteUserForm">탈퇴</a><hr>
             </c:when>
             <c:otherwise>
-                <!-- 사업자회원 본문 내용 -->
-                <h3>사업자회원님, 환영합니다!</h3>
-                <p>여기에는 사업자회원 관련 정보를 표시합니다.</p>
+                <a href="updatecheck">회원정보 수정</a> <hr>
+                <a href="MyClass">내 클래스 관리</a><hr>
+                <a href="myQna">qna</a><hr>
+                <a href="deleteUserForm">탈퇴</a><hr>
             </c:otherwise>
         </c:choose>
     </div>
 </div>
+
 
 <%@ include file="../footer.jsp" %>

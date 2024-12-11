@@ -77,4 +77,11 @@ public class UserService {
         return udao.getUserById(userId);
     }
 
+    public List<ProductVo> getBest() {
+        return udao.getBest();
+    }
+
+    public List<ProductVo> getNew() {
+        return  udao.getNew();
+    }
 }
