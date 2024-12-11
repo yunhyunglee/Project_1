@@ -13,6 +13,11 @@ function fetchAndPopulateModal(apiEndpoint, modalId, dataMapping) {
                 const element = document.getElementById(elementId);
                 if (element) {
                     element.value = data[key] || ''; // 데이터가 없을 경우 빈 값 설정
+                    if (element.type === 'checkbox') {
+                        element.checked = data[key] ? true : false;
+                    } else {
+                        element.value = data[key] || ''; // 데이터가 없을 경우 빈 값 설정
+                    }
                 } else {
                     console.error(`Element with ID "${elementId}" not found.`);
                 }
@@ -79,6 +84,11 @@ function submitForm(apiEndpoint, formId, modalId) {
     }
 
     const formData = new FormData(formElement);
+    const checkboxes = formElement.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        formData.set(checkbox.name, checkbox.checked ? 'true' : 'false');
+    });
+
     fetch(apiEndpoint, {
         method: 'POST',
         body: formData

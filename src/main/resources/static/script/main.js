@@ -1,44 +1,60 @@
-// main.js
 document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.slider');
-    const slides = document.querySelectorAll('.slide');
     const prevBtn = document.querySelector('#prevBtn');
     const nextBtn = document.querySelector('#nextBtn');
     let currentIndex = 0;
 
-    // Placeholder 이미지 경로
-    const placeholder = 'http://placehold.co/1024x400';
+    // 서버에서 활성화된 배너 데이터 가져오기
+    fetch('/activeBanners')
+        .then(response => response.json())
+        .then(banners => {
+            // 활성화된 배너가 없으면 에러 출력
+            if (!banners || banners.length === 0) {
+                console.error('활성화된 배너가 없습니다.');
+                return;
+            }
 
-    // 이미지가 로드되지 않을 경우 Placeholder로 대체
-    slides.forEach(slide => {
-        const img = slide.querySelector('img');
-        img.addEventListener('error', () => {
-            img.src = 'http://placehold.co/1024x400';
-        });
-    });
+            // 기존 슬라이더 내용을 초기화
+            slider.innerHTML = '';
 
-    // 슬라이드 이동 함수
-    function showSlide(index) {
-        const offset = -index * 100; // 이동 거리 계산
-        slider.style.transform = `translateX(${offset}%)`;
-    }
+            // 슬라이더에 배너 데이터 추가
+            banners.forEach(banner => {
+                const slide = document.createElement('div');
+                slide.classList.add('slide');
+                slide.innerHTML = `
+                    <img src="${banner.image}" alt="${banner.title}" onerror="this.src='http://placehold.co/1024x400'">
+                    <div class="slide-content">
+                        <a href="${banner.link}" target="_blank">자세히 보기</a>
+                    </div>
+                `;
+                slider.appendChild(slide);
+            });
 
-    // 이전 슬라이드로 이동
-    function showPrevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
-    }
+            const slides = slider.querySelectorAll('.slide');
 
-    // 다음 슬라이드로 이동
-    function showNextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    }
+            // 슬라이드 이동 함수
+            function showSlide(index) {
+                const offset = -index * 100;
+                slider.style.transform = `translateX(${offset}%)`;
+            }
 
-    // 화살표 버튼 클릭 이벤트
-    prevBtn.addEventListener('click', showPrevSlide);
-    nextBtn.addEventListener('click', showNextSlide);
+            // 이전 버튼 클릭 이벤트
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            });
 
-    // 자동 전환
-    setInterval(showNextSlide, 3000); // 3초마다 슬라이드 전환
+            // 다음 버튼 클릭 이벤트
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            });
+
+            // 자동 슬라이드 전환
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }, 3000);
+        })
+        .catch(err => console.error('Error loading banners:', err));
 });

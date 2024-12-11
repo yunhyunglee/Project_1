@@ -7,7 +7,8 @@ function editUser(id) {
             id: 'editUserId', // API 필드 -> HTML 필드
             name: 'editName',
             email: 'editEmail',
-            phone: 'editPhone'
+            phone: 'editPhone',
+            pwd: 'editPwd'
         }
     );
 }

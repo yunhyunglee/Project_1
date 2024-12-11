@@ -17,3 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+
+function adminLogout() {
+    if (confirm("로그아웃 하시겠습니까?")) {
+        window.location.href = "/"; // 기본 페이지로 경로 설정
+    }
+}
