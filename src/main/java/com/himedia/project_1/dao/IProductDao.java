@@ -14,4 +14,9 @@ public interface IProductDao {
     List<ProductVo> selectNewProducts(); // 최신 상품 가져오기
     List<ProductVo> selectBestProducts(); // 베스트 상품 가져오기
 
+    boolean getZzim(String id, int cseq);
+
+    void insertZzim(String id, int cseq);
+
+    void deleteZzim(String id, int cseq);
 }

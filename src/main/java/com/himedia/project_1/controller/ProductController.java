@@ -18,18 +18,34 @@ public class ProductController {
     @Autowired
     ProductService ps;
 
-//    @GetMapping("/productDetail")
-//    public String productDetail() {
-//        return "product/productDetail";
-//    }
     @GetMapping("/productDetail")
-    public String productDetail(@RequestParam("id") int productId, Model model) {
-        ProductVo productVo = ps.getProductById(productId);
-        if (productVo == null) {
-            throw new RuntimeException("Product not found for ID: " + productId);
+    public ModelAndView productDetail(HttpSession session,@RequestParam("id")int cseq) {
+        ModelAndView mav = new ModelAndView("product/productDetail");
+        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
+        boolean zzim=false;
+        ProductVo productVo=ps.getProductById(cseq);
+        if(loginUser != null) {
+           zzim= ps.getZzim(loginUser.getId(),cseq);
         }
-        model.addAttribute("productVo", productVo);
-        return "product/productDetail"; // JSP 파일 이름
+        mav.addObject("loginUser",loginUser);
+        mav.addObject("zzim",zzim);
+        mav.addObject("productVo",productVo);
+        return mav;
+    }
+    @GetMapping("toggleHeart")
+    @ResponseBody
+    public HashMap<String,Object> toggleHeart(HttpSession session,@RequestParam("cseq")int cseq) {
+        System.out.println(cseq);
+        HashMap<String,Object> map = new HashMap<>();
+        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
+        boolean zzim=false;
+        if(loginUser != null) {
+            zzim=ps.toggleZzim(loginUser.getId(),cseq);
+
+        }
+        map.put("loginUser",loginUser);
+        map.put("zzim",zzim);
+        return map;
     }
 
     @GetMapping("/category")
