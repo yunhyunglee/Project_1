@@ -18,7 +18,7 @@
             <div class="card-title">사업자 ID: ${business.id}</div>
             <div class="card-content">
                 <p><b>이름:</b> ${business.name}</p>
-                <p><b>비밀번호:</b> ${business.pwd}</p>
+                <p hidden="hidden"><b>비밀번호:</b> ${business.pwd}</p>
                 <p><b>전화번호:</b> ${business.phone}</p>
                 <p><b>이메일:</b> ${business.email}</p>
             </div>
