@@ -10,9 +10,8 @@ import java.util.List;
 public interface IProductDao {
     List<ProductVo> selectCategory(int category);
 
-    boolean getZzim(String id, int cseq);
+    ProductVo selectProductById(int id); // 상품 ID로 상품 조회
+    List<ProductVo> selectNewProducts(); // 최신 상품 가져오기
+    List<ProductVo> selectBestProducts(); // 베스트 상품 가져오기
 
-    void insertZzim(String id, int cseq);
-
-    void deleteZzim(String id, int cseq);
 }

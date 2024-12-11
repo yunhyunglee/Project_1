@@ -2,6 +2,9 @@ package com.himedia.project_1.controller;
 
 import com.google.gson.Gson;
 import com.himedia.project_1.dto.*;
+
+import com.himedia.project_1.service.ProductService;
+
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -24,16 +27,26 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService us;
+    @Autowired
+    ProductService ps;
 
 
     @GetMapping("/")
-    public ModelAndView home() {
-        ModelAndView mav = new ModelAndView("index");
-        List<ProductVo>bestList=us.getBest();
-        List<ProductVo>newList=us.getNew();
-        mav.addObject("bestList",bestList);
-        mav.addObject("newList",newList);
-        return mav;
+
+    public String home(Model model) {
+        List<ProductVo> bestProducts = ps.getBestProducts();
+        List<ProductVo> newProducts = ps.getNewProducts();
+
+        // 전달할 데이터가 null인지 확인
+        if (bestProducts == null || newProducts == null) {
+            throw new RuntimeException("Product lists are null!");
+        }
+
+        model.addAttribute("bestProducts", bestProducts);
+        model.addAttribute("newProducts", newProducts);
+        return  "index";
+
+
     }
 
 
@@ -237,6 +250,7 @@ public class UserController {
             model.addAttribute("user", "2");
         }
         return "mypage/MyPage";
+
     }
     @GetMapping("updatecheck")
     public String updatecheck() {return "mypage/UpdateCheck";}
@@ -255,6 +269,7 @@ public class UserController {
             }
         }
         return url;
+
     }
 
     @GetMapping("updateUserForm")

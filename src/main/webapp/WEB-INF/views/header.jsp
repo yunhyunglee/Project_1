@@ -1,14 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <script src="/script/jquery-3.7.1.min.js"></script>
     <script src="/script/header.js"></script>
+    <script src="/script/main.js"></script>
     <script src="/script/member.js"></script>
     <script src="/script/productDetail.js"></script>
+
+    <script src="/script/customer.js"></script>
 
 
     <link rel="stylesheet" href="/css/header_footer.css" />
@@ -16,7 +21,8 @@
     <link rel="stylesheet" href="/css/product.css" />
     <link rel="stylesheet" href="/css/section.css" />
     <link rel="stylesheet" href="/css/loginForm.css" />
-<%--    <link rel="stylesheet" href="/css/mypage.css" />--%>
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/myPage.css" />
     <link rel="stylesheet" href="/css/category.css" />
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>

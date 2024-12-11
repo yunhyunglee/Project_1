@@ -29,3 +29,73 @@ function fetchAndPopulateModal(apiEndpoint, modalId, dataMapping) {
             alert("데이터를 불러오는 중 문제가 발생했습니다.");
         });
 }
+
+// 모달 닫기 함수
+function closeEditModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
+
+
+
+function filterItems(queryId, className) {
+    const query = document.getElementById(queryId).value.toLowerCase();
+    const items = document.getElementsByClassName(className);
+
+    Array.from(items).forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(query) ? "block" : "none";
+    });
+}
+
+
+
+function deleteItem(apiEndpoint, confirmMessage) {
+    if (confirm(confirmMessage)) {
+        fetch(apiEndpoint, { method: 'DELETE' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to delete the item.");
+                }
+                return response.text();
+            })
+            .then(result => {
+                alert(result);
+                location.reload(); // 삭제 후 페이지 새로고침
+            })
+            .catch(error => {
+                console.error("Error deleting item:", error);
+                alert("삭제 중 문제가 발생했습니다.");
+            });
+    }
+}
+
+
+
+function submitForm(apiEndpoint, formId, modalId) {
+    const formElement = document.getElementById(formId);
+    if (!formElement) {
+        console.error(`Form with ID "${formId}" not found.`);
+        return;
+    }
+
+    const formData = new FormData(formElement);
+    fetch(apiEndpoint, {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to submit the form.");
+            }
+            return response.text();
+        })
+        .then(result => {
+            alert(result);
+            closeEditModal(modalId); // 모달 닫기
+            location.reload(); // 페이지 새로고침
+        })
+        .catch(error => {
+            console.error("Error submitting form:", error);
+            alert("수정 중 문제가 발생했습니다.");
+        });
+}

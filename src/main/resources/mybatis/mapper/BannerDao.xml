@@ -8,17 +8,18 @@
         SELECT * FROM banner ORDER BY priority ASC, created DESC;
     </select>
     <select id="getBannerById" parameterType="int" resultType="com.himedia.project_1.dto.BannerVo">
-        SELECT * FROM banner WHERE banner_id = #{bannerId};
+        SELECT * FROM banner WHERE bannerid = #{bannerId};
     </select>
 
     <insert id="insertBanner" parameterType="com.himedia.project_1.dto.BannerVo">
         INSERT INTO banner (image, title, content, link, active, priority) VALUES (#{image}, #{title}, #{content}, #{link}, #{active}, #{priority});
     </insert>
     <update id="updateBanner" parameterType="com.himedia.project_1.dto.BannerVo">
-        UPDATE banner SET image = #{image}, title = #{title}, content = #{content}, link = #{link}, active = #{active}, priority = #{priority} WHERE banner_id = #{bannerId};
+        UPDATE banner SET image = #{image}, title = #{title}, content = #{content}, link = #{link}, active = #{active}, priority = #{priority} WHERE bannerId = #{bannerId};
     </update>
+
     <delete id="deleteBanner" parameterType="int">
-        DELETE FROM banner WHERE banner_id = #{bannerId};
+        DELETE FROM banner WHERE bannerId = #{bannerId};
     </delete>
 </mapper>
 
