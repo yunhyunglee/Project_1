@@ -72,6 +72,12 @@
         FROM user
         WHERE id = #{id}
     </select>
+    <select id="getBest" resultType="com.himedia.project_1.dto.ProductVo">
+        select *from product where bestyn='Y'
+    </select>
+    <select id="getNew" resultType="com.himedia.project_1.dto.ProductVo">
+        select *from product order by indate desc limit 4;
+    </select>
 
 
 

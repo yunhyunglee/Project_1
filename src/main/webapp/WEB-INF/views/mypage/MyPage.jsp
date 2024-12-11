@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 
@@ -8,7 +9,7 @@
     <!-- 본문 -->
     <div class="content">
         <h2>내 마이페이지</h2>
-        <c:choose>
+         <c:choose>
             <c:when test="${user == 1}">
                 <!-- 개인회원 본문 내용 -->
                 <h3>개인회원님, 환영합니다!</h3>
@@ -22,5 +23,6 @@
         </c:choose>
     </div>
 </div>
+
 
 <%@ include file="../footer.jsp" %>

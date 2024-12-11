@@ -1,9 +1,6 @@
 package com.himedia.project_1.controller;
 
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.ProductVo;
-import com.himedia.project_1.dto.ReservationVo;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dto.*;
 import com.himedia.project_1.service.MyPageService;
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.ServletContext;
@@ -100,8 +97,12 @@ public class MyPageController {
     @GetMapping("reservation_cancle")
     public String reservationCancel(HttpSession session, @RequestParam("reseq")String reseq) {
         int cseq=ms.reservationCancel(reseq);
-
-        return "redirect:/Reservation_List?cseq="+cseq;
+        Object loginuser=session.getAttribute("loginUser");
+        if (loginuser instanceof UserVo) {
+            return "redirect:/MyReservation";
+        }else {
+            return "redirect:/Reservation_List?cseq="+cseq;
+        }
     }
     @GetMapping("NewProduct")
     public ModelAndView newProduct(HttpSession session) {
@@ -178,5 +179,6 @@ public class MyPageController {
         ms.clearpay(cseq);
         return "redirect:/MyClass";
     }
+
 
 }

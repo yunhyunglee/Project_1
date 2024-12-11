@@ -5,6 +5,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <script src="script/productDetail.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">--%>
 </head>
 
@@ -12,8 +13,7 @@
     <!-- 상품 이미지 섹션 -->
     <div class="product-image">
 <%--        <img src="/images/${product.image}" alt="${product.title}" />--%>
-<%--        <img src="http://placehold.co/300x300">--%>
-<%--        <img src="/static/images/${productVo.image}" alt="${productVo.title}" />--%>
+        <img src="http://placehold.co/300x300">
     </div>
 
     <!-- 상품 정보 섹션 -->
@@ -27,8 +27,16 @@
         <div class="button-group">
             <button class="enroll-btn">신청하기</button>
             <!-- 찜하기 버튼 -->
-            <button class="wishlist-btn" onclick="toggleHeart(this)">
-                <i class="fi fi-rs-heart"></i> <!-- 빈 하트 아이콘 -->
+            <button class="wishlist-btn" onclick="toggleHeart(this,${productVo.cseq},'${loginUser.id}')">
+            <c:choose>
+                <c:when test="${zzim eq false}">
+                          <i class="fi fi-rs-heart"></i> <!-- 빈 하트 아이콘 -->
+                </c:when>
+                <c:otherwise>
+                         <i class="fi fi-ss-heart"></i> <!-- 빈 하트 아이콘 -->
+
+                </c:otherwise>
+            </c:choose>
             </button>
         </div>
     </div>
