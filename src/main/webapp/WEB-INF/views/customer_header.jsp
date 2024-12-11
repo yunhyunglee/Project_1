@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <script src="/script/jquery-3.7.1.min.js"></script>
     <script src="/script/member.js"></script>
+    <script src="/script/customer.js"></script>
     <link rel="stylesheet" href="/css/customer_main.css" />
     <link rel="stylesheet" href="/css/customer_header.css" />
 </head>

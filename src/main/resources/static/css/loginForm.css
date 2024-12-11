@@ -1,10 +1,47 @@
 @charset "UTF-8";
 
-section {
+.loginForm-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 300px); /* 헤더 높이를 제외한 로그인 폼 높이 */
+    padding-top: 0; /* 헤더와의 여백을 줄임 */
+    box-sizing: border-box;
+}
+
+header {
+    height: 100px; /* 헤더 높이 설정 */
+    background-color: #f8f9fa; /* 배경색 */
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.field.radio-group {
+    display: flex;
+    justify-content: center; /* 라디오 버튼과 텍스트를 수평 중앙 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트를 세로 중앙 정렬 */
+    /*gap: 10px; !* 버튼 간 간격 *!*/
+}
+
+.field.radio-group label {
+    display: inline-flex; /* 라벨을 inline-flex로 설정하여 수평 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 가운데 정렬 */
+    justify-content: center; /* 텍스트와 라디오 버튼을 수평 중앙 정렬 */
+    gap: 5px; /* 라디오 버튼과 텍스트 사이 간격 */
+    text-align: left; /* 텍스트 정렬을 왼쪽으로 설정 */
+}
+
+.field.radio-group input[type="radio"] {
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.login-section {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -18,7 +55,7 @@ h2 {
 }
 
 .field {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .field label {
@@ -30,8 +67,9 @@ h2 {
 
 .field input {
     width: 100%;
-    padding: 10px;
-    font-size: 14px;
+    padding: 15px;
+    font-size: 18px;
+    height: 50px; /* 입력창의 높이를 명시적으로 설정 */
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
@@ -42,17 +80,50 @@ h2 {
     border-color: #007bff;
     outline: none;
 }
-
-.login-btn {
-    margin-top: 15px;
+/* 라디오 버튼 사이 간격 설정 */
+.field.radio-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* 라디오 버튼과 라디오 버튼 사이 간격을 넓힘 */
 }
 
-.login-btn input {
-    width: 32%;
-    padding: 10px;
-    font-size: 14px;
+/* 라디오 버튼 크기 조정 */
+.field.radio-group input[type="radio"] {
+    width: 18px;  /* 라디오 버튼의 크기를 명시적으로 설정 */
+    height: 18px; /* 라디오 버튼의 크기를 명시적으로 설정 */
+    margin-right: 5px; /* 라디오 버튼과 텍스트 간 간격을 설정 */
+    vertical-align: middle; /* 라디오 버튼과 텍스트 수직 정렬 */
+}
+
+/* 라벨과 텍스트 간 간격 설정 */
+.field.radio-group label {
+    display: inline-flex; /* 라벨을 inline-flex로 설정하여 수평 정렬 */
+    align-items: center; /* 라디오 버튼과 텍스트 수직 가운데 정렬 */
+    gap: 5px; /* 라디오 버튼과 텍스트 사이 간격 */
+    text-align: left; /* 텍스트 정렬을 왼쪽으로 설정 */
+}
+
+.kakao-login {
+    margin-top: 20px;
+    text-align: center; /* 카카오 로그인 버튼 중앙 정렬 */
+}
+
+.login-btn,
+.kakao-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* 버튼 간 간격 */
+    margin-top: 20px;
+}
+
+.login-btn input,
+.kakao-login .kakao-btn {
+    flex: 1; /* 버튼의 동일한 크기 유지 */
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -69,57 +140,18 @@ h2 {
     background-color: #0056b3;
 }
 
-.login-btn input[type="button"] {
-    background-color: #f4f4f4;
-    color: #555;
-    border: 1px solid #ddd;
+.kakao-login .kakao-btn {
+    background: none; /* 배경색 제거 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 여백 제거 */
+    cursor: pointer; /* 버튼 클릭 가능 표시 */
 }
 
-.login-btn input[type="button"]:hover {
-    background-color: #eaeaea;
-}
-
-.kakao-login {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f7e600;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
+.kakao-login .kakao-btn img {
+    display: block;
+    width: 100%; /* 부모 컨테이너 너비 기준 */
+    max-width: 350px; /* 이미지 최대 너비 조정 */
+    height: auto;
+    margin: 0 auto;
     cursor: pointer;
-}
-
-.kakao-login:hover {
-    background-color: #ecc900;
-}
-
-input[value="Naver"] {
-    background-color: #03c75a;
-    color: white;
-    border: none;
-    width: 32%;
-}
-
-input[value="Naver"]:hover {
-    background-color: #028f42;
-}
-
-input[value="Google"] {
-    background-color: #db4437;
-    color: white;
-    border: none;
-    width: 32%;
-}
-
-input[value="Google"]:hover {
-    background-color: #b33c2c;
-}
-
-div[style*="font-size:80%;"] {
-    margin-top: 15px;
-    color: red;
-    text-align: center;
-    font-weight: bold;
 }

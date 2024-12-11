@@ -5,6 +5,10 @@
 
 <mapper namespace="com.himedia.project_1.dao.IAdminDao">
     <select id="getAdmin" resultType="com.himedia.project_1.dto.AdminVo" >
-        select * from admin where aid=#{param1}
+        select * from admin where aid=#{aid}
     </select>
 </mapper>
+
+
+
+

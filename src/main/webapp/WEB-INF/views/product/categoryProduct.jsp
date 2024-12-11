@@ -1,9 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
-
-
-
-
 <section>
     <h4>추천 상품</h4>
     <div class="categoryproducts">

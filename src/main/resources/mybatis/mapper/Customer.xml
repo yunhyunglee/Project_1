@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himedia.project_1.dao.ICustomerDao">
+    <select id="getQnaList" resultType="com.himedia.project_1.dto.QnaVo">
+        select *from qna where title like concat('%',#{param1},'%') order by qseq desc
+                                                                     limit #{param2.displayRow} offset #{param2.startNum}
+    </select>
+    <select id="getAllCount" resultType="_int">
+        select count(*) from qna where title like concat('%',#{param1},'%')
+    </select>
+    <insert id="insertQna" parameterType="com.himedia.project_1.dto.QnaVo">
+        insert into qna(title,content,pwd,writer1,writer2) values (#{title},#{content},#{pwd},#{writer1},#{writer2})
+    </insert>
+    <select id="getQseq" resultType="_int">
+        select max(qseq) from qna where ${param1}=#{param2}
+    </select>
+    <select id="getQnaDetail" resultType="com.himedia.project_1.dto.QnaVo">
+        select *from qna where qseq=#{qseq}
+    </select>
+    <update id="updateQna" parameterType="com.himedia.project_1.dto.QnaVo">
+        update qna set title=#{title},content=#{content},pwd=#{pwd}, writer1=#{writer1},writer2=#{writer2}
+                   where qseq=#{qseq}
+    </update>
+</mapper>

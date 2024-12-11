@@ -1,39 +1,45 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
+<div class="loginForm-wrap">
+    <section class="login-section">
+        <article>
+            <form method="post" action="login" name="loginForm">
+                <h2>로그인</h2>
+                <div class="field">
+                    <%--                    <label>ID</label>--%>
+                    <input name="id" type="text" placeholder="아이디를 입력하세요">
+                </div>
+                <div class="field">
+                    <%--                    <label>Password</label>--%>
+                    <input name="pwd" type="password" placeholder="비밀번호를 입력하세요">
+                </div>
+                <div class="field radio-group">
+                    <label>
+                        <input type="radio" name="usertype" value="1" checked> 개인
+                    </label>
+                    <label>
+                        <input type="radio" name="usertype" value="2"> 사업자
+                    </label>
+                </div>
 
-<section>
+                <div class="login-btn">
+                    <input type="submit" value="로그인">
+                    <%--                    <input type="button" value="회원가입" onclick="location.href='joinform'">--%>
+                    <%--                    <input type="button" value="아이디 찾기" onclick="">--%>
+                </div>
+                <div class="kakao-login">
+                    <button class="kakao-btn"
+                            onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=ee591d70889057034963a4ca3516fa78&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
+                        <img src="images/kakao_login.png" alt="카카오톡으로 시작하기">
+                    </button>
+                </div>
 
-    <article>
-        <form method="post" action="login" name="loginForm">
-            <h2>LogIn</h2>
-            <div class="field">
-                <label>User ID</label><input name="id" type="text"/>
-            </div>
-            <div class="field">
-                <label>Password</label><input name="pwd" type="password" >
-            </div>
-            <div class="field">
-                <input type="radio" name="usertype" value="1" checked/>개인 &nbsp;&nbsp;
-                <input type="radio" name="usertype" value="2">사업자
-            </div>
-            <div class="login-btn">
-                <input type="submit" value="LOGIN">
-                <input type="button" value="JOIN"  onclick="location.href='joinform'" >
-                <input type="button" value="FIND ID"  onclick="" >
-            </div>
-            <div class="login-btn">
-                <input type="button" value="KaKao" style="background: yellow; color:black"
-                       onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=ee591d70889057034963a4ca3516fa78&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
-                <input type="button" value="Naver" style="background: green" onclick="" >
-                <input type="button" value="Google" style="background: red" onclick="" >
+                <div style="font-size:80%; font-weight:bold">${message} </div>
 
-            </div>
-            <div style="font-size:80%; font-weight:bold">${message} </div>
+            </form>
+        </article>
 
-        </form>
-    </article>
-
-</section>
-
+    </section>
+</div>
 <%@ include file="../footer.jsp" %>

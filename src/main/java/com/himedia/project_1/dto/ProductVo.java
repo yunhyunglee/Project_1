@@ -9,11 +9,12 @@ import java.sql.Timestamp;
 public class ProductVo {
 
 
-    private Integer cesq;
+    private Integer cseq;
     private int price;
     private String id;
     private String title;
     private String content;
+    private int zip_num;
     private String address1;
     private String address2;
     private String address3;
@@ -21,5 +22,6 @@ public class ProductVo {
     private String bestyn;
     private Timestamp indate;
     private String image;
-    private int mex_people;
+    private String savefilename;
+    private int max_people;
 }

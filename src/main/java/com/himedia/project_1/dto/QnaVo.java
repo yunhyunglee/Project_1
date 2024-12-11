@@ -8,12 +8,15 @@ import java.sql.Timestamp;
 @Data
 public class QnaVo {
 
-    private int qseq;
+    private Integer qseq;
     private String title;
     private String content;
     private String pwd;
+    private Timestamp indate;
     private String writer1;
     private String writer2;
     private String reply;
+    private String secret;
+
 
 }

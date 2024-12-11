@@ -1,10 +1,10 @@
 package com.himedia.project_1.controller;
 
 import com.google.gson.Gson;
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.KakaoProfile;
-import com.himedia.project_1.dto.OAuthToken;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dto.*;
+
+import com.himedia.project_1.service.ProductService;
+
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,16 +21,32 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class UserController {
     @Autowired
     UserService us;
+    @Autowired
+    ProductService ps;
 
 
     @GetMapping("/")
-    public String home() {
-        return "index";
+
+    public String home(Model model) {
+        List<ProductVo> bestProducts = ps.getBestProducts();
+        List<ProductVo> newProducts = ps.getNewProducts();
+
+        // 전달할 데이터가 null인지 확인
+        if (bestProducts == null || newProducts == null) {
+            throw new RuntimeException("Product lists are null!");
+        }
+
+        model.addAttribute("bestProducts", bestProducts);
+        model.addAttribute("newProducts", newProducts);
+        return  "index";
+
+
     }
 
 
@@ -39,11 +55,6 @@ public class UserController {
         return "member/contract";
     }
 
-//    겹침
-//    @GetMapping("joinform")
-//    public String joinform() {
-//        return "join";
-//    }
 
     @GetMapping("userjoinform")
     public String userjoinform() { return "member/userjoin";}
@@ -150,7 +161,7 @@ public class UserController {
         String endpoint = "https://kauth.kakao.com/oauth/token";
         URL url = new URL(endpoint);
         String bodyData = "grant_type=authorization_code";
-        bodyData += "&client_id=f67ebc2de23039bbce25c7d2583abd81";
+        bodyData += "&client_id=e5361337566dff569bd6c1d524155311";
         bodyData += "&redirect_uri=http://localhost:8070/kakaoLogin";
         bodyData += "&code=" + code;
 
@@ -229,18 +240,42 @@ public class UserController {
         return "redirect:/";
     }
     @GetMapping("mypage")
-    public String mypage(HttpSession session) {
+    public String mypage(HttpSession session,Model model) {
         Object loginUser = session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/loginForm";
+        }else if(loginUser instanceof UserVo) {
+            model.addAttribute("user", "1");
+        }else if(loginUser instanceof BusinessmanVo) {
+            model.addAttribute("user", "2");
         }
-        return "mypage/mypage";
+        return "mypage/MyPage";
+
+    }
+    @GetMapping("updatecheck")
+    public String updatecheck() {return "mypage/UpdateCheck";}
+
+    @PostMapping("updatecheck")
+    public String updatecheck(HttpSession session,@RequestParam("id")String id,@RequestParam("pwd")String pwd) {
+        Object loginUser = session.getAttribute("loginUser");
+        String url="mypage/UpdateCheck";
+        if(loginUser instanceof UserVo) {
+            if (us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)) {
+                url="redirect:/updateUserForm";
+            }
+        }else if(loginUser instanceof BusinessmanVo) {
+            if(us.getBusinessman(((BusinessmanVo) loginUser).getId()).getPwd().equals(pwd)) {
+                url="redirect:/updateUserForm";
+            }
+        }
+        return url;
+
     }
 
     @GetMapping("updateUserForm")
-    public ModelAndView mypage(HttpServletRequest request) {
+    public ModelAndView mypage(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        Object loginUser = request.getSession().getAttribute("loginUser");
+        Object loginUser = session.getAttribute("loginUser");
         if (loginUser instanceof UserVo) {
             // UserVo인 경우
             UserVo user = (UserVo) loginUser;
@@ -253,7 +288,7 @@ public class UserController {
             mav.setViewName("mypage/BusinessUpdate");
         } else {
             // 그 외의 경우나 에러 처리
-            mav.setViewName("index2");
+            mav.setViewName("index");
         }
 
         return mav;
@@ -344,54 +379,5 @@ public class UserController {
         session.removeAttribute("loginUser");
         return "redirect:/";
     }
-    @GetMapping("MyReview")
-    public ModelAndView myReview(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyReview");
-        return mav;
-    }
 
-    @GetMapping("MyReservation")
-    public ModelAndView myReservation(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0=session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyReservation");
-        return mav;
-    }
-
-    @GetMapping("myQna")
-    public ModelAndView myQna(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyQna");
-        return mav;
-    }
 }
