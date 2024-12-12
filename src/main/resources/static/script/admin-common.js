@@ -4,19 +4,18 @@ function fetchAndPopulateModal(apiEndpoint, modalId, dataMapping) {
             if (!response.ok) {
                 throw new Error(`Failed to fetch data from ${apiEndpoint}`);
             }
-            return response.json(); // 여기서 문제가 발생
+            return response.json();
         })
         .then(data => {
-            // 데이터 매핑에 따라 필드 채우기
             Object.keys(dataMapping).forEach(key => {
                 const elementId = dataMapping[key];
                 const element = document.getElementById(elementId);
                 if (element) {
-                    element.value = data[key] || ''; // 데이터가 없을 경우 빈 값 설정
+                    element.value = data[key] || '';
                     if (element.type === 'checkbox') {
                         element.checked = data[key] ? true : false;
                     } else {
-                        element.value = data[key] || ''; // 데이터가 없을 경우 빈 값 설정
+                        element.value = data[key] || '';
                     }
                 } else {
                     console.error(`Element with ID "${elementId}" not found.`);
