@@ -7,6 +7,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -166,7 +167,7 @@ public class MyPageController {
     @PostMapping("UpdateProduct")
     public String UpdateProduct(@ModelAttribute("pvo")ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
         ms.UpdateProduct(productvo,selectedtimes);
-        return "redirect:/MyClass";
+            return "redirect:/MyClass";
     }
     @PostMapping("deleteProduct")
     public String deleteButton(@RequestParam("cseq")int cseq){
@@ -180,5 +181,12 @@ public class MyPageController {
         return "redirect:/MyClass";
     }
 
+    @GetMapping("/zzim")
+    public String getZzimList(HttpSession session, Model model) {
+        UserVo loginuser = (UserVo) session.getAttribute("loginUser");
+        List<ZzimVo> zzimList = ms.getZzimList(loginuser.getId());
+        model.addAttribute("ZZim", zzimList);
+        return "mypage/ZZim";
+    }
 
 }

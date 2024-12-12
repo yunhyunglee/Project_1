@@ -75,4 +75,8 @@ public class CustomerService {
     public void updateQna(QnaVo qnavo) {
         cdao.updateQna(qnavo);
     }
+
+    public void deleteQna(int qseq) {
+        cdao.deleteQna(qseq);
+    }
 }

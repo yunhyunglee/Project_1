@@ -6,9 +6,9 @@
             location.href="updateQna?qseq=${qnavo.qseq}";
         });
         document.getElementById("delete").addEventListener("click",function(){
-            var ans=confirm("삭제합니까");
+            var ans=confirm("삭제합니까?");
             if(ans) {
-                location.href = "deleteQna";
+                location.href = "deleteQna?qseq=${qnavo.qseq}";
             }
         });
 

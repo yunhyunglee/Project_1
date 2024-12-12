@@ -6,7 +6,9 @@ import com.himedia.project_1.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,16 +25,20 @@ public class ProductController {
 
     @GetMapping("/productDetail")
     public ModelAndView productDetail(HttpSession session,@RequestParam("id")int cseq) {
+        System.out.println(cseq);
         ModelAndView mav = new ModelAndView("product/productDetail");
-        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
-        boolean zzim=false;
-        ProductVo productVo=ps.getProductById(cseq);
-        if(loginUser != null) {
-           zzim= ps.getZzim(loginUser.getId(),cseq);
+
+
+        Object loginUser = session.getAttribute("loginUser");
+        HashMap<String,Object> map = ps.getZzim(loginUser,cseq);
+        if(loginUser != null && loginUser instanceof UserVo) {
+            UserVo userVo=(UserVo)loginUser;
+            mav.addObject("loginUser",userVo);
         }
-        mav.addObject("loginUser",loginUser);
-        mav.addObject("zzim",zzim);
-        mav.addObject("productVo",productVo);
+        System.out.println(map.get("zzim"));
+        mav.addObject("zzim",map.get("zzim"));
+        mav.addObject("productVo",map.get("productVo"));
+
         return mav;
     }
     @GetMapping("toggleHeart")
@@ -65,5 +71,19 @@ public class ProductController {
         mav.setViewName("product/categoryProduct");
         return mav;
     }
+
+    @GetMapping("/detail/{cseq}")
+    public String getProductDetail(@PathVariable int cseq, Model model) {
+        System.out.println("Received cseq: " + cseq); // 로그 출력
+        ProductVo product = ps.getProductById(cseq);
+        if (product == null) {
+            System.out.println("Product not found for cseq: " + cseq);
+            return "error/404"; // 상품이 없으면 404 페이지로 이동
+        }
+        model.addAttribute("productVo", product);
+        return "product/productDetail";
+    }
+
+
 }
 

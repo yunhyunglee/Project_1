@@ -23,4 +23,7 @@
         update qna set title=#{title},content=#{content},pwd=#{pwd}, writer1=#{writer1},writer2=#{writer2}
                    where qseq=#{qseq}
     </update>
+    <delete id="deleteQna">
+        delete from qna where qseq=#{qseq}
+    </delete>
 </mapper>

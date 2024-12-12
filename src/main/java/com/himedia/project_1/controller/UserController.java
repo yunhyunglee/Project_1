@@ -157,6 +157,7 @@ public class UserController {
     public String kakaoLogin(HttpServletRequest request, Model model) throws IOException {
         String code = request.getParameter("code");
 
+
         // Step 1: Access Token 요청
         String endpoint = "https://kauth.kakao.com/oauth/token";
         URL url = new URL(endpoint);
@@ -164,6 +165,7 @@ public class UserController {
         bodyData += "&client_id=f67ebc2de23039bbce25c7d2583abd81";
         bodyData += "&redirect_uri=http://localhost:8070/kakaoLogin";
         bodyData += "&code=" + code;
+
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
