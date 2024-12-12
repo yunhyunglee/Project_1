@@ -24,11 +24,13 @@
             <!-- 찜하기 버튼 -->
             <button class="wishlist-btn" onclick="toggleHeart(this,${productVo.cseq},'${loginUser.id}')">
             <c:choose>
-                <c:when test="${zzim eq false}">
-                          <i class="fi fi-rs-heart"></i> <!-- 빈 하트 아이콘 -->
+                <c:when test="${zzim eq true}">
+                 <i class="fi fi-ss-heart"></i>
+
                 </c:when>
                 <c:otherwise>
-                         <i class="fi fi-ss-heart"></i> <!-- 빈 하트 아이콘 -->
+                 <i class="fi fi-rs-heart"></i>
+                         <!-- 빈 하트 아이콘 -->
 
                 </c:otherwise>
             </c:choose>

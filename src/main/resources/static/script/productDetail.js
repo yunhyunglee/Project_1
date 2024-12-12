@@ -194,7 +194,7 @@ function toggleHeart(button, cseq, loginUser) {
                 }
             },
             error: function () {
-                alert("실패");
+                alert("개인이용자만 찜할 수 있습니다.");
             }
         });
     }
