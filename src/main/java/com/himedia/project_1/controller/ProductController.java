@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,5 +66,28 @@ public class ProductController {
         mav.setViewName("product/categoryProduct");
         return mav;
     }
+
+//    @GetMapping("/detail/{cseq}")
+//    public String getProductDetail(@PathVariable int cseq, Model model) {
+//        ProductVo product = ps.getProductById(cseq); // cseq로 상품 조회
+//        if (product == null) {
+//            return "error/404"; // 상품이 없으면 404 페이지로 이동
+//        }
+//        model.addAttribute("productVo", product);
+//        return "product/productDetail"; // 상세 페이지로 이동
+//    }
+    @GetMapping("/detail/{cseq}")
+    public String getProductDetail(@PathVariable int cseq, Model model) {
+        System.out.println("Received cseq: " + cseq); // 로그 출력
+        ProductVo product = ps.getProductById(cseq);
+        if (product == null) {
+            System.out.println("Product not found for cseq: " + cseq);
+            return "error/404"; // 상품이 없으면 404 페이지로 이동
+        }
+        model.addAttribute("productVo", product);
+        return "product/productDetail";
+    }
+
+
 }
 

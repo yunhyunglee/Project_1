@@ -1,19 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
-<head>
-<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/font@5.0.0/css/font.css">--%>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
-    <script src="script/productDetail.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">--%>
-</head>
-
 <section class="product-detail">
     <!-- 상품 이미지 섹션 -->
     <div class="product-image">
 <%--        <img src="/images/${product.image}" alt="${product.title}" />--%>
-        <img src="http://placehold.co/300x300">
+
+<%--        <img src="http://placehold.co/300x300">--%>
+<%--        <img src="/static/images/${productVo.image}" alt="${productVo.title}" />--%>
+        <img src="/images/${empty product.image ? 'placeholder.jpg' : product.image}" alt="${product.title}" />
     </div>
 
     <!-- 상품 정보 섹션 -->
@@ -25,6 +19,7 @@
         <p class="description">${productVo.content}</p>
         <p><strong>최대 수용인원 : </strong> ${productVo.max_people}</p>
         <div class="button-group">
+
             <button class="enroll-btn" data-cseq="${productVo.cseq}">신청하기</button>
             <!-- 찜하기 버튼 -->
             <button class="wishlist-btn" onclick="toggleHeart(this,${productVo.cseq},'${loginUser.id}')">
@@ -37,13 +32,45 @@
 
                 </c:otherwise>
             </c:choose>
+
             </button>
         </div>
     </div>
 </section>
-<!-- 상품 옵션 팝업 -->
-<div class="popup-overlay" id="productOptionsPopup" style="display: none;">
-    <div class="popup-content">
+
+<%--<!-- 상품 옵션 팝업 -->--%>
+<%--<div class="popup-overlay" id="productOptionsPopup" style="display: none;">--%>
+<%--    <div class="popup-content">--%>
+
+
+
+<%--<div class="popup-overlay option-popup" id="productOptionsPopup" style="display: none;">--%>
+<%--    <div class="popup-content option-popup-content">--%>
+<%--        <h3>상품 옵션 선택</h3>--%>
+<%--        <form id="productOptionsForm">--%>
+<%--            <label for="option1">옵션 1</label>--%>
+<%--            <select id="option1" name="option1" required>--%>
+<%--                <option value="">옵션을 선택하세요</option>--%>
+<%--                <option value="optionA">옵션 A</option>--%>
+<%--                <option value="optionB">옵션 B</option>--%>
+<%--            </select>--%>
+
+<%--            <label for="option2">옵션 2</label>--%>
+<%--            <select id="option2" name="option2">--%>
+<%--                <option value="">옵션을 선택하세요</option>--%>
+<%--                <option value="optionC">옵션 C</option>--%>
+<%--                <option value="optionD">옵션 D</option>--%>
+<%--            </select>--%>
+
+<%--            <button type="submit" class="submit-btn">확인</button>--%>
+<%--        </form>--%>
+<%--        <button class="close-btn option-close-btn" onclick="closeProductOptionsPopup()">닫기</button>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<div class="popup-overlay option-popup" id="productOptionsPopup" style="display: none;">
+    <div class="popup-content option-popup-content">
+
         <h3>상품 옵션 선택</h3>
         <form id="productOptionsForm">
             <label for="option1">옵션 1</label>
@@ -62,9 +89,11 @@
 
             <button type="submit" class="submit-btn">확인</button>
         </form>
-        <button class="close-btn" onclick="closeProductOptionsPopup()">닫기</button>
+
+        <button class="close-btn option-close-btn" onclick="closeProductOptionsPopup()">닫기</button>
     </div>
 </div>
+
 
 <!-- 상품 상세설명 섹션 -->
 <section class="product-description">
@@ -125,8 +154,8 @@
 </section>
 
 <!-- 문의하기 팝업 폼 -->
-<div class="popup-overlay" id="contactFormPopup">
-    <div class="popup-content">
+<div class="popup-overlay contact-popup" id="contactFormPopup">
+    <div class="popup-content contact-popup-content">
         <h3>문의하기</h3>
         <form id="contactForm">
             <label for="name">이름</label>
@@ -140,7 +169,7 @@
 
             <button type="submit" class="submit-btn">전송하기</button>
         </form>
-        <button class="close-btn" onclick="closeContactForm()"><i class="fi fi-rr-cross"></i></button> <!-- X 버튼 추가 -->
+        <button class="close-btn contact-close-btn" onclick="closeContactForm()"><i class="fi fi-rr-cross"></i></button>
     </div>
 </div>
 

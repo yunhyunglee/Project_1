@@ -29,8 +29,8 @@
                     <%--                    <input type="button" value="아이디 찾기" onclick="">--%>
                 </div>
                 <div class="kakao-login">
-                    <button class="kakao-btn"
-                            onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=ee591d70889057034963a4ca3516fa78&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
+                    <button type="button" class="kakao-btn"
+                            onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=f67ebc2de23039bbce25c7d2583abd81&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
                         <img src="images/kakao_login.png" alt="카카오톡으로 시작하기">
                     </button>
                 </div>

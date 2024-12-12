@@ -1,6 +1,7 @@
 package com.himedia.project_1.service;
 
 import com.himedia.project_1.dao.IMyPageDao;
+import com.himedia.project_1.dao.IZZimDao;
 import com.himedia.project_1.dto.ProductVo;
 import com.himedia.project_1.dto.ReservationVo;
 import com.himedia.project_1.dto.ZzimVo;
@@ -18,6 +19,8 @@ import java.util.List;
 public class MyPageService {
     @Autowired
     IMyPageDao mdao;
+    @Autowired
+    IZZimDao zdao;
 
     public List<ReservationVo> getMyClassInfo(String id) {
         List<ReservationVo> list = mdao.selectTotalPrice(id);
@@ -70,6 +73,6 @@ public class MyPageService {
     }
 
     public List<ZzimVo> getZzimList(int userId) {
-        return null;
+        return zdao.getZzimList(userId);
     }
 }
