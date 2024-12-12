@@ -166,4 +166,3 @@ function toggleContactForm() {
 function closeContactForm() {
     document.getElementById('contactFormPopup').classList.remove('active'); // 팝업 닫기
 }
-
