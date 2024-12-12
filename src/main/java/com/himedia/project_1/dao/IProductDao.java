@@ -19,4 +19,7 @@ public interface IProductDao {
     void insertZzim(String id, int cseq);
 
     void deleteZzim(String id, int cseq);
+
+    ProductVo getProductById(int cseq);
+
 }

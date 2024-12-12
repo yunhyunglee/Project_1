@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.himedia.project_1.dao.ReservationDao">
+
+    <select id="getReservations" parameterType="int" resultType="com.himedia.project_1.dto.ReservationVo">
+        SELECT
+        r.id,
+        r.title,
+        r.people,
+        r.totalprice AS totalprice,  <!-- 매칭되는 필드 이름 -->
+        r.classday,
+        r.classtime
+        FROM reservation r
+        WHERE r.user_id = #{userId}
+    </select>
+
+</mapper>
+
