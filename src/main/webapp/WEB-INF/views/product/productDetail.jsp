@@ -25,7 +25,7 @@
         <p class="description">${productVo.content}</p>
         <p><strong>최대 수용인원 : </strong> ${productVo.max_people}</p>
         <div class="button-group">
-            <button class="enroll-btn">신청하기</button>
+            <button class="enroll-btn" data-cseq="${productVo.cseq}">신청하기</button>
             <!-- 찜하기 버튼 -->
             <button class="wishlist-btn" onclick="toggleHeart(this,${productVo.cseq},'${loginUser.id}')">
             <c:choose>
@@ -41,6 +41,30 @@
         </div>
     </div>
 </section>
+<!-- 상품 옵션 팝업 -->
+<div class="popup-overlay" id="productOptionsPopup" style="display: none;">
+    <div class="popup-content">
+        <h3>상품 옵션 선택</h3>
+        <form id="productOptionsForm">
+            <label for="option1">옵션 1</label>
+            <select id="option1" name="option1" required>
+                <option value="">옵션을 선택하세요</option>
+                <option value="optionA">옵션 A</option>
+                <option value="optionB">옵션 B</option>
+            </select>
+
+            <label for="option2">옵션 2</label>
+            <select id="option2" name="option2">
+                <option value="">옵션을 선택하세요</option>
+                <option value="optionC">옵션 C</option>
+                <option value="optionD">옵션 D</option>
+            </select>
+
+            <button type="submit" class="submit-btn">확인</button>
+        </form>
+        <button class="close-btn" onclick="closeProductOptionsPopup()">닫기</button>
+    </div>
+</div>
 
 <!-- 상품 상세설명 섹션 -->
 <section class="product-description">
