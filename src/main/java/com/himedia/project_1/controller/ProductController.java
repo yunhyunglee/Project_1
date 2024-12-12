@@ -25,15 +25,16 @@ public class ProductController {
     @GetMapping("/productDetail")
     public ModelAndView productDetail(HttpSession session,@RequestParam("id")int cseq) {
         ModelAndView mav = new ModelAndView("product/productDetail");
-        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
-        boolean zzim=false;
-        ProductVo productVo=ps.getProductById(cseq);
-        if(loginUser != null) {
-           zzim= ps.getZzim(loginUser.getId(),cseq);
+
+        Object loginUser = session.getAttribute("loginUser");
+        HashMap<String,Object> map = ps.getZzim(loginUser,cseq);
+        if(loginUser != null && loginUser instanceof UserVo) {
+            UserVo userVo=(UserVo)loginUser;
+            mav.addObject("loginUser",userVo);
         }
-        mav.addObject("loginUser",loginUser);
-        mav.addObject("zzim",zzim);
-        mav.addObject("productVo",productVo);
+        System.out.println(map.get("zzim"));
+        mav.addObject("zzim",map.get("zzim"));
+        mav.addObject("productVo",map.get("productVo"));
         return mav;
     }
     @GetMapping("toggleHeart")

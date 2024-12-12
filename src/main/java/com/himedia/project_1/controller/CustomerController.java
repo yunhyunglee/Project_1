@@ -88,6 +88,11 @@ public class CustomerController {
         cs.updateQna(qnavo);
         return "redirect:/QnaDetail?qseq="+qnavo.getQseq();
     }
+    @GetMapping("deleteQna")
+    public String deleteQna(@RequestParam("qseq")int qseq,HttpSession session) {
+        cs.deleteQna(qseq);
+        return "redirect:/customer";
+    }
 
 
 
