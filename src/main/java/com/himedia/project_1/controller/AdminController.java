@@ -254,15 +254,18 @@ public class AdminController {
     @PostMapping("/admin/banner/update")
     @ResponseBody
     public ResponseEntity<String> updateBanner(@ModelAttribute BannerVo banner) {
+        System.out.println("Received Banner Data: " + banner); // 디버깅용 출력
         try {
             bannerService.updateBanner(banner);
-            return ResponseEntity.ok("{\"message\": \"배너가 성공적으로 수정되었습니다.\"}");
+            return ResponseEntity.ok("배너가 성공적으로 수정되었습니다.");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\": \"배너 수정 중 문제가 발생했습니다.\"}");
+                    .body("배너 수정 중 문제가 발생했습니다.");
         }
-        }
+    }
+
+
 
 
 
@@ -279,6 +282,15 @@ public class AdminController {
         }
     }
 
+// 활성화 배너 가져오깅
+    @GetMapping("/activeBanners")
+    @ResponseBody
+    public List<BannerVo> getActiveBanners() {
+        return bannerService.getActiveBanners();
+    }
+
+
+
 
     @Autowired
     private QnaService qnaService;
@@ -290,12 +302,11 @@ public class AdminController {
     }
 
     @PostMapping("/admin/qna/reply")
-    public ResponseEntity<?> saveQnaReply(@RequestBody Map<String, Object> payload) {
-        int qseq = (int) payload.get("qseq");
-        String reply = (String) payload.get("reply");
-
+    public ResponseEntity<?> saveReply(@RequestBody Map<String, Object> requestData) {
+        int qseq = (int) requestData.get("qseq");
+        String reply = (String) requestData.get("reply");
         qnaService.updateReply(qseq, reply);
-        return ResponseEntity.ok("Reply saved successfully.");
+        return ResponseEntity.ok().build();
     }
 
 

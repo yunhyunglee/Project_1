@@ -37,4 +37,9 @@
     <delete id="deleteZzim">
         delete from zzim where uid=#{param1} and cnum=#{param2}
     </delete>
+    <select id="getProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT cseq AS id, title, content, price, image, address1, address2, address3, max_people
+        FROM product
+        WHERE cseq = #{cseq}
+    </select>
 </mapper>

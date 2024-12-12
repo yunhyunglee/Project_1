@@ -1,22 +1,294 @@
 @charset "UTF-8";
 
-/* 본문 스타일 */
-/* 전체 레이아웃 */
-.mypage-container {
+/*!* 본문 스타일 *!*/
+/*!* 전체 레이아웃 *!*/
+/*.mypage-container {*/
+/*    display: flex; !* 플렉스 박스로 정렬 *!*/
+/*    align-items: flex-start; !* 사이드바와 본문을 위쪽 정렬 *!*/
+/*    gap: 20px; !* 사이드바와 본문 간격 *!*/
+/*    padding: 0 20px; !* 양쪽 여백 설정 *!*/
+/*    box-sizing: border-box;*/
+/*    width: 100%; !* 전체 화면 너비 사용 *!*/
+/*}*/
+/*!* 본문 내용 스타일 *!*/
+/*.content {*/
+/*    !*margin-left: 270px; !* 사이드바 너비 + 여백 *!*!*/
+/*    !*padding: 20px;*!*/
+/*    !*background-color: #fff;*!*/
+/*    !*border-radius: 8px;*!*/
+/*    !*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*!*/
+/*    flex-grow: 1; !* 남은 공간 차지 *!*/
+/*    background-color: #fff;*/
+/*    padding: 20px;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*!* 반응형 디자인 *!*/
+/*@media (max-width: 768px) {*/
+/*    .mypage-container {*/
+/*        flex-direction: column; !* 세로 배치로 변경 *!*/
+/*    }*/
+/*    .sidebar {*/
+/*        width: 100%; !* 전체 너비 *!*/
+/*        margin-bottom: 20px; !* 아래 여백 추가 *!*/
+/*    }*/
+/*    .content {*/
+/*        width: 100%; !* 본문도 전체 너비 *!*/
+/*    }*/
+/*}*/
+/*!*----------------------------------------------------------*!*/
+/*!* 정보수정 폼 스타일 *!*/
+/*!* 마이페이지 폼 스타일 *!*/
+/*.mypage-form {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 20px; !* 입력 필드 사이의 간격 *!*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.mypage-form div {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.mypage-form label {*/
+/*    font-size: 1rem;*/
+/*    color: #333;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+
+/*.mypage-form input[type="text"],*/
+/*.mypage-form input[type="password"] {*/
+/*    padding: 10px;*/
+/*    font-size: 1rem;*/
+/*    border-radius: 6px;*/
+/*    border: 1px solid #ccc;*/
+/*    background-color: #f9f9f9;*/
+/*    transition: border-color 0.3s ease, background-color 0.3s ease;*/
+/*}*/
+
+/*.mypage-form input[type="text"]:focus,*/
+/*.mypage-form input[type="password"]:focus {*/
+/*    outline: none;*/
+/*    border-color: #007bff;*/
+/*    background-color: #f0f8ff;*/
+/*}*/
+
+/*.mypage-form .message {*/
+/*    color: #d9534f;*/
+/*    font-size: 0.9rem;*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*.mypage-form input[type="submit"],*/
+/*.mypage-form input[type="button"] {*/
+/*    padding: 10px 20px;*/
+/*    font-size: 1rem;*/
+/*    color: white;*/
+/*    background-color: #007bff;*/
+/*    border: none;*/
+/*    border-radius: 6px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*.mypage-form input[type="submit"]:hover,*/
+/*.mypage-form input[type="button"]:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+
+/*!* 버튼 스타일 *!*/
+/*.mypage-form input[type="button"] {*/
+/*    background-color: #6c757d;*/
+/*}*/
+
+/*.mypage-form input[type="button"]:hover {*/
+/*    background-color: #5a6268;*/
+/*}*/
+
+/*!* 반응형 디자인 *!*/
+/*@media (max-width: 768px) {*/
+/*    .mypage-form {*/
+/*        padding: 0 20px;*/
+/*    }*/
+/*}*/
+/*!*------------------------------------------------------------*!*/
+/*!* 찜 목록 *!*/
+/*!* 찜목록 관련 고유 스타일 *!*/
+/*.mypage-zzim-container {*/
+/*    display: flex;*/
+/*    gap: 30px;*/
+/*    margin-top: 30px;*/
+/*    flex-wrap: wrap; !* 화면 크기가 작아지면 flex 아이템들이 아래로 내려가도록 *!*/
+/*}*/
+
+/*!* 본문 내용 스타일 *!*/
+/*.mypage-zzim-content {*/
+/*    flex: 1;*/
+/*    padding: 20px;*/
+/*    background-color: #fff;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*!* 찜목록 항목 스타일 *!*/
+/*.mypage-zzim-item {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); !* 카드형태로 표시 *!*/
+/*    gap: 20px;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.mypage-zzim-item div {*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 8px;*/
+/*    padding: 15px;*/
+/*    text-align: center;*/
+/*    background-color: #f9f9f9;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*    transition: transform 0.3s ease;*/
+/*}*/
+
+/*.mypage-zzim-item div:hover {*/
+/*    transform: scale(1.05); !* 호버 시 살짝 커짐 *!*/
+/*}*/
+
+/*.mypage-zzim-item img {*/
+/*    width: 100%;*/
+/*    height: 200px;*/
+/*    object-fit: cover;*/
+/*    border-radius: 8px;*/
+/*    margin-bottom: 15px;*/
+/*}*/
+
+/*.mypage-zzim-item div p {*/
+/*    color: #333;*/
+/*    font-size: 1rem;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.mypage-zzim-item div span {*/
+/*    font-size: 1.2rem;*/
+/*    font-weight: bold;*/
+/*    color: #007bff;*/
+/*}*/
+
+/*!* 반응형 디자인 *!*/
+/*@media (max-width: 768px) {*/
+/*    .mypage-zzim-container {*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .mypage-zzim-item {*/
+/*        grid-template-columns: 1fr; !* 모바일에서는 한 열로 *!*/
+/*    }*/
+/*}*/
+/*!*------------------------------------------------*!*/
+/*!* 리뷰 *!*/
+/*!* 전체 레이아웃 *!*/
+/*.mypage-review-container {*/
+/*    display: flex;*/
+/*    gap: 20px;*/
+/*    width: 100%;*/
+/*    padding: 20px;*/
+/*}*/
+
+/*!* 사이드바 스타일 *!*/
+/*.sidebar {*/
+/*    width: 250px; !* 사이드바의 너비 *!*/
+/*    background-color: #f4f4f4;*/
+/*    padding: 20px;*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*!* 본문 콘텐츠 영역 스타일 *!*/
+/*.mypage-review-section {*/
+/*    flex-grow: 1; !* 본문이 남은 공간을 차지하게 함 *!*/
+/*    padding: 20px;*/
+/*    background-color: #fff;*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*!* 리뷰 항목 목록 스타일 *!*/
+/*.mypage-review-list {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 20px;*/
+/*}*/
+
+/*.mypage-review-item {*/
+/*    background-color: #fff;*/
+/*    padding: 15px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 8px;*/
+/*    transition: box-shadow 0.3s ease;*/
+/*}*/
+
+/*!* hover 시 그림자 효과 *!*/
+/*.mypage-review-item:hover {*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*!* 리뷰 제목 스타일 *!*/
+/*.mypage-review-title {*/
+/*    font-size: 1.5rem;*/
+/*    font-weight: bold;*/
+/*    color: #333;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*!* 리뷰 내용 스타일 *!*/
+/*.mypage-review-content h3 {*/
+/*    font-size: 1.1rem;*/
+/*    color: #555;*/
+/*    line-height: 1.6;*/
+/*}*/
+
+/*!* 리뷰 작성 날짜 스타일 *!*/
+/*.mypage-review-date {*/
+/*    font-size: 0.9rem;*/
+/*    color: #777;*/
+/*    margin-left: 10px;*/
+/*    font-style: italic;*/
+/*}*/
+
+/*!* 작은 화면에서 사이드바 크기 조정 *!*/
+/*@media (max-width: 768px) {*/
+/*    .mypage-review-container {*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .sidebar {*/
+/*        width: 100%;*/
+/*        margin-bottom: 20px;*/
+/*    }*/
+
+/*    .mypage-review-section {*/
+/*        padding: 10px;*/
+/*    }*/
+
+/*    .mypage-review-title {*/
+/*        font-size: 1.3rem;*/
+/*    }*/
+
+/*    .mypage-review-content h3 {*/
+/*        font-size: 1rem;*/
+/*    }*/
+/*}*/
+@charset "UTF-8";
+
+/* 전체 마이페이지 레이아웃 */
+.mypage-container, .mypage-review-container {
     display: flex; /* 플렉스 박스로 정렬 */
-    align-items: flex-start; /* 사이드바와 본문을 위쪽 정렬 */
     gap: 20px; /* 사이드바와 본문 간격 */
-    padding: 0 20px; /* 양쪽 여백 설정 */
+    padding: 20px; /* 전체 여백 */
     box-sizing: border-box;
     width: 100%; /* 전체 화면 너비 사용 */
 }
-/* 본문 내용 스타일 */
-.content {
-    /*margin-left: 270px; !* 사이드바 너비 + 여백 *!*/
-    /*padding: 20px;*/
-    /*background-color: #fff;*/
-    /*border-radius: 8px;*/
-    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+
+/* 본문 콘텐츠 공통 스타일 */
+.content, .mypage-review-section {
     flex-grow: 1; /* 남은 공간 차지 */
     background-color: #fff;
     padding: 20px;
@@ -26,19 +298,15 @@
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-    .mypage-container {
+    .mypage-container, .mypage-review-container {
         flex-direction: column; /* 세로 배치로 변경 */
     }
-    .sidebar {
-        width: 100%; /* 전체 너비 */
-        margin-bottom: 20px; /* 아래 여백 추가 */
-    }
-    .content {
+
+    .content, .mypage-review-section {
         width: 100%; /* 본문도 전체 너비 */
     }
 }
-/*----------------------------------------------------------*/
-/* 정보수정 폼 스타일 */
+
 /* 마이페이지 폼 스타일 */
 .mypage-form {
     display: flex;
@@ -75,12 +343,7 @@
     background-color: #f0f8ff;
 }
 
-.mypage-form .message {
-    color: #d9534f;
-    font-size: 0.9rem;
-    margin-top: 10px;
-}
-
+/* 버튼 스타일 */
 .mypage-form input[type="submit"],
 .mypage-form input[type="button"] {
     padding: 10px 20px;
@@ -98,7 +361,6 @@
     background-color: #0056b3;
 }
 
-/* 버튼 스타일 */
 .mypage-form input[type="button"] {
     background-color: #6c757d;
 }
@@ -107,155 +369,332 @@
     background-color: #5a6268;
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    .mypage-form {
-        padding: 0 20px;
-    }
-}
-/*------------------------------------------------------------*/
-/* 찜 목록 */
-/* 찜목록 관련 고유 스타일 */
+/*!* 전체 컨테이너 *!*/
+/*.mypage-zzim-container {*/
+/*    display: flex;*/
+/*}*/
+
+/*!* 본문 영역 *!*/
+/*.mypage-zzim-content {*/
+/*    flex: 1;*/
+/*    padding: 20px;*/
+/*    background-color: #f9f9f9;*/
+/*}*/
+
+/*.mypage-zzim-content h2 {*/
+/*    font-size: 24px;*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 20px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*!* 찜 목록 아이템 컨테이너 *!*/
+/*.mypage-zzim-items {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    gap: 20px;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*!* 개별 찜 아이템 *!*/
+/*.mypage-zzim-item {*/
+/*    width: 200px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 8px;*/
+/*    background-color: #ffffff;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*    text-align: center;*/
+/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
+/*}*/
+
+/*.mypage-zzim-item:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+/*!* 이미지 스타일 *!*/
+/*.zzim-image img {*/
+/*    width: 100%;*/
+/*    height: 150px;*/
+/*    object-fit: cover;*/
+/*    display: block;*/
+/*}*/
+
+/*!* 정보 섹션 *!*/
+/*.zzim-info {*/
+/*    padding: 15px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.zzim-info p {*/
+/*    font-size: 16px;*/
+/*    font-weight: bold;*/
+/*    margin: 10px 0;*/
+/*    color: #333;*/
+/*}*/
+
+/*.zzim-info span {*/
+/*    font-size: 14px;*/
+/*    color: #888;*/
+/*}*/
+
+/*!* 찜 버튼 *!*/
+/*.wishlist-btn {*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 10px;*/
+/*    background: none;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    font-size: 1.5rem;*/
+/*    color: #ff4d4f; !* 빨간색 아이콘 *!*/
+/*    transition: transform 0.2s ease, color 0.2s ease;*/
+/*}*/
+
+/*.wishlist-btn:hover {*/
+/*    color: #d63031;*/
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.wishlist-btn i {*/
+/*    pointer-events: none; !* 아이콘에 직접 클릭 이벤트를 막음 *!*/
+/*}*/
+
+/*!* 반응형 스타일 *!*/
+/*@media (max-width: 768px) {*/
+/*    .mypage-zzim-items {*/
+/*        flex-direction: column;*/
+/*        align-items: center;*/
+/*    }*/
+
+/*    .mypage-zzim-item {*/
+/*        width: 90%;*/
+/*    }*/
+/*}*/
 .mypage-zzim-container {
     display: flex;
-    gap: 30px;
-    margin-top: 30px;
-    flex-wrap: wrap; /* 화면 크기가 작아지면 flex 아이템들이 아래로 내려가도록 */
-}
-
-/* 본문 내용 스타일 */
-.mypage-zzim-content {
-    flex: 1;
+    gap: 20px; /* 사이드바와 본문 간 간격 */
     padding: 20px;
-    background-color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px; /* 사이드바의 고정 너비 */
+    background-color: #f4f4f4;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: fit-content; /* 내용에 맞게 높이를 조정 */
 }
 
-/* 찜목록 항목 스타일 */
-.mypage-zzim-item {
+.mypage-zzim-content {
+    flex-grow: 1; /* 남은 공간 차지 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mypage-zzim-content h2 {
+    text-align: center; /* 제목 중앙 정렬 */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* 찜 목록 그리드 */
+.mypage-zzim-items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 카드형태로 표시 */
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 한 줄에 최대 4개 */
+    gap: 20px; /* 아이템 간 간격 */
+    justify-items: center; /* 아이템 중앙 정렬 */
+    width: 100%;
 }
 
-.mypage-zzim-item div {
+/*.mypage-zzim-item {*/
+/*    width: 100%;*/
+/*    max-width: 200px; !* 아이템 최대 너비 *!*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 8px;*/
+/*    background-color: #ffffff;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*    text-align: center;*/
+/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
+/*}*/
+.mypage-zzim-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 한 줄에 최대 4개 */
+    gap: 20px; /* 아이템 간 간격 */
+    justify-items: start; /* 아이템을 왼쪽 정렬 */
+    align-items: start; /* 아이템을 위쪽 정렬 */
+    width: 100%;
+}
+
+.mypage-zzim-item {
+    width: 100%;
+    max-width: 250px; /* 박스의 최대 너비 */
+    height: 350px; /* 박스의 고정 높이 */
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
     text-align: center;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.mypage-zzim-item div:hover {
-    transform: scale(1.05); /* 호버 시 살짝 커짐 */
-}
 
-.mypage-zzim-item img {
+.mypage-zzim-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.zzim-link {
+    display: block; /* a 태그를 블록으로 설정 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 텍스트 색상 유지 */
+    height: 100%; /* a 태그가 부모 크기를 채우도록 설정 */
+}
+.zzim-image img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    display: block;
 }
 
-.mypage-zzim-item div p {
-    color: #333;
-    font-size: 1rem;
-    margin-bottom: 10px;
+.zzim-info {
+    padding: 15px;
+    text-align: center;
 }
 
-.mypage-zzim-item div span {
-    font-size: 1.2rem;
+.zzim-info p {
+    font-size: 16px;
     font-weight: bold;
-    color: #007bff;
+    margin: 10px 0;
+    color: #333;
+}
+
+.zzim-info span {
+    font-size: 14px;
+    color: #888;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .mypage-zzim-container {
-        flex-direction: column;
+        flex-direction: column; /* 세로 배치로 변경 */
     }
 
-    .mypage-zzim-item {
-        grid-template-columns: 1fr; /* 모바일에서는 한 열로 */
+    .sidebar {
+        width: 100%; /* 모바일에서는 전체 너비 */
+    }
+
+    .mypage-zzim-content {
+        width: 100%;
+    }
+
+    .mypage-zzim-items {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 더 작은 카드 */
     }
 }
-/*------------------------------------------------*/
-/* 리뷰 */
-/* 전체 레이아웃 */
-.mypage-review-container {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    padding: 20px;
+
+
+/* 회원 탈퇴 폼 스타일 */
+.mypage-form .description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
 }
 
-/* 사이드바 스타일 */
-.sidebar {
-    width: 250px; /* 사이드바의 너비 */
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-/* 본문 콘텐츠 영역 스타일 */
-.mypage-review-section {
-    flex-grow: 1; /* 본문이 남은 공간을 차지하게 함 */
-    padding: 20px;
+/* 본문 영역 */
+.mypage-reservation-section {
+    flex-grow: 1;
     background-color: #fff;
+    padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 리뷰 항목 목록 스타일 */
-.mypage-review-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.mypage-review-item {
-    background-color: #fff;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease;
-}
-
-/* hover 시 그림자 효과 */
-.mypage-review-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 리뷰 제목 스타일 */
-.mypage-review-title {
+/* 섹션 제목 */
+.section-title {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 예약 카드 컨테이너 */
+.reservation-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 예약 카드 스타일 */
+.reservation-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reservation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 예약 카드 내용 */
+.reservation-content {
+    margin-bottom: 20px;
+}
+
+.reservation-title {
+    font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 10px;
+    color: #007bff;
 }
 
-/* 리뷰 내용 스타일 */
-.mypage-review-content h3 {
-    font-size: 1.1rem;
+.reservation-content p {
+    font-size: 1rem;
     color: #555;
-    line-height: 1.6;
+    margin: 5px 0;
 }
 
-/* 리뷰 작성 날짜 스타일 */
-.mypage-review-date {
-    font-size: 0.9rem;
-    color: #777;
-    margin-left: 10px;
-    font-style: italic;
+/* 버튼 스타일 */
+.cancel-btn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: white;
+    background-color: #ff4d4f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* 작은 화면에서 사이드바 크기 조정 */
+.cancel-btn:hover {
+    background-color: #d63031;
+}
+
+/* 반응형 디자인 */
 @media (max-width: 768px) {
-    .mypage-review-container {
+    .mypage-container {
         flex-direction: column;
     }
 
@@ -264,15 +703,47 @@
         margin-bottom: 20px;
     }
 
-    .mypage-review-section {
-        padding: 10px;
+    .reservation-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .mypage-review-title {
-        font-size: 1.3rem;
-    }
-
-    .mypage-review-content h3 {
-        font-size: 1rem;
+    .reservation-card {
+        width: 90%;
     }
 }
+
+/*!* 모달 스타일 *!*/
+/*.modal {*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    z-index: 1000;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    overflow: auto;*/
+/*    background-color: rgba(0, 0, 0, 0.5);*/
+/*}*/
+
+/*.modal-content {*/
+/*    background-color: #fff;*/
+/*    margin: 15% auto;*/
+/*    padding: 20px;*/
+/*    border-radius: 8px;*/
+/*    width: 300px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.modal-buttons button {*/
+/*    margin: 10px;*/
+/*    padding: 10px 20px;*/
+/*    border: none;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.modal-buttons button:hover {*/
+/*    background-color: #ddd;*/
+/*}*/
+

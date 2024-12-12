@@ -22,17 +22,11 @@ public class ProductService {
     public List<ProductVo> selectCategory(int category) {
         return pdao.selectCategory(category);
     }
-    public ProductVo getProductById(int id) {
-        return pdao.selectProductById(id);
+    public List<ProductVo> getNewProducts() {return pdao.selectNewProducts(); // 최신 상품 가져오기
     }
-    public List<ProductVo> getNewProducts() {
-        return pdao.selectNewProducts(); // 최신 상품 가져오기
-    }
-
     public List<ProductVo> getBestProducts() {
         return pdao.selectBestProducts(); // 베스트 상품 가져오기
     }
-
 
     public boolean toggleZzim( String id, int cseq) {
         boolean zzim= pdao.getZzim(id,cseq);
@@ -55,5 +49,8 @@ public class ProductService {
         }
         map.put("productVo",pdao.selectProductById(cseq));
         return map;
+    }
+    public ProductVo getProductById(int cseq) {
+        return pdao.getProductById(cseq);
     }
 }

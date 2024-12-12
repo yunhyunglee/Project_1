@@ -24,15 +24,15 @@
           // alert(data.idmessage);
 
           if( data.idmessage == '1'){
-            $('#idmessage').html("&nbsp;&nbsp;<span style='color:blue' >사용 가능합니다</span>");
+            $('#idmessage').html("&nbsp;&nbsp;<span style='color:blue' >사용 가능한 아이디입니다</span>");
             $('#reid').val(data.id);
           }else{
-            $('#idmessage').html("&nbsp;&nbsp;<span style='color:red' >사용중인 아이디입니다</span>");
+            $('#idmessage').html("&nbsp;&nbsp;<span style='color:red' >사용 중인 아이디입니다</span>");
             $('#reid').val("");
           }
         },
         error:function(){
-          alert("중복 조회 실패");
+          alert("아이디 중복 조회에 실패했습니다.");
         },
       });
     });

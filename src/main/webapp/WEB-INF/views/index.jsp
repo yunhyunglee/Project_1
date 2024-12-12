@@ -1,22 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-<div id="main_img">
-	<img src="http://placehold.co/1024x400">
-
 <%@ include file="header.jsp" %>
 <!-- 이미지 슬라이더 -->
 <div id="main_img_slider">
     <div class="slider">
-        <div class="slide"><img src="/images/main_1.png" alt="Example 1"></div>
-        <div class="slide"><img src="/images/main_2.png" alt="Example 2"></div>
-        <div class="slide"><img src="/images/main_3.png" alt="Example 3"></div>
+        <!-- 슬라이드 항목 -->
+        <div class="slide">
+            <img src="/images/banner/001.png" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="/images/banner/002.png" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="/images/banner/003.png" alt="Slide 3">
+        </div>
     </div>
     <!-- 화살표 버튼 -->
     <button class="arrow prev" id="prevBtn">‹</button>
     <button class="arrow next" id="nextBtn">›</button>
-
 </div>
+
 
 <div id="menu">
 	<a href="category?category=1">
@@ -29,8 +32,6 @@
 		<img src="http://placehold.co/90">
 	</a>
 </div>
-
-
 
 <!-- BEST 섹션 -->
 <div id="BestItem">
@@ -64,12 +65,10 @@
             </c:forEach>
         </c:if>
     </div>
-
 </div>
 
 <!-- NEW 섹션 -->
 <div id="NewItem">
-
     <h2>New</h2>
     <div class="products">
         <c:if test="${not empty newProducts}">
@@ -100,7 +99,6 @@
             </c:forEach>
         </c:if>
     </div>
-
 </div>
 
 

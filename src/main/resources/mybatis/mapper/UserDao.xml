@@ -11,8 +11,16 @@
         select *from user where id=#{param1}
     </select>
     <update id="updateUser" parameterType="com.himedia.project_1.dto.UserVo">
-        update user set pwd=#{pwd},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+        update user
+        <set>
+            <if test="pwd != null and pwd != ''">pwd = #{pwd},</if>
+            name = #{name},
+            email = #{email},
+            phone = #{phone}
+        </set>
+        where id = #{id}
     </update>
+
     <insert id="InsertBusinessman" parameterType="com.himedia.project_1.dto.BusinessmanVo">
         insert into businessman(id,pwd,name,phone,email) values (#{id},#{pwd},#{name},#{phone},#{email})
     </insert>
