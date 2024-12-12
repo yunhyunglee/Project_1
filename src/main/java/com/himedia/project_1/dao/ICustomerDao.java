@@ -21,4 +21,6 @@ public interface ICustomerDao {
     QnaVo getQnaDetail(int qseq);
 
     void updateQna(QnaVo qnavo);
+
+    void deleteQna(int qseq);
 }

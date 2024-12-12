@@ -166,7 +166,7 @@ public class MyPageController {
     @PostMapping("UpdateProduct")
     public String UpdateProduct(@ModelAttribute("pvo")ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
         ms.UpdateProduct(productvo,selectedtimes);
-        return "redirect:/MyClass";
+            return "redirect:/MyClass";
     }
     @PostMapping("deleteProduct")
     public String deleteButton(@RequestParam("cseq")int cseq){

@@ -2,11 +2,13 @@ package com.himedia.project_1.service;
 
 import com.himedia.project_1.dao.IProductDao;
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.UserVo;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -34,7 +36,6 @@ public class ProductService {
 
     public boolean toggleZzim( String id, int cseq) {
         boolean zzim= pdao.getZzim(id,cseq);
-        System.out.println("zzim : "+zzim);
         if(zzim) {
             pdao.deleteZzim(id,cseq);
             zzim=false;
@@ -45,7 +46,14 @@ public class ProductService {
         return zzim;
     }
 
-    public boolean getZzim( String id, int cseq) {
-        return pdao.getZzim(id,cseq);
+    public HashMap<String,Object> getZzim(Object loginUser, int cseq) {
+        HashMap<String,Object> map = new HashMap<>();
+        String id="";
+        if(loginUser instanceof UserVo){
+            id= ((UserVo)loginUser).getId();
+            map.put("zzim",pdao.getZzim(id,cseq));
+        }
+        map.put("productVo",pdao.selectProductById(cseq));
+        return map;
     }
 }
