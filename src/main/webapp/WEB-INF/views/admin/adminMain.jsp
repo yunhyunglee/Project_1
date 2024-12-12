@@ -31,6 +31,7 @@
 
     <script src="/script/admin-user.js"></script>
     <script src="/script/admin-business.js"></script>
+    <script src="/script/admin-reservation.js"></script>
 
 </head>
 <body>

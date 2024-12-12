@@ -161,7 +161,7 @@ public class UserController {
         String endpoint = "https://kauth.kakao.com/oauth/token";
         URL url = new URL(endpoint);
         String bodyData = "grant_type=authorization_code";
-        bodyData += "&client_id=e5361337566dff569bd6c1d524155311";
+        bodyData += "&client_id=f67ebc2de23039bbce25c7d2583abd81";
         bodyData += "&redirect_uri=http://localhost:8070/kakaoLogin";
         bodyData += "&code=" + code;
 
@@ -232,6 +232,7 @@ public class UserController {
 
         return "redirect:/";
     }
+
 
 
     @GetMapping("logout")

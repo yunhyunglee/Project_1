@@ -310,8 +310,39 @@ public class AdminController {
     }
 
 
+@Autowired
+reservationService reservationService;
+
+    @GetMapping("/admin/reservation")
+    public String listReservation(@RequestParam(value = "status", required = false) String status, Model model) {
+        List<ReservationVo> reservationList;
+            reservationList = reservationService.findAllReservation();
+        model.addAttribute("reservationList", reservationList);
+        return "/admin/reservation/reservation";
+    }
+
+    @DeleteMapping("/admin/reservation/delete/{reseq}")
+    public ResponseEntity<Void> deleteReservation(@PathVariable int reseq) {
+        reservationService.deleteReservation(reseq);
+        return ResponseEntity.ok().build();
+    }
 
 
+
+    @GetMapping("/admin/reservation/filter")
+    @ResponseBody
+    public List<ReservationVo> filterReservations(@RequestParam(value = "status", required = false) String status) {
+        if (status == null || status.isEmpty()) {
+            return reservationService.findAllReservation();
+        } else if ("in_progress".equals(status)) {
+            return reservationService.findByEndedClass("N");
+        } else if ("completed".equals(status)) {
+            return reservationService.findByEndedClass("Y");
+        } else if ("cancelled".equals(status)) {
+            return reservationService.findCancelledReservation();
+        }
+        return reservationService.findAllReservation();
+    }
 
 
 
