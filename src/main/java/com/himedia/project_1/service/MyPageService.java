@@ -72,7 +72,7 @@ public class MyPageService {
         mdao.clearpay(cseq);
     }
 
-    public List<ZzimVo> getZzimList(int userId) {
+    public List<ZzimVo> getZzimList(String  userId) {
         return zdao.getZzimList(userId);
     }
 }

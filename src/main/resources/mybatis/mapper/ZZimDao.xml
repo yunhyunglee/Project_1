@@ -5,16 +5,16 @@
 
 <mapper namespace="com.himedia.project_1.dao.IZZimDao">
 
-    <select id="getZzimList" parameterType="int" resultType="com.himedia.project_1.dto.ZzimVo">
-        SELECT z.id,
-               z.user_id AS userId,
+    <select id="getZzimList"  resultType="com.himedia.project_1.dto.ZzimVo">
+        SELECT z.cnum,
+               z.uid,
                p.cseq,  -- 상품 고유 ID
                p.title,
                p.image,
                p.price
         FROM zzim z
-                 INNER JOIN product p ON z.product_cseq = p.cseq
-        WHERE z.user_id = #{userId}
+                 INNER JOIN product p ON z.cnum = p.cseq
+        WHERE z.uid = #{userId}
     </select>
 
 </mapper>

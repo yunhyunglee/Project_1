@@ -6,6 +6,7 @@ import com.himedia.project_1.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,9 @@ public class ProductController {
 
     @GetMapping("/productDetail")
     public ModelAndView productDetail(HttpSession session,@RequestParam("id")int cseq) {
+        System.out.println(cseq);
         ModelAndView mav = new ModelAndView("product/productDetail");
+
 
         Object loginUser = session.getAttribute("loginUser");
         HashMap<String,Object> map = ps.getZzim(loginUser,cseq);
@@ -35,6 +38,7 @@ public class ProductController {
         System.out.println(map.get("zzim"));
         mav.addObject("zzim",map.get("zzim"));
         mav.addObject("productVo",map.get("productVo"));
+
         return mav;
     }
     @GetMapping("toggleHeart")
@@ -68,15 +72,6 @@ public class ProductController {
         return mav;
     }
 
-//    @GetMapping("/detail/{cseq}")
-//    public String getProductDetail(@PathVariable int cseq, Model model) {
-//        ProductVo product = ps.getProductById(cseq); // cseq로 상품 조회
-//        if (product == null) {
-//            return "error/404"; // 상품이 없으면 404 페이지로 이동
-//        }
-//        model.addAttribute("productVo", product);
-//        return "product/productDetail"; // 상세 페이지로 이동
-//    }
     @GetMapping("/detail/{cseq}")
     public String getProductDetail(@PathVariable int cseq, Model model) {
         System.out.println("Received cseq: " + cseq); // 로그 출력

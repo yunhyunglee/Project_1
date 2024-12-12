@@ -7,7 +7,7 @@
 
 <%--        <img src="http://placehold.co/300x300">--%>
 <%--        <img src="/static/images/${productVo.image}" alt="${productVo.title}" />--%>
-        <img src="/images/${empty product.image ? 'placeholder.jpg' : product.image}" alt="${product.title}" />
+        <img src="/images/product/${empty product.image ? 'placeholder.jpg' : product.image}" alt="${product.title}" />
     </div>
 
     <!-- 상품 정보 섹션 -->
@@ -40,35 +40,6 @@
     </div>
 </section>
 
-<%--<!-- 상품 옵션 팝업 -->--%>
-<%--<div class="popup-overlay" id="productOptionsPopup" style="display: none;">--%>
-<%--    <div class="popup-content">--%>
-
-
-
-<%--<div class="popup-overlay option-popup" id="productOptionsPopup" style="display: none;">--%>
-<%--    <div class="popup-content option-popup-content">--%>
-<%--        <h3>상품 옵션 선택</h3>--%>
-<%--        <form id="productOptionsForm">--%>
-<%--            <label for="option1">옵션 1</label>--%>
-<%--            <select id="option1" name="option1" required>--%>
-<%--                <option value="">옵션을 선택하세요</option>--%>
-<%--                <option value="optionA">옵션 A</option>--%>
-<%--                <option value="optionB">옵션 B</option>--%>
-<%--            </select>--%>
-
-<%--            <label for="option2">옵션 2</label>--%>
-<%--            <select id="option2" name="option2">--%>
-<%--                <option value="">옵션을 선택하세요</option>--%>
-<%--                <option value="optionC">옵션 C</option>--%>
-<%--                <option value="optionD">옵션 D</option>--%>
-<%--            </select>--%>
-
-<%--            <button type="submit" class="submit-btn">확인</button>--%>
-<%--        </form>--%>
-<%--        <button class="close-btn option-close-btn" onclick="closeProductOptionsPopup()">닫기</button>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <div class="popup-overlay option-popup" id="productOptionsPopup" style="display: none;">
     <div class="popup-content option-popup-content">
@@ -106,6 +77,16 @@
     <div class="description-content">
         <p>${product.detailedDescription}</p>
     </div>
+
+    <!-- 지도 섹션 -->
+    <section class="location">
+        <h3>위치</h3>
+        <p>${product.location}</p>
+        <div class="map">
+            <div id="map-container"></div>
+        </div>
+    </section>
+
 </section>
 
 <!-- 후기 섹션 -->
@@ -117,7 +98,7 @@
     <div class="review-list">
         <ul>
             <c:forEach var="review" items="${reviews}">
-                <li>${review.author}: ${review.comment}</li>
+                <li>${review.id}: ${review.content}</li>
             </c:forEach>
         </ul>
     </div>
@@ -141,14 +122,6 @@
             2. 마이페이지 - 예약내역 or 결제내역</p><br>
     </div>
 </section>
-<%--<!-- 지도 섹션 -->--%>
-<%--<section class="location">--%>
-<%--    <h3>위치</h3>--%>
-<%--    <p>${product.location}</p>--%>
-<%--    <div class="map">--%>
-<%--        <div id="map-container"></div>--%>
-<%--    </div>--%>
-<%--</section>--%>
 
 <!-- 문의하기 팝업 버튼 -->
 <section class="contact-section">
@@ -177,3 +150,158 @@
 
 
 <%@ include file="../footer.jsp" %>
+
+
+
+
+
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%--<%@ include file="../header.jsp" %>--%>
+
+<%--<section class="product-detail">--%>
+<%--    <!-- 상단: 상품 이미지와 기본 정보 -->--%>
+<%--    <div class="product-header">--%>
+<%--        <div class="product-image">--%>
+<%--            <img src="/images/product/${empty product.image ? 'placeholder.jpg' : product.image}" alt="${product.title}" />--%>
+<%--        </div>--%>
+<%--        <div class="product-info">--%>
+<%--            <h3>${productVo.title}</h3>--%>
+<%--            <p>${productVo.address1}, ${productVo.address2}, ${productVo.address3}</p>--%>
+<%--            <p class="product-detail-price">${productVo.price}원</p>--%>
+<%--            <p class="product-detail-description">${productVo.content}</p>--%>
+<%--            <p><strong>최대 수용인원:</strong> ${productVo.max_people}</p>--%>
+<%--            <div class="product-detail-button-group">--%>
+<%--                <button class="product-detail-enroll-btn" data-cseq="${productVo.cseq}">신청하기</button>--%>
+<%--                <button class="product-detail-wishlist-btn" onclick="toggleHeart(this, ${productVo.cseq}, '${loginUser.id}')">--%>
+<%--                    <c:choose>--%>
+<%--                        <c:when test="${zzim eq false}">--%>
+<%--                            <i class="fi fi-rs-heart"></i>--%>
+<%--                        </c:when>--%>
+<%--                        <c:otherwise>--%>
+<%--                            <i class="fi fi-ss-heart"></i>--%>
+<%--                        </c:otherwise>--%>
+<%--                    </c:choose>--%>
+<%--                </button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</section>--%>
+
+<%--<!-- 아래 상세 구성 -->--%>
+<%--<section class="product-content">--%>
+<%--    <!-- 상품 상세 설명 -->--%>
+<%--    <div class="product-description">--%>
+<%--        <h3>상품 상세 설명</h3>--%>
+<%--        <p>${product.detailedDescription}</p>--%>
+<%--    </div>--%>
+
+<%--&lt;%&ndash;    <!-- 옵션 선택 -->&ndash;%&gt;--%>
+<%--&lt;%&ndash;    <div class="product-options">&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <h3>옵션 선택</h3>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <form id="product-detail-options-form">&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <label for="product-detail-option1">옵션 1</label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <select id="product-detail-option1" name="option1" required>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <option value="">옵션을 선택하세요</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <option value="optionA">옵션 A</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <option value="optionB">옵션 B</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            </select>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;            <label for="product-detail-option2">옵션 2</label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <select id="product-detail-option2" name="option2">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <option value="">옵션을 선택하세요</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <option value="optionC">옵션 C</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                <option value="optionD">옵션 D</option>&ndash;%&gt;--%>
+<%--&lt;%&ndash;            </select>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;            <button type="submit" class="product-detail-submit-btn">확인</button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </form>&ndash;%&gt;--%>
+<%--&lt;%&ndash;    </div>&ndash;%&gt;--%>
+
+
+
+<%--    <!-- 후기 -->--%>
+<%--    <div class="product-reviews">--%>
+<%--        <h3>후기</h3>--%>
+<%--        <ul>--%>
+<%--            <c:forEach var="review" items="${reviews}">--%>
+<%--                <li><strong>${review.id}</strong>: ${review.content}</li>--%>
+<%--            </c:forEach>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
+
+<%--    <!-- 환불 정책 -->--%>
+<%--    <div class="product-return-policy">--%>
+<%--        <h3>변경 및 취소 정책</h3>--%>
+<%--        <p>--%>
+<%--            1. 결제 후 14일 이내 취소 시: 전액 환불<br>--%>
+<%--            (단, 결제 후 14일 이내라도 호스트와 예약 확정 후 환불 불가)<br>--%>
+<%--            2. 결제 후 14일 이후 취소 시: 환불 불가<br>--%>
+<%--            ※ 상품 유효기간 만료 시 연장은 불가하며, 미확정 클래스는 환불됩니다.<br>--%>
+<%--            [환불 신청 방법]<br>--%>
+<%--            1. 해당 클래스를 결제한 계정으로 로그인<br>--%>
+<%--            2. 마이페이지 > 예약내역 or 결제내역<br>--%>
+<%--        </p>--%>
+<%--    </div>--%>
+
+<%--    <!-- 위치 정보 -->--%>
+<%--    <div class="product-location">--%>
+<%--        <h3>위치</h3>--%>
+<%--        <p>${product.location}</p>--%>
+<%--        <div id="product-detail-map-container"></div>--%>
+<%--    </div>--%>
+
+<%--    <!-- 문의하기 -->--%>
+<%--    <div class="product-contact-section">--%>
+<%--        <h3>문의하기</h3>--%>
+<%--        <button class="product-detail-contact-btn" onclick="toggleContactForm()">문의하기</button>--%>
+<%--    </div>--%>
+<%--</section>--%>
+
+<%--<div class="popup-overlay option-popup" id="productOptionsPopup" style="display: none;">--%>
+<%--    <div class="popup-content option-popup-content">--%>
+<%--        <h3>상품 옵션 선택</h3>--%>
+<%--        <form id="productOptionsForm">--%>
+<%--            <label for="option1">옵션 1</label>--%>
+<%--            <select id="option1" name="option1" required>--%>
+<%--                <option value="">옵션을 선택하세요</option>--%>
+<%--                <option value="optionA">옵션 A</option>--%>
+<%--                <option value="optionB">옵션 B</option>--%>
+<%--            </select>--%>
+
+<%--            <label for="option2">옵션 2</label>--%>
+<%--            <select id="option2" name="option2">--%>
+<%--                <option value="">옵션을 선택하세요</option>--%>
+<%--                <option value="optionC">옵션 C</option>--%>
+<%--                <option value="optionD">옵션 D</option>--%>
+<%--            </select>--%>
+
+<%--            <button type="submit" class="submit-btn">확인</button>--%>
+<%--        </form>--%>
+<%--        <button class="close-btn option-close-btn" onclick="closeProductOptionsPopup()">닫기</button>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+
+<%--<!-- 문의하기 팝업 -->--%>
+<%--<div class="popup-overlay product-contact-popup" id="productDetailContactPopup" style="display: none;">--%>
+<%--    <div class="popup-content product-contact-popup-content">--%>
+<%--        <h3>문의하기</h3>--%>
+<%--        <form id="productDetailContactForm">--%>
+<%--            <label for="product-detail-name">이름</label>--%>
+<%--            <input type="text" id="product-detail-name" name="name" required>--%>
+
+<%--            <label for="product-detail-email">이메일</label>--%>
+<%--            <input type="email" id="product-detail-email" name="email" required>--%>
+
+<%--            <label for="product-detail-message">내용</label>--%>
+<%--            <textarea id="product-detail-message" name="message" required></textarea>--%>
+
+<%--            <button type="submit" class="product-detail-submit-btn">전송하기</button>--%>
+<%--        </form>--%>
+<%--        <button class="product-detail-close-btn" onclick="closeContactForm()">--%>
+<%--            <i class="fi fi-rr-cross"></i> 닫기--%>
+<%--        </button>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<%--<%@ include file="../footer.jsp" %>--%>

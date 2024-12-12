@@ -9,8 +9,8 @@
     </select>
 
     <!-- 특정 상품 ID로 조회 -->
-    <select id="selectProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
-        SELECT * FROM product WHERE cseq = #{id}
+    <select id="selectProductById" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT * FROM product WHERE cseq = #{cseq}
     </select>
 
     <!-- 최신 상품 가져오기 -->
@@ -38,8 +38,6 @@
         delete from zzim where uid=#{param1} and cnum=#{param2}
     </delete>
     <select id="getProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
-        SELECT cseq AS id, title, content, price, image, address1, address2, address3, max_people
-        FROM product
-        WHERE cseq = #{cseq}
+        SELECT * FROM product WHERE cseq = #{cseq}
     </select>
 </mapper>

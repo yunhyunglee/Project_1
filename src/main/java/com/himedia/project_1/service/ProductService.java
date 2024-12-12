@@ -51,6 +51,7 @@ public class ProductService {
         return map;
     }
     public ProductVo getProductById(int cseq) {
+        System.out.println(pdao.getProductById(cseq).getCseq());
         return pdao.getProductById(cseq);
     }
 }
