@@ -1,4 +1,3 @@
-// main.js
 document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.slider');
     const slides = document.querySelectorAll('.slide');
@@ -6,16 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('#nextBtn');
     let currentIndex = 0;
 
-    // Placeholder 이미지 경로
-    const placeholder = 'http://placehold.co/1024x400';
-
-    // 이미지가 로드되지 않을 경우 Placeholder로 대체
-    slides.forEach(slide => {
-        const img = slide.querySelector('img');
-        img.addEventListener('error', () => {
-            img.src = 'http://placehold.co/1024x400';
-        });
-    });
+    if (!slider || slides.length === 0 || !prevBtn || !nextBtn) {
+        console.error('Required elements not found in DOM.');
+        return;
+    }
 
     // 슬라이드 이동 함수
     function showSlide(index) {
@@ -40,5 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.addEventListener('click', showNextSlide);
 
     // 자동 전환
-    setInterval(showNextSlide, 3000); // 3초마다 슬라이드 전환
+    setInterval(showNextSlide, 3000);
 });

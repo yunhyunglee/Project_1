@@ -1,22 +1,116 @@
+/*@charset "UTF-8";*/
+/*!* 사이드바 스타일 *!*/
+/*.sidebar {*/
+/*    !*position: relative; !* 부모 요소 기준 위치 *!*!*/
+/*    !*top: 0; !* 헤더와의 간격 없음 *!*!*/
+/*    !*left: 0; !* 왼쪽 고정 *!*!*/
+/*    !*width: 250px; !* 너비 *!*!*/
+/*    !*background-color: #f4f4f4;*!*/
+/*    !*padding: 20px; !* 내부 여백 *!*!*/
+/*    !*margin: 0; !* 외부 여백 제거 *!*!*/
+/*    !*border-radius: 8px; !* 모서리 둥글기 *!*!*/
+/*    !*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*!*/
+/*    !*position: relative; !* 기본 위치 *!*!*/
+/*    !*width: 250px; !* 고정 너비 *!*!*/
+/*    !*background-color: #f4f4f4;*!*/
+/*    !*padding: 20px; !* 내부 여백 *!*!*/
+/*    !*margin: 0; !* 외부 여백 제거 *!*!*/
+/*    !*border-radius: 8px;*!*/
+/*    !*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*!*/
+/*    position: relative; !* 기본 위치 *!*/
+/*    width: 250px; !* 고정 너비 *!*/
+/*    background-color: #f4f4f4;*/
+/*    padding: 20px; !* 내부 여백 *!*/
+/*    margin: 0; !* 외부 여백 제거 *!*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+/*    flex-shrink: 0; !* 사이드바가 줄어들지 않도록 설정 *!*/
+/*}*/
+
+/*.sidebar .section {*/
+/*    margin-bottom: 20px;*/
+/*    padding-bottom: 15px;*/
+/*    border-bottom: 2px solid #e4e4e4;*/
+/*}*/
+
+/*.sidebar .section h3 {*/
+/*    font-size: 1.1rem;*/
+/*    margin-bottom: 10px;*/
+/*    color: #333;*/
+/*}*/
+
+/*.sidebar ul {*/
+/*    list-style-type: none;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.sidebar li {*/
+/*    margin: 10px 0;*/
+/*}*/
+
+/*.sidebar a {*/
+/*    text-decoration: none;*/
+/*    color: #333;*/
+/*    font-size: 1rem;*/
+/*    display: block;*/
+/*    padding: 10px;*/
+/*    background-color: #fff;*/
+/*    border-radius: 6px;*/
+/*    transition: background-color 0.3s ease, color 0.3s ease;*/
+/*}*/
+
+/*.sidebar a:hover {*/
+/*    background-color: #007bff;*/
+/*    color: white;*/
+/*}*/
+
+/*!* 사이드바 현재 페이지 스타일 *!*/
+/*.sidebar a.active {*/
+/*    background-color: #007bff;*/
+/*    color: white;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*!* 본문 콘텐츠 영역이 사이드바와 겹치지 않도록 패딩 추가 *!*/
+/*.mypage-review-container, .mypage-container {*/
+/*    margin-left: 250px; !* 사이드바 너비보다 20px 더 넓게 설정 *!*/
+/*    width: calc(100% - 270px); !* 화면에서 사이드바 영역을 제외한 나머지 공간 *!*/
+/*    padding: 20px;*/
+/*}*/
+
+/*!* 반응형 디자인 *!*/
+/*@media (max-width: 768px) {*/
+/*    .sidebar {*/
+/*        position: sticky; !* 작은 화면에서도 sticky 유지 *!*/
+/*        top: 200px; !* 헤더와 간격 *!*/
+/*        width: 100%; !* 화면 너비에 맞게 조정 *!*/
+/*        margin-bottom: 20px;*/
+/*    }*/
+
+/*    .sidebar-button {*/
+/*        display: block;*/
+/*        background-color: #007bff;*/
+/*        padding: 10px;*/
+/*        color: white;*/
+/*        border: none;*/
+/*        cursor: pointer;*/
+/*    }*/
+
+/*    .sidebar-button:focus {*/
+/*        outline: none;*/
+/*    }*/
+
+/*    .mypage-review-container, .mypage-container {*/
+/*        margin-left: 0;*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+
 @charset "UTF-8";
-/* 사이드바 스타일 */
+
+/* 사이드바 공통 스타일 */
 .sidebar {
-    /*position: relative; !* 부모 요소 기준 위치 *!*/
-    /*top: 0; !* 헤더와의 간격 없음 *!*/
-    /*left: 0; !* 왼쪽 고정 *!*/
-    /*width: 250px; !* 너비 *!*/
-    /*background-color: #f4f4f4;*/
-    /*padding: 20px; !* 내부 여백 *!*/
-    /*margin: 0; !* 외부 여백 제거 *!*/
-    /*border-radius: 8px; !* 모서리 둥글기 *!*/
-    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
-    /*position: relative; !* 기본 위치 *!*/
-    /*width: 250px; !* 고정 너비 *!*/
-    /*background-color: #f4f4f4;*/
-    /*padding: 20px; !* 내부 여백 *!*/
-    /*margin: 0; !* 외부 여백 제거 *!*/
-    /*border-radius: 8px;*/
-    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
     position: relative; /* 기본 위치 */
     width: 250px; /* 고정 너비 */
     background-color: #f4f4f4;
@@ -27,6 +121,7 @@
     flex-shrink: 0; /* 사이드바가 줄어들지 않도록 설정 */
 }
 
+/* 사이드바 섹션 스타일 */
 .sidebar .section {
     margin-bottom: 20px;
     padding-bottom: 15px;
@@ -39,6 +134,7 @@
     color: #333;
 }
 
+/* 사이드바 리스트 스타일 */
 .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -64,44 +160,17 @@
     color: white;
 }
 
-/* 사이드바 현재 페이지 스타일 */
+/* 현재 페이지 활성화 스타일 */
 .sidebar a.active {
     background-color: #007bff;
     color: white;
     font-weight: bold;
 }
 
-/* 본문 콘텐츠 영역이 사이드바와 겹치지 않도록 패딩 추가 */
-.mypage-review-container, .mypage-container {
-    margin-left: 250px; /* 사이드바 너비보다 20px 더 넓게 설정 */
-    width: calc(100% - 270px); /* 화면에서 사이드바 영역을 제외한 나머지 공간 */
-    padding: 20px;
-}
-
-/* 반응형 디자인 */
+/* 반응형 처리 */
 @media (max-width: 768px) {
     .sidebar {
-        position: sticky; /* 작은 화면에서도 sticky 유지 */
-        top: 200px; /* 헤더와 간격 */
         width: 100%; /* 화면 너비에 맞게 조정 */
-        margin-bottom: 20px;
-    }
-
-    .sidebar-button {
-        display: block;
-        background-color: #007bff;
-        padding: 10px;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-
-    .sidebar-button:focus {
-        outline: none;
-    }
-
-    .mypage-review-container, .mypage-container {
-        margin-left: 0;
-        width: 100%;
+        margin-bottom: 20px; /* 아래 여백 추가 */
     }
 }

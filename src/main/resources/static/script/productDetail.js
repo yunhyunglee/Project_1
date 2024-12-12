@@ -13,45 +13,79 @@ function toggleHeart(button) {
     }
 }
 
+// DOMContentLoaded 이벤트로 DOM이 완전히 로드된 후 실행
+document.addEventListener('DOMContentLoaded', function () {
+    // 팝업 열기
+    const popup = document.getElementById('productOptionsPopup');
+    const enrollBtn = document.querySelector('.enroll-btn');
 
-
-// 상품 상세 설명 펼치기/접기
-function toggleDescription() {
-    const description = document.querySelector(".description-content");
-    const button = document.querySelector(".toggle-description");
-    const icon = button.querySelector("i");
-
-    description.classList.toggle("show"); // 내용을 펼치거나 접음
-    button.classList.toggle("active"); // 아이콘 전환
-
-    // 아이콘 변경
-    if (description.classList.contains("show")) {
-        icon.classList.remove("fi-rr-angle-down");
-        icon.classList.add("fi-rr-angle-up");
+    if (enrollBtn && popup) {
+        enrollBtn.addEventListener('click', function () {
+            popup.style.display = 'block';
+        });
     } else {
-        icon.classList.remove("fi-rr-angle-up");
-        icon.classList.add("fi-rr-angle-down");
+        console.error('Popup or enroll button not found.');
     }
-}
 
-// 후기 펼치기/접기
-function toggleReviews() {
-    const reviews = document.querySelector(".review-list");
-    const button = document.querySelector(".toggle-reviews");
-    const icon = button.querySelector("i");
-
-    reviews.classList.toggle("show"); // 내용을 펼치거나 접음
-    button.classList.toggle("active"); // 아이콘 전환
-
-    // 아이콘 변경
-    if (reviews.classList.contains("show")) {
-        icon.classList.remove("fi-rr-angle-down");
-        icon.classList.add("fi-rr-angle-up");
-    } else {
-        icon.classList.remove("fi-rr-angle-up");
-        icon.classList.add("fi-rr-angle-down");
+    // 팝업 닫기
+    const closeBtn = popup.querySelector('.close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            popup.style.display = 'none';
+        });
     }
-}
+
+    // 폼 제출 이벤트 처리
+    const form = document.getElementById('productOptionsForm');
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // 기본 제출 방지
+            alert('선택한 옵션이 제출되었습니다.');
+            popup.style.display = 'none'; // 팝업 닫기
+        });
+    }
+});
+
+
+
+//
+// // 상품 상세 설명 펼치기/접기
+// function toggleDescription() {
+//     const description = document.querySelector(".description-content");
+//     const button = document.querySelector(".toggle-description");
+//     const icon = button.querySelector("i");
+//
+//     description.classList.toggle("show"); // 내용을 펼치거나 접음
+//     button.classList.toggle("active"); // 아이콘 전환
+//
+//     // 아이콘 변경
+//     if (description.classList.contains("show")) {
+//         icon.classList.remove("fi-rr-angle-down");
+//         icon.classList.add("fi-rr-angle-up");
+//     } else {
+//         icon.classList.remove("fi-rr-angle-up");
+//         icon.classList.add("fi-rr-angle-down");
+//     }
+// }
+//
+// // 후기 펼치기/접기
+// function toggleReviews() {
+//     const reviews = document.querySelector(".review-list");
+//     const button = document.querySelector(".toggle-reviews");
+//     const icon = button.querySelector("i");
+//
+//     reviews.classList.toggle("show"); // 내용을 펼치거나 접음
+//     button.classList.toggle("active"); // 아이콘 전환
+//
+//     // 아이콘 변경
+//     if (reviews.classList.contains("show")) {
+//         icon.classList.remove("fi-rr-angle-down");
+//         icon.classList.add("fi-rr-angle-up");
+//     } else {
+//         icon.classList.remove("fi-rr-angle-up");
+//         icon.classList.add("fi-rr-angle-down");
+//     }
+// }
 
 // 환불 정책 펼치기/접기
 function togglePolicy() {

@@ -1,8 +1,10 @@
 package com.himedia.project_1.service;
 
 import com.himedia.project_1.dao.IMyPageDao;
+import com.himedia.project_1.dao.IZZimDao;
 import com.himedia.project_1.dto.ProductVo;
 import com.himedia.project_1.dto.ReservationVo;
+import com.himedia.project_1.dto.ZzimVo;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.List;
 public class MyPageService {
     @Autowired
     IMyPageDao mdao;
+    @Autowired
+    IZZimDao zdao;
 
     public List<ReservationVo> getMyClassInfo(String id) {
         List<ReservationVo> list = mdao.selectTotalPrice(id);
@@ -66,5 +70,8 @@ public class MyPageService {
 
     public void clearpay(int cseq) {
         mdao.clearpay(cseq);
+    }
+    public List<ZzimVo> getZzimList(int userId) {
+        return zdao.getZzimList(userId);
     }
 }
