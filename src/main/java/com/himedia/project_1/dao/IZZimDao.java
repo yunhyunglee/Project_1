@@ -8,5 +8,5 @@ import java.util.List;
 
 @Mapper
 public interface IZZimDao {
-    List<ZzimVo> getZzimList(@Param("userId") int userId);
+    List<ZzimVo> getZzimList(String userId);
 }

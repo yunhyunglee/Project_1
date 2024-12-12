@@ -182,8 +182,9 @@ public class MyPageController {
     }
 
     @GetMapping("/zzim")
-    public String getZzimList(@RequestParam("userId") int userId, Model model) {
-        List<ZzimVo> zzimList = ms.getZzimList(userId);
+    public String getZzimList(HttpSession session, Model model) {
+        UserVo loginuser = (UserVo) session.getAttribute("loginUser");
+        List<ZzimVo> zzimList = ms.getZzimList(loginuser.getId());
         model.addAttribute("ZZim", zzimList);
         return "mypage/ZZim";
     }

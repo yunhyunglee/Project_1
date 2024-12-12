@@ -39,32 +39,73 @@
   });
 </script>
 
+<%--<form method="POST" action="/join" id="joinFrm">--%>
+<%--  개인이용자용 가입페이지--%>
+<%--  <div>--%>
+<%--    <input type="hidden" name="usertype" value="1">--%>
+<%--    <label>id</label> <input type="text" name="id" value="${dto.id}"> <input type="button" value="중복확인" id="idcheckButton">--%>
+<%--    <div id="idmessage"></div>--%>
+<%--    <input type="hidden" name="reid" id="reid">--%>
+<%--  </div>--%>
+<%--  <div>--%>
+<%--    <label>비밀번호</label> <input type="password" name="pwd">--%>
+<%--  </div>--%>
+<%--  <div>--%>
+<%--    <label>비밀번호 확인</label> <input type="password" name="pwdchk">--%>
+<%--  </div>--%>
+<%--  <div>--%>
+<%--    <label>이름</label> <input type="text" name="name" value="${dto.name}">--%>
+<%--  </div>--%>
+<%--  <div>--%>
+<%--    <label>E-mail</label> <input type="text" name="email" value="${dto.email}">--%>
+<%--  </div>--%>
+<%--  <div>--%>
+<%--    <label>전화번호</label> <input type="text" name="phone" value="${dto.phone}">--%>
+<%--  </div>--%>
+<%--  <div style="font-size:80%; font-weight:bold">${message} </div>--%>
+<%--  <div>--%>
+<%--    <input type="submit" value="가입"> <input type="button" onclick="location.href='/'" value="되돌아가기">--%>
+<%--  </div>--%>
+<%--</form>--%>
 <form method="POST" action="/join" id="joinFrm">
-  개인이용자용 가입페이지
+  <h2 style="text-align: center;">회원가입</h2>
   <div>
-    <input type="hidden" name="usertype" value="1">
-    <label>id</label> <input type="text" name="id" value="${dto.id}"> <input type="button" value="중복확인" id="idcheckButton">
+    <label for="id">아이디</label>
+    <input type="text" id="id" name="id" value="${dto.id}">
+    <input type="button" value="중복확인" id="idcheckButton">
     <div id="idmessage"></div>
     <input type="hidden" name="reid" id="reid">
   </div>
   <div>
-    <label>비밀번호</label> <input type="password" name="pwd">
+    <label for="pwd">비밀번호</label>
+    <input type="password" id="pwd" name="pwd">
   </div>
   <div>
-    <label>비밀번호 확인</label> <input type="password" name="pwdchk">
+    <label for="pwdchk">비밀번호 확인</label>
+    <input type="password" id="pwdchk" name="pwdchk">
   </div>
   <div>
-    <label>이름</label> <input type="text" name="name" value="${dto.name}">
+    <label for="name">이름</label>
+    <input type="text" id="name" name="name" value="${dto.name}">
   </div>
   <div>
-    <label>E-mail</label> <input type="text" name="email" value="${dto.email}">
+    <label for="email">E-mail</label>
+    <input type="text" id="email" name="email" value="${dto.email}">
   </div>
   <div>
-    <label>전화번호</label> <input type="text" name="phone" value="${dto.phone}">
+    <label for="phone">전화번호</label>
+    <input type="text" id="phone" name="phone" value="${dto.phone}">
   </div>
-  <div style="font-size:80%; font-weight:bold">${message} </div>
+  <div style="font-size:80%; font-weight:bold">${message}</div>
   <div>
-    <input type="submit" value="가입"> <input type="button" onclick="location.href='/'" value="되돌아가기">
+    <input type="submit" value="가입">
+    <div class="kakao-login">
+      <button type="button" class="kakao-btn"
+              onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=f67ebc2de23039bbce25c7d2583abd81&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
+        <img src="images/kakao_login.png" alt="카카오톡으로 시작하기">
+      </button>
+    </div>
+    <input type="button" onclick="location.href='/'" value="되돌아가기">
   </div>
 </form>
 

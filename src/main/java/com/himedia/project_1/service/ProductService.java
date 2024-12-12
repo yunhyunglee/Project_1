@@ -43,6 +43,7 @@ public class ProductService {
         return pdao.getZzim(id,cseq);
     }
     public ProductVo getProductById(int cseq) {
+        System.out.println(pdao.getProductById(cseq).getCseq());
         return pdao.getProductById(cseq);
     }
 }

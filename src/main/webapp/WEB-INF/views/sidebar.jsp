@@ -24,7 +24,7 @@
       <c:choose>
         <c:when test="${user == 1}"> <!-- 개인 회원 -->
           <li>
-            <a href="ZZim" class="${pageContext.request.requestURI.contains('ZZim') ? 'active' : ''}">
+            <a href="zzim" class="${pageContext.request.requestURI.contains('ZZim') ? 'active' : ''}">
               찜 목록
             </a>
           </li>

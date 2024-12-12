@@ -34,7 +34,7 @@
                     <!-- 상품 상세 페이지로 이동 -->
                     <a href="/product/detail/${zzim.cseq}" class="zzim-link">
                         <div class="zzim-image">
-                            <img src="/images/${empty zzim.image ? 'placeholder.jpg' : zzim.image}"
+                            <img src="/images/product/${empty zzim.image ? 'placeholder.jpg' : zzim.image}"
                                  alt="${zzim.title}" />
                         </div>
                         <div class="zzim-info">
