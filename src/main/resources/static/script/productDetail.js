@@ -172,7 +172,7 @@
 function toggleHeart(button, cseq, loginUser) {
     console.log("cseq:", cseq);
     if (loginUser === 'null' || loginUser === '') {
-        const ans = confirm("로그인해야 찜할 수 있습니다. 로그인하시겠습니까?");
+        const ans = confirm("로그인 후 이용할 수 있습니다. 로그인하시겠습니까?");
         if (ans) location.href = "loginForm";
     } else {
         $.ajax({
@@ -192,9 +192,12 @@ function toggleHeart(button, cseq, loginUser) {
                     icon.classList.remove("fi-ss-heart");
                     icon.classList.add("fi-rs-heart");
                 }
+                // 클릭 애니메이션
+                button.classList.add("clicked");
+                setTimeout(() => button.classList.remove("clicked"), 200);
             },
             error: function () {
-                alert("개인이용자만 찜할 수 있습니다.");
+                alert("일반 회원만 가능합니다.");
             }
         });
     }
@@ -202,36 +205,27 @@ function toggleHeart(button, cseq, loginUser) {
 
 // 상품 상세 설명 펼치기/접기
 function toggleDescription() {
-    const description = document.querySelector(".description-content");
-    const button = document.querySelector(".toggle-description");
-
-    if (!description || !button) {
-        console.error("Description or button element not found.");
-        return;
-    }
-
-    const icon = button.querySelector("i");
-    description.classList.toggle("show");
-    button.classList.toggle("active");
-
-    if (description.classList.contains("show")) {
-        icon.classList.remove("fi-rr-angle-down");
-        icon.classList.add("fi-rr-angle-up");
-    } else {
-        icon.classList.remove("fi-rr-angle-up");
-        icon.classList.add("fi-rr-angle-down");
-    }
+    // const description = document.querySelector(".description-content");
+    // const button = document.querySelector(".toggle-description");
+    //
+    // if (!description || !button) {
+    //     console.error("Description or button element not found.");
+    //     return;
+    // }
+    //
+    // const icon = button.querySelector("i");
+    // description.classList.toggle("show");
+    // button.classList.toggle("active");
+    //
+    // if (description.classList.contains("show")) {
+    //     icon.classList.remove("fi-rr-angle-down");
+    //     icon.classList.add("fi-rr-angle-up");
+    // } else {
+    //     icon.classList.remove("fi-rr-angle-up");
+    //     icon.classList.add("fi-rr-angle-down");
+    // }
 }
 
-// 문의하기 팝업 열기/닫기
-function toggleContactForm() {
-    const popup = document.getElementById('contactFormPopup');
-    if (popup) {
-        popup.classList.toggle('active');
-    } else {
-        console.error('Contact form popup not found.');
-    }
-}
 
 function closeContactForm() {
     const popup = document.getElementById('contactFormPopup');
@@ -242,7 +236,6 @@ function closeContactForm() {
     }
 }
 
-// DOMContentLoaded 이벤트
 document.addEventListener('DOMContentLoaded', function () {
     const popup = document.getElementById('productOptionsPopup');
     const enrollBtn = document.querySelector('.enroll-btn');
@@ -274,3 +267,39 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector(".toggle-description")?.addEventListener("click", toggleDescription);
     document.querySelector(".toggle-title")?.addEventListener("click", togglePolicy);
 });
+
+// 환불 정책 더보기/접기
+function togglePolicy() {
+    const policyContent = document.querySelector('.policy-content');
+    const toggleBtn = document.querySelector('.toggle-btn');
+
+    if (policyContent.style.display === 'none' || policyContent.style.display === '') {
+        policyContent.style.display = 'block'; // 내용을 표시
+        toggleBtn.textContent = '접기'; // 버튼 텍스트 변경
+    } else {
+        policyContent.style.display = 'none'; // 내용을 숨김
+        toggleBtn.textContent = '더보기'; // 버튼 텍스트 변경
+    }
+}
+
+$(".review-content").each(function () {
+    const content = $(this).text();
+    if (content.length > 100) {
+        $(this).html(content.substring(0, 100) + '<span class="more">... 더보기</span>');
+        $(this).on("click", ".more", function () {
+            $(this).parent().text(content);
+        });
+    }
+});
+
+
+// 문의하기 팝업 열기/닫기
+function toggleContactForm() {
+    const popup = document.getElementById('contactFormPopup');
+    if (popup) {
+        popup.classList.toggle('active');
+    } else {
+        console.error('Contact form popup not found.');
+    }
+}
+

@@ -4,10 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('#nextBtn');
     let currentIndex = 0;
 
-    if (!slider || slides.length === 0 || !prevBtn || !nextBtn) {
-        console.error('Required elements not found in DOM.');
-        return;
-    }
+    // 서버에서 활성화된 배너 데이터 가져오기
+    fetch('/activeBanners')
+        .then(response => response.json())
+        .then(banners => {
+            // 활성화된 배너가 없으면 에러 출력
+            if (!banners || banners.length === 0) {
+                console.error('활성화된 배너가 없습니다.');
+                return;
+            }
+
+            // 기존 슬라이더 내용을 초기화
+            slider.innerHTML = '';
 
             // 슬라이더에 배너 데이터 추가
             banners.forEach(banner => {
@@ -49,4 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 3000);
         })
         .catch(err => console.error('Error loading banners:', err));
-
+});
