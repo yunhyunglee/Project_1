@@ -133,6 +133,7 @@ public class AdminController {
         }
     }
 
+    // 어드민 회원관리 : 회원삭제
     @DeleteMapping("/admin/user/delete/{userId}")
     @ResponseBody
     public String deleteUser(@PathVariable String userId) {
@@ -147,6 +148,7 @@ public class AdminController {
     @Autowired
     private BusinessmanService bs;
 
+    // 어드민 사업자관리 : 사업자 상세보기
     @GetMapping("/admin/business/get/{id}")
     @ResponseBody
     public BusinessmanVo getBusinessmanById(@PathVariable String id) {
@@ -154,6 +156,7 @@ public class AdminController {
     }
 
 
+    // 어드민 사업자관라 : 사업자 수정
     @PostMapping("/admin/business/update")
     public ResponseEntity<String> updateBusiness(@ModelAttribute BusinessmanVo businessman) {
         try {
@@ -166,6 +169,7 @@ public class AdminController {
     }
 
 
+    // 어드민 사업자관라 : 사업자 삭제
     @DeleteMapping("/admin/business/delete/{id}")
     @ResponseBody
     public String deleteBusinessman(@PathVariable String id) {
@@ -176,13 +180,14 @@ public class AdminController {
     @Autowired
     NoticeService ns;
 
+    // 어드민 공지사항관라 : 공지사항 상세보기
     @GetMapping("/admin/notice/get/{id}")
     @ResponseBody
     public NoticeVo getNoticeById(@PathVariable int id) {
-        return ns.getNoticeById(id); // id에 해당하는 공지사항을 반환
+        return ns.getNoticeById(id);
     }
 
-
+    // 어드민 공지사항관라 : 공지사항 숮ㅇ
     @PostMapping("/admin/notice/update")
     public ResponseEntity<String> updateNotice(@ModelAttribute NoticeVo notice) {
         try {
@@ -194,6 +199,8 @@ public class AdminController {
         }
     }
 
+
+    // 어드민 공지사항관라 : 공지사항 삭제
     @DeleteMapping("/admin/notice/delete/{id}")
     @ResponseBody
     public String deleteNotice(@PathVariable int id) {
@@ -207,6 +214,7 @@ public class AdminController {
     }
 
 
+    // 어드민 공지사항관라 : 공지사항 추가
     @PostMapping("/admin/notice/add")
     public ResponseEntity<String> addNotice(@ModelAttribute NoticeVo notice) {
         try {
@@ -223,7 +231,7 @@ public class AdminController {
     @Autowired
     private BannerService bannerService;
 
-    // 배너 관리 페이지
+    // 어드민 배너관라 : 배너목록
     @GetMapping("/admin/banner")
     public String getBannerList(Model model) {
         List<BannerVo> banners = bannerService.getAllBanners();
@@ -231,6 +239,7 @@ public class AdminController {
         return "admin/banner/banner";
     }
 
+    // 어드민 배너관라 : 배너 상세보기
     @GetMapping("/admin/banner/get/{bannerId}")
     @ResponseBody
     public BannerVo getBannerById(@PathVariable int bannerId) {
@@ -242,7 +251,7 @@ public class AdminController {
     }
 
 
-    // 배너 추가
+    // 어드민 배너관라 : 배너 추기
     @PostMapping("/admin/banner/add")
     @ResponseBody
     public String addBanner(@ModelAttribute BannerVo banner) {
@@ -250,7 +259,7 @@ public class AdminController {
         return "배너가 성공적으로 추가되었습니다.";
     }
 
-
+    // 어드민 배너관라 : 배너 수정
     @PostMapping("/admin/banner/update")
     @ResponseBody
     public ResponseEntity<String> updateBanner(@ModelAttribute BannerVo banner) {
@@ -268,7 +277,7 @@ public class AdminController {
 
 
 
-
+    // 어드민 배너관라 : 배너 삭제
     @DeleteMapping("/admin/banner/delete/{bannerId}")
     @ResponseBody
     public String deleteBanner(@PathVariable int bannerId) {
@@ -295,12 +304,14 @@ public class AdminController {
     @Autowired
     private QnaService qnaService;
 
+    // 어드민QnA관리 : QnA상세보기
     @GetMapping("/admin/qna/get/{qseq}")
     public ResponseEntity<QnaVo> getQnaDetail(@PathVariable int qseq) {
         QnaVo qna = qnaService.getQnaById(qseq);
         return ResponseEntity.ok(qna);
     }
 
+    // 어드민QnA관라 : 답변달기
     @PostMapping("/admin/qna/reply")
     public ResponseEntity<?> saveReply(@RequestBody Map<String, Object> requestData) {
         int qseq = (int) requestData.get("qseq");
@@ -311,8 +322,9 @@ public class AdminController {
 
 
 @Autowired
-reservationService reservationService;
+ReservationService reservationService;
 
+    // 어드민예약관라 : 예약 목록
     @GetMapping("/admin/reservation")
     public String listReservation(@RequestParam(value = "status", required = false) String status, Model model) {
         List<ReservationVo> reservationList;
@@ -321,6 +333,7 @@ reservationService reservationService;
         return "/admin/reservation/reservation";
     }
 
+    // 어드민예약관라 : 예약삭제
     @DeleteMapping("/admin/reservation/delete/{reseq}")
     public ResponseEntity<Void> deleteReservation(@PathVariable int reseq) {
         reservationService.deleteReservation(reseq);
@@ -328,7 +341,7 @@ reservationService reservationService;
     }
 
 
-
+    // 어드민예약관라 : 필터링처리
     @GetMapping("/admin/reservation/filter")
     @ResponseBody
     public List<ReservationVo> filterReservations(@RequestParam(value = "status", required = false) String status) {

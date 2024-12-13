@@ -15,5 +15,33 @@
         WHERE r.user_id = #{userId}
     </select>
 
+
+    <select id="findAllReservation" resultType="com.himedia.project_1.dto.ReservationVo">
+        SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
+               p.title
+        FROM reservation r
+                 LEFT JOIN product p ON r.cseq = p.cseq
+    </select>
+
+    <select id="findByEndedClass" parameterType="string" resultType="com.himedia.project_1.dto.ReservationVo">
+        SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
+               p.title
+        FROM reservation r
+                 LEFT JOIN product p ON r.cseq = p.cseq
+        WHERE r.endedclass = #{endedclass}
+    </select>
+
+    <select id="findCancelledReservation" resultType="com.himedia.project_1.dto.ReservationVo">
+        SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
+               p.title
+        FROM reservation r
+                 LEFT JOIN product p ON r.cseq = p.cseq
+        WHERE r.payment = 'cancelled'
+    </select>
+
+    <delete id="deleteReservation" parameterType="int">
+        DELETE FROM reservation WHERE reseq = #{reseq}
+    </delete>
+
 </mapper>
 

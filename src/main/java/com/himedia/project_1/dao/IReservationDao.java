@@ -10,11 +10,12 @@ import java.util.List;
 @Mapper
 public interface IReservationDao {
 
-
+//    어드민 예약관리
     List<ReservationVo> findAllReservation();
     List<ReservationVo> findByEndedClass(String endedClass);
     List<ReservationVo> findCancelledReservation();
     void deleteReservation(int reseq);
 
-
+//
+    List<ReservationVo> getReservations(int userId);
 }
