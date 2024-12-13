@@ -26,7 +26,7 @@ public interface IProductDao {
 
     String[] getClassTime(int cseq);
 
-    void insertReservation(String userid, int cseq, String classday, int classtime,int people);
+    void insertReservation(String userid, int cseq, Date classday, Time classtime, int people);
 
     int getAllCount(String key);
 

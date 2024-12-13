@@ -14,7 +14,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,14 +89,23 @@ public class ProductController {
     }
     @PostMapping("insertReservation")
     public String insertReservation(@ModelAttribute("dto") ReservationVo reservationvo, HttpSession session,
-                                    @RequestParam("option1")String month, @RequestParam("option12")String day, @RequestParam("option2")int time,
+                                    @RequestParam("option1")String month, @RequestParam("option12")String day, @RequestParam("option2") String time,
                                     @RequestParam("people")int people, @RequestParam("cseq")int cseq) {
         System.out.println("month: " + month);
         System.out.println("day: " + day);
         System.out.println("time: " + time);
         UserVo loginUser = (UserVo) session.getAttribute("loginUser");
-        String classday="2024-"+month+"-"+day;
-        ps.insertReservation(loginUser.getId(),cseq,classday,time,people);
+        String classdaystr="2024-"+month+"-"+day;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date classday = null;
+        Time time1=null;
+        try {
+            time1=Time.valueOf(time);
+            classday= sdf.parse(classdaystr);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        ps.insertReservation(loginUser.getId(),cseq,classday,time1,people);
         return "redirect:/productDetail?id="+cseq;
     }
 
