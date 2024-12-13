@@ -41,5 +41,6 @@
     <delete id="deleteReservation" parameterType="int">
         DELETE FROM reservation WHERE reseq = #{reseq}
     </delete>
+
 </mapper>
 
