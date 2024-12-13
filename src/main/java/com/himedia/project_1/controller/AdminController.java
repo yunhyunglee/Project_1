@@ -311,7 +311,7 @@ public class AdminController {
 
 
 @Autowired
-reservationService reservationService;
+ReservationService reservationService;
 
     @GetMapping("/admin/reservation")
     public String listReservation(@RequestParam(value = "status", required = false) String status, Model model) {
