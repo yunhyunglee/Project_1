@@ -12,6 +12,8 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class ProductService {
         return pdao.getProductById(cseq);
     }
 
-    public void insertReservation(String id, int cseq, String classday, int time,int people) {
+    public void insertReservation(String id, int cseq, Date classday, Time time, int people) {
         pdao.insertReservation(id,cseq,classday,time,people);
     }
 
