@@ -1,16 +1,17 @@
 package com.himedia.project_1.controller;
 
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.ReservationVo;
 import com.himedia.project_1.dto.UserVo;
 import com.himedia.project_1.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -24,10 +25,9 @@ public class ProductController {
     ProductService ps;
 
     @GetMapping("/productDetail")
-    public ModelAndView productDetail(HttpSession session,@RequestParam("id")int cseq) {
+    public ModelAndView productDetail(@ModelAttribute("dto")  ReservationVo reservationvo, BindingResult result, HttpSession session, @RequestParam("id")int cseq) {
         System.out.println(cseq);
         ModelAndView mav = new ModelAndView("product/productDetail");
-
 
         Object loginUser = session.getAttribute("loginUser");
         HashMap<String,Object> map = ps.getZzim(loginUser,cseq);
@@ -38,7 +38,7 @@ public class ProductController {
         System.out.println(map.get("zzim"));
         mav.addObject("zzim",map.get("zzim"));
         mav.addObject("productVo",map.get("productVo"));
-
+        mav.addObject("classTime",map.get("classTime"));
         return mav;
     }
     @GetMapping("toggleHeart")
@@ -83,6 +83,32 @@ public class ProductController {
         model.addAttribute("productVo", product);
         return "product/productDetail";
     }
+    @PostMapping("insertReservation")
+    public String insertReservation(@ModelAttribute("dto") ReservationVo reservationvo, HttpSession session,
+                                    @RequestParam("option1")String month, @RequestParam("option12")String day, @RequestParam("option2")int time,
+                                    @RequestParam("people")int people, @RequestParam("cseq")int cseq) {
+        System.out.println("month: " + month);
+        System.out.println("day: " + day);
+        System.out.println("time: " + time);
+        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
+        String classday="2024-"+month+"-"+day;
+        ps.insertReservation(loginUser.getId(),cseq,classday,time,people);
+        return "redirect:/productDetail?id="+cseq;
+    }
+
+    @GetMapping("search")
+    public ModelAndView search(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("product/ProductSearch");
+        HashMap<String, Object> map = ps.getSearchList(request);
+        HttpSession session = request.getSession();
+
+        mav.addObject("SearchProduct",map.get("SearchList"));
+        mav.addObject("paging", map.get("paging"));
+        mav.addObject("key", map.get("key"));
+        return mav;
+    }
+
+
 
 
 }

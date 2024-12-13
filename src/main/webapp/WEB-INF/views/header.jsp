@@ -45,9 +45,9 @@
                 </a>
             </div>
             <div class="search-bar">
-                <form action="#" method="get">
-                    <input type="text" name="query" placeholder="검색어를 입력하세요" required>
-                    <button type="submit" class="search-btn" onclick="toggleSearchIcon(this)">
+                <form action="search" method="get">
+                    <input type="text" name="key" placeholder="검색어를 입력하세요" required>
+                    <button type="submit" class="search-btn">
                         <i class="fi fi-rr-search"></i>
                     </button>
                 </form>

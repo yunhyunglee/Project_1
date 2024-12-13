@@ -27,7 +27,7 @@
         <th>클래스 제목</th>
         <th>예약 인원</th>
         <th>예약 날짜/시간</th>
-        <th>결제 상태</th>
+        <th>정산 상태</th>
         <th>클래스 상태</th>
         <th>삭제</th>
     </tr>
@@ -42,8 +42,8 @@
             <td>${reservation.classday} ${reservation.classtime}</td>
             <td>
                 <c:choose>
-                    <c:when test="${reservation.payment == 'Y'}">완료</c:when>
-                    <c:when test="${reservation.payment == 'N'}">대기중</c:when>
+                    <c:when test="${reservation.payment == 'Y'}">정산 완료</c:when>
+                    <c:when test="${reservation.payment == 'N'}">정산 대기중</c:when>
                 </c:choose>
             <td>
                 <c:choose>

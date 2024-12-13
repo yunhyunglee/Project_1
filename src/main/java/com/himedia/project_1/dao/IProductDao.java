@@ -1,7 +1,9 @@
 package com.himedia.project_1.dao;
 
 
+import com.himedia.project_1.dto.Paging;
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.QnaVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,4 +24,11 @@ public interface IProductDao {
 
     ProductVo getProductById(int cseq);
 
+    String[] getClassTime(int cseq);
+
+    void insertReservation(String userid, int cseq, String classday, int classtime,int people);
+
+    int getAllCount(String key);
+
+    List<ProductVo> getSearchList(String key, Paging paging);
 }
