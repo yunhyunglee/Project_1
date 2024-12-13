@@ -16,6 +16,5 @@ public interface IReservationDao {
     List<ReservationVo> findCancelledReservation();
     void deleteReservation(int reseq);
 
-//
     List<ReservationVo> getReservations(int userId);
 }

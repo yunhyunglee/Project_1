@@ -15,7 +15,6 @@
         WHERE r.user_id = #{userId}
     </select>
 
-
     <select id="findAllReservation" resultType="com.himedia.project_1.dto.ReservationVo">
         SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
                p.title
