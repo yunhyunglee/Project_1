@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 <section>
-    <h4>추천 상품</h4>
+    <h4>검색결과</h4>
     <div class="categoryproducts">
-        <c:if test="${not empty categoryProduct}">
-            <c:forEach items="${categoryProduct}" var="productVo">
+        <c:if test="${not empty SearchProduct}">
+            <c:forEach items="${SearchProduct}" var="productVo">
                 <div class="categoryitem" onclick="location.href='/productDetail?id=${productVo.cseq}'">
                     <div class="image-wrapper">
                         <img src="/images/${productVo.image}" alt="${productVo.title}" />
@@ -17,7 +17,7 @@
                 </div>
             </c:forEach>
         </c:if>
-        <c:if test="${empty categoryProduct}">
+        <c:if test="${empty SearchProduct}">
             <div>현재 표시할 상품이 없습니다.</div>
         </c:if>
     </div>
