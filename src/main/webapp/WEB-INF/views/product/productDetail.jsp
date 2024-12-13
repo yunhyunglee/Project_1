@@ -45,25 +45,47 @@
     <div class="popup-content option-popup-content">
 
         <h3>상품 옵션 선택</h3>
-        <form id="productOptionsForm">
-            <label for="option1">옵션 1</label>
-            <select id="option1" name="option1" required>
-                <option value="">옵션을 선택하세요</option>
-                <option value="optionA">옵션 A</option>
-                <option value="optionB">옵션 B</option>
+        <form id="productOptionsForm" action="insertReservation" method="post">
+            <input type="hidden" name="payment" id="payment" value="" />
+            <input type="hidden" name="cseq" value="${productVo.cseq}" />
+            <label for="option1">날짜</label>
+            <select name="option1" id="option1">
+                <option value="">월</option>
+                <c:forEach begin="1" end="12" var="month">
+                    <option name="month" value="${month}">${month}월</option>
+                </c:forEach>
+            </select>
+            <select name="option12" id="option12">
+                <option value="">일</option>
+                <c:forEach begin="1" end="31" var="day">
+                    <option name="day" value="${day}">${day}일</option>
+                </c:forEach>
             </select>
 
-            <label for="option2">옵션 2</label>
+            <label for="option2">시간</label>
             <select id="option2" name="option2">
                 <option value="">옵션을 선택하세요</option>
+                <c:forEach items="${classTime}" var="time" varStatus="status">
+                        <c:choose>
+                            <c:when test="${dto.classtime ==status.count}">
+                                <option value="${status.count}" selected>${time}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option name="time" value="${status.count}">${time}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
                 <option value="optionC">옵션 C</option>
                 <option value="optionD">옵션 D</option>
             </select>
 
+            <label for="option3">신청인원</label>
+            <input type="number" name="people" id="option3" value="1" min="1" required>
+
             <button type="submit" class="submit-btn">확인</button>
         </form>
 
-        <button class="close-btn option-close-btn" onclick="closeProductOptionsPopup()">닫기</button>
+        <button class="close-btn option-close-btn">닫기</button>
     </div>
 </div>
 

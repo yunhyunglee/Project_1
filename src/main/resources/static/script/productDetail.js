@@ -214,6 +214,10 @@ function toggleDescription() {
     description.classList.toggle("show");
     button.classList.toggle("active");
 
+    description.classList.toggle("show"); // 내용을 펼치거나 접음
+    button.classList.toggle("active"); // 아이콘 전환
+
+    // 아이콘 변경
     if (description.classList.contains("show")) {
         icon.classList.remove("fi-rr-angle-down");
         icon.classList.add("fi-rr-angle-up");
@@ -233,7 +237,7 @@ function toggleContactForm() {
     }
 }
 
-function closeContactForm() {
+function    closeContactForm() {
     const popup = document.getElementById('contactFormPopup');
     if (popup) {
         popup.classList.remove('active');
@@ -262,14 +266,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const form = document.getElementById('productOptionsForm');
-    if (form) {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            alert('선택한 옵션이 제출되었습니다.');
-            popup.style.display = 'none';
-        });
-    }
+    // 폼 제출 이벤트 처리
+    // const form = document.getElementById('productOptionsForm');
+    // if (form) {
+    //     form.addEventListener('submit', function (event) {
+    //         event.preventDefault(); // 기본 제출 방지
+    //         alert('선택한 옵션이 제출되었습니다.');
+    //         popup.style.display = 'none'; // 팝업 닫기
+    //     });
+    // }
+    // const submitBtn = document.querySelector('.submit-btn');
+    // if (submitBtn) {
+    //     closeBtn.addEventListener('click', function () {
+    //         popup.style.display = 'none';
+    //     });
+    // }
+
 
     document.querySelector(".toggle-description")?.addEventListener("click", toggleDescription);
     document.querySelector(".toggle-title")?.addEventListener("click", togglePolicy);

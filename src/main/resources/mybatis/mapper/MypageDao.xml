@@ -29,7 +29,7 @@
         select max(cseq) from product where id=#{id}
     </select>
     <insert id="insertNewProductTime" parameterType="com.himedia.project_1.dto.ReservationVo">
-        insert into reservation(cseq, classtime,payment,endedclass) values (#{cseq},#{param2},'','Y')
+        insert into reservation(cseq, people, classtime,payment,endedclass) values (#{cseq},0,#{param2},'','Y')
     </insert>
     <select id="selectProductbycseq" resultType="com.himedia.project_1.dto.ProductVo">
         select*from product where cseq=#{cseq}
