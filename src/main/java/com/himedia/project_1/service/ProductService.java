@@ -91,6 +91,7 @@ public class ProductService {
 
         Paging paging = new Paging();
         paging.setPage(page);
+        paging.setDisplayRow(12);
         int count = pdao.getAllCount(key);
         paging.setTotalCount(count);
         paging.calPaging();
