@@ -7,7 +7,7 @@
             <c:forEach items="${categoryProduct}" var="productVo">
                 <div class="categoryitem" onclick="location.href='/productDetail?id=${productVo.cseq}'">
                     <div class="image-wrapper">
-                        <img src="/images/${productVo.image}" alt="${productVo.title}" />
+                        <img src="/product_images/${productVo.image}" alt="${productVo.title}" />
                     </div>
                     <div class="address">${productVo.address1}</div>
                     <div class="title">${productVo.title}</div>
