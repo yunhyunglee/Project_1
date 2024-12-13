@@ -17,4 +17,5 @@ public interface IReservationDao {
     void deleteReservation(int reseq);
 
 
+    List<ReservationVo> getReservations(int userId);
 }
