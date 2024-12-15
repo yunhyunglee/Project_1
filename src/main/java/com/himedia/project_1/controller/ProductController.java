@@ -89,19 +89,17 @@ public class ProductController {
     }
     @PostMapping("insertReservation")
     public String insertReservation(@ModelAttribute("dto") ReservationVo reservationvo, HttpSession session,
-                                    @RequestParam("option1")String month, @RequestParam("option12")String day, @RequestParam("option2") String time,
+                                    @RequestParam("selectedday")String day, @RequestParam("option2") String time,
                                     @RequestParam("people")int people, @RequestParam("cseq")int cseq) {
-        System.out.println("month: " + month);
-        System.out.println("day: " + day);
-        System.out.println("time: " + time);
+
         UserVo loginUser = (UserVo) session.getAttribute("loginUser");
-        String classdaystr="2024-"+month+"-"+day;
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date classday = null;
         Time time1=null;
         try {
             time1=Time.valueOf(time);
-            classday= sdf.parse(classdaystr);
+            classday= sdf.parse(day);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
