@@ -28,7 +28,174 @@
             </div>
         </div>
     </section>
+    <div class="calendar-container">
+        <style>
+            .calendar-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
 
+            .calendar {
+                width: 320px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .calendar-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: #007bff;
+                color: #fff;
+                padding: 10px 15px;
+            }
+            .calendar-header button {
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                cursor: pointer;
+            }
+            .calendar-header button:hover {
+                opacity: 0.8;
+            }
+            .calendar-header span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .calendar-days {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                background: #f9f9f9;
+                padding: 10px 0;
+            }
+            .calendar-days div {
+                text-align: center;
+                font-weight: bold;
+            }
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                padding: 10px;
+            }
+            .calendar-grid div {
+                text-align: center;
+                padding: 10px;
+                margin: 2px;
+                border-radius: 5px;
+            }
+            .calendar-grid div.today {
+                background: #007bff;
+                color: #fff;
+            }
+            .calendar-grid div:hover {
+                background: #f0f0f0;
+                cursor: pointer;
+            }
+            .calendar-grid div.before{
+                background: gray;
+                color: #fff;
+            }
+        </style>
+        <div class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">&#9664;</button>
+                <span id="month-year"></span>
+                <button id="next-month">&#9654;</button>
+            </div>
+            <div class="calendar-days">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+
+            <div id="selectedday"></div>
+        </div>
+
+        <script>
+            const calendarGrid = document.getElementById('calendar-grid');
+            const monthYear = document.getElementById('month-year');
+            const prevMonthBtn = document.getElementById('prev-month');
+            const nextMonthBtn = document.getElementById('next-month');
+
+            const today = new Date();
+            let currentMonth = today.getMonth();
+            let currentYear = today.getFullYear();
+
+            function renderCalendar(month, year) {
+                const monthNames = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+
+                monthYear.textContent = monthNames[month] + ' ' + year;
+                calendarGrid.innerHTML = '';
+
+
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyCell = document.createElement('div');
+                    calendarGrid.appendChild(emptyCell);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayCell = document.createElement('div');
+                    dayCell.classList.add('daycell');
+                    dayCell.textContent = day;
+                    if (
+                        day === today.getDate() &&
+                        month === today.getMonth() &&
+                        year === today.getFullYear()
+                    ) {
+                        dayCell.classList.add('today');
+                    }else if(new Date(year, month, day) < today){
+                        dayCell.classList.add('before');
+                        dayCell.classList.remove('daycell');
+                    }
+
+                    calendarGrid.appendChild(dayCell);
+                }
+            }
+
+            prevMonthBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            document.addEventListener('DOMContentLoaded', () => {
+
+                renderCalendar(currentMonth, currentYear);
+                $('.calendar-grid').on('click','.daycell',function(){
+                    $('#selectedday').text(currentYear+"-"+(currentMonth+1)+"-"+$(this).text());
+                });
+            });
+        </script>
+    </div>
     <!-- 클래스 소개 및 주요 정보 -->
     <section class="product-info-section">
         <div class="item">
