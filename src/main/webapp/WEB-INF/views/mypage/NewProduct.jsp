@@ -56,6 +56,15 @@
                 checkboxesContainer.style.display = 'none';
             }
         });
+
+        const submitButton = document.getElementById('submitButton');
+        submitButton.addEventListener('click', () => {
+            if(!($('input[name="selectedTime"]:checked').length > 0)){
+                alert("시간대를 하나이상 선택해야 합니다.");
+            }else {
+                document.insertNewProduct.submit();
+            }
+        });
     });
 
 </script>
@@ -147,8 +156,8 @@
         <div class="dropdown-container">
             <input id="dropdownButton" type="button" value="Choose times"/>
             <div id="checkboxContainer" class="dropdown-checkboxes">
-                <label><input type="checkbox" name="selectedTime" value="00:00"> 00:00</label><br>
-                <label><input type="checkbox" name="selectedTime" value="01:00"> 01:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="00:00"> 00:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="01:00"> 01:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="02:00"> 02:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="03:00"> 03:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="04:00"> 04:00</label><br>
@@ -156,14 +165,14 @@
                 <label><input type="checkbox" name="selectedTime"  value="06:00"> 06:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="07:00"> 07:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="08:00"> 08:00</label><br>
-                <label><input type="checkbox"  name="selectedTime" value="09:00"> 09:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="09:00"> 09:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="10:00"> 10:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="11:00"> 11:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="12:00"> 12:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="13:00"> 13:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="14:00"> 14:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="15:00"> 15:00</label><br>
-                <label><input type="checkbox"  name="selectedTime" value="16:00"> 16:00</label><br>
+                <label><input type="checkbox" name="selectedTime"  value="16:00"> 16:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="17:00"> 17:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="18:00"> 18:00</label><br>
                 <label><input type="checkbox" name="selectedTime"  value="19:00"> 19:00</label><br>
@@ -188,12 +197,13 @@
     <div>${message}</div>
 
     <div>
-        <input type="submit" value="새 클래스 등록" >
+        <input type="button" value="새 클래스 등록" id="submitButton">
         <input type="button" onclick="history.back()" value="되돌아가기">
     </div>
 
 </form>
 <div style="position:relative; border:1px solid black; width:500px; margin:0 auto;">
+    <div id="filename"></div>
     <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
         <input type="file" name="fileimage" />
         <input type="button" id="imageAddBtn" value="추가">
