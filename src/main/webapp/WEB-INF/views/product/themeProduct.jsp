@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 <section>
-    <h4>추천 상품</h4>
+    <h4>테마 추천 상품</h4> <!-- 테마 전용 -->
     <div class="categoryproducts">
         <c:if test="${not empty categoryProduct}">
             <c:forEach items="${categoryProduct}" var="productVo">
-                         <div class="categoryitem" onclick="location.href='/productDetail?id=${productVo.cseq}'">
+                <div class="categoryitem" onclick="location.href='/productDetail?id=${productVo.cseq}'">
                     <div class="image-wrapper">
                         <img src="/images/${productVo.image}" alt="${productVo.title}" />
                     </div>
@@ -22,6 +22,4 @@
         </c:if>
     </div>
 </section>
-
-
 <%@ include file="../footer.jsp" %>

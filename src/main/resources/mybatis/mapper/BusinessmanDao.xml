@@ -21,9 +21,26 @@
         SELECT * FROM businessman WHERE id = #{id}
     </select>
 
+
+
     <delete id="deleteBusinessman">
         DELETE FROM businessman WHERE id = #{id}
     </delete>
+
+    <!-- 사업자와 상품 정보 조인 -->
+    <select id="fetchBusinessWithProducts" resultType="map">
+        SELECT
+            b.id AS id,        -- BusinessmanVo의 필드와 일치
+            b.name AS name,
+            b.phone AS phone,
+            b.email AS email,
+            p.cseq AS product_id,  -- ProductVo에 있는 필드를 식별 가능하게 추가
+            p.title AS product_title,
+            p.price AS product_price
+        FROM businessman b
+                 LEFT JOIN product p ON b.id = p.id
+        ORDER BY b.id
+    </select>
 
 
 

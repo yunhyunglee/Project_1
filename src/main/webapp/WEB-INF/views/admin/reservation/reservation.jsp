@@ -7,7 +7,7 @@
 <h2>예약 관리</h2>
 
 <input type="text" id="searchInput" placeholder="검색하려는 예약정보를 입력해주세요."
-       onkeyup="searchReservations()" style="width:30%;"/>
+       onkeyup="searchReservations()" style="width:40%;"/>
 
 
 <!-- 필터 버튼 -->

@@ -73,10 +73,19 @@
                         </a>
                     </c:otherwise>
                 </c:choose>
-                <a href="#" class="nav-item">
-                    <i class="fi fi-rr-list"></i>
-                    <span class="label">categories</span>
-                </a>
+                      <a href="#" class="nav-item categories">
+                            <i class="fi fi-rr-list"></i>
+                            <span class="label">categories</span>
+                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="category?category=1">베이킹</a></li>
+                            <li><a href="category?category=2">공 예</a></li>
+                            <li><a href="category?category=3">요 리</a></li>
+                            <li><a href="category?category=4">스포츠</a></li>
+                            <li><a href="category?category=5">뷰 티</a></li>
+
+                        </ul>
+
                 <a href="#" class="nav-item">
                     <i class="fi fi-rr-heart"></i>
                     <span class="label">wishlist</span>

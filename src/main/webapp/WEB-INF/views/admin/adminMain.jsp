@@ -32,10 +32,16 @@
     <script src="/script/admin-user.js"></script>
     <script src="/script/admin-business.js"></script>
     <script src="/script/admin-reservation.js"></script>
+    <script src="/script/admin-product.js"></script>
 
 </head>
 <body>
 
+<div class="admin">
+    <h2>관리자 :  ${adminName}님 안녕하세요!</h2>
+</div>
+
+<button class="logout-btn" onclick="adminLogout()">로그아웃</button>
 
 <nav>
     <button class="section-btn" data-section="qna">QnA 관리</button>
@@ -44,8 +50,11 @@
     <button class="section-btn" data-section="banner">배너 관리</button>
     <button class="section-btn" data-section="notice">공지사항 관리</button>
     <button class="section-btn" data-section="reservation">예약 관리</button>
-    <button class="logout-btn" onclick="adminLogout()">로그아웃</button>
+    <button class="section-btn" data-section="product">클래스 관리</button>
 </nav>
+
+
+
 
 <main id="section-content">
     <div class="welcome">
