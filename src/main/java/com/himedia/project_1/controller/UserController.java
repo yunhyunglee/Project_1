@@ -158,7 +158,7 @@ public class UserController {
     @GetMapping("/kakaoLogin")
     public String kakaoLogin(HttpServletRequest request, Model model) throws IOException {
         String code = request.getParameter("code");
-
+        HttpSession session = request.getSession();
 
         // Step 1: Access Token 요청
         String endpoint = "https://kauth.kakao.com/oauth/token";
@@ -204,19 +204,39 @@ public class UserController {
         KakaoProfile kakaoProfile = gson.fromJson(sb.toString(), KakaoProfile.class);
 
         // Step 3: 사용자 DB 확인
-        UserVo uvo = us.getMember(kakaoProfile.getId());
-        if (uvo == null) {
-            // 신규 사용자: 비밀번호 입력 페이지로 이동
-            model.addAttribute("kakaoId", kakaoProfile.getId());
-            model.addAttribute("email", kakaoProfile.getAccount().getEmail());
-            model.addAttribute("name", kakaoProfile.getAccount().getProfile().getNickname());
-            return "member/kakao"; // 비밀번호 입력 페이지
-        }
-
         // 기존 사용자: 로그인 처리
-        HttpSession session = request.getSession();
-        session.setAttribute("loginUser", uvo);
-        return "redirect:/";
+        String usertype= (String) session.getAttribute("usertype");
+        if(usertype.equals("1")){
+            UserVo uvo = us.getMember(kakaoProfile.getId());
+            if (uvo == null) {
+                // 신규 사용자: 비밀번호 입력 페이지로 이동
+                model.addAttribute("kakaoId", kakaoProfile.getId());
+                model.addAttribute("email", kakaoProfile.getAccount().getEmail());
+                model.addAttribute("name", kakaoProfile.getAccount().getProfile().getNickname());
+                return "member/kakao"; // 비밀번호 입력 페이지
+            }
+            session.setAttribute("loginUser", uvo);
+            return "redirect:/";
+        }else {
+            BusinessmanVo uvo = us.getBusinessman(kakaoProfile.getId());
+            if (uvo == null) {
+                // 신규 사용자: 비밀번호 입력 페이지로 이동
+                model.addAttribute("kakaoId", kakaoProfile.getId());
+                model.addAttribute("email", kakaoProfile.getAccount().getEmail());
+                model.addAttribute("name", kakaoProfile.getAccount().getProfile().getNickname());
+                return "member/kakao"; // 비밀번호 입력 페이지
+            }
+            session.setAttribute("loginUser", uvo);
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("kakaoLoginSession")
+    @ResponseBody
+    public String kakaoLoginSession(@RequestParam("usertype")String usertype, HttpSession session) {
+        session.setAttribute("usertype", usertype);
+        System.out.println("2");
+        return "success";
     }
 
     @PostMapping("/kakaoJoin")
@@ -225,18 +245,26 @@ public class UserController {
                             @RequestParam("email") String email,
                             @RequestParam("name") String name,
                             HttpSession session) {
-        UserVo newUser = new UserVo();
-        newUser.setId(kakaoId);
-        newUser.setPwd(pwd); // 비밀번호 암호화 필요 시 추가 처리
-        newUser.setEmail(email);
-        newUser.setName(name);
-
-        us.InsertUser(newUser);
-        session.setAttribute("loginUser", newUser);
-
+        String usertype = (String) session.getAttribute("usertype");
+        if(usertype.equals("1")){
+            UserVo newUser = new UserVo();
+            newUser.setId(kakaoId);
+            newUser.setPwd(pwd); // 비밀번호 암호화 필요 시 추가 처리
+            newUser.setEmail(email);
+            newUser.setName(name);
+            us.InsertUser(newUser);
+            session.setAttribute("loginUser", newUser);
+        }else{
+            BusinessmanVo newUser = new BusinessmanVo();
+            newUser.setId(kakaoId);
+            newUser.setPwd(pwd);
+            newUser.setEmail(email);
+            newUser.setName(name);
+            us.InsertBusinessman(newUser);
+            session.setAttribute("loginUser", newUser);
+        }
         return "redirect:/";
     }
-
 
 
     @GetMapping("logout")
