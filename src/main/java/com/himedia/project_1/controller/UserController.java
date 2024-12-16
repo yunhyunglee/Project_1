@@ -240,7 +240,7 @@ public class UserController {
     @GetMapping("logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginUser");
-        return "redirect:/";
+        return "redirect:/loginForm";
     }
     @GetMapping("mypage")
     public String mypage(HttpSession session,Model model) {
