@@ -19,7 +19,7 @@
 <section>
 
     <article>
-        <div class="item" >
+        <div class="class-item" >
             <div onclick="location.href='NewProduct'">새 클래스 만들기</div>
         <c:forEach items="${MyClass}" var="myclass">
             <div>

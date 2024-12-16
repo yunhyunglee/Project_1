@@ -23,13 +23,16 @@
 
 <div id="menu">
 	<a href="category?category=1">
-		<img src="http://placehold.co/90">
+<%--		<img src="http://placehold.co/90">--%>
+        <img src="images/christmas-tree.gif">
 	</a>
 	<a href="category?category=2">
-		<img src="http://placehold.co/90">
+<%--		<img src="http://placehold.co/90">--%>
+        <img src="images/male.gif">
 	</a>
 	<a href="category?category=3">
-		<img src="http://placehold.co/90">
+<%--		<img src="http://placehold.co/90">--%>
+        <img src="images/family.gif">
 	</a>
 </div>
 
@@ -46,8 +49,10 @@
                         <div class="item">
                             <a href="/productDetail?id=${product.cseq}">
 <%--                                <!-- 이미지가 없는 경우 기본 이미지 출력 -->--%>
-                                <img src="/images/product/${empty product.image ? 'placeholder.jpg' : product.image}"
-                                     alt="${product.title}" />
+<%--                                <img src="/images/product/${empty product.image ? 'placeholder.jpg' : product.image}"--%>
+<%--                                     alt="${product.title}" />--%>
+<%--                                <img src="webapp/product_images/${productVo.image}" alt="${productVo.title}" />--%>
+                                    <img src="/product_images/${productVo.savefilename}" alt="${productVo.title}" />
                                 <p>${product.title}</p>
                                 <p>${product.price}원</p>
                             </a>
@@ -80,7 +85,7 @@
                         <div class="item">
                             <a href="/productDetail?id=${product.cseq}">
 <%--                                <!-- 이미지가 없는 경우 기본 이미지 출력 -->--%>
-                                <img src="/images/product/${empty product.image ? 'placeholder.jpg' : product.image}"
+                                    <img src="/images/product/${product.image}" alt="${productVo.title}" />
                                      alt="${product.title}" />
                                 <p>${product.title}</p>
                                 <p>${product.price}원</p>

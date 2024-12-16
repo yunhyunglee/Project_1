@@ -75,4 +75,8 @@ public class MyPageService {
     public List<ZzimVo> getZzimList(String  userId) {
         return zdao.getZzimList(userId);
     }
+
+    public void deleteReviewById(int id) {
+        mdao.deleteReview(id);
+    }
 }

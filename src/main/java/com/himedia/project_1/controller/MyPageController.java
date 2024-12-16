@@ -7,6 +7,8 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -220,5 +222,19 @@ public class MyPageController {
         mav.setViewName("mypage/ZZim");
         return mav;
     }
+
+    @PostMapping("/review/delete")
+    @ResponseBody
+    public String deleteReview(@RequestParam("id") int id) {
+        try {
+            ms.deleteReviewById(id); // 서비스 호출로 리뷰 삭제
+            return "success"; // 성공 메시지 반환
+        } catch (Exception e) {
+            e.printStackTrace(); // 예외 상세 로그 출력
+            return "error"; // 실패 메시지 반환
+        }
+    }
+
+
 
 }

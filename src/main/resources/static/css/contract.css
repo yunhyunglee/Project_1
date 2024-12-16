@@ -130,9 +130,9 @@
 
 /* 선택된 상태 */
 .option.member-type input[type="radio"]:checked + label {
-    background-color: #007bff; /* 선택 시 파란색 */
+    background-color: #19A7CE; /* 선택 시 파란색 */
     color: #fff; /* 텍스트 흰색 */
-    border-color: #0056b3;
+    border-color: #146C94;
 }
 /* Next 버튼 스타일 */
 .button-group {
@@ -151,12 +151,12 @@
 }
 
 .next-btn {
-    background-color: #007bff;
+    background-color: #19A7CE;
     display: inline-block; /* 중앙 정렬 */
 }
 
 .next-btn:hover {
-    background-color: #0056b3;
+    background-color: #146C94;
 }
 
 /* 반응형 디자인 */

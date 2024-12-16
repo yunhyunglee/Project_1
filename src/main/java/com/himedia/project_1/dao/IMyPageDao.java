@@ -36,4 +36,6 @@ public interface IMyPageDao {
     void deleteProduct(int cseq);
 
     void clearpay(int cseq);
+
+    void deleteReview(int id);
 }

@@ -17,6 +17,7 @@
     <script src="/script/customer.js"></script>
 
     <link rel="stylesheet" href="/css/header_footer.css" />
+    <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/product.css" />
     <link rel="stylesheet" href="/css/section.css" />
@@ -24,7 +25,9 @@
     <link rel="stylesheet" href="/css/join.css" />
     <link rel="stylesheet" href="/css/sidebar.css" />
     <link rel="stylesheet" href="/css/myPage.css" />
+    <link rel="stylesheet" href="/css/MyPage/mypage-review.css" />
     <link rel="stylesheet" href="/css/category.css" />
+    <link rel="stylesheet" href="/css/customer_main.css" />
     <script src="script/productDetail.js"></script>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
@@ -41,7 +44,7 @@
         <header>
             <div id="logo">
                 <a href="/">
-                    <img src="http://placehold.co/180x100" alt="로고">
+                    <img src="images/logo/classpick-logo-F8FAFC.png" alt="로고">
                 </a>
             </div>
             <div class="search-bar">
@@ -86,3 +89,4 @@
             </nav>
 
         </header>
+        <main>
