@@ -56,7 +56,7 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        background: #007bff;
+                        background: #19A7CE;
                         color: #fff;
                         padding: 10px 15px;
                     }
@@ -96,7 +96,7 @@
                         border-radius: 5px;
                     }
                     .calendar-grid div.today {
-                        background: #007bff;
+                        background: #19A7CE;
                         color: #fff;
                     }
                     .calendar-grid div:hover {

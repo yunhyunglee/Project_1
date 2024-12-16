@@ -26,7 +26,7 @@
 .cus-search-bar button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #19A7CE;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -34,7 +34,7 @@
 }
 
 .cus-search-bar button:hover {
-    background-color: #0056b3;
+    background-color: #146C94;
 }
 
 .keyword {
@@ -48,7 +48,7 @@
 
 .keyword a {
     margin-right: 10px;
-    color: #007bff;
+    color: #19A7CE;
     text-decoration: none;
 }
 
@@ -81,16 +81,6 @@
     font-size: 18px;
 }
 
-/*.question-bar .arrow {*/
-/*    font-size: 18px;*/
-/*    transform: rotate(0);*/
-/*    transition: transform 0.3s;*/
-/*}*/
-
-/*.question-bar.open .arrow {*/
-/*    transform: rotate(180deg);*/
-/*}*/
-
 /* 고유 화살표 스타일 */
 .faq-arrow {
     font-size: 18px;
@@ -120,7 +110,7 @@
 
 .question-list a {
     text-decoration: none;
-    color: #007bff;
+    color: #19A7CE;
 }
 
 .question-list a:hover {

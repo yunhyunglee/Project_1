@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sidebar">
   <!-- 회원정보 섹션 -->
   <div class="section">
     <h3>회원 정보</h3>
     <ul>
       <li>
-        <a href="updateUserForm" class="${pageContext.request.requestURI.contains('updateUserForm') ? 'active' : ''}">
+        <a href="updatecheck" class="${pageContext.request.requestURI.contains('updateUserForm') ? 'active' : ''}">
           회원정보 수정
         </a>
       </li>

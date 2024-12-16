@@ -78,10 +78,10 @@ public class UserController {
         else if (result.getFieldError("phone") != null)
             model.addAttribute("message", "전화번호를 입력하세요");
         else if (!uservo.getId().equals(reid))
-            model.addAttribute("message", "아이디 중복검사하세요");
+            model.addAttribute("message", "아이디 중복검사를 진행하세요");
         else if (uservo.getPwd().equals(pwdchk)) {
             us.InsertUser(uservo);
-            model.addAttribute("message", "가입 완료");
+            model.addAttribute("message", "회원가입이 완료되었습니다. 로그인 해주세요.");
             url = "member/loginForm";
         }
         return url;
@@ -102,10 +102,10 @@ public class UserController {
         else if (result.getFieldError("phone") != null)
             model.addAttribute("message", "전화번호를 입력하세요");
         else if (!businessmanvo.getId().equals(reid))
-            model.addAttribute("message", "아이디 중복검사하세요");
+            model.addAttribute("message", "아이디 중복검사를 진행하세요");
         else if (businessmanvo.getPwd().equals(pwdchk)) {
             us.InsertBusinessman(businessmanvo);
-            model.addAttribute("message", "가입 완료");
+            model.addAttribute("message", "회원가입이 완료되었습니다.");
             url = "member/loginForm";
         }
         return url;
@@ -124,14 +124,14 @@ public class UserController {
             model.addAttribute("message", "아이디를 입력하세요");
             System.out.println("오류");
         } else if (result.getFieldError("pwd") != null)
-            model.addAttribute("message", "패스워드를 입력하세요");
+            model.addAttribute("message", "비밀번호를 입력하세요");
         else {
             if(usertype.equals("1")){
                 UserVo uvo = us.getMember(uservo.getId());
                 if (uvo == null)
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (!uvo.getPwd().equals(uservo.getPwd()))
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (uvo.getPwd().equals(uservo.getPwd())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser", uvo);
@@ -140,9 +140,9 @@ public class UserController {
             }else if (usertype.equals("2")){
                     BusinessmanVo bvo = us.getBusinessman(uservo.getId());
                 if (bvo == null)
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (!bvo.getPwd().equals(uservo.getPwd()))
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (bvo.getPwd().equals(uservo.getPwd())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser", bvo);
@@ -248,9 +248,9 @@ public class UserController {
         if (loginUser == null) {
             return "redirect:/loginForm";
         }else if(loginUser instanceof UserVo) {
-            model.addAttribute("user", "1");
+            session.setAttribute("user", "1");
         }else if(loginUser instanceof BusinessmanVo) {
-            model.addAttribute("user", "2");
+            session.setAttribute("user", "2");
         }
         return "mypage/MyPage";
 
@@ -304,7 +304,7 @@ public class UserController {
         if (result.getFieldError("pwd") != null)
             model.addAttribute("message", "비밀번호를 입력하세요");
         else if (!uservo.getPwd().equals(pwdchk))
-            model.addAttribute("message", "비밀번호체크를 확인하세요");
+            model.addAttribute("message", "비밀번호가 일치하지 않습니다");
         else if (result.getFieldError("name") != null)
             model.addAttribute("message", "이름을 입력하세요");
         else if (result.getFieldError("email") != null)
@@ -325,7 +325,7 @@ public class UserController {
         if (result.getFieldError("pwd") != null)
             model.addAttribute("message", "비밀번호를 입력하세요");
         else if (!uservo.getPwd().equals(pwdchk))
-            model.addAttribute("message", "비밀번호체크를 확인하세요");
+            model.addAttribute("message", "비밀번호가 일치하지 않습니다");
         else if (result.getFieldError("name") != null)
             model.addAttribute("message", "이름을 입력하세요");
         else if (result.getFieldError("email") != null)

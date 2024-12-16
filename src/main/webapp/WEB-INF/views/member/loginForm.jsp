@@ -28,6 +28,9 @@
                     <%--                    <input type="button" value="회원가입" onclick="location.href='joinform'">--%>
                     <%--                    <input type="button" value="아이디 찾기" onclick="">--%>
                 </div>
+
+                <div class="divider"></div>
+
                 <div class="kakao-login">
                     <button type="button" class="kakao-btn"
                             onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=f67ebc2de23039bbce25c7d2583abd81&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
