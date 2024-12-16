@@ -71,7 +71,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background-color: #146C94;
+    background-color: #19A7CE;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -80,7 +80,8 @@
 
 .mypage-form input[type="submit"]:hover,
 .mypage-form input[type="button"]:hover {
-    background-color: #0056b3;
+    /*background-color: #0056b3;*/
+    background-color: #146C94;
 }
 
 .mypage-form input[type="button"] {
@@ -91,110 +92,6 @@
     background-color: #5a6268;
 }
 
-/*!* 전체 컨테이너 *!*/
-/*.mypage-zzim-container {*/
-/*    display: flex;*/
-/*}*/
-
-/*!* 본문 영역 *!*/
-/*.mypage-zzim-content {*/
-/*    flex: 1;*/
-/*    padding: 20px;*/
-/*    background-color: #f9f9f9;*/
-/*}*/
-
-/*.mypage-zzim-content h2 {*/
-/*    font-size: 24px;*/
-/*    font-weight: bold;*/
-/*    margin-bottom: 20px;*/
-/*    text-align: center;*/
-/*}*/
-
-/*!* 찜 목록 아이템 컨테이너 *!*/
-/*.mypage-zzim-items {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    gap: 20px;*/
-/*    justify-content: center;*/
-/*}*/
-
-/*!* 개별 찜 아이템 *!*/
-/*.mypage-zzim-item {*/
-/*    width: 200px;*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 8px;*/
-/*    background-color: #ffffff;*/
-/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
-/*    overflow: hidden;*/
-/*    position: relative;*/
-/*    text-align: center;*/
-/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
-/*}*/
-
-/*.mypage-zzim-item:hover {*/
-/*    transform: translateY(-5px);*/
-/*    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);*/
-/*}*/
-
-/*!* 이미지 스타일 *!*/
-/*.zzim-image img {*/
-/*    width: 100%;*/
-/*    height: 150px;*/
-/*    object-fit: cover;*/
-/*    display: block;*/
-/*}*/
-
-/*!* 정보 섹션 *!*/
-/*.zzim-info {*/
-/*    padding: 15px;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.zzim-info p {*/
-/*    font-size: 16px;*/
-/*    font-weight: bold;*/
-/*    margin: 10px 0;*/
-/*    color: #333;*/
-/*}*/
-
-/*.zzim-info span {*/
-/*    font-size: 14px;*/
-/*    color: #888;*/
-/*}*/
-
-/*!* 찜 버튼 *!*/
-/*.wishlist-btn {*/
-/*    position: absolute;*/
-/*    top: 10px;*/
-/*    right: 10px;*/
-/*    background: none;*/
-/*    border: none;*/
-/*    cursor: pointer;*/
-/*    font-size: 1.5rem;*/
-/*    color: #ff4d4f; !* 빨간색 아이콘 *!*/
-/*    transition: transform 0.2s ease, color 0.2s ease;*/
-/*}*/
-
-/*.wishlist-btn:hover {*/
-/*    color: #d63031;*/
-/*    transform: scale(1.2);*/
-/*}*/
-
-/*.wishlist-btn i {*/
-/*    pointer-events: none; !* 아이콘에 직접 클릭 이벤트를 막음 *!*/
-/*}*/
-
-/*!* 반응형 스타일 *!*/
-/*@media (max-width: 768px) {*/
-/*    .mypage-zzim-items {*/
-/*        flex-direction: column;*/
-/*        align-items: center;*/
-/*    }*/
-
-/*    .mypage-zzim-item {*/
-/*        width: 90%;*/
-/*    }*/
-/*}*/
 .mypage-zzim-container {
     display: flex;
     gap: 20px; /* 사이드바와 본문 간 간격 */
@@ -236,18 +133,6 @@
     width: 100%;
 }
 
-/*.mypage-zzim-item {*/
-/*    width: 100%;*/
-/*    max-width: 200px; !* 아이템 최대 너비 *!*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 8px;*/
-/*    background-color: #ffffff;*/
-/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
-/*    overflow: hidden;*/
-/*    position: relative;*/
-/*    text-align: center;*/
-/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
-/*}*/
 .mypage-zzim-items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 한 줄에 최대 4개 */
@@ -389,7 +274,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #007bff;
+    color: #19A7CE;
 }
 
 .reservation-content p {
@@ -434,38 +319,3 @@
         width: 90%;
     }
 }
-
-/*!* 모달 스타일 *!*/
-/*.modal {*/
-/*    display: none;*/
-/*    position: fixed;*/
-/*    z-index: 1000;*/
-/*    left: 0;*/
-/*    top: 0;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    overflow: auto;*/
-/*    background-color: rgba(0, 0, 0, 0.5);*/
-/*}*/
-
-/*.modal-content {*/
-/*    background-color: #fff;*/
-/*    margin: 15% auto;*/
-/*    padding: 20px;*/
-/*    border-radius: 8px;*/
-/*    width: 300px;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.modal-buttons button {*/
-/*    margin: 10px;*/
-/*    padding: 10px 20px;*/
-/*    border: none;*/
-/*    border-radius: 4px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.modal-buttons button:hover {*/
-/*    background-color: #ddd;*/
-/*}*/
-
