@@ -260,7 +260,7 @@
                         var geocoder = new kakao.maps.services.Geocoder();
 
                         // 주소로 좌표를 검색합니다
-                        geocoder.addressSearch('${productVo.address1} ${productVo.address2} ${productVo.address3}', function(result, status) {
+                        geocoder.addressSearch('${productVo.address1} ${productVo.address3}', function(result, status) {
 
                             // 정상적으로 검색이 완료됐으면
                             if (status === kakao.maps.services.Status.OK) {
