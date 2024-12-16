@@ -103,6 +103,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
     });
+    const selectOption = document.getElementById('option2');
+    selectOption.addEventListener('change', function () {
+        const time = this.value;
+        const day =$('#selectedday').val();
+        $.ajax({
+            url: "able-capacity",
+            data: {
+                day : day,
+                time : time
+            },
+            method: "get",
+            success: function (result) {
+                $('#able-people').text(result+"/"+$('#able-people').data('max'));
+            },
+            error: function () {}
+        });
+    });
 
     // 폼 제출 이벤트 처리
     // const form = document.getElementById('productOptionsForm');
