@@ -100,6 +100,7 @@ public class ProductService {
 
 
     public void insertReservation(String id, int cseq, Date classday, Time time, int people) {
+
         pdao.insertReservation(id,cseq,classday,time,people);
     }
 
@@ -142,6 +143,12 @@ public class ProductService {
         map.put("key",key);
         return map;
 
+    }
+
+
+    public String calAbleCapacity(Date classday, Time time1) {
+        System.out.println( pdao.calAbleCapacity(classday,time1));
+        return pdao.calAbleCapacity(classday,time1);
     }
 
 }

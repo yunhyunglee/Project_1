@@ -118,6 +118,25 @@ public class ProductController {
         mav.addObject("key", map.get("key"));
         return mav;
     }
+    @GetMapping("able-capacity")
+    @ResponseBody
+    public String ableCapacity(@RequestParam("day")String day, @RequestParam("time") String time, Model model) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date classday = null;
+        Time time1=null;
+        try {
+            time1=Time.valueOf(time);
+            classday= sdf.parse(day);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(classday);
+        System.out.println(time1);
+        System.out.println(day);
+        String ableCapacity= ps.calAbleCapacity(classday,time1);
+        System.out.println("ableCapacity: " + ableCapacity);
+        return ableCapacity;
+    }
 
 
 

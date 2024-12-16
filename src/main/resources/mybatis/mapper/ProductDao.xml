@@ -104,4 +104,8 @@
             limit #{param2.displayRow} offset #{param2.startNum}
     </select>
 
+    <select id="calAbleCapacity">
+        select coalesce(sum(people),0) from reservation where classday=#{param1} and classtime=#{param2}
+    </select>
+
 </mapper>

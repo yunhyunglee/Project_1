@@ -200,13 +200,16 @@
                         renderCalendar(currentMonth, currentYear);
                         $('.calendar-grid').on('click','.daycell',function(){
                             $('#selectedday').val(currentYear+"-"+(currentMonth+1)+"-"+$(this).text());
+                            $('#option2').val('');
+                            $('#able-people').text('');
                         });
+                        $('.today').click();
                     });
                 </script>
             </div>
 
             <label for="option2">시간</label>
-            <select id="option2" name="option2">
+            <select id="option2" name="option2" >
                 <option value="">옵션을 선택하세요</option>
                 <c:forEach items="${classTime}" var="time" varStatus="status">
                         <c:choose>
@@ -220,7 +223,7 @@
                     </c:forEach>
 
             </select>
-
+                <div id="able-people" data-max="${productVo.max_people}"></div>
             <label for="option3">신청인원</label>
             <input type="number" name="people" id="option3" value="1" min="1" required>
 
