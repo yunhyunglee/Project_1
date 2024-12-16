@@ -59,7 +59,7 @@
 
 .check-btn {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #19A7CE;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -69,7 +69,7 @@
 }
 
 .check-btn:hover {
-    background-color: #0056b3;
+    background-color: #146C94;
 }
 
 .message {
@@ -101,12 +101,12 @@
 }
 
 .submit-btn {
-    background-color: #28a745;
+    background-color: #19A7CE;
     color: #ffffff;
 }
 
 .submit-btn:hover {
-    background-color: #218838;
+    background-color: #146C94;
 }
 
 .cancel-btn {

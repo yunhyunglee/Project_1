@@ -53,4 +53,9 @@
         update reservation set payment='ask' where cseq=#{cseq} and payment='N' and endedclass='Y'
     </update>
 
+    <delete id="deleteReview">
+        DELETE FROM review WHERE revseq = #{id}
+    </delete>
+
+
 </mapper>
