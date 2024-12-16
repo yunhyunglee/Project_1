@@ -107,6 +107,10 @@
                         background: gray;
                         color: #fff;
                     }
+                    .calendar-grid div.selected{
+                        background: #FF7F50;
+                        color: #fff;
+                    }
                 </style>
                 <div class="calendar">
                     <div class="calendar-header">
@@ -199,6 +203,8 @@
 
                         renderCalendar(currentMonth, currentYear);
                         $('.calendar-grid').on('click','.daycell',function(){
+                            $('.daycell').removeClass('selected');
+                            $(this).addClass('selected');
                             $('#selectedday').val(currentYear+"-"+(currentMonth+1)+"-"+$(this).text());
                             $('#option2').val('');
                             $('#able-people').text('');
@@ -225,9 +231,8 @@
             </select>
                 <div id="able-people" data-max="${productVo.max_people}"></div>
             <label for="option3">신청인원</label>
-            <input type="number" name="people" id="option3" value="1" min="1" required>
-
-            <button type="button" class="submit-btn">확인</button>
+            <input type="number" name="people" id="option3" value="1" min="${productVo.max_people}" required>
+            <button type="button" class="submit-btn" data-id="${loginUser.id}">확인</button>
         </form>
 
         <button class="close-btn option-close-btn">닫기</button>
