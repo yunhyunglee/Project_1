@@ -135,6 +135,7 @@ public class UserController {
                 else if (uvo.getPwd().equals(uservo.getPwd())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser", uvo);
+                    session.setAttribute("user","1");
                     url = "redirect:/";
                 }
             }else if (usertype.equals("2")){
@@ -146,6 +147,7 @@ public class UserController {
                 else if (bvo.getPwd().equals(uservo.getPwd())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser", bvo);
+                    session.setAttribute("user","2");
                     url = "redirect:/";
                 }
             }
@@ -240,6 +242,7 @@ public class UserController {
     @GetMapping("logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginUser");
+        session.removeAttribute("user");
         return "redirect:/loginForm";
     }
     @GetMapping("mypage")
@@ -247,10 +250,6 @@ public class UserController {
         Object loginUser = session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/loginForm";
-        }else if(loginUser instanceof UserVo) {
-            session.setAttribute("user", "1");
-        }else if(loginUser instanceof BusinessmanVo) {
-            session.setAttribute("user", "2");
         }
         return "mypage/MyPage";
 
@@ -380,6 +379,7 @@ public class UserController {
             us.deleteBusiness(businessMan.getId());
         }
         session.removeAttribute("loginUser");
+        session.removeAttribute("user");
         return "redirect:/";
     }
 
