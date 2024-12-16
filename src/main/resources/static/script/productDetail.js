@@ -88,11 +88,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     const submitbtn = document.querySelector('.submit-btn');
+    const p=$('#able-people')
     submitbtn.addEventListener('click', function () {
         const loginUser=$(this).data('id');
         if(loginUser==='null'||loginUser==='') {
             var ans=confirm("일반이용자만 참여할 수 있습니다. 로그인하시겠습니까?");
             if(ans){location.href="logout"}
+        }else if(parseInt(p.data('max'))<(parseInt(p.data('able'))+parseInt($('#option3').val()))){
+
+            alert("최대인원수를 넘어 예약할 수 없습니다.");
         }else {
             const selectOption = document.getElementById('option2').value;
             if(selectOption==='') {
@@ -116,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: "get",
             success: function (result) {
                 $('#able-people').text(result+"/"+$('#able-people').data('max'));
+                $('#able-people').data('able',result);
             },
             error: function () {}
         });
