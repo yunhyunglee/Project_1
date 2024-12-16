@@ -94,9 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if(loginUser==='null'||loginUser==='') {
             var ans=confirm("일반이용자만 참여할 수 있습니다. 로그인하시겠습니까?");
             if(ans){location.href="logout"}
-        }else if(p.data('max')<(p.data('able')+$('#option3').val())){
-            console.log(p.data('max'));
-            console.log(p.data('able')+$('#option3').val());
+        }else if(parseInt(p.data('max'))<(parseInt(p.data('able'))+parseInt($('#option3').val()))){
+
             alert("최대인원수를 넘어 예약할 수 없습니다.");
         }else {
             const selectOption = document.getElementById('option2').value;
