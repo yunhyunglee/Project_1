@@ -1,30 +1,4 @@
 @charset "UTF-8";
-
-/*#wrap {*/
-/*    max-width: 1200px; !* 최대 너비 *!*/
-/*    margin: 0 auto;    !* 가운데 정렬 *!*/
-/*}*/
-
-/*header {*/
-/*    width: 100%;*/
-/*    display: block;*/
-/*    justify-content: space-between; !* 요소를 양쪽으로 정렬 *!*/
-/*    align-items: center;            !* 요소를 수직 중앙 정렬 *!*/
-/*    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
-/*    background-color: #ffffff;*/
-/*}*/
-
-/*header .logo {*/
-/*    font-size: 18px;*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*header .header-right a {*/
-/*    margin-left: 10px;*/
-/*    text-decoration: none;*/
-/*    color: #333;*/
-/*}*/
-
 .main-banner {
     text-align: center;
     padding: 50px 20px;
@@ -107,15 +81,28 @@
     font-size: 18px;
 }
 
-.question-bar .arrow {
+/*.question-bar .arrow {*/
+/*    font-size: 18px;*/
+/*    transform: rotate(0);*/
+/*    transition: transform 0.3s;*/
+/*}*/
+
+/*.question-bar.open .arrow {*/
+/*    transform: rotate(180deg);*/
+/*}*/
+
+/* 고유 화살표 스타일 */
+.faq-arrow {
     font-size: 18px;
     transform: rotate(0);
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
 }
 
-.question-bar.open .arrow {
+/* 화살표가 클릭되어 열릴 때 */
+.question-bar.open .faq-arrow {
     transform: rotate(180deg);
 }
+
 
 .question-list {
     display: none;

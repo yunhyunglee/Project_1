@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../customer_header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <script src="/script/customer.js"></script>
@@ -31,7 +31,7 @@
             <h1>고객센터<br>무엇을 도와드릴까요?</h1>
             <form action="customer" method="get" name="customer">
             <div class="cus-search-bar">
-                <input type="text" placeholder=" 검색ㄱㄱ" name="key">
+                <input type="text" placeholder=" 검색어를 입력하세요" name="key">
                 <button id="search">검색</button>
             </div>
             <div class="keyword">
@@ -40,11 +40,12 @@
                 <a href="#">클래스 예약날짜 변경</a>
                 <a href="#">환불처리</a>
             </div>
+            </form>
         </section>
         <section class="question">
             <div class="question-bar" onclick="toggleFAQ()">
                 <h3>자주 묻는 질문</h3>
-                <span class="arrow">▼</span>
+                <span class="faq-arrow">▼</span>
             </div>
             <ul class="question-list" id="questionList">
                 <li><a href="#">회원 가입은 어떻게 하나요?</a></li>
@@ -75,7 +76,7 @@
             <hr>
             </c:forEach>
 
-            <div class="paging">
+            <form class="paging">
 		<!-- prev 버튼의 표시 여부 -->
 		<c:if test="${paging.prev}" >
 			<a href="customer?qnapage=${paging.beginPage-1}" style="text-decoration: none">◀</a>&nbsp;

@@ -20,6 +20,7 @@
                p.title
         FROM reservation r
                  LEFT JOIN product p ON r.cseq = p.cseq
+        where not r.payment=''
     </select>
 
     <select id="findByEndedClass" parameterType="string" resultType="com.himedia.project_1.dto.ReservationVo">
@@ -28,6 +29,7 @@
         FROM reservation r
                  LEFT JOIN product p ON r.cseq = p.cseq
         WHERE r.endedclass = #{endedclass}
+        and not r.payment=''
     </select>
 
     <select id="findCancelledReservation" resultType="com.himedia.project_1.dto.ReservationVo">
@@ -36,10 +38,12 @@
         FROM reservation r
                  LEFT JOIN product p ON r.cseq = p.cseq
         WHERE r.payment = 'cancelled'
+        and not r.payment=''
     </select>
 
     <delete id="deleteReservation" parameterType="int">
         DELETE FROM reservation WHERE reseq = #{reseq}
+        and not r.payment=''
     </delete>
 
 </mapper>

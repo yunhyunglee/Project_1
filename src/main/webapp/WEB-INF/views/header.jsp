@@ -17,6 +17,7 @@
     <script src="/script/customer.js"></script>
 
     <link rel="stylesheet" href="/css/header_footer.css" />
+    <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/product.css" />
     <link rel="stylesheet" href="/css/section.css" />
@@ -24,7 +25,11 @@
     <link rel="stylesheet" href="/css/join.css" />
     <link rel="stylesheet" href="/css/sidebar.css" />
     <link rel="stylesheet" href="/css/myPage.css" />
+    <link rel="stylesheet" href="/css/MyPage/mypage-review.css" />
     <link rel="stylesheet" href="/css/category.css" />
+
+    <link rel="stylesheet" href="/css/customer_main.css" />
+
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
@@ -40,7 +45,7 @@
         <header>
             <div id="logo">
                 <a href="/">
-                    <img src="http://placehold.co/180x100" alt="로고">
+                    <img src="images/logo/classpick-logo-F8FAFC.png" alt="로고">
                 </a>
             </div>
             <div class="search-bar">
@@ -74,10 +79,19 @@
                         </a>
                     </c:otherwise>
                 </c:choose>
-                <a href="#" class="nav-item">
-                    <i class="fi fi-rr-list"></i>
-                    <span class="label">categories</span>
-                </a>
+                      <a href="#" class="nav-item categories">
+                            <i class="fi fi-rr-list"></i>
+                            <span class="label">categories</span>
+                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="category?category=1">베이킹</a></li>
+                            <li><a href="category?category=2">공 예</a></li>
+                            <li><a href="category?category=3">요 리</a></li>
+                            <li><a href="category?category=4">스포츠</a></li>
+                            <li><a href="category?category=5">뷰 티</a></li>
+
+                        </ul>
+
                 <a href="#" class="nav-item">
                     <i class="fi fi-rr-heart"></i>
                     <span class="label">wishlist</span>
@@ -85,3 +99,4 @@
             </nav>
 
         </header>
+        <main>

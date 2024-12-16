@@ -208,6 +208,9 @@
 	.products {
 		grid-template-columns: repeat(3, 1fr); /* 더 작아지면 3열로 조정 */
 	}
+	#main_img_slider {
+		max-width: 800px; /* 화면이 작아질수록 너비 줄이기 */
+	}
 }
 
 @media (max-width: 768px) {
@@ -218,10 +221,16 @@
 		text-align: center; /* 제목 중앙 정렬 */
 		padding-left: 0; /* 왼쪽 패딩 제거 */
 	}
+	#main_img_slider {
+		max-width: 600px;
+	}
 }
 
 @media (max-width: 480px) {
 	.products {
 		grid-template-columns: repeat(1, 1fr); /* 아주 작은 화면에서는 1열 */
+	}
+	#main_img_slider {
+		max-width: 100%;
 	}
 }

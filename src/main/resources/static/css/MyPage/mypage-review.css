@@ -1,0 +1,210 @@
+/*!* 전체 페이지 레이아웃 설정 *!*/
+/*.mypage-review-container {*/
+/*    display: flex; !* 사이드바와 본문 나란히 배치 *!*/
+/*    gap: 20px;*/
+/*    flex-wrap: nowrap; !* 요소가 넘쳐도 줄바꿈 방지 *!*/
+/*}*/
+
+/*.mypage-review-section {*/
+/*    flex: 1; !* 본문 콘텐츠가 나머지 영역을 차지 *!*/
+/*    padding-bottom: 60px; !* 푸터와 겹치지 않도록 여백 추가 *!*/
+/*}*/
+
+/*.section-title {*/
+/*    font-size: 24px;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*!* 카드 레이아웃 *!*/
+/*.mypage-review-grid {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
+/*    gap: 20px;*/
+/*}*/
+
+/*.mypage-review-card {*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+/*    overflow: hidden;*/
+/*    transition: transform 0.2s ease-in-out;*/
+/*    background-color: #fff;*/
+/*}*/
+
+/*.mypage-review-card:hover {*/
+/*    transform: translateY(-5px);*/
+/*}*/
+
+/*!* 썸네일 이미지 *!*/
+/*.review-thumbnail img {*/
+/*    width: 100%;*/
+/*    height: 150px;*/
+/*    object-fit: cover;*/
+/*}*/
+
+/*!* 리뷰 세부 내용 *!*/
+/*.review-details {*/
+/*    padding: 15px;*/
+/*}*/
+
+/*.review-title {*/
+/*    font-size: 18px;*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.review-content-preview {*/
+/*    font-size: 14px;*/
+/*    color: #555;*/
+/*    margin-bottom: 15px;*/
+/*}*/
+
+/*.review-meta {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    font-size: 12px;*/
+/*    color: #888;*/
+/*}*/
+
+/*.review-actions button {*/
+/*    padding: 5px 10px;*/
+/*    border: none;*/
+/*    background-color: #007bff;*/
+/*    color: #fff;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.2s;*/
+/*}*/
+
+/*.review-actions button:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+
+/*.review-actions button + button {*/
+/*    margin-left: 5px;*/
+/*}*/
+/* 전체 페이지 스타일 */
+.mypage-review-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.mypage-review-section {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+}
+
+/* 목록 형식 스타일 */
+.mypage-review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mypage-review-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s;
+}
+
+.mypage-review-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+}
+
+/* 리뷰 요약 부분 */
+.review-summary {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.review-image img {
+    width: 80px; /* 이미지 크기 고정 */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.review-title {
+    flex-grow: 1;
+}
+
+.review-title h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.review-title .review-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* 드롭다운 리뷰 내용 */
+.review-content {
+    display: none; /* 초기에는 숨김 */
+    background-color: #fdfdfd;
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 삭제 버튼 스타일 */
+.delete-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+    background-color: #d9363e;
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .mypage-review-container {
+        flex-direction: column;
+    }
+
+    .review-summary {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .review-image img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .review-title {
+        text-align: center;
+    }
+}

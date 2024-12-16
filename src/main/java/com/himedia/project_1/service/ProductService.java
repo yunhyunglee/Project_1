@@ -28,6 +28,10 @@ public class ProductService {
     public List<ProductVo> selectCategory(int category) {
         return pdao.selectCategory(category);
     }
+    public List<ProductVo> selectTheme(int theme) {
+        return pdao.selectTheme(theme); // 테마 기준 검색
+    }
+
     public List<ProductVo> getNewProducts() {return pdao.selectNewProducts(); // 최신 상품 가져오기
     }
     public List<ProductVo> getBestProducts() {
@@ -61,6 +65,39 @@ public class ProductService {
         System.out.println(pdao.getProductById(cseq).getCseq());
         return pdao.getProductById(cseq);
     }
+
+
+
+
+
+    // 어드민관련
+
+
+    public List<ProductVo> getAllProducts() {
+        return pdao.findAllProducts();
+    }
+
+    public ProductVo getProductById2(int productId) {
+        return pdao.findProductById(productId);
+    }
+
+    public void addProduct(ProductVo product) {
+        pdao.insertProduct(product);
+    }
+
+    public void updateProduct(ProductVo product) {
+        pdao.updateProduct(product);
+    }
+
+    public void deleteProduct(int cseq) {
+        pdao.deleteProduct(cseq);
+    }
+
+
+    public List<ProductVo> getProductsByBusinessId(String businessId) {
+        return pdao.findProductsByBusinessId(businessId);
+    }
+
 
     public void insertReservation(String id, int cseq, Date classday, Time time, int people) {
 
@@ -108,8 +145,10 @@ public class ProductService {
 
     }
 
+
     public String calAbleCapacity(Date classday, Time time1) {
         System.out.println( pdao.calAbleCapacity(classday,time1));
         return pdao.calAbleCapacity(classday,time1);
     }
+
 }

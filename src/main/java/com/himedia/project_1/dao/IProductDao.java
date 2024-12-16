@@ -13,6 +13,8 @@ import java.util.List;
 @Mapper
 public interface IProductDao {
     List<ProductVo> selectCategory(int category);
+    List<ProductVo> selectTheme(int theme);
+
 
     ProductVo selectProductById(int id); // 상품 ID로 상품 조회
     List<ProductVo> selectNewProducts(); // 최신 상품 가져오기
@@ -26,6 +28,18 @@ public interface IProductDao {
 
     ProductVo getProductById(int cseq);
 
+
+
+
+
+    List<ProductVo> findAllProducts();
+    ProductVo findProductById(int productId);
+    void insertProduct(ProductVo product);
+    void updateProduct(ProductVo product);
+    void deleteProduct(int cseq);
+
+    List<ProductVo> findProductsByBusinessId(String businessId);
+
     String[] getClassTime(int cseq);
 
     void insertReservation(String userid, int cseq, Date classday, Time classtime, int people);
@@ -34,5 +48,8 @@ public interface IProductDao {
 
     List<ProductVo> getSearchList(String key, Paging paging);
 
+
     String calAbleCapacity(Date classday, Time time1);
+
+
 }

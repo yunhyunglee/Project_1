@@ -5,6 +5,7 @@
     <div class="categoryproducts">
         <c:if test="${not empty categoryProduct}">
             <c:forEach items="${categoryProduct}" var="productVo">
+
                 <div class="categoryitem" onclick="location.href='/productDetail?id=${productVo.cseq}'">
                     <div class="image-wrapper">
                         <img src="/product_images/${productVo.image}" alt="${productVo.title}" />
