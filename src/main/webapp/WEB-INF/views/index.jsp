@@ -22,15 +22,16 @@
 
 
 <div id="menu">
-	<a href="category?category=1">
-<%--		<img src="http://placehold.co/90">--%>
-        <img src="images/christmas-tree.gif">
+
+	<a href="theme?theme=1">
+<!-- 		<img src="http://placehold.co/90"> -->
+    <img src="images/christmas-tree.gif">
 	</a>
-	<a href="category?category=2">
+	<a href="theme?theme=2">
 <%--		<img src="http://placehold.co/90">--%>
         <img src="images/male.gif">
 	</a>
-	<a href="category?category=3">
+	<a href="theme?theme=3">
 <%--		<img src="http://placehold.co/90">--%>
         <img src="images/family.gif">
 	</a>

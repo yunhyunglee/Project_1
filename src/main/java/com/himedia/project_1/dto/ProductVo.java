@@ -22,4 +22,5 @@ public class ProductVo {
     private String image;
     private String savefilename;
     private int max_people;
+    private int theme;
 }

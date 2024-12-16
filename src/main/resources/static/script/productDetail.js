@@ -87,6 +87,22 @@ document.addEventListener('DOMContentLoaded', function () {
             popup.style.display = 'none';
         });
     }
+    const submitbtn = document.querySelector('.submit-btn');
+    submitbtn.addEventListener('click', function () {
+        const loginUser=$(this).data('id');
+        if(loginUser==='null'||loginUser==='') {
+            var ans=confirm("일반이용자만 참여할 수 있습니다. 로그인하시겠습니까?");
+            if(ans){location.href="logout"}
+        }else {
+            const selectOption = document.getElementById('option2').value;
+            if(selectOption==='') {
+                alert("예약시간을 선택해야 합니다");
+            }else {
+                $('#productOptionsForm').submit();
+            }
+
+        }
+    });
 
     // 폼 제출 이벤트 처리
     // const form = document.getElementById('productOptionsForm');

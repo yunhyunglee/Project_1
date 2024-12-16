@@ -58,3 +58,24 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.error('Error loading banners:', err));
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const categoryButton = document.querySelector(".nav-item.categories");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+    categoryButton.addEventListener("click", function (event) {
+        event.preventDefault(); // 기본 동작 막기
+        dropdownMenu.style.display =
+            dropdownMenu.style.display === "block" ? "none" : "block";
+    });
+
+    // 메뉴 외부 클릭 시 닫기
+    document.addEventListener("click", function (event) {
+        if (!categoryButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = "none";
+        }
+    });
+});
+
+
