@@ -231,7 +231,7 @@
             </select>
                 <div id="able-people" data-max="${productVo.max_people}"></div>
             <label for="option3">신청인원</label>
-            <input type="number" name="people" id="option3" value="1" min="${productVo.max_people}" required>
+            <input type="number" name="people" id="option3" value="1" max="${productVo.max_people}" min="1" required>
             <button type="button" class="submit-btn" data-id="${loginUser.id}">확인</button>
         </form>
 

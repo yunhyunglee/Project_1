@@ -248,9 +248,9 @@ public class UserController {
         if (loginUser == null) {
             return "redirect:/loginForm";
         }else if(loginUser instanceof UserVo) {
-            model.addAttribute("user", "1");
+            session.setAttribute("user", "1");
         }else if(loginUser instanceof BusinessmanVo) {
-            model.addAttribute("user", "2");
+            session.setAttribute("user", "2");
         }
         return "mypage/MyPage";
 
