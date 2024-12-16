@@ -61,20 +61,20 @@ public class ProductController {
         return map;
     }
 
-    @GetMapping("/category")
-    public ModelAndView category(@RequestParam("category") int category) {
-        ModelAndView mav = new ModelAndView();
-        List<ProductVo> categoryProducts = ps.selectCategory(category);
-
-        // 데이터가 없을 경우 빈 리스트 반환
-        if (categoryProducts == null) {
-            categoryProducts = new ArrayList<>();
-        }
-
-        mav.addObject("categoryProduct", categoryProducts);
-        mav.setViewName("product/categoryProduct");
-        return mav;
-    }
+//    @GetMapping("/category")
+//    public ModelAndView category(@RequestParam("category") int category) {
+//        ModelAndView mav = new ModelAndView();
+//        List<ProductVo> categoryProducts = ps.selectCategory(category);
+//
+//        // 데이터가 없을 경우 빈 리스트 반환
+//        if (categoryProducts == null) {
+//            categoryProducts = new ArrayList<>();
+//        }
+//
+//        mav.addObject("categoryProduct", categoryProducts);
+//        mav.setViewName("product/categoryProduct");
+//        return mav;
+//    }
 
     @GetMapping("/detail/{cseq}")
     public String getProductDetail(@PathVariable int cseq, Model model) {
@@ -118,6 +118,47 @@ public class ProductController {
         mav.addObject("key", map.get("key"));
         return mav;
     }
+
+
+
+    @GetMapping("/category")
+    public ModelAndView category(@RequestParam("category") int category) {
+        ModelAndView mav = new ModelAndView();
+        List<ProductVo> categoryProducts = ps.selectCategory(category);
+
+        mav.addObject("categoryProduct", categoryProducts); // 카테고리 데이터 전달
+        mav.setViewName("product/categoryProduct");
+        return mav;
+    }
+
+    @GetMapping("/theme")
+    public ModelAndView theme(@RequestParam("theme") int theme) {
+        ModelAndView mav = new ModelAndView();
+        List<ProductVo> themeProducts = ps.selectTheme(theme);
+
+        mav.addObject("categoryProduct", themeProducts); // 테마 데이터 전달 (키는 유지 가능)
+        mav.setViewName("product/themeProduct");
+        return mav;
+    }
+
+
+//    @GetMapping("/theme")
+//    public ModelAndView theme(@RequestParam("theme") int theme) {
+//        ModelAndView mav = new ModelAndView();
+//        List<ProductVo> categoryProducts = ps.selectCategory(theme);
+//
+//        // 데이터가 없을 경우 빈 리스트 반환
+//        if (categoryProducts == null) {
+//            categoryProducts = new ArrayList<>();
+//        }
+//
+//        mav.addObject("categoryProduct", categoryProducts);
+//        mav.setViewName("product/categoryProduct");
+//        return mav;
+//    }
+
+
+
 
 
 

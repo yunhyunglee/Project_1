@@ -6,26 +6,40 @@
 
 
 <h2>사업자 관리</h2>
-
-
 <div class="search-container">
+    <!-- 검색 입력 필드 -->
     <input type="text" id="searchQueryBusiness" placeholder="사업자 정보 검색 (ID, 이름, 이메일)">
+    <!-- 검색 버튼 -->
     <button onclick="filterItems('searchQueryBusiness', 'card')">검색</button>
 </div>
 
 <div class="card-container">
-    <c:forEach var="business" items="${businessList}">
+    <!-- 사업자 목록 반복 -->
+    <c:forEach var="row" items="${businessList}">
         <div class="card">
-            <div class="card-title">사업자 ID: ${business.id}</div>
+            <!-- 사업자 정보 -->
+            <div class="card-title">사업자 ID: ${row.id}</div>
             <div class="card-content">
-                <p><b>이름:</b> ${business.name}</p>
-                <p hidden="hidden"><b>비밀번호:</b> ${business.pwd}</p>
-                <p><b>전화번호:</b> ${business.phone}</p>
-                <p><b>이메일:</b> ${business.email}</p>
+                <p><b>이름:</b> ${row.name}</p>
+                <p><b>전화번호:</b> ${row.phone}</p>
+                <p><b>이메일:</b> ${row.email}</p>
             </div>
+
+            <!-- 버튼 영역 -->
             <div class="card-actions">
-                <button class="edit-btn" onclick="editBusiness('${business.id}')">수정</button>
-                <button class="delete-btn" onclick="deleteBusiness('${business.id}')">삭제</button>
+                <!-- 수정 버튼 -->
+                <button onclick="editBusiness('${row.id}')">수정</button>
+                <!-- 삭제 버튼 -->
+                <button onclick="deleteBusiness('${row.id}')">삭제</button>
+                <!-- 상품 목록 로드 버튼 -->
+                <button onclick="loadProductsForBusiness('${row.id}', 'product-list-${row.id}')">
+                    상품 목록 로드
+                </button>
+            </div>
+
+            <!-- 상품 목록 출력 -->
+            <div id="product-list-${row.id}" class="product-list">
+                <!-- 상품 목록이 로드되면 여기에 추가 -->
             </div>
         </div>
     </c:forEach>

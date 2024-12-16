@@ -40,6 +40,7 @@
                 <a href="#">클래스 예약날짜 변경</a>
                 <a href="#">환불처리</a>
             </div>
+                </form>
         </section>
         <section class="question">
             <div class="question-bar" onclick="toggleFAQ()">
@@ -75,7 +76,7 @@
             <hr>
             </c:forEach>
 
-            <div class="paging">
+            <form class="paging">
 		<!-- prev 버튼의 표시 여부 -->
 		<c:if test="${paging.prev}" >
 			<a href="customer?qnapage=${paging.beginPage-1}" style="text-decoration: none">◀</a>&nbsp;

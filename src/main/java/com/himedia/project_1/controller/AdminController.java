@@ -35,6 +35,11 @@ public class AdminController {
         if (!isAuthenticated(session)) {
             return "redirect:/admin";   // 어드민로그인안하고 들어오면 보내버리기~
         }
+
+        AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+        if (loginAdmin != null) {
+            model.addAttribute("adminName", loginAdmin.getAid()); // 어드민 아이디 전달
+        }
         return "admin/adminMain";
     }
 
@@ -154,6 +159,11 @@ public class AdminController {
     public BusinessmanVo getBusinessmanById(@PathVariable String id) {
         return bs.getBusinessmanById(id);
     }
+    @GetMapping("/admin/business/{id}/products")
+    @ResponseBody
+    public List<ProductVo> getProductsByBusinessId(@PathVariable String id) {
+        return productService.getProductsByBusinessId(id);
+    }
 
 
     // 어드민 사업자관라 : 사업자 수정
@@ -187,7 +197,7 @@ public class AdminController {
         return ns.getNoticeById(id);
     }
 
-    // 어드민 공지사항관라 : 공지사항 숮ㅇ
+    // 어드민 공지사항관라 : 공지사항 수정
     @PostMapping("/admin/notice/update")
     public ResponseEntity<String> updateNotice(@ModelAttribute NoticeVo notice) {
         try {
@@ -357,6 +367,41 @@ ReservationService reservationService;
         return reservationService.findAllReservation();
     }
 
+
+
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("/admin/product")
+    public String getProductList(Model model) {
+        List<ProductVo> productList = productService.getAllProducts();
+        model.addAttribute("productList", productList);
+        return "admin/product/product"; // JSP 파일 경로
+    }
+
+    @PostMapping("/admin/product/add")
+    public String addProduct(@ModelAttribute ProductVo product) {
+        productService.addProduct(product);
+        return "redirect:/admin/product";
+    }
+
+    @PostMapping("/admin/product/update")
+    public String updateProduct(@ModelAttribute ProductVo product) {
+        productService.updateProduct(product);
+        return "redirect:/admin/product";
+    }
+
+    @DeleteMapping("/admin/product/delete/{productId}")
+    @ResponseBody
+    public String deleteProduct(@PathVariable int productId) {
+        try {
+            productService.deleteProduct(productId);
+            return "상품이 성공적으로 삭제되었습니다.";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "상품 삭제 중 문제가 발생했습니다.";
+        }
+    }
 
 
 

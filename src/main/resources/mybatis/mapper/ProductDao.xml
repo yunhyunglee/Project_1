@@ -8,6 +8,13 @@
         SELECT * FROM product WHERE category = #{param1}
     </select>
 
+    <!-- 테마 기준 쿼리 추가 -->
+    <select id="selectTheme" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        WHERE theme = #{theme}
+    </select>
+
     <!-- 특정 상품 ID로 조회 -->
     <select id="selectProductById" resultType="com.himedia.project_1.dto.ProductVo">
         SELECT * FROM product WHERE cseq = #{cseq}
@@ -40,6 +47,48 @@
     <select id="getProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
         SELECT * FROM product WHERE cseq = #{cseq}
     </select>
+
+
+
+
+
+<!-- 어드민 관련 -->
+        <select id="findAllProducts" resultType="com.himedia.project_1.dto.ProductVo">
+            SELECT p.cseq, p.title, p.content, p.price, p.category, p.image, b.id
+            From product p
+            LEFT JOIN businessman b ON p.id = b.id
+        </select>
+
+
+        <select id="findProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
+            SELECT * FROM product WHERE cseq = #{productId}
+        </select>
+
+        <insert id="insertProduct" parameterType="com.himedia.project_1.dto.ProductVo">
+            INSERT INTO product (title, content, price, category, image)
+            VALUES (#{title}, #{content}, #{price}, #{category}, #{image})
+        </insert>
+
+        <update id="updateProduct" parameterType="com.himedia.project_1.dto.ProductVo">
+            UPDATE product
+            SET title = #{title}, content = #{content}, price = #{price}, category = #{category}, image = #{image}
+            WHERE cseq = #{cseq}
+        </update>
+
+        <delete id="deleteProduct" parameterType="int">
+            DELETE FROM product WHERE cseq = #{productId}
+        </delete>
+
+    <select id="findProductsByBusinessId" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        WHERE id = #{businessId}
+    </select>
+
+
+
+
+
     <select id="getClassTime">
         select classtime from reservation where cseq=#{cseq} and payment='' order by classtime asc ;
     </select>
@@ -54,4 +103,5 @@
         select *from product where title like concat('%',#{param1},'%') order by cseq desc
             limit #{param2.displayRow} offset #{param2.startNum}
     </select>
+
 </mapper>
