@@ -5,6 +5,7 @@ import com.himedia.project_1.service.MyPageService;
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,10 @@ public class MyPageController {
     public ModelAndView myReview(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
+        if(loginuser0==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }else if (loginuser0 instanceof UserVo) {
             // UserVo인 경우
             UserVo loginuser = (UserVo) loginuser0;
             mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
@@ -45,7 +49,10 @@ public class MyPageController {
     public ModelAndView myReservation(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Object loginuser0=session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
+        if(loginuser0==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }else if (loginuser0 instanceof UserVo) {
             // UserVo인 경우
             UserVo loginuser = (UserVo) loginuser0;
             mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
@@ -62,7 +69,10 @@ public class MyPageController {
     public ModelAndView myQna(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
+        if(loginuser0==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }else if (loginuser0 instanceof UserVo) {
             // UserVo인 경우
             UserVo loginuser = (UserVo) loginuser0;
             mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
@@ -80,6 +90,10 @@ public class MyPageController {
     public ModelAndView myClass(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
+        if(loginuser==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
         List<ReservationVo> list=ms.getMyClassInfo(loginuser.getId());
         mav.addObject("MyClass", list);
         mav.setViewName("mypage/MyClass");
@@ -88,7 +102,11 @@ public class MyPageController {
     @GetMapping("Reservation_List")
     public ModelAndView reservationDetails(HttpSession session, @RequestParam("cseq")String cseq) {
         ModelAndView mav = new ModelAndView();
-//        BusinessmanVo loginuser=(BusinessmanVo) session.getAttribute("loginUser");
+        BusinessmanVo loginuser=(BusinessmanVo) session.getAttribute("loginUser");
+        if(loginuser==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
         List<ReservationVo> list=ms.selectReservListDay(cseq);
         mav.addObject("reservList", list);
         mav.setViewName("mypage/Reservation_DetailList");
@@ -109,13 +127,17 @@ public class MyPageController {
     public ModelAndView newProduct(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
+        if(loginuser==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
         mav.addObject("dto", loginuser);
         mav.setViewName("mypage/NewProduct");
         return mav;
     }
 
     @PostMapping("insertNewProduct")
-    public String insertNewProduct(@ModelAttribute("dto")ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
+    public String insertNewProduct(@ModelAttribute("dto")@Valid ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
         String url="";
         ms.insertNewProduct(productvo,selectedtimes);
 
@@ -155,6 +177,10 @@ public class MyPageController {
     public ModelAndView classinfoUpdate(HttpSession session,@RequestParam("cseq")int cseq) {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
+        if(loginuser==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
         ProductVo pvo=ms.selectProductbycseq(cseq);
         List<String>times= ms.selectedtimes(cseq);
         mav.addObject("stimes", times);
@@ -165,7 +191,7 @@ public class MyPageController {
     }
 
     @PostMapping("UpdateProduct")
-    public String UpdateProduct(@ModelAttribute("pvo")ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
+    public String UpdateProduct(@ModelAttribute("pvo")@Valid ProductVo productvo, @RequestParam("selectedTime")List<String>selectedtimes){
         ms.UpdateProduct(productvo,selectedtimes);
             return "redirect:/MyClass";
     }
@@ -182,11 +208,17 @@ public class MyPageController {
     }
 
     @GetMapping("/zzim")
-    public String getZzimList(HttpSession session, Model model) {
+    public ModelAndView getZzimList(HttpSession session, Model model) {
+        ModelAndView mav = new ModelAndView();
         UserVo loginuser = (UserVo) session.getAttribute("loginUser");
+        if(loginuser==null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
         List<ZzimVo> zzimList = ms.getZzimList(loginuser.getId());
         model.addAttribute("ZZim", zzimList);
-        return "mypage/ZZim";
+        mav.setViewName("mypage/ZZim");
+        return mav;
     }
 
 }

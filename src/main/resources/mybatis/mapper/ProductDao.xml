@@ -51,6 +51,7 @@
 
 
 
+
 <!-- 어드민 관련 -->
         <select id="findAllProducts" resultType="com.himedia.project_1.dto.ProductVo">
             SELECT p.cseq, p.title, p.content, p.price, p.category, p.image, b.id
@@ -86,5 +87,21 @@
 
 
 
+
+
+    <select id="getClassTime">
+        select classtime from reservation where cseq=#{cseq} and payment='' order by classtime asc ;
+    </select>
+    <insert id="insertReservation">
+        insert into reservation(userid,cseq,classday,classtime,people)
+        values (#{userid},#{cseq},#{classday},#{classtime},#{people})
+    </insert>
+    <select id="getAllCount" resultType="_int">
+        select count(*) from product where title like concat('%',#{param1},'%')
+    </select>
+    <select id="getSearchList" resultType="com.himedia.project_1.dto.ProductVo">
+        select *from product where title like concat('%',#{param1},'%') order by cseq desc
+            limit #{param2.displayRow} offset #{param2.startNum}
+    </select>
 
 </mapper>

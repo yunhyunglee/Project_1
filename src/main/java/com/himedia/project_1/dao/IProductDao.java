@@ -1,9 +1,13 @@
 package com.himedia.project_1.dao;
 
 
+import com.himedia.project_1.dto.Paging;
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.QnaVo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -27,6 +31,7 @@ public interface IProductDao {
 
 
 
+
     List<ProductVo> findAllProducts();
     ProductVo findProductById(int productId);
     void insertProduct(ProductVo product);
@@ -34,4 +39,13 @@ public interface IProductDao {
     void deleteProduct(int cseq);
 
     List<ProductVo> findProductsByBusinessId(String businessId);
+
+    String[] getClassTime(int cseq);
+
+    void insertReservation(String userid, int cseq, Date classday, Time classtime, int people);
+
+    int getAllCount(String key);
+
+    List<ProductVo> getSearchList(String key, Paging paging);
+
 }

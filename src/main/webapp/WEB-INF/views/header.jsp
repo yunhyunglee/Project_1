@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="/css/section.css" />
     <link rel="stylesheet" href="/css/loginForm.css" />
     <link rel="stylesheet" href="/css/join.css" />
-    <link rel="stylesheet" href="/css/terms.css" />
     <link rel="stylesheet" href="/css/sidebar.css" />
     <link rel="stylesheet" href="/css/myPage.css" />
     <link rel="stylesheet" href="/css/category.css" />
@@ -30,8 +29,11 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<%--    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>--%>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+
 
 </head>
 <body>
@@ -43,9 +45,9 @@
                 </a>
             </div>
             <div class="search-bar">
-                <form action="#" method="get">
-                    <input type="text" name="query" placeholder="검색어를 입력하세요" required>
-                    <button type="submit" class="search-btn" onclick="toggleSearchIcon(this)">
+                <form action="search" method="get">
+                    <input type="text" name="key" placeholder="검색어를 입력하세요" required>
+                    <button type="submit" class="search-btn">
                         <i class="fi fi-rr-search"></i>
                     </button>
                 </form>
