@@ -107,6 +107,10 @@
                         background: gray;
                         color: #fff;
                     }
+                    .calendar-grid div.selected{
+                        background: #FF7F50;
+                        color: #fff;
+                    }
                 </style>
                 <div class="calendar">
                     <div class="calendar-header">
@@ -199,14 +203,19 @@
 
                         renderCalendar(currentMonth, currentYear);
                         $('.calendar-grid').on('click','.daycell',function(){
+                            $('.daycell').removeClass('selected');
+                            $(this).addClass('selected');
                             $('#selectedday').val(currentYear+"-"+(currentMonth+1)+"-"+$(this).text());
+                            $('#option2').val('');
+                            $('#able-people').text('');
                         });
+                        $('.today').click();
                     });
                 </script>
             </div>
 
             <label for="option2">시간</label>
-            <select id="option2" name="option2">
+            <select id="option2" name="option2" >
                 <option value="">옵션을 선택하세요</option>
                 <c:forEach items="${classTime}" var="time" varStatus="status">
                         <c:choose>
@@ -220,11 +229,10 @@
                     </c:forEach>
 
             </select>
-
+                <div id="able-people" data-max="${productVo.max_people}"></div>
             <label for="option3">신청인원</label>
-            <input type="number" name="people" id="option3" value="1" min="1" required>
-
-            <button type="button" class="submit-btn">확인</button>
+            <input type="number" name="people" id="option3" value="1" max="${productVo.max_people}" min="1" required>
+            <button type="button" class="submit-btn" data-id="${loginUser.id}">확인</button>
         </form>
 
         <button class="close-btn option-close-btn">닫기</button>
@@ -257,7 +265,7 @@
                         var geocoder = new kakao.maps.services.Geocoder();
 
                         // 주소로 좌표를 검색합니다
-                        geocoder.addressSearch('${productVo.address1} ${productVo.address2} ${productVo.address3}', function(result, status) {
+                        geocoder.addressSearch('${productVo.address1} ${productVo.address3}', function(result, status) {
 
                             // 정상적으로 검색이 완료됐으면
                             if (status === kakao.maps.services.Status.OK) {

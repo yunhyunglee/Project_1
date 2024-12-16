@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sidebar">
@@ -23,7 +24,7 @@
     <h3>내 활동</h3>
     <ul>
       <c:choose>
-        <c:when test="${user == 1}"> <!-- 개인 회원 -->
+        <c:when test="${user == '1'}"> <!-- 개인 회원 -->
           <li>
             <a href="zzim" class="${pageContext.request.requestURI.contains('ZZim') ? 'active' : ''}">
               찜 목록

@@ -48,4 +48,8 @@ public interface IProductDao {
 
     List<ProductVo> getSearchList(String key, Paging paging);
 
+
+    String calAbleCapacity(Date classday, Time time1);
+
+
 }

@@ -27,8 +27,9 @@
     <link rel="stylesheet" href="/css/MyPage/mypage.css" />
     <link rel="stylesheet" href="/css/MyPage/mypage-review.css" />
     <link rel="stylesheet" href="/css/category.css" />
+
     <link rel="stylesheet" href="/css/customer_main.css" />
-    <script src="script/productDetail.js"></script>
+
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
