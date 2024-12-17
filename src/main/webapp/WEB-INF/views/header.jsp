@@ -92,7 +92,7 @@
 
                         </ul>
                 <c:choose>
-                    <c:when test="${user==1}">
+                    <c:when test="${usertype==1}">
                         <a href="zzim" class="nav-item">
                             <i class="fi fi-rr-heart"></i>
                             <span class="label">wishlist</span>

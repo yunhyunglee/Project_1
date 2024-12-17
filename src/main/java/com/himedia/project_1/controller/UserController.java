@@ -235,7 +235,6 @@ public class UserController {
     @ResponseBody
     public String kakaoLoginSession(@RequestParam("usertype")String usertype, HttpSession session) {
         session.setAttribute("usertype", usertype);
-        System.out.println("2");
         return "success";
     }
 
