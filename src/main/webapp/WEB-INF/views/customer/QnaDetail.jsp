@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../customer_header.jsp" %>
+<%@ include file="../header.jsp" %>
 <script language="JavaScript">
     document.addEventListener("DOMContentLoaded",function(){
         document.getElementById("update").addEventListener("click",function(){

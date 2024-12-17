@@ -56,7 +56,9 @@ public class ProductService {
         if(loginUser instanceof UserVo){
             id= ((UserVo)loginUser).getId();
             map.put("zzim",pdao.getZzim(id,cseq));
+            map.put("reviewopen",pdao.getReservationForReview(id,cseq));
         }
+        map.put("review",pdao.getreview(cseq));
         map.put("productVo",pdao.selectProductById(cseq));
         map.put("classTime",pdao.getClassTime(cseq));
         return map;
@@ -151,4 +153,7 @@ public class ProductService {
         return pdao.calAbleCapacity(classday,time1);
     }
 
+    public void insertReview(String id, int cseq,String rating, String review,String savefilename) {
+        pdao.insertReview(id,cseq,rating,review,savefilename);
+    }
 }

@@ -40,6 +40,8 @@ public class ProductController {
             mav.addObject("loginUser",userVo);
         }
         System.out.println(map.get("zzim"));
+        mav.addObject("reviews",map.get("review"));
+        mav.addObject("reviewopen",map.get("reviewopen"));
         mav.addObject("zzim",map.get("zzim"));
         mav.addObject("productVo",map.get("productVo"));
         mav.addObject("classTime",map.get("classTime"));
@@ -158,6 +160,15 @@ public class ProductController {
         mav.addObject("categoryProduct", themeProducts); // 테마 데이터 전달 (키는 유지 가능)
         mav.setViewName("product/themeProduct");
         return mav;
+    }
+
+    @GetMapping("review")
+    public String review(@RequestParam("review") String review,
+                         @RequestParam("rating")String rating,@RequestParam("cseq")int cseq,
+                         @RequestParam("savefilename")String savefilename,HttpSession session) {
+        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
+        ps.insertReview(loginUser.getId(),cseq,rating, review,savefilename);
+        return "redirect:/productDetail?id="+cseq;
     }
 
 

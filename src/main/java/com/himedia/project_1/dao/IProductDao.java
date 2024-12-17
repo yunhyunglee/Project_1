@@ -1,9 +1,7 @@
 package com.himedia.project_1.dao;
 
 
-import com.himedia.project_1.dto.Paging;
-import com.himedia.project_1.dto.ProductVo;
-import com.himedia.project_1.dto.QnaVo;
+import com.himedia.project_1.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.sql.Time;
@@ -52,4 +50,9 @@ public interface IProductDao {
     String calAbleCapacity(Date classday, Time time1);
 
 
+    List<ReservationVo> getReservationForReview(String id, int cseq);
+
+    List<ReviewVo> getreview(int cseq);
+
+    void insertReview(String id, int cseq,String rating, String review,String savefilename);
 }

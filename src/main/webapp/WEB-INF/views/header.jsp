@@ -93,11 +93,21 @@
                             <li><a href="category?category=5">뷰티</a></li>
 
                         </ul>
+                <c:choose>
+                    <c:when test="${usertype==1}">
+                        <a href="zzim" class="nav-item">
+                            <i class="fi fi-rr-heart"></i>
+                            <span class="label">wishlist</span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="mypage" class="nav-item">
+                            <i class="fi fi-rr-heart"></i>
+                            <span class="label">wishlist</span>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
 
-                <a href="#" class="nav-item">
-                    <i class="fi fi-rr-heart"></i>
-                    <span class="label">wishlist</span>
-                </a>
             </nav>
 
         </header>

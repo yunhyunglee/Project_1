@@ -87,9 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
             popup.style.display = 'none';
         });
     }
-    const submitbtn = document.querySelector('.submit-btn');
-    const p=$('#able-people')
+    const submitbtn = document.querySelector('#productOptionsForm .submit-btn');
+
     submitbtn.addEventListener('click', function () {
+        const p=$('#able-people')
         const loginUser=$(this).data('id');
         if(loginUser==='null'||loginUser==='') {
             var ans=confirm("일반이용자만 참여할 수 있습니다. 로그인하시겠습니까?");
