@@ -286,14 +286,20 @@ public class UserController {
     public String updatecheck() {return "mypage/UpdateCheck";}
 
     @PostMapping("updatecheck")
-    public String updatecheck(HttpSession session,@RequestParam("id")String id,@RequestParam("pwd")String pwd) {
+    public String updatecheck(HttpSession session,@RequestParam("id")String id,@RequestParam("pwd")String pwd,Model model) {
         Object loginUser = session.getAttribute("loginUser");
         String url="mypage/UpdateCheck";
+
         if(loginUser instanceof UserVo) {
-            if (us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)) {
+            if(!id.equals(((UserVo) loginUser).getId())||!us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)){
+                model.addAttribute("message","아이디/비밀번호를 확인하세요");
+            }else if (us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)) {
                 url="redirect:/updateUserForm";
             }
         }else if(loginUser instanceof BusinessmanVo) {
+            if (!id.equals(((BusinessmanVo) loginUser).getId())||!us.getBusinessman(((BusinessmanVo) loginUser).getId()).getPwd().equals(pwd)) {
+                model.addAttribute("message","아이디/비밀번호를 확인하세요");
+            }
             if(us.getBusinessman(((BusinessmanVo) loginUser).getId()).getPwd().equals(pwd)) {
                 url="redirect:/updateUserForm";
             }
