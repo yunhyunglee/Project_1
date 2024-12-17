@@ -8,16 +8,16 @@
 
     <!-- 본문 -->
     <div class="content">
-        <h2>내 마이페이지</h2>
+        <h2>마이페이지</h2>
          <c:choose>
             <c:when test="${user == 1}">
                 <!-- 개인회원 본문 내용 -->
-                <h3>개인회원님, 환영합니다!</h3>
+                <h3>${loginUser.name}님, 환영합니다!</h3>
                 <p>여기에는 개인회원 관련 정보를 표시합니다.</p>
             </c:when>
             <c:otherwise>
                 <!-- 사업자회원 본문 내용 -->
-                <h3>사업자회원님, 환영합니다!</h3>
+                <h3>${loginUser.name}님, 환영합니다!</h3>
                 <p>여기에는 사업자회원 관련 정보를 표시합니다.</p>
             </c:otherwise>
         </c:choose>

@@ -53,6 +53,7 @@
 <%--                                <img src="/images/product/${empty product.image ? 'placeholder.jpg' : product.image}"--%>
 <%--                                     alt="${product.title}" />--%>
 <%--                                <img src="webapp/product_images/${productVo.image}" alt="${productVo.title}" />--%>
+
                                     <img src="product_images/${product.savefilename}" alt="${product.title}" />
                                 <p>${product.title}</p>
                                 <p>${product.price}원</p>
@@ -86,8 +87,7 @@
                         <div class="item">
                             <a href="/productDetail?id=${product.cseq}">
 <%--                                <!-- 이미지가 없는 경우 기본 이미지 출력 -->--%>
-                                    <img src="/images/product/${product.image}" alt="${productVo.title}" />
-                                     alt="${product.title}" />
+                                    <img src="/product_images/${product.savefilename}" alt="${product.title}" />
                                 <p>${product.title}</p>
                                 <p>${product.price}원</p>
                             </a>

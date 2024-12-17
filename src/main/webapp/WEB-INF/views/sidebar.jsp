@@ -27,7 +27,7 @@
         <c:when test="${usertype == '1'}"> <!-- 개인 회원 -->
           <li>
             <a href="zzim" class="${pageContext.request.requestURI.contains('ZZim') ? 'active' : ''}">
-              찜 목록
+              내 관심목록
             </a>
           </li>
           <li>
@@ -37,7 +37,7 @@
           </li>
           <li>
             <a href="MyReview" class="${pageContext.request.requestURI.contains('MyReview') ? 'active' : ''}">
-              내 후기목록
+              내가 쓴 리뷰
             </a>
           </li>
         </c:when>
