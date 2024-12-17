@@ -102,7 +102,8 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 /* 회원 유형 카드 */
@@ -141,6 +142,7 @@
     background-color: #19A7CE;
     color: white;
     font-size: 16px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

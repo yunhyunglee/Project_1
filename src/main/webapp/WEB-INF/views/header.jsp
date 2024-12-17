@@ -16,7 +16,7 @@
     <script src="/script/customer.js"></script>
 
     <link rel="stylesheet" href="/css/header_footer.css" />
-    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/product.css" />
     <link rel="stylesheet" href="/css/loginForm.css" />
@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="/css/Join/join-business.css" />
     <link rel="stylesheet" href="/css/sidebar.css" />
     <link rel="stylesheet" href="/css/MyPage/mypage.css" />
+    <link rel="stylesheet" href="/css/MyPage/mypage-zzim.css" />
     <link rel="stylesheet" href="/css/MyPage/mypage-review.css" />
+    <link rel="stylesheet" href="/css/MyPage/mypage-myclass.css" />
     <link rel="stylesheet" href="/css/category.css" />
 
     <link rel="stylesheet" href="/css/customer_main.css" />

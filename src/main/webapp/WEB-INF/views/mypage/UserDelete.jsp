@@ -21,15 +21,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 
-<div class="mypage-container">
+<div class="mypage-update-container">
   <!-- 사이드바 포함 -->
   <jsp:include page="../sidebar.jsp" />
 
-  <div class="content">
+  <div class="mypage-update-content">
     <h2>회원 탈퇴</h2>
-    <p class="description">회원 탈퇴를 위해 비밀번호를 입력해 주세요.</p>
+    <p class="mypage-update-description">회원 탈퇴를 위해 비밀번호를 입력해 주세요.</p>
 
-    <form class="mypage-form" method="POST" action="/deleteUser">
+    <form class="mypage-update-form" method="POST" action="/deleteUser">
       <div>
         <label for="id">아이디</label>
         <input type="text" id="id" name="id" value="${dto.id}" readonly>
@@ -42,23 +42,23 @@
       <div class="message">${message}</div>
 
       <div class="buttons">
-        <input type="submit" value="탈퇴">
-        <input type="button" onclick="location.href='/'" value="되돌아가기">
+        <input type="submit" value="탈퇴" class="btn-primary">
+        <input type="button" onclick="location.href='/'" value="되돌아가기" class="btn-secondary">
       </div>
     </form>
   </div>
 </div>
 
-<!-- 확인 모달 -->
-<div id="confirmationModal" class="modal">
-  <div class="modal-content">
-    <p>정말로 탈퇴를 진행하시겠습니까?</p>
-    <div class="modal-buttons">
-      <button onclick="proceedDeletion()">예</button>
-      <button onclick="closeModal()">아니오</button>
-    </div>
-  </div>
-</div>
+<%--<!-- 확인 모달 -->--%>
+<%--<div id="confirmationModal" class="modal">--%>
+<%--  <div class="modal-content">--%>
+<%--    <p>정말로 탈퇴를 진행하시겠습니까?</p>--%>
+<%--    <div class="modal-buttons">--%>
+<%--      <button onclick="proceedDeletion()">예</button>--%>
+<%--      <button onclick="closeModal()">아니오</button>--%>
+<%--    </div>--%>
+<%--  </div>--%>
+<%--</div>--%>
 
 <%@ include file="../footer.jsp" %>
 

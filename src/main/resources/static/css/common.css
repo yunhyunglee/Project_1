@@ -12,17 +12,7 @@ html, body {
     margin: 0;
 }
 
-/* wrap 컨테이너가 화면 너비를 꽉 채우도록 설정 */
-#wrap {
-    /*width: 100%; !* 화면 너비에 맞춤 *!*/
-    /*margin: 0 auto; !* 자동 중앙 정렬 *!*/
-    /*padding: 0 20px; !* 원하는 여백 설정 *!*/
-    /*box-sizing: border-box; !* 여백을 포함한 너비 계산 *!*/
-    /*min-height: calc(100vh - 70px); !* 화면 전체 높이에서 헤더와 푸터 높이를 제외 *!*/
-    /*height: auto; !* 화면 전체 높이를 100vh로 설정 *!*/
-    /*margin-top: 200px; !* 헤더와 본문 사이의 여백 설정 *!*/
-    /*padding-bottom: 70px; !* 푸터 높이만큼 여백 추가 *!*/
-}
+
 #wrap {
     min-height: 100vh; /* 콘텐츠 영역 최소 높이 설정 */
     display: flex;
@@ -35,12 +25,11 @@ html, body {
 /* 메인 콘텐츠 스타일 */
 main {
     flex: 1; /* 남은 공간을 채우도록 설정 */
-    margin-top: 200px; /* 헤더 높이만큼 여백 추가 */
     padding: 20px;
     background-color: #F8FAFC;
 }
 
 #wrap > main {
-    margin-top: 150px;
+    margin-top: 130px;
 }
 

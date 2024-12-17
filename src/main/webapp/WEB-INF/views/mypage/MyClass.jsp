@@ -16,22 +16,42 @@
         });
     });
 </script>
-<section>
+<div class="mypage-container">
+    <!-- 사이드바 포함 -->
+    <jsp:include page="../sidebar.jsp" />
 
-    <article>
-        <div class="class-item" >
-            <div onclick="location.href='NewProduct'">새 클래스 만들기</div>
-        <c:forEach items="${MyClass}" var="myclass">
-            <div>
-                ${myclass.title}  <input type="button" value="정보수정하기" onclick="location.href='ClassinfoUpdate?cseq='+${myclass.cseq}">
-                <input type="button" value="예약관리하기" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">
-                정산 금액:<fmt:formatNumber value="${myclass.totalprice}" type="currency"/>
-                <input type="button" value="정산하기" id="clearpay" data-cseq="${myclass.cseq}">
-            </div>
-        </c:forEach>
+   <!-- 본문 -->
+    <div class="mypage-myclass-content">
+        <h2 class="myclass-section-title">내 클래스 목록</h2>
+
+        <!-- 새 클래스 만들기 버튼 -->
+        <div class="myclass-create-btn-container">
+            <button class="myclass-create-btn" onclick="location.href='NewProduct'">새로운 클래스 개설</button>
         </div>
-    </article>
 
-</section>
+        <!-- 내 클래스 목록 -->
+        <div class="myclass-list-container">
+            <c:forEach items="${MyClass}" var="myclass">
+               <div class="myclass-item">
+                    <div class="myclass-title">${myclass.title}</div>
+                    <div class="myclass-details">
+                        <div class="myclass-amount">
+                            <span class="myclass-amount-icon">&#128176;</span> <!-- 💱 아이콘 -->
+                            <span>정산 금액: ${myclass.totalprice} 원</span>
+                        </div>
+                        <div>
+                            <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">정보 수정</button>
+                            <button class="myclass-btn" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">예약 관리</button>
+                            <button class="myclass-btn myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
+                        </div>
+                    </div>
+               </div>
+
+
+            </c:forEach>
+        </div>
+    </div>
+</div>
+
 
 <%@ include file="../footer.jsp" %>
