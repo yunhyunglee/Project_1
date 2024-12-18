@@ -27,6 +27,14 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
+<script type="text/javascript">
+    $('.cancel-btn').click(function(){
+        $.ajax({
+            url :"revCancle",
+            data: {reseq : $(this).data('reseq')},
+        });
+    });
+</script>
 
 <div class="mypage-container">
     <!-- 사이드바 -->
@@ -47,7 +55,7 @@
                             <fmt:formatDate value="${reservation.classday}" pattern="yyyy-MM-dd"/> ${reservation.classtime}
                         </p>
                     </div>
-                    <button class="cancel-btn">취소하기</button>
+                    <button class="cancel-btn" data-reseq="${reservation.reseq}">취소하기</button>
                 </div>
             </c:forEach>
         </div>
