@@ -6,6 +6,7 @@ import lombok.Data;
 public class ZzimVo {
     private String uid;
     private int price;
+    private int cnum;
     private String id;
     private String title;
     private String address1;

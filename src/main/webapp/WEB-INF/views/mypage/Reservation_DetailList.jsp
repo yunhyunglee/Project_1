@@ -41,8 +41,11 @@
                     <div> 완료 </div>
                 </c:otherwise>
             </c:choose>
-            <div><input type="button" value="취소" onclick="location.href='reservation_cancle?reseq=${list.reseq}'"></div>
-        </div>
+                    <div>
+                      <input type="button" value="취소"
+                             onclick="confirm('정말 취소하시겠습니까?') ? location.href='reservation_cancle?reseq=${list.reseq}' : ''">
+                    </div>
+
     </c:forEach>
 
 </div>

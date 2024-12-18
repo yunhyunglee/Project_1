@@ -24,7 +24,7 @@
     <h3>내 활동</h3>
     <ul>
       <c:choose>
-        <c:when test="${usertype == '1'}"> <!-- 개인 회원 -->
+        <c:when test="${usertype == 1}"> <!-- 개인 회원 -->
           <li>
             <a href="zzim" class="${pageContext.request.requestURI.contains('ZZim') ? 'active' : ''}">
               내 관심목록

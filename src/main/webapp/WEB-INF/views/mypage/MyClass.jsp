@@ -38,7 +38,9 @@
         <div class="myclass-list-container">
             <c:forEach items="${MyClass}" var="myclass">
                <div class="myclass-item">
-                    <div class="myclass-title">${myclass.title}</div>
+                    <a  onclick="location.href='/productDetail?id=${myclass.cseq}'">
+                        <div class="myclass-title">${myclass.title}</div>
+                    </a>
                     <div class="myclass-details">
                         <div class="myclass-amount">
                             <span class="myclass-amount-icon">&#128176;</span> <!-- 💱 아이콘 -->
