@@ -5,6 +5,8 @@ import com.himedia.project_1.dto.NoticeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NoticeService {
 
@@ -26,5 +28,13 @@ public class NoticeService {
 
     public void addNotice(NoticeVo notice) {
         ndao.addNotice(notice);
+    }
+
+    public int getTotalNoticeCount() {
+        return ndao.getTotalNoticeCount();
+    }
+
+    public List<NoticeVo> getNoticeList(int startNum, int displayRow) {
+        return ndao.getNoticeList(startNum,displayRow);
     }
 }

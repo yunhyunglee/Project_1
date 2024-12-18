@@ -83,4 +83,16 @@ public class UserService {
     public List<ProductVo> getNew() {
         return  udao.getNew();
     }
+
+
+
+
+    public int getFilteredTotalCount(String searchQuery, String searchType) {
+        return udao.getFilteredTotalCount(searchQuery, searchType);
+    }
+
+    public List<UserVo> getFilteredUserList(String searchQuery, String searchType, int startNum, int displayRow) {
+        return udao.getFilteredUserList(searchQuery, searchType, startNum, displayRow);
+    }
+
 }

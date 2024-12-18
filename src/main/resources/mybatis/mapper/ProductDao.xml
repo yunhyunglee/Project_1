@@ -104,6 +104,46 @@
             limit #{param2.displayRow} offset #{param2.startNum}
     </select>
 
+
+    <select id="getTotalProductCount" resultType="int">
+        SELECT COUNT(*) FROM product
+    </select>
+
+    <select id="getProductList" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        ORDER BY cseq DESC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
+
+
+    <select id="getFilteredTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM product
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+               title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 필터링 및 페이징된 사용자 리스트 -->
+    <select id="getFilteredProductList" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT cseq, title, content, price, category, image, id
+        FROM product
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+               title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+        ORDER BY cseq DESC
+        LIMIT #{startNum}, #{displayRow};
+    </select>
+
+
+
+
     <select id="calAbleCapacity">
         select coalesce(sum(people),0) from reservation where classday=#{param1} and classtime=#{param2}
     </select>
@@ -117,10 +157,12 @@
     <insert id="insertReview" >
         insert into review(id, cseq,rating,content,savefilename) values (#{param1},#{param2},#{param3},#{param4},#{param5})
     </insert>
+
     <insert id="insertqnaproduct">
         insert into qnaproduct(userid,businessid,content,cseq,indate) values (#{param1},#{param2},#{param3},#{param4},now())
     </insert>
     <select id="selectQnaCseq" resultType="com.himedia.project_1.dto.QnaproductVo">
         select *from qnaproduct where businessid=#{param1}
     </select>
+
 </mapper>

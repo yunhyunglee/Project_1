@@ -43,5 +43,41 @@
     </select>
 
 
+    <select id="getTotalBusinessCount" resultType="int">
+        SELECT COUNT(*) FROM businessman
+    </select>
+
+    <select id="getBusinessList" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT *
+        FROM businessman
+        ORDER BY id ASC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
+    <!-- 필터링된 사용자 수 -->
+    <select id="getFilteredTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM businessman
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+                ${searchType} LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 필터링 및 페이징된 사용자 리스트 -->
+    <select id="getFilteredBusinessList" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT id, name, email, phone
+        FROM businessman
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+                ${searchType} LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+        ORDER BY id DESC
+        LIMIT #{startNum}, #{displayRow};
+    </select>
+
+
 
 </mapper>

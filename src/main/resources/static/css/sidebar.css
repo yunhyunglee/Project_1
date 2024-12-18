@@ -4,6 +4,7 @@
 .sidebar {
     position: relative; /* 기본 위치 */
     width: 250px; /* 고정 너비 */
+    height: fit-content;
     background-color: #f4f4f4;
     padding: 20px; /* 내부 여백 */
     margin: 0; /* 외부 여백 제거 */

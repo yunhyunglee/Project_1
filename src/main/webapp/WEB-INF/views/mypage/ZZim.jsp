@@ -7,7 +7,7 @@
 
     <!-- 본문 -->
     <div class="mypage-zzim-content">
-        <h2>찜목록</h2>
+        <h2>내 관심목록</h2>
        <div class="mypage-zzim-items">
             <c:forEach items="${ZZim}" var="zzim">
                 <div class="mypage-zzim-item">

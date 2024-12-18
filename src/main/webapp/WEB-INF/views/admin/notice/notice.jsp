@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="/script/admin-notice.js"></script>
 <h2>공지사항 관리</h2>
 
 
@@ -68,4 +67,15 @@
             </div>
         </form>
     </div>
+</div>
+<div class="pagination">
+    <c:if test="${paging.prev}">
+        <a href="/admin/notice?page=${paging.beginPage - 1}">◀</a>
+    </c:if>
+    <c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
+        <a href="/admin/notice?page=${index}" class="${index == paging.page ? 'active' : ''}">${index}</a>
+    </c:forEach>
+    <c:if test="${paging.next}">
+        <a href="/admin/notice?page=${paging.endPage + 1}">▶</a>
+    </c:if>
 </div>

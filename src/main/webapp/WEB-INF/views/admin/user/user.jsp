@@ -1,13 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<script src="/script/admin-user.js"></script>
 <h2>회원 관리</h2>
 
+
 <div class="search-container">
-    <input type="text" id="searchQuery" placeholder="회원 정보 검색 (ID, 이름, 이메일)">
-    <button onclick="filterItems('searchQuery', 'card')">검색</button>
+    <select id="searchType">
+        <option value="id" ${searchType == 'id' ? 'selected' : ''}>ID</option>
+        <option value="name" ${searchType == 'name' ? 'selected' : ''}>이름</option>
+        <option value="email" ${searchType == 'email' ? 'selected' : ''}>이메일</option>
+    </select>
+    <input type="text" id="searchQuery" value="${searchQuery}" placeholder="검색어 입력">
+    <button onclick="searchUsers()">검색</button>
 </div>
+
+
 
 <div class="card-container">
     <c:forEach var="user" items="${userList}">
@@ -26,6 +33,9 @@
         </div>
     </c:forEach>
 </div>
+
+
+
 
 <%-- 수정 폼 --%>
 <div id="userEditModal" class="modal">
@@ -63,4 +73,17 @@
             </div>
         </form>
     </div>
+</div>
+
+<!-- 페이징 링크 -->
+<div class="pagination">
+    <c:if test="${paging.prev}">
+        <a href="#" onclick="goToPage(${paging.beginPage - 1})">◀</a>
+    </c:if>
+    <c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
+        <a href="#" onclick="goToPage(${index})" class="${index == paging.page ? 'active' : ''}">${index}</a>
+    </c:forEach>
+    <c:if test="${paging.next}">
+        <a href="#" onclick="goToPage(${paging.endPage + 1})">▶</a>
+    </c:if>
 </div>

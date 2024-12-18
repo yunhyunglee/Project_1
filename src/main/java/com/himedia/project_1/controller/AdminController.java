@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -78,40 +79,101 @@ public class AdminController {
 
 
 
-
-
-    // qna
     @GetMapping("/admin/qna")
-    public String getQnaList(Model model) {
-        List<QnaVo> qnaList = as.getQnaList();
-        System.out.println("qnaList= " + qnaList );
+    public String getQnaList(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(required = false) String filter,
+                             @RequestParam(required = false) String searchQuery,
+                             @RequestParam(required = false, defaultValue = "title") String searchType,
+                             Model model) {
+
+        int totalCount = qnaService.getFilteredTotalCount(filter, searchQuery, searchType);
+
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount);
+        paging.calPaging();
+
+        List<QnaVo> qnaList = qnaService.getFilteredQnaList(filter, searchQuery, searchType, paging.getStartNum(), paging.getDisplayRow());
+
         model.addAttribute("qnaList", qnaList);
-        return "admin/qna/qna";
+        model.addAttribute("paging", paging);
+        model.addAttribute("filter", filter);
+        model.addAttribute("searchQuery", searchQuery);
+        model.addAttribute("searchType", searchType);
+
+        return "admin/qna/qna"; // JSP 경로
     }
 
-    // 회원 관리
+
+
     @GetMapping("/admin/user")
-    public String getMemberList(Model model) {
-        List<UserVo> userList = as.getMemberList();
+    public String getUserList(@RequestParam(defaultValue = "1") int page,
+                              @RequestParam(required = false) String searchQuery,
+                              @RequestParam(required = false, defaultValue = "name") String searchType,
+                              Model model) {
+
+        // 필터링된 사용자 수 조회
+        int totalCount = us.getFilteredTotalCount(searchQuery, searchType);
+
+        // 페이징 설정
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount);
+        paging.calPaging();
+
+        // 파라미터를 Map으로 넘겨줌
+        List<UserVo> userList = us.getFilteredUserList(searchQuery, searchType, paging.getStartNum(), paging.getDisplayRow());
+
         model.addAttribute("userList", userList);
-        return "admin/user/user";
+        model.addAttribute("paging", paging);
+        model.addAttribute("searchQuery", searchQuery);
+        model.addAttribute("searchType", searchType);
+
+        return "admin/user/user"; // JSP 반환 경로
     }
 
     // 사업자 관리
     @GetMapping("/admin/business")
-    public String getBusinessList(Model model) {
-        List<BusinessmanVo> businessList = as.getBusinessList();
+    public String getBusinessList(@RequestParam(defaultValue = "1") int page,
+                                  @RequestParam(required = false) String searchQuery,
+                                  @RequestParam(required = false, defaultValue = "name") String searchType,
+                                  Model model)  {
+        // 필터링된 사용자 수 조회
+        int totalCount = bs.getFilteredTotalCount(searchQuery, searchType);
+
+        // 페이징 설정
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount);
+        paging.calPaging();
+
+        List<BusinessmanVo> businessList = bs.getFilteredBusinessList(searchQuery, searchType, paging.getStartNum(), paging.getDisplayRow());
+
         model.addAttribute("businessList", businessList);
+        model.addAttribute("paging", paging);
+        model.addAttribute("searchQuery", searchQuery);
+        model.addAttribute("searchType", searchType);
+
         return "admin/business/business";
     }
 
 
 
+
     // 공지사항 관리
     @GetMapping("/admin/notice")
-    public String getNoticeList(Model model) {
-        List<NoticeVo> noticeList = as.getNoticeList();
+    public String getNoticeList(@RequestParam(defaultValue = "1") int page, Model model) {
+        int totalCount = ns.getTotalNoticeCount();
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount);
+        paging.calPaging();
+
+        List<NoticeVo> noticeList = ns.getNoticeList(paging.getStartNum(), paging.getDisplayRow());
+
         model.addAttribute("noticeList", noticeList);
+        model.addAttribute("paging", paging);
+
         return "admin/notice/notice";
     }
 
@@ -243,10 +305,20 @@ public class AdminController {
 
     // 어드민 배너관라 : 배너목록
     @GetMapping("/admin/banner")
-    public String getBannerList(Model model) {
-        List<BannerVo> banners = bannerService.getAllBanners();
-        model.addAttribute("bannerList", banners);
-        return "admin/banner/banner";
+    public String getBannerList(@RequestParam(defaultValue = "1") int page, Model model) {
+        int totalCount = bannerService.getTotalBannerCount(); // 전체 배너 수
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount);
+        paging.calPaging();
+
+        // 배너 리스트 가져오기 (페이징 처리)
+        List<BannerVo> bannerList = bannerService.getBannerList(paging.getStartNum(), paging.getDisplayRow());
+
+        model.addAttribute("bannerList", bannerList);
+        model.addAttribute("paging", paging);
+
+        return "admin/banner/banner"; // 배너 관리 HTML 조각 반환
     }
 
     // 어드민 배너관라 : 배너 상세보기
@@ -334,14 +406,33 @@ public class AdminController {
 @Autowired
 ReservationService reservationService;
 
-    // 어드민예약관라 : 예약 목록
     @GetMapping("/admin/reservation")
-    public String listReservation(@RequestParam(value = "status", required = false) String status, Model model) {
-        List<ReservationVo> reservationList;
-            reservationList = reservationService.findAllReservation();
+    public String getReservationList(@RequestParam(defaultValue = "1") int page,
+                                     @RequestParam(required = false) String searchQuery,
+                                     @RequestParam(required = false) String status,
+                                     Model model) {
+        // 총 개수 가져오기 (검색, 필터 반영)
+        int totalCount = reservationService.getFilteredReservationCount(searchQuery, status);
+
+        // 페이징 설정
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount);
+        paging.calPaging();
+
+        // 필터링 및 페이징된 예약 목록 가져오기
+        List<ReservationVo> reservationList = reservationService.getFilteredReservationList(
+                searchQuery, status, paging.getStartNum(), paging.getDisplayRow());
+
         model.addAttribute("reservationList", reservationList);
-        return "/admin/reservation/reservation";
+        model.addAttribute("paging", paging);
+        model.addAttribute("searchQuery", searchQuery);
+        model.addAttribute("status", status);
+
+        return "admin/reservation/reservation";
     }
+
+
 
     // 어드민예약관라 : 예약삭제
     @DeleteMapping("/admin/reservation/delete/{reseq}")
@@ -350,22 +441,31 @@ ReservationService reservationService;
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/processPayment")
+    @ResponseBody
+    public ResponseEntity<String> processPayment(@RequestParam("reseq") int reseq) {
+        try {
+            reservationService.updatePaymentStatus(reseq, "Y");
+            return ResponseEntity.ok("정산 완료");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("정산 실패");
+        }
+    }
+
+
+
 
     // 어드민예약관라 : 필터링처리
     @GetMapping("/admin/reservation/filter")
     @ResponseBody
-    public List<ReservationVo> filterReservations(@RequestParam(value = "status", required = false) String status) {
-        if (status == null || status.isEmpty()) {
-            return reservationService.findAllReservation();
-        } else if ("in_progress".equals(status)) {
-            return reservationService.findByEndedClass("N");
-        } else if ("completed".equals(status)) {
-            return reservationService.findByEndedClass("Y");
-        } else if ("cancelled".equals(status)) {
-            return reservationService.findCancelledReservation();
+    public List<ReservationVo> filterReservations(@RequestParam("status") String status) {
+        if (status.equals("all")) {
+            return reservationService.findAllReservation(); // 전체 조회
+        } else {
+            return reservationService.findByPaymentStatus(status); // 정산 상태 필터링
         }
-        return reservationService.findAllReservation();
     }
+
 
 
 
@@ -373,11 +473,34 @@ ReservationService reservationService;
     private ProductService productService;
 
     @GetMapping("/admin/product")
-    public String getProductList(Model model) {
-        List<ProductVo> productList = productService.getAllProducts();
-        model.addAttribute("productList", productList);
-        return "admin/product/product"; // JSP 파일 경로
+    public String getProductList(@RequestParam(defaultValue = "1") int page,       // 현재 페이지 번호
+                                 @RequestParam(required = false) String searchQuery, // 검색어
+                                 Model model) {
+        // 전체 데이터 수를 검색어에 따라 가져옴
+        int totalCount = productService.getFilteredTotalCount(searchQuery);
+
+        // 페이징 처리
+        Paging paging = new Paging();
+        paging.setPage(page);
+        paging.setTotalCount(totalCount); // 전체 개수 반영
+        paging.calPaging();
+
+        // 검색어에 맞는 데이터 가져오기
+        List<ProductVo> productList = productService.getFilteredProductList(
+                searchQuery,
+                paging.getStartNum(),
+                paging.getDisplayRow()
+        );
+
+        // 모델에 추가
+        model.addAttribute("productList", productList); // 현재 페이지 데이터
+        model.addAttribute("paging", paging); // 페이징 정보
+        model.addAttribute("searchQuery", searchQuery); // 검색어 유지
+
+        return "admin/product/product"; // JSP 경로 반환
     }
+
+
 
     @PostMapping("/admin/product/add")
     public String addProduct(@ModelAttribute ProductVo product) {
@@ -402,6 +525,7 @@ ReservationService reservationService;
             return "상품 삭제 중 문제가 발생했습니다.";
         }
     }
+
 
 
 

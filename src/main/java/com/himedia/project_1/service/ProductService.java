@@ -148,6 +148,16 @@ public class ProductService {
     }
 
 
+    public int getFilteredTotalCount(String searchQuery) {
+        return pdao.getFilteredTotalCount(searchQuery); // 검색된 전체 데이터 개수
+    }
+
+    public List<ProductVo> getFilteredProductList(String searchQuery, int startNum, int displayRow) {
+        return pdao.getFilteredProductList(searchQuery, startNum, displayRow); // 페이징된 데이터
+    }
+
+
+
     public String calAbleCapacity(Date classday, Time time1) {
         System.out.println( pdao.calAbleCapacity(classday,time1));
         return pdao.calAbleCapacity(classday,time1);
@@ -156,6 +166,7 @@ public class ProductService {
     public void insertReview(String id, int cseq,String rating, String review,String savefilename) {
         pdao.insertReview(id,cseq,rating,review,savefilename);
     }
+
 
     public void insertqnaproduct(String userid,String businessid,  String content, int cseq) {
         pdao.insertqnaproduct(userid,businessid,content,cseq);
@@ -167,4 +178,5 @@ public class ProductService {
         map.put("qna", pdao.selectQnaCseq(id));
         return map;
     }
+
 }
