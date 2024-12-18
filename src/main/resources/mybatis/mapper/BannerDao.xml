@@ -27,5 +27,18 @@
     <delete id="deleteBanner" parameterType="int">
         DELETE FROM banner WHERE bannerId = #{bannerId};
     </delete>
+
+    <!-- 배너 개수 조회 -->
+    <select id="getTotalBannerCount" resultType="int">
+        SELECT COUNT(*) FROM banner
+    </select>
+
+    <!-- 배너 목록 조회 (페이징 처리) -->
+    <select id="getBannerList" resultType="com.himedia.project_1.dto.BannerVo">
+        SELECT *
+        FROM banner
+        ORDER BY priority ASC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
 </mapper>
 

@@ -36,4 +36,13 @@ public class BannerService {
     public void deleteBanner(int bannerId) {
         bannerDao.deleteBanner(bannerId);
     }
+
+
+    public int getTotalBannerCount() {
+        return bannerDao.getTotalBannerCount();
+    }
+
+    public List<BannerVo> getBannerList(int startNum, int displayRow) {
+        return bannerDao.getBannerList(startNum, displayRow);
+    }
 }

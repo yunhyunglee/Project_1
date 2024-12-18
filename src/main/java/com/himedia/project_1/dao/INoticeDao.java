@@ -20,4 +20,9 @@ public interface INoticeDao {
     NoticeVo getNoticeById(int id);
 
     void addNotice(NoticeVo notice);
+
+
+    List<NoticeVo> getNoticeList(int startNum, int displayRow);
+
+    int getTotalNoticeCount();
 }

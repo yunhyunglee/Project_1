@@ -278,6 +278,11 @@ public class UserController {
         if (loginUser == null) {
             return "redirect:/loginForm";
 
+        }else if(loginUser instanceof UserVo) {
+            session.setAttribute("user", "1");
+        }else if(loginUser instanceof BusinessmanVo) {
+            session.setAttribute("user", "2");
+
         }
         return "mypage/MyPage";
 

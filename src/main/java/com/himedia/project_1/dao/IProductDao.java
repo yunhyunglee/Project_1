@@ -47,6 +47,11 @@ public interface IProductDao {
     List<ProductVo> getSearchList(String key, Paging paging);
 
 
+    int getFilteredTotalCount(String searchQuery);
+
+    List<ProductVo> getFilteredProductList(String searchQuery, int startNum, int displayRow);
+
+
     String calAbleCapacity(Date classday, Time time1);
 
 
@@ -55,4 +60,5 @@ public interface IProductDao {
     List<ReviewVo> getreview(int cseq);
 
     void insertReview(String id, int cseq,String rating, String review,String savefilename);
+
 }
