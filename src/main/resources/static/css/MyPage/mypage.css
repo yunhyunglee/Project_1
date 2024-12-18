@@ -169,6 +169,7 @@
 }
 
 /* ================= 예약 섹션 스타일 ================ */
+/* 예약 섹션 스타일 */
 .mypage-reservation-section {
     flex-grow: 1;
     background-color: #fff;
@@ -177,67 +178,560 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* 제목 스타일 */
 .section-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
-    text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
-.reservation-container {
+/* 예약 목록 스타일 */
+.reservation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 예약 항목 스타일 */
+.reservation-item {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* 항목 내부 패딩 축소 */
+    margin-bottom: 8px; /* 항목 사이 여백 축소 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.reservation-card {
-    width: 100%;
-    max-width: 400px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+.reservation-item:hover {
+    background-color: #f0f8ff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+}
+
+/* 예약 상세 내용 */
+.reservation-details {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.reservation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    gap: 5px;
+    line-height: 1.3; /* 줄 간격도 줄임 */
 }
 
 .reservation-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 10px;
-    color: #19A7CE;
+    color: #333;
+    margin-bottom: 5px;
 }
 
-.reservation-content p {
+/* 예약 취소 버튼 */
+.reservation-actions .reservation-cancel-btn {
+    padding: 8px 12px;
     font-size: 1rem;
-    color: #555;
-    margin: 5px 0;
-}
-
-.cancel-btn {
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: white;
-    background-color: #ff4d4f;
+    background-color: #d9534f;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.cancel-btn:hover {
-    background-color: #d63031;
+.reservation-actions .reservation-cancel-btn:hover {
+    background-color: #c9302c;
+}
+
+
+
+
+/* 전체 컨테이너 */
+.mypage-update-check-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* 메인 콘텐츠 */
+.mypage-update-check-content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목과 설명 */
+.update-check-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.update-check-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* 폼 스타일 */
+.mypage-update-check-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.update-check-form-group {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    width: 100%; /* 전체 너비 차지 */
+    margin-bottom: 15px; /* 입력 필드 간 여백 */
+}
+
+.update-check-form-label {
+    font-size: 1rem;
+    margin-bottom: 8px; /* 라벨과 입력 칸 간격 */
+    color: #333;
+    text-align: left;
+    width: 100%;
+}
+
+.update-check-form-input {
+    width: 100%; /* 입력 칸을 부모 컨테이너 너비에 맞춤 */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.update-check-form-input:focus {
+    border-color: #19A7CE;
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+/* 에러 메시지 */
+.update-check-error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* 버튼 영역 */
+.update-check-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.update-check-btn-primary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #19A7CE;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-check-btn-primary:hover {
+    background-color: #146C94;
+}
+
+.update-check-btn-secondary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #6c757d;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-check-btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* 전체 레이아웃 */
+.mypage-update-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 본문 스타일 */
+.mypage-update-content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.update-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* 폼 그룹 */
+.mypage-update-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.mypage-update-form-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.mypage-update-form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.mypage-update-form-input:focus {
+    outline: none;
+    border-color: #19A7CE;
+    background-color: #f0f8ff;
+}
+
+/* 에러 메시지 */
+.mypage-update-error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* 버튼 영역 */
+.mypage-update-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.mypage-update-btn-primary,
+.mypage-update-btn-secondary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mypage-update-btn-primary {
+    background-color: #19A7CE;
+    color: white;
+}
+
+.mypage-update-btn-primary:hover {
+    background-color: #146C94;
+}
+
+.mypage-update-btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.mypage-update-btn-secondary:hover {
+    background-color: #5a6268;
+}
+/* 사업자 수정 페이지 전체 컨테이너 */
+.business-update-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 본문 스타일 */
+.business-update-content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목과 설명 */
+.business-update-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.business-update-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* 폼 그룹 */
+.business-update-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.business-update-form-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.business-update-form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.business-update-form-input:focus {
+    outline: none;
+    border-color: #19A7CE;
+    background-color: #f0f8ff;
+}
+
+/* 에러 메시지 */
+.business-update-error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* 버튼 영역 */
+.business-update-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.business-update-btn-primary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #19A7CE;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.business-update-btn-primary:hover {
+    background-color: #146C94;
+}
+
+.business-update-btn-secondary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.business-update-btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+/* 전체 컨테이너 */
+.mypage-delete-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 본문 스타일 */
+.mypage-delete-content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mypage-delete-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mypage-delete-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* 폼 그룹 */
+.mypage-delete-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.mypage-delete-form-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.mypage-delete-form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.mypage-delete-form-input:focus {
+    border-color: #19A7CE;
+    outline: none;
+}
+
+/* 에러 메시지 */
+.mypage-delete-error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* 버튼 영역 */
+.mypage-delete-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.mypage-delete-btn-primary,
+.mypage-delete-btn-secondary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mypage-delete-btn-primary {
+    background-color: #d9534f;
+    color: white;
+}
+
+.mypage-delete-btn-primary:hover {
+    background-color: #c9302c;
+}
+
+.mypage-delete-btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.mypage-delete-btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* 모달 전체 스타일 */
+.mypage-delete-modal {
+    display: none; /* 초기에는 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정 배경 */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 최상위에 표시 */
+}
+
+/* 모달 콘텐츠 */
+.mypage-delete-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+/* 모달 메시지 */
+.mypage-delete-modal-message {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* 모달 버튼 영역 */
+.mypage-delete-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* 버튼 스타일 */
+.mypage-delete-modal-btn-yes,
+.mypage-delete-modal-btn-no {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mypage-delete-modal-btn-yes {
+    background-color: #d9534f;
+    color: white;
+}
+
+.mypage-delete-modal-btn-yes:hover {
+    background-color: #c9302c;
+}
+
+.mypage-delete-modal-btn-no {
+    background-color: #6c757d;
+    color: white;
+}
+
+.mypage-delete-modal-btn-no:hover {
+    background-color: #5a6268;
 }
 
 /* ================= 반응형 디자인 ================ */
