@@ -7,12 +7,12 @@
 
     <!-- 본문 -->
     <div class="mypage-zzim-content">
-        <h2>찜목록</h2>
+        <h2>내 관심목록</h2>
        <div class="mypage-zzim-items">
             <c:forEach items="${ZZim}" var="zzim">
                 <div class="mypage-zzim-item">
                     <!-- 상품 상세 페이지로 이동 -->
-                    <a href="/product/detail/${zzim.cseq}" class="zzim-link">
+                    <a href="productDetail?id=${zzim.cseq}" class="zzim-link">
                         <div class="zzim-image">
                             <img src="/images/product/${empty zzim.image ? 'placeholder.jpg' : zzim.image}"
                                  alt="${zzim.title}" />

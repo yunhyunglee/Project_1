@@ -104,6 +104,7 @@
             limit #{param2.displayRow} offset #{param2.startNum}
     </select>
 
+
     <select id="getTotalProductCount" resultType="int">
         SELECT COUNT(*) FROM product
     </select>
@@ -141,5 +142,20 @@
     </select>
 
 
+
+
+    <select id="calAbleCapacity">
+        select coalesce(sum(people),0) from reservation where classday=#{param1} and classtime=#{param2}
+    </select>
+
+    <select id="getReservationForReview" resultType="com.himedia.project_1.dto.ReservationVo">
+        select *from reservation where userid=#{param1} and cseq=#{param2} and endedclass='Y'
+    </select>
+    <select id="getreview" resultType="com.himedia.project_1.dto.ReviewVo">
+        select *from review where cseq=#{cseq}
+    </select>
+    <insert id="insertReview" >
+        insert into review(id, cseq,rating,content,savefilename) values (#{param1},#{param2},#{param3},#{param4},#{param5})
+    </insert>
 
 </mapper>

@@ -1,214 +1,214 @@
-/*!* 기본 설정 *!*/
-/*!*body {*!*/
-/*!*    font-family: Arial, sans-serif;*!*/
-/*!*    background-color: #f8f9fa;*!*/
-/*!*    margin: 0;*!*/
-/*!*    padding: 0;*!*/
+/*!*!* 기본 설정 *!*!*/
+/*!*!*body {*!*!*/
+/*!*!*    font-family: Arial, sans-serif;*!*!*/
+/*!*!*    background-color: #f8f9fa;*!*!*/
+/*!*!*    margin: 0;*!*!*/
+/*!*!*    padding: 0;*!*!*/
+/*!*!*}*!*!*/
+
+/*!*.join-container {*!*/
+/*!*    max-width: 500px;*!*/
+/*!*    margin: 50px auto;*!*/
+/*!*    background: #ffffff;*!*/
+/*!*    border-radius: 10px;*!*/
+/*!*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*!*/
+/*!*    padding: 30px;*!*/
+/*!*    box-sizing: border-box;*!*/
 /*!*}*!*/
 
-/*.join-container {*/
-/*    max-width: 500px;*/
-/*    margin: 50px auto;*/
-/*    background: #ffffff;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*    padding: 30px;*/
-/*    box-sizing: border-box;*/
-/*}*/
+/*!*.join-title {*!*/
+/*!*    text-align: center;*!*/
+/*!*    margin-bottom: 20px;*!*/
+/*!*    font-size: 24px;*!*/
+/*!*    font-weight: bold;*!*/
+/*!*    color: #333333;*!*/
+/*!*}*!*/
 
-/*.join-title {*/
-/*    text-align: center;*/
-/*    margin-bottom: 20px;*/
-/*    font-size: 24px;*/
-/*    font-weight: bold;*/
-/*    color: #333333;*/
-/*}*/
+/*!*.join-form .form-group {*!*/
+/*!*    margin-bottom: 20px;*!*/
+/*!*}*!*/
 
-/*.join-form .form-group {*/
-/*    margin-bottom: 20px;*/
-/*}*/
+/*!*.join-form label {*!*/
+/*!*    display: block;*!*/
+/*!*    margin-bottom: 8px;*!*/
+/*!*    font-weight: bold;*!*/
+/*!*    font-size: 14px;*!*/
+/*!*    color: #333333;*!*/
+/*!*}*!*/
 
-/*.join-form label {*/
-/*    display: block;*/
-/*    margin-bottom: 8px;*/
-/*    font-weight: bold;*/
-/*    font-size: 14px;*/
-/*    color: #333333;*/
-/*}*/
+/*!*.join-form input[type="text"],*!*/
+/*!*.join-form input[type="password"],*!*/
+/*!*.join-form input[type="email"],*!*/
+/*!*.join-form input[type="checkbox"] {*!*/
+/*!*    width: 100%;*!*/
+/*!*    padding: 10px;*!*/
+/*!*    border: 1px solid #ddd;*!*/
+/*!*    border-radius: 5px;*!*/
+/*!*    font-size: 14px;*!*/
+/*!*    box-sizing: border-box;*!*/
+/*!*}*!*/
 
-/*.join-form input[type="text"],*/
-/*.join-form input[type="password"],*/
-/*.join-form input[type="email"],*/
-/*.join-form input[type="checkbox"] {*/
-/*    width: 100%;*/
-/*    padding: 10px;*/
+/*!*.input-group {*!*/
+/*!*    display: flex;*!*/
+/*!*    gap: 10px;*!*/
+/*!*}*!*/
+
+/*!*.input-group input[type="text"] {*!*/
+/*!*    flex: 1;*!*/
+/*!*}*!*/
+
+/*!*.check-btn {*!*/
+/*!*    padding: 10px 15px;*!*/
+/*!*    background-color: #007bff;*!*/
+/*!*    color: #ffffff;*!*/
+/*!*    border: none;*!*/
+/*!*    border-radius: 5px;*!*/
+/*!*    cursor: pointer;*!*/
+/*!*    font-size: 14px;*!*/
+/*!*    transition: background-color 0.3s ease;*!*/
+/*!*}*!*/
+
+/*!*.check-btn:hover {*!*/
+/*!*    background-color: #0056b3;*!*/
+/*!*}*!*/
+
+/*!*.message {*!*/
+/*!*    font-size: 12px;*!*/
+/*!*    margin-top: 5px;*!*/
+/*!*    color: #888;*!*/
+/*!*}*!*/
+
+/*!*.checkbox-group {*!*/
+/*!*    display: flex;*!*/
+/*!*    align-items: center;*!*/
+/*!*    gap: 10px;*!*/
+/*!*}*!*/
+
+/*!*.button-group {*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: space-between;*!*/
+/*!*    margin-top: 20px;*!*/
+/*!*}*!*/
+
+/*!*.btn {*!*/
+/*!*    width: 48%;*!*/
+/*!*    padding: 10px;*!*/
+/*!*    font-size: 14px;*!*/
+/*!*    border: none;*!*/
+/*!*    border-radius: 5px;*!*/
+/*!*    cursor: pointer;*!*/
+/*!*    transition: background-color 0.3s ease;*!*/
+/*!*}*!*/
+
+/*!*.submit-btn {*!*/
+/*!*    background-color: #28a745;*!*/
+/*!*    color: #ffffff;*!*/
+/*!*}*!*/
+
+/*!*.submit-btn:hover {*!*/
+/*!*    background-color: #218838;*!*/
+/*!*}*!*/
+
+/*!*.cancel-btn {*!*/
+/*!*    background-color: #dc3545;*!*/
+/*!*    color: #ffffff;*!*/
+/*!*}*!*/
+
+/*!*.cancel-btn:hover {*!*/
+/*!*    background-color: #c82333;*!*/
+/*!*}*!*/
+
+/*!*!* 반응형 디자인 *!*!*/
+/*!*@media (max-width: 600px) {*!*/
+/*!*    .join-container {*!*/
+/*!*        padding: 20px;*!*/
+/*!*    }*!*/
+
+/*!*    .button-group {*!*/
+/*!*        flex-direction: column;*!*/
+/*!*        gap: 10px;*!*/
+/*!*    }*!*/
+
+/*!*    .btn {*!*/
+/*!*        width: 100%;*!*/
+/*!*    }*!*/
+/*!*}*!*/
+/*!* 회원가입 폼 스타일 *!*/
+/*#joinFrm {*/
+/*    max-width: 400px;*/
+/*    margin: 0 auto;*/
+/*    padding: 20px;*/
 /*    border: 1px solid #ddd;*/
+/*    border-radius: 10px;*/
+/*    background-color: #f9f9f9;*/
+/*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/
+
+/*#joinFrm div {*/
+/*    margin-bottom: 15px;*/
+/*}*/
+
+/*#joinFrm label {*/
+/*    display: block;*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+
+/*#joinFrm input[type="text"],*/
+/*#joinFrm input[type="password"],*/
+/*#joinFrm input[type="button"],*/
+/*#joinFrm input[type="submit"] {*/
+/*    width: calc(100% - 20px);*/
+/*    padding: 8px 10px;*/
+/*    margin: 0;*/
+/*    border: 1px solid #ccc;*/
 /*    border-radius: 5px;*/
 /*    font-size: 14px;*/
-/*    box-sizing: border-box;*/
 /*}*/
 
-/*.input-group {*/
-/*    display: flex;*/
-/*    gap: 10px;*/
-/*}*/
-
-/*.input-group input[type="text"] {*/
-/*    flex: 1;*/
-/*}*/
-
-/*.check-btn {*/
-/*    padding: 10px 15px;*/
-/*    background-color: #007bff;*/
-/*    color: #ffffff;*/
-/*    border: none;*/
-/*    border-radius: 5px;*/
+/*#joinFrm input[type="button"] {*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
 /*    cursor: pointer;*/
-/*    font-size: 14px;*/
-/*    transition: background-color 0.3s ease;*/
 /*}*/
 
-/*.check-btn:hover {*/
-/*    background-color: #0056b3;*/
+/*#joinFrm input[type="button"]:hover {*/
+/*    background-color: #45a049;*/
 /*}*/
 
-/*.message {*/
+/*#joinFrm input[type="submit"] {*/
+/*    background-color: #008CBA;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*#joinFrm input[type="submit"]:hover {*/
+/*    background-color: #007BB5;*/
+/*}*/
+
+/*#joinFrm #idmessage {*/
 /*    font-size: 12px;*/
 /*    margin-top: 5px;*/
-/*    color: #888;*/
 /*}*/
 
-/*.checkbox-group {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    gap: 10px;*/
+/*#joinFrm .error-message {*/
+/*    color: red;*/
 /*}*/
 
-/*.button-group {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    margin-top: 20px;*/
+/*#joinFrm .success-message {*/
+/*    color: green;*/
 /*}*/
 
-/*.btn {*/
-/*    width: 48%;*/
-/*    padding: 10px;*/
-/*    font-size: 14px;*/
-/*    border: none;*/
-/*    border-radius: 5px;*/
-/*    cursor: pointer;*/
-/*    transition: background-color 0.3s ease;*/
-/*}*/
-
-/*.submit-btn {*/
-/*    background-color: #28a745;*/
-/*    color: #ffffff;*/
-/*}*/
-
-/*.submit-btn:hover {*/
-/*    background-color: #218838;*/
-/*}*/
-
-/*.cancel-btn {*/
-/*    background-color: #dc3545;*/
-/*    color: #ffffff;*/
-/*}*/
-
-/*.cancel-btn:hover {*/
-/*    background-color: #c82333;*/
-/*}*/
-
-/*!* 반응형 디자인 *!*/
 /*@media (max-width: 600px) {*/
-/*    .join-container {*/
-/*        padding: 20px;*/
+/*    #joinFrm {*/
+/*        width: 90%;*/
 /*    }*/
 
-/*    .button-group {*/
-/*        flex-direction: column;*/
-/*        gap: 10px;*/
-/*    }*/
-
-/*    .btn {*/
+/*    #joinFrm input[type="text"],*/
+/*    #joinFrm input[type="password"],*/
+/*    #joinFrm input[type="button"],*/
+/*    #joinFrm input[type="submit"] {*/
 /*        width: 100%;*/
 /*    }*/
 /*}*/
-/* 회원가입 폼 스타일 */
-#joinFrm {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-}
-
-#joinFrm div {
-    margin-bottom: 15px;
-}
-
-#joinFrm label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-#joinFrm input[type="text"],
-#joinFrm input[type="password"],
-#joinFrm input[type="button"],
-#joinFrm input[type="submit"] {
-    width: calc(100% - 20px);
-    padding: 8px 10px;
-    margin: 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-#joinFrm input[type="button"] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-#joinFrm input[type="button"]:hover {
-    background-color: #45a049;
-}
-
-#joinFrm input[type="submit"] {
-    background-color: #008CBA;
-    color: white;
-    cursor: pointer;
-}
-
-#joinFrm input[type="submit"]:hover {
-    background-color: #007BB5;
-}
-
-#joinFrm #idmessage {
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-#joinFrm .error-message {
-    color: red;
-}
-
-#joinFrm .success-message {
-    color: green;
-}
-
-@media (max-width: 600px) {
-    #joinFrm {
-        width: 90%;
-    }
-
-    #joinFrm input[type="text"],
-    #joinFrm input[type="password"],
-    #joinFrm input[type="button"],
-    #joinFrm input[type="submit"] {
-        width: 100%;
-    }
-}

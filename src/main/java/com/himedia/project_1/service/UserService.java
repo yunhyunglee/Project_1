@@ -66,8 +66,7 @@ public class UserService {
 
 
 
-    public void deleteuser(@NotEmpty @NotNull String id) {
-    }
+    public void deleteuser(String id) { udao.deleteuser(id);}
 
     public void AdeleteUser(String userId) {
         udao.deleteUser(userId);

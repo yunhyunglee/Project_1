@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sidebar">
@@ -6,7 +7,7 @@
     <h3>회원 정보</h3>
     <ul>
       <li>
-        <a href="updateUserForm" class="${pageContext.request.requestURI.contains('updateUserForm') ? 'active' : ''}">
+        <a href="updatecheck" class="${pageContext.request.requestURI.contains('updateUserForm') ? 'active' : ''}">
           회원정보 수정
         </a>
       </li>
@@ -23,10 +24,10 @@
     <h3>내 활동</h3>
     <ul>
       <c:choose>
-        <c:when test="${user == 1}"> <!-- 개인 회원 -->
+        <c:when test="${usertype == '1'}"> <!-- 개인 회원 -->
           <li>
             <a href="zzim" class="${pageContext.request.requestURI.contains('ZZim') ? 'active' : ''}">
-              찜 목록
+              내 관심목록
             </a>
           </li>
           <li>
@@ -36,7 +37,7 @@
           </li>
           <li>
             <a href="MyReview" class="${pageContext.request.requestURI.contains('MyReview') ? 'active' : ''}">
-              내 후기목록
+              내가 쓴 리뷰
             </a>
           </li>
         </c:when>

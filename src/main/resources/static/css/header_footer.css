@@ -39,7 +39,8 @@ header {
 	margin: 0 20px;
 	display: flex;
 	align-items: center;
-	width: 900px !important;
+	max-width: 1000px; /* 최대 너비만 지정 */
+	width: 100%; /* 가용 가능한 모든 너비 사용 */
 }
 
 .search-bar input[type="text"] {
@@ -90,7 +91,7 @@ header {
 
 /* 호버 효과 */
 .gnb a:hover {
-	color: #007bff; /* 호버 시 텍스트와 아이콘 색상 변경 */
+	color: #19A7CE; /* 호버 시 텍스트와 아이콘 색상 변경 */
 	transform: scale(1.1); /* 살짝 확대 효과 */
 }
 

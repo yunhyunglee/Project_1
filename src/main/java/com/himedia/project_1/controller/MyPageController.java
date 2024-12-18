@@ -32,7 +32,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         Object loginuser0= session.getAttribute("loginUser");
         if(loginuser0==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }else if (loginuser0 instanceof UserVo) {
             // UserVo인 경우
@@ -52,7 +52,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         Object loginuser0=session.getAttribute("loginUser");
         if(loginuser0==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }else if (loginuser0 instanceof UserVo) {
             // UserVo인 경우
@@ -72,7 +72,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         Object loginuser0= session.getAttribute("loginUser");
         if(loginuser0==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }else if (loginuser0 instanceof UserVo) {
             // UserVo인 경우
@@ -93,7 +93,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
         if(loginuser==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }
         List<ReservationVo> list=ms.getMyClassInfo(loginuser.getId());
@@ -106,7 +106,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser=(BusinessmanVo) session.getAttribute("loginUser");
         if(loginuser==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }
         List<ReservationVo> list=ms.selectReservListDay(cseq);
@@ -130,7 +130,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
         if(loginuser==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }
         mav.addObject("dto", loginuser);
@@ -180,7 +180,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
         if(loginuser==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }
         ProductVo pvo=ms.selectProductbycseq(cseq);
@@ -214,7 +214,7 @@ public class MyPageController {
         ModelAndView mav = new ModelAndView();
         UserVo loginuser = (UserVo) session.getAttribute("loginUser");
         if(loginuser==null) {
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/loginForm");
             return mav;
         }
         List<ZzimVo> zzimList = ms.getZzimList(loginuser.getId());

@@ -1,0 +1,267 @@
+@charset "UTF-8";
+
+/* ================= 공통 레이아웃 및 스타일 ================ */
+.mypage-container{
+    display: flex; /* 플렉스 박스로 정렬 */
+    gap: 20px; /* 사이드바와 본문 간격 */
+    padding: 20px; /* 전체 여백 */
+    box-sizing: border-box;
+    width: 100%; /* 전체 화면 너비 사용 */
+}
+
+.content{
+    flex-grow: 1; /* 남은 공간 차지 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= 마이페이지 폼 스타일 ================ */
+.mypage-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 입력 필드 사이의 간격 */
+    margin-top: 20px;
+}
+
+.mypage-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.mypage-form label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.mypage-form input[type="text"],
+.mypage-form input[type="password"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.mypage-form input[type="text"]:focus,
+.mypage-form input[type="password"]:focus {
+    outline: none;
+    border-color: #19A7CE;
+    background-color: #f0f8ff;
+}
+
+.mypage-form input[type="submit"],
+.mypage-form input[type="button"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #19A7CE;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mypage-form input[type="submit"]:hover,
+.mypage-form input[type="button"]:hover {
+    background-color: #146C94;
+}
+
+.mypage-form input[type="button"] {
+    background-color: #6c757d;
+}
+
+.mypage-form input[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+.mypage-form .description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* ================= 찜 목록 스타일 ================ */
+.mypage-zzim-container {
+    display: flex;
+    gap: 20px; /* 사이드바와 본문 간 간격 */
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.mypage-zzim-content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mypage-zzim-content h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* 찜 목록 그리드 */
+.mypage-zzim-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: start;
+    align-items: start;
+    width: 100%;
+}
+
+.mypage-zzim-item {
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mypage-zzim-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zzim-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.zzim-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.zzim-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.zzim-info p {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.zzim-info span {
+    font-size: 14px;
+    color: #888;
+}
+
+/* ================= 예약 섹션 스타일 ================ */
+.mypage-reservation-section {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reservation-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.reservation-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reservation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.reservation-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #19A7CE;
+}
+
+.reservation-content p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.cancel-btn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: white;
+    background-color: #ff4d4f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #d63031;
+}
+
+/* ================= 반응형 디자인 ================ */
+@media (max-width: 768px) {
+    .mypage-container {
+        flex-direction: column;
+    }
+
+    .content,
+    .sidebar,
+    .mypage-zzim-content {
+        width: 100%;
+    }
+
+    .mypage-zzim-items {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .reservation-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reservation-card {
+        width: 90%;
+    }
+}

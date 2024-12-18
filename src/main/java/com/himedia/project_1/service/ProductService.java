@@ -56,7 +56,9 @@ public class ProductService {
         if(loginUser instanceof UserVo){
             id= ((UserVo)loginUser).getId();
             map.put("zzim",pdao.getZzim(id,cseq));
+            map.put("reviewopen",pdao.getReservationForReview(id,cseq));
         }
+        map.put("review",pdao.getreview(cseq));
         map.put("productVo",pdao.selectProductById(cseq));
         map.put("classTime",pdao.getClassTime(cseq));
         return map;
@@ -100,6 +102,7 @@ public class ProductService {
 
 
     public void insertReservation(String id, int cseq, Date classday, Time time, int people) {
+
         pdao.insertReservation(id,cseq,classday,time,people);
     }
 
@@ -144,6 +147,7 @@ public class ProductService {
 
     }
 
+
     public int getFilteredTotalCount(String searchQuery) {
         return pdao.getFilteredTotalCount(searchQuery); // 검색된 전체 데이터 개수
     }
@@ -152,5 +156,15 @@ public class ProductService {
         return pdao.getFilteredProductList(searchQuery, startNum, displayRow); // 페이징된 데이터
     }
 
+
+
+    public String calAbleCapacity(Date classday, Time time1) {
+        System.out.println( pdao.calAbleCapacity(classday,time1));
+        return pdao.calAbleCapacity(classday,time1);
+    }
+
+    public void insertReview(String id, int cseq,String rating, String review,String savefilename) {
+        pdao.insertReview(id,cseq,rating,review,savefilename);
+    }
 
 }

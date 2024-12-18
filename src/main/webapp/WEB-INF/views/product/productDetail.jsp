@@ -56,7 +56,7 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        background: #007bff;
+                        background: #19A7CE;
                         color: #fff;
                         padding: 10px 15px;
                     }
@@ -96,7 +96,7 @@
                         border-radius: 5px;
                     }
                     .calendar-grid div.today {
-                        background: #007bff;
+                        background: #19A7CE;
                         color: #fff;
                     }
                     .calendar-grid div:hover {
@@ -105,6 +105,10 @@
                     }
                     .calendar-grid div.before{
                         background: gray;
+                        color: #fff;
+                    }
+                    .calendar-grid div.selected{
+                        background: #FF7F50;
                         color: #fff;
                     }
                 </style>
@@ -199,14 +203,19 @@
 
                         renderCalendar(currentMonth, currentYear);
                         $('.calendar-grid').on('click','.daycell',function(){
+                            $('.daycell').removeClass('selected');
+                            $(this).addClass('selected');
                             $('#selectedday').val(currentYear+"-"+(currentMonth+1)+"-"+$(this).text());
+                            $('#option2').val('');
+                            $('#able-people').text('');
                         });
+                        $('.today').click();
                     });
                 </script>
             </div>
 
             <label for="option2">시간</label>
-            <select id="option2" name="option2">
+            <select id="option2" name="option2" >
                 <option value="">옵션을 선택하세요</option>
                 <c:forEach items="${classTime}" var="time" varStatus="status">
                         <c:choose>
@@ -220,11 +229,10 @@
                     </c:forEach>
 
             </select>
-
+                <div id="able-people" data-max="${productVo.max_people}"></div>
             <label for="option3">신청인원</label>
-            <input type="number" name="people" id="option3" value="1" min="1" required>
-
-            <button type="button" class="submit-btn">확인</button>
+            <input type="number" name="people" id="option3" value="1" max="${productVo.max_people}" min="1" required>
+            <button type="button" class="submit-btn" data-id="${loginUser.id}">확인</button>
         </form>
 
         <button class="close-btn option-close-btn">닫기</button>
@@ -257,7 +265,7 @@
                         var geocoder = new kakao.maps.services.Geocoder();
 
                         // 주소로 좌표를 검색합니다
-                        geocoder.addressSearch('${productVo.address1} ${productVo.address2} ${productVo.address3}', function(result, status) {
+                        geocoder.addressSearch('${productVo.address1} ${productVo.address3}', function(result, status) {
 
                             // 정상적으로 검색이 완료됐으면
                             if (status === kakao.maps.services.Status.OK) {
@@ -286,7 +294,7 @@
             </div>
     </section>
     <section class="reviews">
-        <h2>후기</h2>
+        <h2>후기 (${reviews.size()})</h2>
         <c:if test="${not empty reviews}">
             <ul class="review-list">
                 <c:forEach var="review" items="${reviews}">
@@ -294,12 +302,12 @@
                         <div class="review-header">
                             <span class="reviewer-name">
                                 <c:choose>
-                                    <c:when test="${not empty review.userName}">${review.userName}</c:when>
+                                    <c:when test="${not empty review.id}">${review.id}</c:when>
                                     <c:otherwise>익명</c:otherwise>
                                 </c:choose>
                             </span>
                             <span class="review-rating">
-                                <c:forEach var="star" begin="1" end="5">
+                                <c:forEach var="star" begin="1" end="5" >
                                     <c:choose>
                                         <c:when test="${star <= review.rating}">
                                             <i class="fi fi-ts-star"></i>
@@ -314,8 +322,11 @@
                                 <fmt:formatDate value="${review.indate}" pattern="yyyy-MM-dd HH:mm" />
                             </span>
                         </div>
-                        <div class="review-content">
-                            <p>${review.content}</p>
+                        <div>
+                            ${review.content}
+                            <c:if test="${not empty review.savefilename}">
+                                <img src=product_images/${review.savefilename}>
+                            </c:if>
                         </div>
                     </li>
                 </c:forEach>
@@ -323,6 +334,57 @@
         </c:if>
         <c:if test="${empty reviews}">
             <p>아직 등록된 후기가 없습니다.</p>
+        </c:if>
+        <c:if test="${not empty reviewopen}">
+        <div class="questions">
+           <form id="contactForm" action="review">
+               <input type="hidden" id="savefilename" name="savefilename">
+               <input type="hidden" name="cseq" value="${productVo.cseq}">
+               <select name="rating" id="rating">
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+               </select>
+               <textarea name="review" placeholder="후기 내용을 입력하세요" required></textarea>
+               <button type="submit" class="submit-btn">후기등록</button>
+            </form>
+        </div>
+        <div name="reviewImage">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jqury.min.js"></script>
+            <script type="text/javascript">
+                $(function(){
+                    $('#imageAddBtn').click(function(){
+                        var formselect = $('#fileupForm')[0];	//	지목된 폼을 변수에 저장
+                        var formData = new FormData(formselect);
+                        $.ajax({
+                            url:"<%=request.getContextPath()%>/fileup",
+                            type:"POST",
+                            enctype:"multipart/form-data",
+                            data : formData,
+                            timeout:10000,
+                            contentType:false,
+                            processData:false,
+
+                            success:function(data){
+                                $("#filename").append("<img src='product_images/" + data.savefilename + "' height='150'/>");
+                                $('#image').val(data.image);
+                                $('#savefilename').val(data.savefilename);
+                            },
+                            error:function(){ alert("실패")},
+                        });
+                    });
+                });
+            </script>
+            <div style="position:relative; border:1px solid black; width:500px; margin:0 auto;">
+                <div id="filename"></div>
+                <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+                    <input type="file" name="fileimage" />
+                    <input type="button" id="imageAddBtn" value="추가">
+                </form>
+            </div>
+        </div>
         </c:if>
     </section>
 
