@@ -1,6 +1,7 @@
 package com.himedia.project_1.service;
 
 import com.himedia.project_1.dao.IMyPageDao;
+import com.himedia.project_1.dao.IProductDao;
 import com.himedia.project_1.dao.IZZimDao;
 import com.himedia.project_1.dto.ProductVo;
 import com.himedia.project_1.dto.ReservationVo;
@@ -22,9 +23,14 @@ public class MyPageService {
     @Autowired
     IZZimDao zdao;
 
-    public List<ReservationVo> getMyClassInfo(String id) {
+    @Autowired
+    IProductDao pdao;
+    public HashMap<String, Object> getMyClassInfo(String id) {
+        HashMap<String, Object> map = new HashMap<>();
         List<ReservationVo> list = mdao.selectTotalPrice(id);
-        return list;
+        map.put("list", list);
+        map.put("qna", pdao.selectQnaCseq(id));
+        return map;
     }
 
     public List<ReservationVo> selectReservListDay(String cseq) {
@@ -78,5 +84,9 @@ public class MyPageService {
 
     public void deleteReviewById(int id) {
         mdao.deleteReview(id);
+    }
+
+    public void insertQnaProductReply(int qpseq, String qnareply) {
+        mdao.insertQnaProductReply(qpseq,qnareply);
     }
 }

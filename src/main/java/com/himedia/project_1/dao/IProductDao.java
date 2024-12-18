@@ -61,4 +61,9 @@ public interface IProductDao {
 
     void insertReview(String id, int cseq,String rating, String review,String savefilename);
 
+
+    void insertqnaproduct(String userid,String businessid, String content, int cseq);
+
+    List<QnaproductVo> selectQnaCseq(String id);
+
 }

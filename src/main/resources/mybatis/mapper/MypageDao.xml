@@ -57,5 +57,7 @@
         DELETE FROM review WHERE revseq = #{id}
     </delete>
 
-
+    <update id="insertQnaProductReply">
+        update qnaproduct set reply=#{param2},replyindate=now() where qpseq=#{param1}
+    </update>
 </mapper>

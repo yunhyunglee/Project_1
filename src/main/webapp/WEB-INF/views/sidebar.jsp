@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="sidebar">
   <!-- 회원정보 섹션 -->
   <div class="section">
@@ -40,6 +40,16 @@
               내가 쓴 리뷰
             </a>
           </li>
+          <li>
+            <a href="myQna" class="${pageContext.request.requestURI.contains('myQna') ? 'active' : ''}">
+              Q&A
+            </a>
+          </li>
+          <li>
+            <a href="myQnaproduct" class="${pageContext.request.requestURI.contains('myQnaProduct') ? 'active' : ''}">
+              Q&A
+            </a>
+          </li>
         </c:when>
         <c:otherwise> <!-- 사업자 회원 -->
           <li>
@@ -51,7 +61,7 @@
             <a href="myQna" class="${pageContext.request.requestURI.contains('myQna') ? 'active' : ''}">
               Q&A
             </a>
-          </li>
+
         </c:otherwise>
       </c:choose>
     </ul>

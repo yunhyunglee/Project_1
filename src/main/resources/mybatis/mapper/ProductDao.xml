@@ -158,4 +158,11 @@
         insert into review(id, cseq,rating,content,savefilename) values (#{param1},#{param2},#{param3},#{param4},#{param5})
     </insert>
 
+    <insert id="insertqnaproduct">
+        insert into qnaproduct(userid,businessid,content,cseq,indate) values (#{param1},#{param2},#{param3},#{param4},now())
+    </insert>
+    <select id="selectQnaCseq" resultType="com.himedia.project_1.dto.QnaproductVo">
+        select *from qnaproduct where businessid=#{param1}
+    </select>
+
 </mapper>
