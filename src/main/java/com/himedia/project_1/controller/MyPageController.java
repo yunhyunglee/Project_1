@@ -96,8 +96,9 @@ public class MyPageController {
             mav.setViewName("redirect:/loginForm");
             return mav;
         }
-        List<ReservationVo> list=ms.getMyClassInfo(loginuser.getId());
-        mav.addObject("MyClass", list);
+        HashMap<String, Object> map=ms.getMyClassInfo(loginuser.getId());
+        mav.addObject("MyClass", map.get("list"));
+        mav.addObject("qna", map.get("qna"));
         mav.setViewName("mypage/MyClass");
         return mav;
     }
@@ -233,6 +234,14 @@ public class MyPageController {
             e.printStackTrace(); // 예외 상세 로그 출력
             return "error"; // 실패 메시지 반환
         }
+    }
+    @GetMapping("QnaproductReply")
+    @ResponseBody
+        public String QnaproductReply(HttpSession session, @RequestParam("qnareply")String qnareply,
+                                      @RequestParam("qpseq")int qpseq) {
+        BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
+        ms.insertQnaProductReply(qpseq,qnareply);
+        return "success";
     }
 
 
