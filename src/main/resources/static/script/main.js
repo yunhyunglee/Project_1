@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slide.innerHTML = `
                     <img src="${banner.image}" alt="${banner.title}" onerror="this.src='http://placehold.co/1024x400'">
                     <div class="slide-content">
-                        <a href="${banner.link}" target="_blank">자세히 보기</a>
+                        <a href="${banner.link}" target="_blank"> 보기</a>
                     </div>
                 `;
                 slider.appendChild(slide);

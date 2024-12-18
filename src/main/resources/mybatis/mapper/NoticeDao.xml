@@ -31,4 +31,16 @@
         VALUES (#{title}, #{content}, NOW())
     </insert>
 
+
+    <select id="getTotalNoticeCount" resultType="int">
+        SELECT COUNT(*) FROM notice
+    </select>
+
+    <select id="getNoticeList" resultType="com.himedia.project_1.dto.NoticeVo">
+        SELECT *
+        FROM notice
+        ORDER BY nseq DESC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
 </mapper>

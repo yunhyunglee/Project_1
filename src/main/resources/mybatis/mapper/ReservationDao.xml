@@ -23,28 +23,65 @@
         where not r.payment=''
     </select>
 
-    <select id="findByEndedClass" parameterType="string" resultType="com.himedia.project_1.dto.ReservationVo">
-        SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
-               p.title
-        FROM reservation r
-                 LEFT JOIN product p ON r.cseq = p.cseq
-        WHERE r.endedclass = #{endedclass}
-        and not r.payment=''
-    </select>
-
-    <select id="findCancelledReservation" resultType="com.himedia.project_1.dto.ReservationVo">
-        SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
-               p.title
-        FROM reservation r
-                 LEFT JOIN product p ON r.cseq = p.cseq
-        WHERE r.payment = 'cancelled'
-        and not r.payment=''
-    </select>
 
     <delete id="deleteReservation" parameterType="int">
         DELETE FROM reservation WHERE reseq = #{reseq}
-        and not r.payment=''
+        and not payment=''
     </delete>
+
+    <update id="updatePaymentStatus" parameterType="map">
+        UPDATE reservation
+        SET payment = #{status}
+        WHERE reseq = #{reseq}
+    </update>
+
+
+    <select id="findByPaymentStatus" parameterType="string" resultType="com.himedia.project_1.dto.ReservationVo">
+        SELECT r.reseq, r.userid, r.cseq, r.people, r.classtime, r.classday, r.totalprice, r.payment, r.endedclass,
+               p.title
+        FROM reservation r
+                 LEFT JOIN product p ON r.cseq = p.cseq
+        WHERE r.payment = #{status}
+    </select>
+
+    <select id="getFilteredReservationCount" resultType="int">
+        SELECT COUNT(*)
+        FROM reservation r
+        LEFT JOIN product p ON r.cseq = p.cseq
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+                AND (r.userid LIKE CONCAT('%', #{searchQuery}, '%')
+                OR p.title LIKE CONCAT('%', #{searchQuery}, '%'))
+            </if>
+            <if test="status != null and status != ''">
+                AND r.payment = #{status}
+            </if>
+            AND NOT r.payment = ''
+        </where>
+    </select>
+
+
+    <!-- 예약 목록 -->
+    <select id="getFilteredReservationList" resultType="com.himedia.project_1.dto.ReservationVo">
+        SELECT r.reseq, r.userid, p.title, r.people, r.classday, r.classtime, r.payment, r.endedclass
+        FROM reservation r
+        LEFT JOIN product p ON r.cseq = p.cseq
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+                AND (r.userid LIKE CONCAT('%', #{searchQuery}, '%')
+                OR p.title LIKE CONCAT('%', #{searchQuery}, '%'))
+            </if>
+            <if test="status != null and status != ''">
+                AND r.payment = #{status}
+            </if>
+            AND NOT r.payment = ''
+        </where>
+        ORDER BY r.reseq DESC
+        LIMIT #{startNum}, #{displayRow}
+    </select>
+
+
+
 
 </mapper>
 

@@ -6,7 +6,7 @@
     <jsp:include page="../sidebar.jsp" />
 
     <!-- 본문 콘텐츠 -->
-    <section class="mypage-review-section">
+    <section class="mypage-review-content">
         <h1 class="section-title">내가 쓴 리뷰</h1>
         <ul class="mypage-review-list">
             <c:forEach items="${MyReview}" var="review">

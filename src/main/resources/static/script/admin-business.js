@@ -12,6 +12,26 @@ function editBusiness(id) {
     );
 }
 
+function searchBusiness(page = 1) {
+    const searchQuery = document.getElementById('searchQuery').value;
+    const searchType = document.getElementById('searchType').value; // 검색 기준 (ID, 이름, 이메일)
+
+    fetch(`/admin/business?page=${page}&searchQuery=${searchQuery}&searchType=${searchType}`, { method: 'GET' })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("section-content").innerHTML = html;
+        })
+        .catch(error => {
+            console.error("Error fetching user list:", error);
+            alert("데이터를 불러오는 중 문제가 발생했습니다.");
+        });
+}
+// 페이징 링크 클릭 이벤트
+function goToPageB(page) {
+    searchBusiness(page);
+}
+
+
 // 수정 폼 제출
 function submitBusinessEditForm() {
     submitForm('/admin/business/update', 'businessEditForm', 'businessEditModal');

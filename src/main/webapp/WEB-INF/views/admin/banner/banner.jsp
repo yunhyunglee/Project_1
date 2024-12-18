@@ -97,3 +97,18 @@
         </form>
     </div>
 </div>
+
+<!-- 페이징 처리 -->
+<div class="pagination">
+    <c:if test="${paging.prev}">
+        <a href="#" onclick="event.preventDefault(); loadSectionContent('/admin/banner?page=${paging.beginPage - 1}');">◀</a>
+    </c:if>
+    <c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
+        <a href="#" onclick="event.preventDefault(); loadSectionContent('/admin/banner?page=${index}');">${index}</a>
+    </c:forEach>
+    <c:if test="${paging.next}">
+        <a href="#" onclick="event.preventDefault(); loadSectionContent('/admin/banner?page=${paging.endPage + 1}');">▶</a>
+    </c:if>
+</div>
+
+
