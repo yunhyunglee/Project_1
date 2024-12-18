@@ -61,6 +61,8 @@
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
+    cursor: pointer;
+    color: #2A363B;
 }
 
 .myclass-btn {
@@ -171,13 +173,11 @@
 .myclass-actions .myclass-action-btn:hover {
     background-color: #146C94;
 }
-
 .myclass-actions .myclass-cancel-btn {
-    background-color: #1C6E8C; /* 취소 버튼 색상 */
+    background-color: #FF8A64; /* 취소 버튼 색상 */
 }
-
 .myclass-actions .myclass-cancel-btn:hover {
-    background-color: #145374;
+    background-color: #E57373;
 }
 
 /* ================= 체크박스 드롭다운 스타일 ================ */

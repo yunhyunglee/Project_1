@@ -14,23 +14,25 @@ header {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	z-index: 999;
 }
+
+
 /* 로고 영역 설정 */
 #logo {
-	height: 200px !important; /* 로고 영역의 높이 설정 */
-	width: 250px !important; /* 로고 영역의 너비 설정 (원하는 값으로 조정) */
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
-	overflow: hidden !important; /* 넘치는 이미지 숨김 */
+	height: 200px; /* 로고 영역의 높이 설정 */
+	width: 250px; /* 로고 영역의 너비 설정 (원하는 값으로 조정) */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden; /* 넘치는 이미지 숨김 */
 }
 
 /* 로고 이미지 설정 */
 #logo img {
-	max-height: 100% !important; /* 부모 높이에 맞춤 */
-	max-width: 100% !important; /* 부모 너비에 맞춤 */
-	object-fit: contain !important; /* 비율 유지하며 맞춤 */
-	height: auto !important;
-	width: auto !important;
+	max-height: 100%; /* 부모 높이에 맞춤 */
+	max-width: 100%; /* 부모 너비에 맞춤 */
+	object-fit: contain; /* 비율 유지하며 맞춤 */
+	height: auto;
+	width: auto;
 }
 
 /* 검색창 */
@@ -235,37 +237,72 @@ header {
 	text-decoration: underline;
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-	.footer-container {
-		flex-direction: column;
-		text-align: center;
-	}
-
-	.footer-logo {
-		margin-bottom: 10px;
-	}
-}
-
-
-/* 반응형 디자인 */
 @media (max-width: 768px) {
 	header {
-		flex-direction: column;
+		display: flex;
+		flex-wrap: wrap; /* 줄바꿈 허용 */
 		align-items: center;
-		padding: 10px 0;
+		justify-content: space-between;
+		height: 120px;
+		padding: 5px 10px;
+		box-sizing: border-box;
+	}
+
+	/* 첫 번째 줄: 로고와 검색창 */
+	#logo {
+		flex: 0 0 50%; /* 로고가 전체 너비의 50% 차지 */
+		height: 50%; /* 상단 절반 사용 */
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	#logo img {
+		max-height: 100%; /* 비율 유지 */
+		width: auto;
 	}
 
 	.search-bar {
-		width: 100%;
-		max-width: 90%;
+		flex: 0 0 50%; /* 검색창이 나머지 50% 차지 */
+		height: 50%; /* 상단 절반 사용 */
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 	}
 
+	.search-bar input[type="text"] {
+		width: 100%; /* 가용 너비 사용 */
+		max-width: 150px; /* 검색창 최대 너비 */
+		height: 30px;
+		font-size: 12px;
+		border-radius: 15px;
+	}
+
+	/* 두 번째 줄: 메뉴 */
 	.gnb {
+		flex: 1 1 100%; /* 전체 너비 */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		height: 50%; /* 하단 절반 사용 */
+	}
+
+	.gnb a {
+		font-size: 10px;
+		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
+
+	.gnb a .icon {
+		font-size: 12px;
+	}
 }
+
+
+
+
 
 .nav-item.categories {
 	position: relative;

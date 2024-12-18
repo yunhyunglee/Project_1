@@ -37,35 +37,44 @@
         <!-- 내 클래스 목록 -->
         <div class="myclass-list-container">
             <c:forEach items="${MyClass}" var="myclass">
-               <div class="myclass-item">
-                    <div class="myclass-title">${myclass.title}</div>
+                <div class="myclass-item">
+                    <a onclick="location.href='/productDetail?id=${myclass.cseq}'">
+                        <div class="myclass-title">${myclass.title}</div>
+                    </a>
+
                     <div class="myclass-details">
                         <div class="myclass-amount">
                             <span class="myclass-amount-icon">&#128176;</span> <!-- 💱 아이콘 -->
                             <span>정산 금액: ${myclass.totalprice} 원</span>
                         </div>
                         <div>
-                            <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">정보 수정</button>
+                            <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">클래스 정보 수정</button>
                             <button class="myclass-btn" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">예약 관리</button>
                             <button class="myclass-btn myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
                           <input type="button" name="MyQnaproduct" value="문의내용 ">
                             <div id="QnaProduct" data-userid="${loginUser.id}">
 
                                 <c:forEach items="${qna}" var="qna">
-                                 <c:if test="${qna.cseq==myclass.cseq}">
+                                    <c:if test="${qna.cseq == myclass.cseq}">
+                                        <span>${qna.userid}</span>
+                                        <span>${qna.content}</span>
+                                        <span>${qna.indate}</span>
 
-                                   <span>${qna.userid}</span> <span>${qna.content}</span> <span>${qna.indate}</span>
-                                   <c:if test="${empty qna.reply}">
-                                   <div>
-                                       <form >
-                                           <input type="hidden" name="qpseq" value="${qna.qpseq}">
-                                           <textarea name="qnareply" id="qnareply"></textarea>
-                                           <input type="button" name="replybutton" id="replybutton" value="답변올리기">
-                                       </form>
-                                   </div>
-                                   </c:if>
-                                   <c:if test="${not empty qna.reply}"><div>${qna.reply} / ${qna.replyindate}</div></c:if>
-                                 </c:if>
+                                        <c:choose>
+                                            <c:when test="${empty qna.reply}">
+                                                <div>
+                                                    <form>
+                                                        <input type="hidden" name="qpseq" value="${qna.qpseq}">
+                                                        <textarea name="qnareply" id="qnareply"></textarea>
+                                                        <input type="button" name="replybutton" id="replybutton" value="답변올리기">
+                                                    </form>
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div>${qna.reply} / ${qna.replyindate}</div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
                                 </c:forEach>
                             </div>
                           </div>
@@ -73,7 +82,9 @@
                     </div>
                </div>
 
-        </c:forEach>
+
+            </c:forEach>
+
         </div>
     </div>
 </div>

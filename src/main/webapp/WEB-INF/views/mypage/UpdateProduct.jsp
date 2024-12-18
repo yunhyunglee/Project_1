@@ -360,7 +360,9 @@
 <%--    }--%>
 <%--</script>--%>
 
-<%--<%@ include file="../footer.jsp" %>--%>
+<%--&lt;%&ndash;<%@ include file="../footer.jsp" %>&ndash;%&gt;--%>
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -386,10 +388,41 @@
                     $('#image').val(data.image);
                     $('#savefilename').val(data.savefilename);
                 },
-                error:function(){ alert("실패")},
+                error:function(){ alert("파일 추가에 실패했습니다.")},
             });
         });
     });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var dropdownButton = document.getElementById('dropdownButton');
+        var checkboxesContainer = document.getElementById('checkboxContainer');
+
+        dropdownButton.addEventListener('click', function() {
+            checkboxesContainer.style.display = checkboxesContainer.style.display === 'block' ? 'none' : 'block';
+
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!dropdownButton.contains(event.target) && !checkboxesContainer.contains(event.target)) {
+                checkboxesContainer.style.display = 'none';
+            }
+        });
+        const submitButton = document.getElementById('submitButton');
+        submitButton.addEventListener('click', () => {
+            if(!($('input[name="selectedTime"]:checked').length > 0)){
+                alert("시간을 하나 이상 선택해야 합니다.");
+            }else {
+                document.insertNewProduct.submit();
+            }
+        });
+
+        document.getElementById('deleteButton').addEventListener('click', () => {
+            document.insertNewProduct.action='deleteProduct';
+            document.insertNewProduct.submit();
+        });
+    });
+
 </script>
 
 <div class="mypage-myclass-container">
@@ -461,33 +494,20 @@
                 <label for="content">내용</label>
                 <input type="text" id="content" name="content" value="${pvo.content}" class="myclass-input">
             </div>
-<%--            <div class="myclass-file-upload">--%>
-<%--              <div id="filename"></div>--%>
-<%--                <form id="fileupForm" method="post" enctype="multipart/form-data">--%>
-<%--                    <input type="file" name="fileimage" class="myclass-file-input"/>--%>
-<%--                    <input type="button" id="imageAddBtn" value="파일 수정" class="myclass-action-btn">--%>
-<%--                </form>--%>
-<%--            </div>--%>
             <div class="myclass-file-upload">
-                <input type="file" name="fileimage" class="myclass-file-input"/>
-                <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
+                <div id="filename"></div>
+                <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+                    <input type="file" name="fileimage" class="myclass-file-input"/>
+                    <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
+                </form>
             </div>
-
-            <!-- 액션 버튼 -->
-<%--            <div class="myclass-actions">--%>
-<%--                <input type="submit" value="클래스 정보수정" class="myclass-action-btn">--%>
-<%--                <input type="button" value="클래스 폐강" id="deleteButton" class="myclass-action-btn myclass-cancel-btn">--%>
-<%--                <input type="button" onclick="location.href='/'" value="되돌아가기" class="myclass-action-btn">--%>
-<%--            </div>--%>
             <div class="myclass-actions">
-                <input type="submit" value="클래스 정보수정" class="myclass-action-btn">
-                <input type="button" value="클래스 폐강" id="deleteButton" class="myclass-action-btn myclass-cancel-btn">
-                <input type="button" onclick="location.href='/'" value="되돌아가기" class="myclass-action-btn">
+                <input type="button" value="클래스 정보 저장" id="submitButton" class="myclass-action-btn">
+                <input type="button" value="클래스 삭제" id="deleteButton" class="myclass-action-btn myclass-cancel-btn">
+                <input type="button" onclick="history.back()" value="돌아가기" class="myclass-action-btn">
             </div>
 
         </form>
-
-
     </div>
 </div>
 
