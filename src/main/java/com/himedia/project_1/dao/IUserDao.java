@@ -4,6 +4,7 @@ import com.himedia.project_1.dto.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -49,4 +50,13 @@ public interface IUserDao {
     List<ProductVo> getBest();
 
     List<ProductVo> getNew();
+
+
+    int getFilteredTotalCount(@Param("searchQuery") String searchQuery, @Param("searchType") String searchType);
+
+    List<UserVo> getFilteredUserList(@Param("searchQuery") String searchQuery,
+                                     @Param("searchType") String searchType,
+                                     @Param("startNum") int startNum,
+                                     @Param("displayRow") int displayRow);
+
 }

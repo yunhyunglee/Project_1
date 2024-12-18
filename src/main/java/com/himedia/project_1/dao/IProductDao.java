@@ -48,4 +48,7 @@ public interface IProductDao {
 
     List<ProductVo> getSearchList(String key, Paging paging);
 
+    int getFilteredTotalCount(String searchQuery);
+
+    List<ProductVo> getFilteredProductList(String searchQuery, int startNum, int displayRow);
 }

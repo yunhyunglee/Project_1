@@ -5,6 +5,8 @@ import com.himedia.project_1.dto.QnaVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QnaService {
 
@@ -17,5 +19,16 @@ public class QnaService {
 
     public QnaVo getQnaById(int qseq) {
         return iqnaDao.findById(qseq);
+    }
+
+
+
+
+    public int getFilteredTotalCount(String filter, String searchQuery, String searchType) {
+        return iqnaDao.getFilteredTotalCount(filter, searchQuery, searchType);
+    }
+
+    public List<QnaVo> getFilteredQnaList(String filter, String searchQuery, String searchType, int startNum, int displayRow) {
+        return iqnaDao.getFilteredQnaList(filter, searchQuery, searchType, startNum, displayRow);
     }
 }

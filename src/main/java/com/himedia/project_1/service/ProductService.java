@@ -144,4 +144,13 @@ public class ProductService {
 
     }
 
+    public int getFilteredTotalCount(String searchQuery) {
+        return pdao.getFilteredTotalCount(searchQuery); // 검색된 전체 데이터 개수
+    }
+
+    public List<ProductVo> getFilteredProductList(String searchQuery, int startNum, int displayRow) {
+        return pdao.getFilteredProductList(searchQuery, startNum, displayRow); // 페이징된 데이터
+    }
+
+
 }

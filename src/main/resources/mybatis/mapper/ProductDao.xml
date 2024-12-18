@@ -104,4 +104,42 @@
             limit #{param2.displayRow} offset #{param2.startNum}
     </select>
 
+    <select id="getTotalProductCount" resultType="int">
+        SELECT COUNT(*) FROM product
+    </select>
+
+    <select id="getProductList" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        ORDER BY cseq DESC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
+
+
+    <select id="getFilteredTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM product
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+               title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 필터링 및 페이징된 사용자 리스트 -->
+    <select id="getFilteredProductList" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT cseq, title, content, price, category, image, id
+        FROM product
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+               title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+        ORDER BY cseq DESC
+        LIMIT #{startNum}, #{displayRow};
+    </select>
+
+
+
 </mapper>

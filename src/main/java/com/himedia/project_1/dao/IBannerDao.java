@@ -25,4 +25,12 @@ public interface IBannerDao {
 
     // 배너 삭제
     void deleteBanner(int bannerId);
+
+    List<BannerVo> findBanners(int offset, int pageSize);
+
+    int countBanners();
+
+    int getTotalBannerCount();
+
+    List<BannerVo> getBannerList(int startNum, int displayRow);
 }

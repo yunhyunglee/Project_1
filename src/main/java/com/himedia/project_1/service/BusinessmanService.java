@@ -32,4 +32,14 @@ public class BusinessmanService {
         System.out.println("수정 요청 데이터: " + businessman);
         bdao.updateBusiness(businessman);
     }
+
+
+
+    public int getFilteredTotalCount(String searchQuery, String searchType) {
+        return bdao.getFilteredTotalCount(searchQuery, searchType);
+    }
+
+    public List<BusinessmanVo> getFilteredBusinessList(String searchQuery, String searchType, int startNum, int displayRow) {
+        return bdao.getFilteredBusinessList(searchQuery, searchType, startNum, displayRow);
+    }
 }
