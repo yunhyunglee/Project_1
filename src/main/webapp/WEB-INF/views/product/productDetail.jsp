@@ -341,11 +341,11 @@
                <input type="hidden" id="savefilename" name="savefilename">
                <input type="hidden" name="cseq" value="${productVo.cseq}">
                <select name="rating" id="rating">
-                    <option value="1">★</option>
-                    <option value="2">★★</option>
-                    <option value="3">★★★</option>
-                    <option value="4">★★★★</option>
-                    <option value="5">★★★★★</option>
+                    <option value="1">&#11088;</option>
+                    <option value="2">&#11088;&#11088;</option>
+                    <option value="3">&#11088;&#11088;&#11088;</option>
+                    <option value="4">&#11088;&#11088;&#11088;&#11088;</option>
+                    <option value="5">&#11088;&#11088;&#11088;&#11088;&#11088;</option>
                </select>
                <textarea name="review" placeholder="후기 내용을 입력하세요" required></textarea>
                <button type="submit" class="submit-btn">후기등록</button>

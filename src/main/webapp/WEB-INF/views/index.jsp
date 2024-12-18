@@ -87,7 +87,7 @@
                         <div class="item">
                             <a href="/productDetail?id=${product.cseq}">
 <%--                                <!-- 이미지가 없는 경우 기본 이미지 출력 -->--%>
-                                    <img src="/product_images/${product.savefilename}" alt="${product.title}" />
+                                    <img src="product_images/${product.savefilename}" alt="${product.title}" />
                                 <p>${product.title}</p>
                                 <p>${product.price}원</p>
                             </a>

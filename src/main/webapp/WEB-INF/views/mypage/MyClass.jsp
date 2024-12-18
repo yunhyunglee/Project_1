@@ -40,7 +40,7 @@
                             <span>정산 금액: ${myclass.totalprice} 원</span>
                         </div>
                         <div>
-                            <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">정보 수정</button>
+                            <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">클래스 정보 수정</button>
                             <button class="myclass-btn" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">예약 관리</button>
                             <button class="myclass-btn myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
                         </div>
