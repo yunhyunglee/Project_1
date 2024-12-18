@@ -1,7 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jqury.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(function(){
         $('#imageAddBtn').click(function(){
@@ -22,7 +22,7 @@
                     $('#image').val(data.image);
                     $('#savefilename').val(data.savefilename);
                 },
-                error:function(){ alert("파일 추가에 실패했습니다")},
+                error:function(){ alert("실패")},
             });
         });
     });
@@ -145,7 +145,7 @@
 
             <!-- 이미지 업로드 -->
             <div class="myclass-file-upload">
-                <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+                <form id="fileupForm" method="post" enctype="multipart/form-data">
                 <input type="file" name="fileimage" class="myclass-file-input"/>
                 <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
                 </form>
