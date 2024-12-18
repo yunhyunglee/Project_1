@@ -38,4 +38,6 @@ public interface IMyPageDao {
     void clearpay(int cseq);
 
     void deleteReview(int id);
+
+    void insertQnaProductReply(int qpseq, String qnareply);
 }

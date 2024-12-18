@@ -25,11 +25,14 @@ html, body {
 /* 메인 콘텐츠 스타일 */
 main {
     flex: 1; /* 남은 공간을 채우도록 설정 */
+
     padding: 20px;
     background-color: #F8FAFC;
 }
 
 #wrap > main {
+
     margin-top: 130px;
+
 }
 

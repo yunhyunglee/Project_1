@@ -167,4 +167,16 @@ public class ProductService {
         pdao.insertReview(id,cseq,rating,review,savefilename);
     }
 
+
+    public void insertqnaproduct(String userid,String businessid,  String content, int cseq) {
+        pdao.insertqnaproduct(userid,businessid,content,cseq);
+    }
+
+    public HashMap<String, Object> getMyQnaProduct(String id) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("product",pdao.findProductsByBusinessId(id));
+        map.put("qna", pdao.selectQnaCseq(id));
+        return map;
+    }
+
 }

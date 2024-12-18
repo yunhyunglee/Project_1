@@ -1,5 +1,6 @@
 package com.himedia.project_1.controller;
 
+import com.himedia.project_1.dto.BusinessmanVo;
 import com.himedia.project_1.dto.ProductVo;
 import com.himedia.project_1.dto.ReservationVo;
 import com.himedia.project_1.dto.UserVo;
@@ -169,6 +170,21 @@ public class ProductController {
         UserVo loginUser = (UserVo) session.getAttribute("loginUser");
         ps.insertReview(loginUser.getId(),cseq,rating, review,savefilename);
         return "redirect:/productDetail?id="+cseq;
+    }
+
+    @PostMapping("qnaProduct")
+    public String review(@RequestParam("question")String content, HttpSession session,
+                         @RequestParam("cseq")int cseq, @RequestParam("businessid")String businessid) {
+        UserVo loginUser = (UserVo) session.getAttribute("loginUser");
+        ps.insertqnaproduct(loginUser.getId(),businessid,content,cseq);
+        return "redirect:/productDetail?id="+cseq;
+    }
+    @GetMapping("MyQnaProduct")
+    @ResponseBody
+    public HashMap<String,Object> myQnaProduct(HttpSession session) {
+        BusinessmanVo loginUser = (BusinessmanVo) session.getAttribute("loginUser");
+        HashMap<String,Object> map = ps.getMyQnaProduct(loginUser.getId());
+        return map;
     }
 
 
