@@ -7,6 +7,13 @@
 <script type="text/javascript">
   $(function(){
     $('#idcheckButton').click(function(){
+      var businessId = $('#id').val().trim();
+      if (businessId === "") {
+        $('#idmessage').html("&nbsp;&nbsp;<span style='color:red'>아이디를 입력하세요</span>");
+        $('#reid').val("");
+        return;
+      }
+
 
       var formselect = $('#joinFrm')[0];
       var formdata = new FormData( formselect );

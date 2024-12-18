@@ -18,7 +18,7 @@
 
                 success:function(data){
                     $('#filename').html("<div>" + data.image + "</div>");
-                    $("#filename").append("<img src='product_images/" + data.savefilename + "height='150'/>");
+                    $("#filename").append("<img src='product_images/" + data.savefilename + "' height='150'/>");
                     $('#image').val(data.image);
                     $('#savefilename').val(data.savefilename);
                 },

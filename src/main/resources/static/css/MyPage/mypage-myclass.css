@@ -61,6 +61,8 @@
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
+    cursor: pointer;
+    color: #2A363B;
 }
 
 .myclass-btn {

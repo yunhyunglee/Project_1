@@ -39,7 +39,7 @@
         select count(*)>0 from zzim where uid=#{param1} and cnum=#{param2}
     </select>
     <insert id="insertZzim">
-        insert into zzim values (#{param1},#{param2})
+        insert into zzim (uid, cnum) values (#{param1},#{param2})
     </insert>
     <delete id="deleteZzim">
         delete from zzim where uid=#{param1} and cnum=#{param2}
