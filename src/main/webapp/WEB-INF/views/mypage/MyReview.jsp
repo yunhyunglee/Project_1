@@ -14,7 +14,14 @@
                     <!-- 이미지 및 리뷰 제목 -->
                     <div class="review-summary">
                         <div class="review-image">
-<%--                            <img src="${not empty review.rev_img ? review.rev_img : '/images/default-rev_img.png'}" alt="리뷰 이미지">--%>
+                            <c:choose>
+                                <c:when test="${not empty review.savefilename}">
+                                    <img src="product_images/${review.savefilename}" alt="리뷰 이미지">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="/images/noname.jpg" alt="리뷰 이미지">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="review-title">
                             <h3>${review.title}</h3>

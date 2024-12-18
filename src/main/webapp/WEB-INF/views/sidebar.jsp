@@ -47,7 +47,7 @@
           </li>
           <li>
             <a href="myQnaproduct" class="${pageContext.request.requestURI.contains('myQnaProduct') ? 'active' : ''}">
-              Q&A
+              클래스 문의사항
             </a>
           </li>
         </c:when>

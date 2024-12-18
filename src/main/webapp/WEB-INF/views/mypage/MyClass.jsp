@@ -25,7 +25,7 @@
     <!-- 사이드바 포함 -->
     <jsp:include page="../sidebar.jsp" />
 
-    <!-- 본문 -->
+   <!-- 본문 -->
     <div class="mypage-myclass-content">
         <h2 class="myclass-section-title">내 클래스 목록</h2>
 
@@ -44,18 +44,16 @@
 
                     <div class="myclass-details">
                         <div class="myclass-amount">
-                            <span class="myclass-amount-icon">&#128176;</span>
+                            <span class="myclass-amount-icon">&#128176;</span> <!-- 💱 아이콘 -->
                             <span>정산 금액: ${myclass.totalprice} 원</span>
                         </div>
-
                         <div>
                             <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">클래스 정보 수정</button>
                             <button class="myclass-btn" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">예약 관리</button>
                             <button class="myclass-btn myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
-
-                            <!-- 문의 내용 영역 -->
-                            <input type="button" name="MyQnaproduct" value="문의내용 ">
+                          <input type="button" name="MyQnaproduct" value="문의내용 ">
                             <div id="QnaProduct" data-userid="${loginUser.id}">
+
                                 <c:forEach items="${qna}" var="qna">
                                     <c:if test="${qna.cseq == myclass.cseq}">
                                         <span>${qna.userid}</span>
@@ -79,10 +77,14 @@
                                     </c:if>
                                 </c:forEach>
                             </div>
+                          </div>
                         </div>
                     </div>
-                </div>
+               </div>
+
+
             </c:forEach>
+
         </div>
     </div>
 </div>

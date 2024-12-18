@@ -237,10 +237,18 @@ public class MyPageController {
     }
     @GetMapping("QnaproductReply")
     @ResponseBody
-        public String QnaproductReply(HttpSession session, @RequestParam("qnareply")String qnareply,
-                                      @RequestParam("qpseq")int qpseq) {
+        public String QnaproductReply(HttpSession session, @RequestParam HashMap<String,String> formdata) {
+        String qnareply=formdata.get("qnareply");
+        System.out.println("qnareply = "+qnareply);
+        int qpseq=Integer.parseInt(formdata.get("qpseq"));
+        System.out.println("qpseq = "+qpseq);
         BusinessmanVo loginuser = (BusinessmanVo) session.getAttribute("loginUser");
         ms.insertQnaProductReply(qpseq,qnareply);
+        return "success";
+    }
+    @GetMapping("reserCancle")
+    @ResponseBody
+    public String revCancle(HttpSession session, @RequestParam("reseq")int reseq) {
         return "success";
     }
 

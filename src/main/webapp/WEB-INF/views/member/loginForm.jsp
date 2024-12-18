@@ -145,10 +145,28 @@
 
         <!-- 카카오 로그인 -->
         <div class="kakao-login">
-            <button type="button" class="kakao-btn"
-                    onClick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=f67ebc2de23039bbce25c7d2583abd81&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code'">
+            <button type="button" class="kakao-btn">
                 <img src="images/kakao_login.png" alt="카카오톡으로 시작하기">
             </button>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log('1');
+                    $('.kakao-btn').click(function(){
+                        const usertype = $('input[name="usertype"]:checked').val();
+                        console.log(usertype);
+                        $.ajax({
+                            url: 'kakaoLoginSession',
+                            type: 'get',
+                            data: {usertype: usertype},
+                            success: function(data){
+                                const url='https://kauth.kakao.com/oauth/authorize?client_id=f67ebc2de23039bbce25c7d2583abd81&redirect_uri=http://localhost:8070/kakaoLogin&response_type=code';
+                                window.location.href = url;
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
         </div>
     </form>
 

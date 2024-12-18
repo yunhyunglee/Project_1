@@ -40,7 +40,7 @@ public interface IProductDao {
 
     String[] getClassTime(int cseq);
 
-    void insertReservation(String userid, int cseq, Date classday, Time classtime, int people);
+    void insertReservation(String userid, int cseq, Date classday, Time classtime, int people, int totalprice);
 
     int getAllCount(String key);
 
@@ -61,9 +61,9 @@ public interface IProductDao {
 
     void insertReview(String id, int cseq,String rating, String review,String savefilename);
 
-
     void insertqnaproduct(String userid,String businessid, String content, int cseq);
 
     List<QnaproductVo> selectQnaCseq(String id);
 
+    int getProductByIdToPrice(int cseq);
 }

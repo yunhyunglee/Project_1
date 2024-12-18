@@ -102,8 +102,9 @@ public class ProductService {
 
 
     public void insertReservation(String id, int cseq, Date classday, Time time, int people) {
-
-        pdao.insertReservation(id,cseq,classday,time,people);
+        int price = pdao.getProductByIdToPrice(cseq);
+        price=price*people;
+        pdao.insertReservation(id,cseq,classday,time,people,price);
     }
 
     public HashMap<String, Object> getSearchList(HttpServletRequest request) {

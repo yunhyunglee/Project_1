@@ -47,6 +47,9 @@
     <select id="getProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
         SELECT * FROM product WHERE cseq = #{cseq}
     </select>
+    <select id="getProductByIdToPrice" resultType="_int">
+        SELECT price FROM product WHERE cseq = #{cseq}
+    </select>
 
 
 
@@ -93,8 +96,8 @@
         select classtime from reservation where cseq=#{cseq} and payment='' order by classtime asc ;
     </select>
     <insert id="insertReservation">
-        insert into reservation(userid,cseq,classday,classtime,people)
-        values (#{userid},#{cseq},#{classday},#{classtime},#{people})
+        insert into reservation(userid,cseq,classday,classtime,people,totalprice)
+        values (#{userid},#{cseq},#{classday},#{classtime},#{people},#{totalprice})
     </insert>
     <select id="getAllCount" resultType="_int">
         select count(*) from product where title like concat('%',#{param1},'%')
