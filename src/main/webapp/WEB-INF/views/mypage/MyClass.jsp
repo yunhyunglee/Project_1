@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script language="JavaScript">
     document.addEventListener('DOMContentLoaded',function(){
-        document.querySelectorAll('input[id^="clearpay"]').forEach(function(item) { // 'item'이라는 변수 이름 사용
+        document.querySelectorAll('button[id="myclass-clear-btn"]').forEach(function(item) { // 'item'이라는 변수 이름 사용
             item.addEventListener('click', function() {
                 var ans = confirm("금액을 정산하시겠습니까?");
                 if (ans) {
@@ -48,7 +48,7 @@
 
         <!-- 내 클래스 목록 -->
         <div class="myclass-list-container">
-            <c:forEach items="${MyClass}" var="myclass">
+            <c:forEach items="${productlist}" var="myclass">
                 <div class="myclass-item">
                     <a onclick="location.href='/productDetail?id=${myclass.cseq}'">
                         <div class="myclass-title">${myclass.title}</div>
@@ -57,12 +57,14 @@
                     <div class="myclass-details">
                         <div class="myclass-amount">
                             <span class="myclass-amount-icon">&#128176;</span> <!-- 💱 아이콘 -->
-                            <span>정산 금액: ${myclass.totalprice} 원</span>
+                            <c:forEach items="${reservationList}" var="reservationList">
+                                <c:if test="${myclass.cseq == reservationList.cseq}"><span>정산 금액: ${reservationList.totalprice} 원</span></c:if>
+                            </c:forEach>
                         </div>
                         <div>
                             <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">클래스 정보 수정</button>
                             <button class="myclass-btn" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">예약 관리</button>
-                            <button class="myclass-btn myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
+                            <button class="myclass-btn myclass-clear-btn" id="myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
                           <input type="button" name="MyQnaproduct" value="문의내용 ">
                             <div id="QnaProduct" data-userid="${loginUser.id}">
 
