@@ -183,7 +183,7 @@
 .item img {
 	width: 100%;
 	/*height: 180px; !* 고정된 높이 *!*/
-	height: 80%; /* 박스를 꽉 채우도록 이미지 크기 설정 */
+	height: 90%; /* 박스를 꽉 채우도록 이미지 크기 설정 */
 	border-bottom: 1px solid #f0f0f0;
 }
 .item p {
