@@ -392,11 +392,11 @@
     <section class="reviews-and-questions">
         <div class="questions">
             <h2>문의하기</h2>
-            <form id="contactForm" action="qnaProduct" method="post">
+            <form id="qnaproductForm" action="qnaProduct" method="post">
                 <input type="hidden" name="cseq" value="${productVo.cseq}">
                 <input type="hidden" name="businessid" value="${productVo.id}">
                 <textarea name="question" placeholder="문의 내용을 입력하세요" required></textarea>
-                <button type="submit" class="submit-btn">문의하기</button>
+                <button type="button" id="qnasubmit-btn" data-loginUser="${loginUser.id}" data-usertype="${usertype}" class="submit-btn">문의하기</button>
             </form>
         </div>
     </section>

@@ -4,6 +4,7 @@ import com.himedia.project_1.dao.IMyPageDao;
 import com.himedia.project_1.dao.IProductDao;
 import com.himedia.project_1.dao.IZZimDao;
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.QnaproductVo;
 import com.himedia.project_1.dto.ReservationVo;
 import com.himedia.project_1.dto.ZzimVo;
 import jakarta.validation.constraints.NotEmpty;
@@ -88,5 +89,19 @@ public class MyPageService {
 
     public void insertQnaProductReply(int qpseq, String qnareply) {
         mdao.insertQnaProductReply(qpseq,qnareply);
+    }
+
+    public void reserCancle(int reseq) {
+        mdao.reserCancle(reseq);
+    }
+
+    public HashMap<String, Object> getMyQnaProduct(String id) {
+        HashMap<String, Object> map = new HashMap<>();
+        List<QnaproductVo>cseqs=mdao.findReviewCseqByUserid(id);
+        List<QnaproductVo>qnaproductVo=mdao.getQnaProduct(id);
+        map.put("title",cseqs);
+        map.put("content", qnaproductVo);
+        return map;
+
     }
 }

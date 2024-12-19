@@ -60,4 +60,13 @@
     <update id="insertQnaProductReply">
         update qnaproduct set reply=#{param2},replyindate=now() where qpseq=#{param1}
     </update>
+    <delete id="reserCancle">
+        delete from reservation where reseq=#{reseq}
+    </delete>
+    <select id="findReviewCseqByUserid" >
+        select distinct cseq,title from qnaproduct_view where userid=#{param1} order by cseq desc
+    </select>
+    <select id="getQnaProduct" resultType="com.himedia.project_1.dto.QnaproductVo">
+        select *from qnaproduct_view where userid=#{param1} order by indate desc
+    </select>
 </mapper>

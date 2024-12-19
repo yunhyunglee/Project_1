@@ -235,7 +235,7 @@ public class MyPageController {
             return "error"; // 실패 메시지 반환
         }
     }
-    @GetMapping("QnaproductReply")
+    @PostMapping("QnaproductReply")
     @ResponseBody
         public String QnaproductReply(HttpSession session, @RequestParam HashMap<String,String> formdata) {
         String qnareply=formdata.get("qnareply");
@@ -248,8 +248,23 @@ public class MyPageController {
     }
     @GetMapping("reserCancle")
     @ResponseBody
-    public String revCancle(HttpSession session, @RequestParam("reseq")int reseq) {
+    public String reserCancle(HttpSession session, @RequestParam("reseq")int reseq) {
+        ms.reserCancle(reseq);
         return "success";
+    }
+    @GetMapping("myQnaproduct")
+    public ModelAndView myQnaproduct(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        UserVo loginuser = (UserVo) session.getAttribute("loginUser");
+        if(loginuser==null) {
+            mav.setViewName("redirect:/loginForm");
+            return mav;
+        }
+        HashMap<String, Object> map=ms.getMyQnaProduct(loginuser.getId());// 리뷰올린거 조회해서 타이틀이랑 리뷰,답변
+        mav.addObject("title", map.get("title"));
+        mav.addObject("content", map.get("content"));
+        mav.setViewName("mypage/MyQnaProduct");
+        return mav;
     }
 
 

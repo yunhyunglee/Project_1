@@ -14,4 +14,5 @@ public class QnaproductVo {
     private Timestamp indate;
     private String reply;
     private Timestamp replyindate;
+    private String title;
 }

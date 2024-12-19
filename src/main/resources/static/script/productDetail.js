@@ -127,6 +127,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    $('#qnasubmit-btn').click(function () {
+        const usertype = $(this).data('usertype');
+        console.log(usertype);
+        console.log(typeof(usertype));
+        const loginUser= $(this).data('loginuser');
+        console.log(loginUser);
+        console.log(typeof(loginUser));
+        const qnaproductForm=new FormData($('#qnaproductForm')[0]);
+        if (loginUser !== null && loginUser !== 'null' && loginUser !== ''&&usertype===1) {
+            $.ajax({
+                url: "qnaProduct",
+                type: "POST",
+                data: qnaproductForm,
+                processData: false, // 이 옵션을 false로 설정하세요
+                contentType: false, // 이 옵션도 false로 설정하세요
+                success: function (result) {
+                    alert("문의사항을 전달하였습니다.");
+                    location.reload();
+                }
+
+            });
+        }else{
+            alert("개인 로그인해야 작성가능합니다.");
+        }
+    });
+
     // 폼 제출 이벤트 처리
     // const form = document.getElementById('productOptionsForm');
     // if (form) {

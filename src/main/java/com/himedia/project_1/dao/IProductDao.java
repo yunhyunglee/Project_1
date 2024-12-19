@@ -66,4 +66,6 @@ public interface IProductDao {
     List<QnaproductVo> selectQnaCseq(String id);
 
     int getProductByIdToPrice(int cseq);
+
+    List<Integer> findReviewCseqByUserid(String id);
 }

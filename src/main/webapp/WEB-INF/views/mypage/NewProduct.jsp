@@ -7,10 +7,11 @@
         $('#imageAddBtn').click(function(){
             var formselect = $('#fileupForm')[0];	//	지목된 폼을 변수에 저장
             var formData = new FormData(formselect);
+            console.log(formData);
             $.ajax({
-                url:"<%=request.getContextPath()%>/fileup",
+                url:"/fileup",
                 type:"POST",
-                enctype:"multipart/form-data",
+                // enctype:"multipart/form-data",
                 data : formData,
                 timeout:10000,
                 contentType:false,
