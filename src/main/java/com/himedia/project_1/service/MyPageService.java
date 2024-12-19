@@ -28,8 +28,10 @@ public class MyPageService {
     IProductDao pdao;
     public HashMap<String, Object> getMyClassInfo(String id) {
         HashMap<String, Object> map = new HashMap<>();
-        List<ReservationVo> list = mdao.selectTotalPrice(id);
-        map.put("list", list);
+        List<ProductVo>productlist=mdao.getMyClassInfo(id);
+        List<ReservationVo> reservationVoList = mdao.selectTotalPrice(id);
+        map.put("productlist", productlist);
+        map.put("list", reservationVoList);
         map.put("qna", pdao.selectQnaCseq(id));
         return map;
     }

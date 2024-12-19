@@ -97,7 +97,8 @@ public class MyPageController {
             return mav;
         }
         HashMap<String, Object> map=ms.getMyClassInfo(loginuser.getId());
-        mav.addObject("MyClass", map.get("list"));
+        mav.addObject("productlist", map.get("productlist"));
+        mav.addObject("reservationList", map.get("list"));
         mav.addObject("qna", map.get("qna"));
         mav.setViewName("mypage/MyClass");
         return mav;
