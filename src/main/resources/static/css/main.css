@@ -169,7 +169,7 @@
 	text-align: center;
 	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 	width: 250px; /* 고정된 너비 */
-	height: 250px; /* 고정된 높이 */
+	height: 350px; /* 고정된 높이 */
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between; /* 내용 간의 균형 유지 */
@@ -183,15 +183,13 @@
 .item img {
 	width: 100%;
 	/*height: 180px; !* 고정된 높이 *!*/
-	height: 100%; /* 박스를 꽉 채우도록 이미지 크기 설정 */
-	object-fit: cover; /* 이미지를 박스에 맞게 조정 */
+	height: 80%; /* 박스를 꽉 채우도록 이미지 크기 설정 */
 	border-bottom: 1px solid #f0f0f0;
 }
 .item p {
-	/*margin: 5px 0;*/
-	/*font-size: 14px;*/
-	/*color: #555;*/
-	display: none; /* 텍스트 숨기기 */
+	margin: 5px 0;
+	font-size: 19px;
+	color: #555;
 }
 
 
