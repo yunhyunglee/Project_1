@@ -1,6 +1,7 @@
 package com.himedia.project_1.dao;
 
 import com.himedia.project_1.dto.ProductVo;
+import com.himedia.project_1.dto.QnaproductVo;
 import com.himedia.project_1.dto.ReservationVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,4 +41,10 @@ public interface IMyPageDao {
     void deleteReview(int id);
 
     void insertQnaProductReply(int qpseq, String qnareply);
+
+    void reserCancle(int reseq);
+
+    List<QnaproductVo> findReviewCseqByUserid(String id);
+
+    List<QnaproductVo> getQnaProduct(String id);
 }

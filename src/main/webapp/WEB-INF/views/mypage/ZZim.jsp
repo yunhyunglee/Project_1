@@ -14,7 +14,7 @@
                     <!-- 상품 상세 페이지로 이동 -->
                     <a href="productDetail?id=${zzim.cnum}" class="zzim-link">
                         <div class="zzim-image">
-                            <img src="product_images/${zzim.image}"
+                            <img src="product_images/${zzim.savefilename}"
                                  alt="${zzim.title}" />
                         </div>
                         <div class="zzim-info">

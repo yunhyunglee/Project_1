@@ -28,10 +28,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 <script type="text/javascript">
-    $('.cancel-btn').click(function(){
-        $.ajax({
-            url :"revCancle",
-            data: {reseq : $(this).data('reseq')},
+    document.addEventListener("DOMContentLoaded", function() {
+        $('.cancle-btn').click(function () {
+            // console.log($(this).data("reseq"));
+            // location.href = "reserCancle?reseq=" + $(this).data("reseq");
+            $.ajax({
+                url: "reserCancle",
+                type: "get",
+                data: {
+                    reseq: $(this).data("reseq")
+                },
+                success: function (data) {
+                    alert("삭제가 완료되었습니다.");
+                    location.reload();
+                }
+            });
         });
     });
 </script>
@@ -56,7 +67,7 @@
                         </p>
                     </div>
                     <div class="reservation-actions">
-                        <button class="reservation-cancel-btn">취소하기</button>
+                        <button class="reservation-cancel-btn cancle-btn" data-reseq="${reservation.reseq}">취소하기</button>
                     </div>
                 </li>
             </c:forEach>

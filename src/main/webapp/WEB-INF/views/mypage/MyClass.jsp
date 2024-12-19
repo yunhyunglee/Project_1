@@ -14,8 +14,20 @@
                 }
             });
         });
-        document.replybutton.addEventListener('click', function() {
-            location.href="QnaproductReply"
+        $('#replybutton').on('click', function() {
+            const form=$(this).closest('form')[0];
+            console.log(form);
+            const formdata = new FormData(form);
+            $.ajax({
+                url: "QnaproductReply",
+                type: "post",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    location.reload();
+                }
+            });
         });
 
     });

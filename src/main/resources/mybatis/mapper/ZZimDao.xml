@@ -10,7 +10,7 @@
                z.uid,
                p.cseq,  -- 상품 고유 ID
                p.title,
-               p.image,
+               p.savefilename,
                p.price
         FROM zzim z
                  INNER JOIN product p ON z.cnum = p.cseq

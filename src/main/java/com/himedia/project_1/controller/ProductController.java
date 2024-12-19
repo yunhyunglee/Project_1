@@ -173,7 +173,8 @@ public class ProductController {
     }
 
     @PostMapping("qnaProduct")
-    public String review(@RequestParam("question")String content, HttpSession session,
+    @ResponseBody
+    public String qnaProduct(@RequestParam("question")String content, HttpSession session,
                          @RequestParam("cseq")int cseq, @RequestParam("businessid")String businessid) {
         UserVo loginUser = (UserVo) session.getAttribute("loginUser");
         ps.insertqnaproduct(loginUser.getId(),businessid,content,cseq);
