@@ -6,6 +6,7 @@
     $(function(){
         $('#imageAddBtn').click(function(){
             var formselect = $('#fileupForm')[0];	//	지목된 폼을 변수에 저장
+            console.log(formselect);
             var formData = new FormData(formselect);
             console.log(formData);
             $.ajax({
@@ -66,7 +67,6 @@
             <!-- 강사 -->
             <div class="myclass-field">
                 <label>강사 정보</label>
-                <input type="text" name="id" value="${dto.name}" class="myclass-input" readonly>
                 <input type="text" name="id" value="${dto.id}" class="myclass-input" readonly>
             </div>
             <!-- 클래스 제목 -->
@@ -144,13 +144,6 @@
                 <input type="text" name="max_people" class="myclass-input" placeholder="최대 정원을 입력하세요" required>
             </div>
 
-            <!-- 이미지 업로드 -->
-            <div class="myclass-file-upload">
-                <form id="fileupForm" method="post" enctype="multipart/form-data">
-                <input type="file" name="fileimage" class="myclass-file-input"/>
-                <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
-                </form>
-            </div>
 
 
             <!-- 버튼 영역 -->
@@ -158,11 +151,20 @@
                 <input type="hidden" name="image" id="image" value="${pvo.image}">
                 <input type="hidden" name="savefilename" id="savefilename" value="${pvo.savefilename}">
 <%--                <button type="submit" id="submitButton" class="myclass-action-btn">새 클래스 등록</button>--%>
-<input type="button" value="클래스 정보 저장" id="submitButton" class="myclass-action-btn">
+                <input type="button" value="클래스 정보 저장" id="submitButton" class="myclass-action-btn">
 <%--                <button type="button" onclick="history.back()" class="myclass-cancel-btn">되돌아가기</button>--%>
                 <input type="button" onclick="history.back()" value="돌아가기" class="myclass-action-btn">
             </div>
         </form>
+        <!-- 이미지 업로드 -->
+        <div class="myclass-file-upload">
+            <div id="filename"></div>
+            <form id="fileupForm" method="post" enctype="multipart/form-data">
+                <input type="file" name="fileimage" class="myclass-file-input"/>
+                <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
+            </form>
+        </div>
+
     </div>
 </div>
 
