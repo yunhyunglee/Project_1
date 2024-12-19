@@ -6,7 +6,7 @@
     <select id="selectTotalPrice" resultType="com.himedia.project_1.dto.ReservationVo">
         SELECT p.title AS title,p.cseq , COALESCE(SUM(r.totalprice), 0) AS totalprice
         FROM Product p LEFT JOIN Reservation r ON p.cseq = r.cseq
-        WHERE p.id = #{param1} and (r.payment='N' or r.payment='') and endedclass='Y' GROUP BY p.cseq;
+        WHERE p.id = #{param1} and (r.payment='N' or r.payment='') and endedclass='Y' GROUP BY p.cseq
     </select>
     <select id="getMyClassInfo" resultType="com.himedia.project_1.dto.ProductVo">
         select *from product where id=#{id}

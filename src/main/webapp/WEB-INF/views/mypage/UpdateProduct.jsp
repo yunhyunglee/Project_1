@@ -494,13 +494,7 @@
                 <label for="content">내용</label>
                 <input type="text" id="content" name="content" value="${pvo.content}" class="myclass-input">
             </div>
-            <div class="myclass-file-upload">
-                <div id="filename"></div>
-                <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
-                    <input type="file" name="fileimage" class="myclass-file-input"/>
-                    <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
-                </form>
-            </div>
+
             <div class="myclass-actions">
                 <input type="button" value="클래스 정보 저장" id="submitButton" class="myclass-action-btn">
                 <input type="button" value="클래스 삭제" id="deleteButton" class="myclass-action-btn myclass-cancel-btn">
@@ -508,6 +502,13 @@
             </div>
 
         </form>
+        <div class="myclass-file-upload">
+            <div id="filename"></div>
+            <form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+                <input type="file" name="fileimage" class="myclass-file-input"/>
+                <input type="button" id="imageAddBtn" value="추가" class="myclass-action-btn">
+            </form>
+        </div>
     </div>
 </div>
 

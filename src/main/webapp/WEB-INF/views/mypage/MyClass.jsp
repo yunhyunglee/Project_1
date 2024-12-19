@@ -30,7 +30,16 @@
             });
         });
 
+            // 드롭다운 기능 구현
+
+
     });
+    function toggleReviewContent(cseq) {
+        $('#QnaProduct' + cseq).css('display', function(_, display) {
+            return display === 'block' ? 'none' : 'block';
+        });
+    }
+
 </script>
 
 <div class="mypage-container">
@@ -59,21 +68,29 @@
                             <span class="myclass-amount-icon">&#128176;</span> <!-- 💱 아이콘 -->
                             <c:forEach items="${reservationList}" var="reservationList">
                                 <c:if test="${myclass.cseq == reservationList.cseq}"><span>정산 금액: ${reservationList.totalprice} 원</span></c:if>
+                                <c:if test="${empty reservationList}"><span>정산 금액: 0 원</span></c:if>
                             </c:forEach>
                         </div>
                         <div>
                             <button class="myclass-btn" onclick="location.href='ClassinfoUpdate?cseq=${myclass.cseq}'">클래스 정보 수정</button>
                             <button class="myclass-btn" onclick="location.href='Reservation_List?cseq=${myclass.cseq}'">예약 관리</button>
                             <button class="myclass-btn myclass-clear-btn" id="myclass-clear-btn" data-cseq="${myclass.cseq}">정산하기</button>
-                          <input type="button" name="MyQnaproduct" value="문의내용 ">
-                            <div id="QnaProduct" data-userid="${loginUser.id}">
+                            <input type="button" class="myclass-btn" name="MyQnaproduct" id="MyQnaproduct" value="문의내용 " onclick="toggleReviewContent('${myclass.cseq}')">
 
+                        </div>
+                    </div>
+                    <div id="QnaProduct${myclass.cseq}" data-userid="${loginUser.id}" style="display: none; flex: 1">
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                                <div style="flex: 1">작성자</div><div style="flex: 3">내용</div><div style="flex: 1">작성일시</div>
+                        </div>
+                        <div>
                                 <c:forEach items="${qna}" var="qna">
                                     <c:if test="${qna.cseq == myclass.cseq}">
-                                        <span>${qna.userid}</span>
-                                        <span>${qna.content}</span>
-                                        <span>${qna.indate}</span>
-
+                                    <div style="display: flex; align-items: center; justify-content: center;">
+                                        <div style="flex: 1">${qna.userid}</div>
+                                        <div style="flex: 3">${qna.content}</div>
+                                        <div style="flex: 1"><fmt:formatDate value="${qna.indate}"/></div>
+                                    </div>
                                         <c:choose>
                                             <c:when test="${empty qna.reply}">
                                                 <div>
@@ -85,12 +102,16 @@
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
-                                                <div>${qna.reply} / ${qna.replyindate}</div>
+                                               <div style="display: flex; align-items: center; justify-content: center;">
+                                                    <div style="flex: 1"></div>
+                                                    <div style="flex: 3">${qna.reply}</div>
+                                                    <div style="flex: 1"><fmt:formatDate value="${qna.replyindate}"/></div>
+                                                </div>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:if>
                                 </c:forEach>
-                            </div>
+
                         </div>
                     </div>
                 </div>
