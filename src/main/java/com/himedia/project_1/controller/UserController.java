@@ -1,10 +1,10 @@
 package com.himedia.project_1.controller;
 
 import com.google.gson.Gson;
-import com.himedia.project_1.dto.BusinessmanVo;
-import com.himedia.project_1.dto.KakaoProfile;
-import com.himedia.project_1.dto.OAuthToken;
-import com.himedia.project_1.dto.UserVo;
+import com.himedia.project_1.dto.*;
+
+import com.himedia.project_1.service.ProductService;
+
 import com.himedia.project_1.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,16 +21,32 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class UserController {
     @Autowired
     UserService us;
+    @Autowired
+    ProductService ps;
 
 
     @GetMapping("/")
-    public String home() {
-        return "index";
+
+    public String home(Model model) {
+        List<ProductVo> bestProducts = ps.getBestProducts();
+        List<ProductVo> newProducts = ps.getNewProducts();
+
+        // 전달할 데이터가 null인지 확인
+        if (bestProducts == null || newProducts == null) {
+            throw new RuntimeException("Product lists are null!");
+        }
+
+        model.addAttribute("bestProducts", bestProducts);
+        model.addAttribute("newProducts", newProducts);
+        return  "index";
+
+
     }
 
 
@@ -39,11 +55,6 @@ public class UserController {
         return "member/contract";
     }
 
-//    겹침
-//    @GetMapping("joinform")
-//    public String joinform() {
-//        return "join";
-//    }
 
     @GetMapping("userjoinform")
     public String userjoinform() { return "member/userjoin";}
@@ -67,10 +78,10 @@ public class UserController {
         else if (result.getFieldError("phone") != null)
             model.addAttribute("message", "전화번호를 입력하세요");
         else if (!uservo.getId().equals(reid))
-            model.addAttribute("message", "아이디 중복검사하세요");
+            model.addAttribute("message", "아이디 중복검사를 진행하세요");
         else if (uservo.getPwd().equals(pwdchk)) {
             us.InsertUser(uservo);
-            model.addAttribute("message", "가입 완료");
+            model.addAttribute("message", "회원가입이 완료되었습니다. 로그인 해주세요.");
             url = "member/loginForm";
         }
         return url;
@@ -91,10 +102,10 @@ public class UserController {
         else if (result.getFieldError("phone") != null)
             model.addAttribute("message", "전화번호를 입력하세요");
         else if (!businessmanvo.getId().equals(reid))
-            model.addAttribute("message", "아이디 중복검사하세요");
+            model.addAttribute("message", "아이디 중복검사를 진행하세요");
         else if (businessmanvo.getPwd().equals(pwdchk)) {
             us.InsertBusinessman(businessmanvo);
-            model.addAttribute("message", "가입 완료");
+            model.addAttribute("message", "회원가입이 완료되었습니다.");
             url = "member/loginForm";
         }
         return url;
@@ -113,28 +124,30 @@ public class UserController {
             model.addAttribute("message", "아이디를 입력하세요");
             System.out.println("오류");
         } else if (result.getFieldError("pwd") != null)
-            model.addAttribute("message", "패스워드를 입력하세요");
+            model.addAttribute("message", "비밀번호를 입력하세요");
         else {
             if(usertype.equals("1")){
                 UserVo uvo = us.getMember(uservo.getId());
                 if (uvo == null)
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (!uvo.getPwd().equals(uservo.getPwd()))
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (uvo.getPwd().equals(uservo.getPwd())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser", uvo);
+                    session.setAttribute("usertype","1");
                     url = "redirect:/";
                 }
             }else if (usertype.equals("2")){
                     BusinessmanVo bvo = us.getBusinessman(uservo.getId());
                 if (bvo == null)
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (!bvo.getPwd().equals(uservo.getPwd()))
-                    model.addAttribute("message", "아이디 비번을 확인하세요");
+                    model.addAttribute("message", "아이디 또는 비밀번호를 확인하세요");
                 else if (bvo.getPwd().equals(uservo.getPwd())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("loginUser", bvo);
+                    session.setAttribute("usertype","2");
                     url = "redirect:/";
                 }
             }
@@ -145,6 +158,7 @@ public class UserController {
     @GetMapping("/kakaoLogin")
     public String kakaoLogin(HttpServletRequest request, Model model) throws IOException {
         String code = request.getParameter("code");
+        HttpSession session = request.getSession();
 
         // Step 1: Access Token 요청
         String endpoint = "https://kauth.kakao.com/oauth/token";
@@ -153,6 +167,7 @@ public class UserController {
         bodyData += "&client_id=f67ebc2de23039bbce25c7d2583abd81";
         bodyData += "&redirect_uri=http://localhost:8070/kakaoLogin";
         bodyData += "&code=" + code;
+
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
@@ -189,19 +204,38 @@ public class UserController {
         KakaoProfile kakaoProfile = gson.fromJson(sb.toString(), KakaoProfile.class);
 
         // Step 3: 사용자 DB 확인
-        UserVo uvo = us.getMember(kakaoProfile.getId());
-        if (uvo == null) {
-            // 신규 사용자: 비밀번호 입력 페이지로 이동
-            model.addAttribute("kakaoId", kakaoProfile.getId());
-            model.addAttribute("email", kakaoProfile.getAccount().getEmail());
-            model.addAttribute("name", kakaoProfile.getAccount().getProfile().getNickname());
-            return "member/kakao"; // 비밀번호 입력 페이지
-        }
-
         // 기존 사용자: 로그인 처리
-        HttpSession session = request.getSession();
-        session.setAttribute("loginUser", uvo);
-        return "redirect:/";
+        String usertype= (String) session.getAttribute("usertype");
+        if(usertype.equals("1")){
+            UserVo uvo = us.getMember(kakaoProfile.getId());
+            if (uvo == null) {
+                // 신규 사용자: 비밀번호 입력 페이지로 이동
+                model.addAttribute("kakaoId", kakaoProfile.getId());
+                model.addAttribute("email", kakaoProfile.getAccount().getEmail());
+                model.addAttribute("name", kakaoProfile.getAccount().getProfile().getNickname());
+                return "member/kakao"; // 비밀번호 입력 페이지
+            }
+            session.setAttribute("loginUser", uvo);
+            return "redirect:/";
+        }else {
+            BusinessmanVo uvo = us.getBusinessman(kakaoProfile.getId());
+            if (uvo == null) {
+                // 신규 사용자: 비밀번호 입력 페이지로 이동
+                model.addAttribute("kakaoId", kakaoProfile.getId());
+                model.addAttribute("email", kakaoProfile.getAccount().getEmail());
+                model.addAttribute("name", kakaoProfile.getAccount().getProfile().getNickname());
+                return "member/kakao"; // 비밀번호 입력 페이지
+            }
+            session.setAttribute("loginUser", uvo);
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("kakaoLoginSession")
+    @ResponseBody
+    public String kakaoLoginSession(@RequestParam("usertype")String usertype, HttpSession session) {
+        session.setAttribute("usertype", usertype);
+        return "success";
     }
 
     @PostMapping("/kakaoJoin")
@@ -210,15 +244,24 @@ public class UserController {
                             @RequestParam("email") String email,
                             @RequestParam("name") String name,
                             HttpSession session) {
-        UserVo newUser = new UserVo();
-        newUser.setId(kakaoId);
-        newUser.setPwd(pwd); // 비밀번호 암호화 필요 시 추가 처리
-        newUser.setEmail(email);
-        newUser.setName(name);
-
-        us.InsertUser(newUser);
-        session.setAttribute("loginUser", newUser);
-
+        String usertype = (String) session.getAttribute("usertype");
+        if(usertype.equals("1")){
+            UserVo newUser = new UserVo();
+            newUser.setId(kakaoId);
+            newUser.setPwd(pwd); // 비밀번호 암호화 필요 시 추가 처리
+            newUser.setEmail(email);
+            newUser.setName(name);
+            us.InsertUser(newUser);
+            session.setAttribute("loginUser", newUser);
+        }else{
+            BusinessmanVo newUser = new BusinessmanVo();
+            newUser.setId(kakaoId);
+            newUser.setPwd(pwd);
+            newUser.setEmail(email);
+            newUser.setName(name);
+            us.InsertBusinessman(newUser);
+            session.setAttribute("loginUser", newUser);
+        }
         return "redirect:/";
     }
 
@@ -226,21 +269,54 @@ public class UserController {
     @GetMapping("logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginUser");
-        return "redirect:/";
+        session.removeAttribute("usertype");
+        return "redirect:/loginForm";
     }
     @GetMapping("mypage")
-    public String mypage(HttpSession session) {
+    public String mypage(HttpSession session,Model model) {
         Object loginUser = session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/loginForm";
+
+        }else if(loginUser instanceof UserVo) {
+            session.setAttribute("usertype", "1");
+        }else if(loginUser instanceof BusinessmanVo) {
+            session.setAttribute("usertype", "2");
+
         }
-        return "mypage/mypage";
+        return "mypage/MyPage";
+
+    }
+    @GetMapping("updatecheck")
+    public String updatecheck() {return "mypage/UpdateCheck";}
+
+    @PostMapping("updatecheck")
+    public String updatecheck(HttpSession session,@RequestParam("id")String id,@RequestParam("pwd")String pwd,Model model) {
+        Object loginUser = session.getAttribute("loginUser");
+        String url="mypage/UpdateCheck";
+
+        if(loginUser instanceof UserVo) {
+            if(!id.equals(((UserVo) loginUser).getId())||!us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)){
+                model.addAttribute("message","아이디/비밀번호를 확인하세요");
+            }else if (us.getMember(((UserVo) loginUser).getId()).getPwd().equals(pwd)) {
+                url="redirect:/updateUserForm";
+            }
+        }else if(loginUser instanceof BusinessmanVo) {
+            if (!id.equals(((BusinessmanVo) loginUser).getId())||!us.getBusinessman(((BusinessmanVo) loginUser).getId()).getPwd().equals(pwd)) {
+                model.addAttribute("message","아이디/비밀번호를 확인하세요");
+            }
+            if(us.getBusinessman(((BusinessmanVo) loginUser).getId()).getPwd().equals(pwd)) {
+                url="redirect:/updateUserForm";
+            }
+        }
+        return url;
+
     }
 
     @GetMapping("updateUserForm")
-    public ModelAndView mypage(HttpServletRequest request) {
+    public ModelAndView mypage(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        Object loginUser = request.getSession().getAttribute("loginUser");
+        Object loginUser = session.getAttribute("loginUser");
         if (loginUser instanceof UserVo) {
             // UserVo인 경우
             UserVo user = (UserVo) loginUser;
@@ -253,7 +329,7 @@ public class UserController {
             mav.setViewName("mypage/BusinessUpdate");
         } else {
             // 그 외의 경우나 에러 처리
-            mav.setViewName("index2");
+            mav.setViewName("index");
         }
 
         return mav;
@@ -266,7 +342,7 @@ public class UserController {
         if (result.getFieldError("pwd") != null)
             model.addAttribute("message", "비밀번호를 입력하세요");
         else if (!uservo.getPwd().equals(pwdchk))
-            model.addAttribute("message", "비밀번호체크를 확인하세요");
+            model.addAttribute("message", "비밀번호가 일치하지 않습니다");
         else if (result.getFieldError("name") != null)
             model.addAttribute("message", "이름을 입력하세요");
         else if (result.getFieldError("email") != null)
@@ -287,7 +363,7 @@ public class UserController {
         if (result.getFieldError("pwd") != null)
             model.addAttribute("message", "비밀번호를 입력하세요");
         else if (!uservo.getPwd().equals(pwdchk))
-            model.addAttribute("message", "비밀번호체크를 확인하세요");
+            model.addAttribute("message", "비밀번호가 일치하지 않습니다");
         else if (result.getFieldError("name") != null)
             model.addAttribute("message", "이름을 입력하세요");
         else if (result.getFieldError("email") != null)
@@ -342,56 +418,8 @@ public class UserController {
             us.deleteBusiness(businessMan.getId());
         }
         session.removeAttribute("loginUser");
+        session.removeAttribute("usertype");
         return "redirect:/";
     }
-    @GetMapping("MyReview")
-    public ModelAndView myReview(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyReview", us.getMyReview(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyReview");
-        return mav;
-    }
 
-    @GetMapping("MyReservation")
-    public ModelAndView myReservation(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0=session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyReservation", us.getMyReservation(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyReservation");
-        return mav;
-    }
-
-    @GetMapping("myQna")
-    public ModelAndView myQna(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        Object loginuser0= session.getAttribute("loginUser");
-        if (loginuser0 instanceof UserVo) {
-            // UserVo인 경우
-            UserVo loginuser = (UserVo) loginuser0;
-            mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
-        } else if (loginuser0 instanceof BusinessmanVo) {
-            // businessmanVo인 경우
-            BusinessmanVo loginuser = (BusinessmanVo) loginuser0;
-            mav.addObject("MyQna", us.getMyQna(loginuser.getId()));
-        }
-        mav.setViewName("mypage/MyQna");
-        return mav;
-    }
 }

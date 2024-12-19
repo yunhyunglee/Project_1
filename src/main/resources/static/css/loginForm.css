@@ -1,15 +1,26 @@
 @charset "UTF-8";
-
-section {
-    width: 100%;
-    max-width: 400px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+header {
+    height: 100px; /* 헤더 높이 설정 */
+    background-color: #f8f9fa; /* 배경색 */
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h2 {
+/* 로그인 컨테이너 */
+.login-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #F8FAFC;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
+.login-title {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
@@ -17,109 +28,160 @@ h2 {
     margin-bottom: 20px;
 }
 
-.field {
+/* 안내 문구 */
+.login-notice {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 폼 그룹 */
+.login-form-group {
     margin-bottom: 15px;
 }
 
-.field label {
+.login-form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    color: #333;
 }
 
-.field input {
+.login-form-group input[type="text"],
+.login-form-group input[type="password"] {
     width: 100%;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
-    transition: border-color 0.3s ease-in-out;
 }
 
-.field input:focus {
-    border-color: #007bff;
+.login-form-group input:focus {
     outline: none;
+    border-color: #19A7CE;
+    box-shadow: 0 0 5px rgba(25, 167, 206, 0.5);
 }
 
-.login-btn {
-    margin-top: 15px;
+/* 라디오 버튼 컨테이너 */
+.login-radio-group {
     display: flex;
-    justify-content: space-between;
-}
-
-.login-btn input {
-    width: 32%;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.login-btn input[type="submit"] {
-    background-color: #007bff;
-    color: white;
-}
-
-.login-btn input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-.login-btn input[type="button"] {
-    background-color: #f4f4f4;
-    color: #555;
-    border: 1px solid #ddd;
-}
-
-.login-btn input[type="button"]:hover {
-    background-color: #eaeaea;
-}
-
-.kakao-login {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f7e600;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.kakao-login:hover {
-    background-color: #ecc900;
-}
-
-input[value="Naver"] {
-    background-color: #03c75a;
-    color: white;
-    border: none;
-    width: 32%;
-}
-
-input[value="Naver"]:hover {
-    background-color: #028f42;
-}
-
-input[value="Google"] {
-    background-color: #db4437;
-    color: white;
-    border: none;
-    width: 32%;
-}
-
-input[value="Google"]:hover {
-    background-color: #b33c2c;
-}
-
-div[style*="font-size:80%;"] {
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 20px; /* 버튼 사이 간격 */
     margin-top: 15px;
-    color: red;
-    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 숨겨진 기본 라디오 버튼 */
+.login-radio-group input[type="radio"] {
+    display: none; /* 기본 라디오 버튼 숨김 */
+}
+
+/* 라벨 스타일 */
+.login-radio-group label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    background-color: #F8FAFC;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* 둥근 모서리 */
+    color: #555;
+    font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* 선택된 라디오 버튼 스타일 */
+.login-radio-group input[type="radio"]:checked + label {
+    background-color: #19A7CE; /* 선택된 배경색 */
+    border-color: #19A7CE;
+    color: #fff; /* 선택된 글자색 */
+    /*box-shadow: 0 0 5px rgba(25, 167, 206, 0.5); !* 부드러운 그림자 *!*/
+}
+
+
+
+/* 버튼 영역 */
+.login-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-btn-primary, .login-btn-secondary {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.login-btn-primary {
+    background-color: #19A7CE;
+    width: 200px;
+    color: white;
+}
+
+.login-btn-primary:hover {
+    background-color: #146C94;
+}
+
+.login-btn-secondary {
+    background-color: #ddd;
+    width: 100px;
+    color: #333;
+}
+
+.login-btn-secondary:hover {
+    background-color: #bbb;
+}
+
+/* 구분선 */
+.login-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+/* 카카오 로그인 */
+.login-kakao-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-kakao-btn img {
+    height: 40px;
+    cursor: pointer;
+}
+
+/* 메시지 스타일 */
+.login-message {
+    margin-top: 10px;
+    text-align: center;
+    color: #E74C3C;
+    font-weight: bold;
+}
+
+.kakao-login .kakao-btn {
+    background: none; /* 배경색 제거 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 여백 제거 */
+    cursor: pointer; /* 버튼 클릭 가능 표시 */
+}
+
+.kakao-login .kakao-btn img {
+    display: block;
+    width: 100%; /* 부모 컨테이너 너비 기준 */
+    max-width: 300px; /* 이미지 최대 너비 조정 */
+    height: auto;
+    margin: 0 auto;
+    cursor: pointer;
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.himedia.project_1.dao.INoticeDao">
+
+    <!--  관리자페이지에서 공지시항들 로드할때!!!!!!!  -->
+    <select id="fetchNoticeList" resultType="com.himedia.project_1.dto.NoticeVo">
+        SELECT * FROM notice
+    </select>
+
+
+    <select id="getNoticeById" parameterType="int" resultType="com.himedia.project_1.dto.NoticeVo">
+        SELECT * FROM notice WHERE nseq = #{id}
+    </select>
+
+    <update id="updateNotice" parameterType="com.himedia.project_1.dto.NoticeVo">
+        UPDATE notice
+        SET title = #{title}, content = #{content}
+        WHERE nseq = #{nseq}
+    </update>
+
+    <delete id="deleteNotice" parameterType="int">
+        DELETE FROM notice WHERE nseq = #{nseq}
+    </delete>
+
+    <insert id="addNotice" parameterType="com.himedia.project_1.dto.NoticeVo">
+        INSERT INTO notice (title, content, indate)
+        VALUES (#{title}, #{content}, NOW())
+    </insert>
+
+
+    <select id="getTotalNoticeCount" resultType="int">
+        SELECT COUNT(*) FROM notice
+    </select>
+
+    <select id="getNoticeList" resultType="com.himedia.project_1.dto.NoticeVo">
+        SELECT *
+        FROM notice
+        ORDER BY nseq DESC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
+</mapper>

@@ -12,4 +12,6 @@ public class ReviewVo {
     private String content;
     private String id;
     private Timestamp indate;
+    private String savefilename;
+    private String rating;
 }

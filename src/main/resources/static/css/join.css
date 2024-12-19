@@ -1,0 +1,135 @@
+/*!* 기본 설정 *!*/
+/*!*body {*!*/
+/*!*    font-family: Arial, sans-serif;*!*/
+/*!*    background-color: #f8f9fa;*!*/
+/*!*    margin: 0;*!*/
+/*!*    padding: 0;*!*/
+/*!*}*!*/
+
+/*.join-container {*/
+/*    max-width: 500px;*/
+/*    margin: 50px auto;*/
+/*    background: #ffffff;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*    padding: 30px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*.join-title {*/
+/*    text-align: center;*/
+/*    margin-bottom: 20px;*/
+/*    font-size: 24px;*/
+/*    font-weight: bold;*/
+/*    color: #333333;*/
+/*}*/
+
+/*.join-form .form-group {*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*.join-form label {*/
+/*    display: block;*/
+/*    margin-bottom: 8px;*/
+/*    font-weight: bold;*/
+/*    font-size: 14px;*/
+/*    color: #333333;*/
+/*}*/
+
+/*.join-form input[type="text"],*/
+/*.join-form input[type="password"],*/
+/*.join-form input[type="email"],*/
+/*.join-form input[type="checkbox"] {*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 5px;*/
+/*    font-size: 14px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*.input-group {*/
+/*    display: flex;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.input-group input[type="text"] {*/
+/*    flex: 1;*/
+/*}*/
+
+/*.check-btn {*/
+/*    padding: 10px 15px;*/
+/*    background-color: #19A7CE;*/
+/*    color: #ffffff;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    font-size: 14px;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*.check-btn:hover {*/
+/*    background-color: #146C94;*/
+/*}*/
+
+/*.message {*/
+/*    font-size: 12px;*/
+/*    margin-top: 5px;*/
+/*    color: #888;*/
+/*}*/
+
+/*.checkbox-group {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.button-group {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.btn {*/
+/*    width: 48%;*/
+/*    padding: 10px;*/
+/*    font-size: 14px;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*.submit-btn {*/
+/*    background-color: #19A7CE;*/
+/*    color: #ffffff;*/
+/*}*/
+
+/*.submit-btn:hover {*/
+/*    background-color: #146C94;*/
+/*}*/
+
+/*.cancel-btn {*/
+/*    background-color: #dc3545;*/
+/*    color: #ffffff;*/
+/*}*/
+
+/*.cancel-btn:hover {*/
+/*    background-color: #c82333;*/
+/*}*/
+
+/*!* 반응형 디자인 *!*/
+/*@media (max-width: 600px) {*/
+/*    .join-container {*/
+/*        padding: 20px;*/
+/*    }*/
+
+/*    .button-group {*/
+/*        flex-direction: column;*/
+/*        gap: 10px;*/
+/*    }*/
+
+/*    .btn {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/

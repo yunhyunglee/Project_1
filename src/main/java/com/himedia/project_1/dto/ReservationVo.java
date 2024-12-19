@@ -9,10 +9,14 @@ import java.sql.Time;
 public class ReservationVo {
     private int reseq;
     private String userid;
+    private String price;
     private int cseq;
     private int people;
     private Time classtime;
     private Date classday;
     private int totalprice;
     private String title;
+    private String payment;
+    private String endedclass;
 }
+

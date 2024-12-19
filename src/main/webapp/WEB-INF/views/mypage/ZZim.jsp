@@ -1,24 +1,31 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header.jsp" %>
 
-<section>
+<div class="mypage-zzim-container">
+    <!-- 사이드바 포함 -->
+    <jsp:include page="../sidebar.jsp" />
 
-    <article>
-        <div class="item" style="display: flex ;">
-        <c:forEach items="${ZZim}" var="zzim">
-            <div>
-                <div><img src="http://placehold.co/200x200" /></div>
-                <div>
-                     ${zzim.title} <br>
-                     ${zzim.price} <br>
+    <!-- 본문 -->
+    <div class="mypage-zzim-content">
+        <h2>내 관심목록</h2>
+       <div class="mypage-zzim-items">
+            <c:forEach items="${ZZim}" var="zzim">
+                <div class="mypage-zzim-item">
+                    <!-- 상품 상세 페이지로 이동 -->
+                    <a href="productDetail?id=${zzim.cnum}" class="zzim-link">
+                        <div class="zzim-image">
+                            <img src="product_images/${zzim.savefilename}"
+                                 alt="${zzim.title}" />
+                        </div>
+                        <div class="zzim-info">
+                            <p>${zzim.title}</p>
+                            <span>${zzim.price}원</span>
+                        </div>
+                    </a>
                 </div>
-		    </div>
-
-        </c:forEach>
+            </c:forEach>
         </div>
-    </article>
-
-</section>
+    </div>
+</div>
 
 <%@ include file="../footer.jsp" %>

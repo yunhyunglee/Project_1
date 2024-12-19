@@ -5,9 +5,62 @@
 
 
 <mapper namespace="com.himedia.project_1.dao.IQnaDao">
-    <select id="getQnaList" resultType="com.himedia.project_1.dto.QnaVo">
-        SELECT * FROM qna ORDER BY qseq ASC
+    <select id="fetchQnaList" resultType="com.himedia.project_1.dto.QnaVo">
+        SELECT qseq, title, content, pwd, indate, writer1, writer2, reply, secret
+        FROM qna
     </select>
+
+    <update id="updateReply" parameterType="map">
+        UPDATE qna
+        SET reply = #{reply}
+        WHERE qseq = #{qseq}
+    </update>
+
+    <select id="findById" parameterType="int" resultType="com.himedia.project_1.dto.QnaVo">
+        SELECT qseq, title, content, pwd, indate, writer1, writer2, reply, secret
+        FROM qna
+        WHERE qseq = #{qseq}
+    </select>
+
+
+    <!-- 전체 QnA 개수 -->
+    <select id="getFilteredTotalCount" resultType="int">
+        SELECT COUNT(*) FROM qna
+        WHERE 1=1
+        <if test="filter != null">
+            AND ${filter} IS NOT NULL
+        </if>
+        <if test="searchQuery != null">
+            <if test="searchType == 'title'">
+                AND title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+            <if test="searchType == 'writer'">
+                AND (writer1 LIKE CONCAT('%', #{searchQuery}, '%')
+                OR writer2 LIKE CONCAT('%', #{searchQuery}, '%'))
+            </if>
+        </if>
+    </select>
+
+    <!-- 필터링된 QnA 목록 -->
+    <select id="getFilteredQnaList" resultType="com.himedia.project_1.dto.QnaVo">
+        SELECT * FROM qna
+        WHERE 1=1
+        <if test="filter != null">
+            AND ${filter} IS NOT NULL
+        </if>
+        <if test="searchQuery != null">
+            <if test="searchType == 'title'">
+                AND title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+            <if test="searchType == 'writer'">
+                AND (writer1 LIKE CONCAT('%', #{searchQuery}, '%')
+                OR writer2 LIKE CONCAT('%', #{searchQuery}, '%'))
+            </if>
+        </if>
+        ORDER BY qseq DESC
+        LIMIT #{startNum}, #{displayRow}
+    </select>
+
 
 
 </mapper>

@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+/* 사이드바 공통 스타일 */
+.sidebar {
+    position: relative; /* 기본 위치 */
+    width: 250px; /* 고정 너비 */
+    height: fit-content;
+    background-color: #f4f4f4;
+    padding: 20px; /* 내부 여백 */
+    margin: 0; /* 외부 여백 제거 */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* 사이드바가 줄어들지 않도록 설정 */
+}
+
+/* 사이드바 섹션 스타일 */
+.sidebar .section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e4e4e4;
+}
+
+.sidebar .section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* 사이드바 리스트 스타일 */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    display: block;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #19A7CE;
+    color: white;
+}
+
+/* 현재 페이지 활성화 스타일 */
+.sidebar a.active {
+    background-color: #19A7CE;
+    color: white;
+    font-weight: bold;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* 화면 너비에 맞게 조정 */
+        margin-bottom: 20px; /* 아래 여백 추가 */
+    }
+}

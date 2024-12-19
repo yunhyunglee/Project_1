@@ -38,9 +38,7 @@ public class UserService {
         udao.updateBusiness(uservo);
     }
 
-    public void deleteuser(String id) {
-        udao.deleteuser(id);
-    }
+
 
     public void deleteBusiness(String id) {
         udao.deleteBusiness(id);
@@ -59,4 +57,42 @@ public class UserService {
     public List<QnaVo> getMyQna( String id) {
         return udao.getMyQna(id);
     }
+
+    public void updateUserWithPassword(UserVo uvo) {
+        udao.updateUserWithPassword(uvo);
+    }
+
+
+
+
+
+    public void deleteuser(String id) { udao.deleteuser(id);}
+
+    public void AdeleteUser(String userId) {
+        udao.deleteUser(userId);
+    }
+
+    public UserVo getUserById(String userId) {
+        return udao.getUserById(userId);
+    }
+
+    public List<ProductVo> getBest() {
+        return udao.getBest();
+    }
+
+    public List<ProductVo> getNew() {
+        return  udao.getNew();
+    }
+
+
+
+
+    public int getFilteredTotalCount(String searchQuery, String searchType) {
+        return udao.getFilteredTotalCount(searchQuery, searchType);
+    }
+
+    public List<UserVo> getFilteredUserList(String searchQuery, String searchType, int startNum, int displayRow) {
+        return udao.getFilteredUserList(searchQuery, searchType, startNum, displayRow);
+    }
+
 }

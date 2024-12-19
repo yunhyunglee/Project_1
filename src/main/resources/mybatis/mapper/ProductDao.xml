@@ -7,4 +7,165 @@
     <select id="selectCategory" resultType="com.himedia.project_1.dto.ProductVo">
         SELECT * FROM product WHERE category = #{param1}
     </select>
+
+    <!-- 테마 기준 쿼리 추가 -->
+    <select id="selectTheme" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        WHERE theme = #{theme}
+    </select>
+
+    <!-- 특정 상품 ID로 조회 -->
+    <select id="selectProductById" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT * FROM product WHERE cseq = #{cseq}
+    </select>
+
+    <!-- 최신 상품 가져오기 -->
+    <select id="selectNewProducts" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        ORDER BY indate DESC
+            LIMIT 4
+    </select>
+
+    <!-- 베스트 상품 가져오기 -->
+    <select id="selectBestProducts" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        WHERE bestyn = 'Y'
+            LIMIT 4
+    </select>
+    <select id="getZzim" resultType="boolean">
+        select count(*)>0 from zzim where uid=#{param1} and cnum=#{param2}
+    </select>
+    <insert id="insertZzim">
+        insert into zzim (uid, cnum) values (#{param1},#{param2})
+    </insert>
+    <delete id="deleteZzim">
+        delete from zzim where uid=#{param1} and cnum=#{param2}
+    </delete>
+    <select id="getProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT * FROM product WHERE cseq = #{cseq}
+    </select>
+    <select id="getProductByIdToPrice" resultType="_int">
+        SELECT price FROM product WHERE cseq = #{cseq}
+    </select>
+
+
+
+
+
+<!-- 어드민 관련 -->
+        <select id="findAllProducts" resultType="com.himedia.project_1.dto.ProductVo">
+            SELECT p.cseq, p.title, p.content, p.price, p.category, p.image, b.id
+            From product p
+            LEFT JOIN businessman b ON p.id = b.id
+        </select>
+
+
+        <select id="findProductById" parameterType="int" resultType="com.himedia.project_1.dto.ProductVo">
+            SELECT * FROM product WHERE cseq = #{productId}
+        </select>
+
+        <insert id="insertProduct" parameterType="com.himedia.project_1.dto.ProductVo">
+            INSERT INTO product (title, content, price, category, image)
+            VALUES (#{title}, #{content}, #{price}, #{category}, #{image})
+        </insert>
+
+        <update id="updateProduct" parameterType="com.himedia.project_1.dto.ProductVo">
+            UPDATE product
+            SET title = #{title}, content = #{content}, price = #{price}, category = #{category}, image = #{image}
+            WHERE cseq = #{cseq}
+        </update>
+
+        <delete id="deleteProduct" parameterType="int">
+            DELETE FROM product WHERE cseq = #{productId}
+        </delete>
+
+    <select id="findProductsByBusinessId" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        WHERE id = #{businessId}
+    </select>
+
+
+
+
+
+    <select id="getClassTime">
+        select classtime from reservation where cseq=#{cseq} and payment='' order by classtime asc ;
+    </select>
+    <insert id="insertReservation">
+        insert into reservation(userid,cseq,classday,classtime,people,totalprice)
+        values (#{userid},#{cseq},#{classday},#{classtime},#{people},#{totalprice})
+    </insert>
+    <select id="getAllCount" resultType="_int">
+        select count(*) from product where title like concat('%',#{param1},'%')
+    </select>
+    <select id="getSearchList" resultType="com.himedia.project_1.dto.ProductVo">
+        select *from product where title like concat('%',#{param1},'%') order by cseq desc
+            limit #{param2.displayRow} offset #{param2.startNum}
+    </select>
+
+
+    <select id="getTotalProductCount" resultType="int">
+        SELECT COUNT(*) FROM product
+    </select>
+
+    <select id="getProductList" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT *
+        FROM product
+        ORDER BY cseq DESC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
+
+
+    <select id="getFilteredTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM product
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+               title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 필터링 및 페이징된 사용자 리스트 -->
+    <select id="getFilteredProductList" resultType="com.himedia.project_1.dto.ProductVo">
+        SELECT cseq, title, content, price, category, image, id
+        FROM product
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+               title LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+        ORDER BY cseq DESC
+        LIMIT #{startNum}, #{displayRow};
+    </select>
+
+
+
+
+    <select id="calAbleCapacity">
+        select coalesce(sum(people),0) from reservation where classday=#{param1} and classtime=#{param2}
+    </select>
+
+    <select id="getReservationForReview" resultType="com.himedia.project_1.dto.ReservationVo">
+        select *from reservation where userid=#{param1} and cseq=#{param2} and endedclass='Y'
+    </select>
+    <select id="getreview" resultType="com.himedia.project_1.dto.ReviewVo">
+        select *from review where cseq=#{cseq}
+    </select>
+    <insert id="insertReview" >
+        insert into review(id, cseq,rating,content,savefilename) values (#{param1},#{param2},#{param3},#{param4},#{param5})
+    </insert>
+
+    <insert id="insertqnaproduct">
+        insert into qnaproduct(userid,businessid,content,cseq,indate) values (#{param1},#{param2},#{param3},#{param4},now())
+    </insert>
+    <select id="selectQnaCseq" resultType="com.himedia.project_1.dto.QnaproductVo">
+        select *from qnaproduct where businessid=#{param1} order by indate desc
+    </select>
+
 </mapper>

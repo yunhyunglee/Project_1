@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.himedia.project_1.dao.IBusinessmanDao">
+
+    <!--  관리자페이지에서 사업자리스트 로드할때!!!!!!!  -->
+    <select id="fetchBusinessList" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT * FROM businessman
+    </select>
+
+    <update id="updateBusiness" parameterType="com.himedia.project_1.dto.BusinessmanVo">
+        UPDATE businessman
+        SET name = #{name}, phone = #{phone}, email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getBusinessmanById" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT * FROM businessman WHERE id = #{id}
+    </select>
+
+
+
+    <delete id="deleteBusinessman">
+        DELETE FROM businessman WHERE id = #{id}
+    </delete>
+
+    <!-- 사업자와 상품 정보 조인 -->
+    <select id="fetchBusinessWithProducts" resultType="map">
+        SELECT
+            b.id AS id,        -- BusinessmanVo의 필드와 일치
+            b.name AS name,
+            b.phone AS phone,
+            b.email AS email,
+            p.cseq AS product_id,  -- ProductVo에 있는 필드를 식별 가능하게 추가
+            p.title AS product_title,
+            p.price AS product_price
+        FROM businessman b
+                 LEFT JOIN product p ON b.id = p.id
+        ORDER BY b.id
+    </select>
+
+
+    <select id="getTotalBusinessCount" resultType="int">
+        SELECT COUNT(*) FROM businessman
+    </select>
+
+    <select id="getBusinessList" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT *
+        FROM businessman
+        ORDER BY id ASC
+            LIMIT #{startNum}, #{displayRow}
+    </select>
+
+    <!-- 필터링된 사용자 수 -->
+    <select id="getFilteredTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM businessman
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+                ${searchType} LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 필터링 및 페이징된 사용자 리스트 -->
+    <select id="getFilteredBusinessList" resultType="com.himedia.project_1.dto.BusinessmanVo">
+        SELECT id, name, email, phone
+        FROM businessman
+        <where>
+            <if test="searchQuery != null and searchQuery != ''">
+                ${searchType} LIKE CONCAT('%', #{searchQuery}, '%')
+            </if>
+        </where>
+        ORDER BY id DESC
+        LIMIT #{startNum}, #{displayRow};
+    </select>
+
+
+
+</mapper>
